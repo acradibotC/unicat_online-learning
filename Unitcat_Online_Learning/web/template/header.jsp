@@ -1,10 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <c:set value="${pageContext.request.contextPath}" var="path"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="${path}/login/images/favicon-32x32.png"
+              type="image/png">
         <title>Unicat - Learn Anything</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Unicat project">
@@ -79,11 +81,10 @@
                                             <li><a href="${path}/about">About</a></li>
                                             <li><a href="${path}/courses">Courses</a></li>
                                             <li><a href="${path}/blog">Blog</a></li>
-                                            <li><a href="#">Page</a></li>
                                             <li><a href="${path}/contact">Contact</a></li>
                                         </ul>
                                         <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-
+                                        
                                         <!-- Hamburger -->
 
                                         <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
