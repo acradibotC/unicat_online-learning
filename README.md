@@ -37,16 +37,16 @@
      - Gmail: nguyentuananh020601@gmail.com
      - Github: https://github.com/acradibotC
 - Lê Nam Tuấn | Backend
-     - Gmail: thaithinhbanzai79@gmail.com
+     - Gmail: lenamtuan02@gmail.com
      - Github: https://github.com/namtuan-dev
 - Nguyễn Đình Mạnh | Backend
-     - Gmail: haicao2805@gmail.com
+     - Gmail: manhdinh310@gmail.com
      - Github: https://github.com/NguyenManh0310
 - Nguyễn Lương Phú | Backend + Frontend
-     - Gmail: tantruong2303@gmail.com
+     - Gmail: luongphunguyen1310@gmail.com
      - Github: https://github.com/FUS1310
 - Hoàng Đức Anh | Frontend
-     - Gmail: monkeynam208@gmail.com
+     - Gmail: mamanh2311@gmail.com
      - Github: https://github.com/anhns123
 
 ## Special Thank For Supporting Us
