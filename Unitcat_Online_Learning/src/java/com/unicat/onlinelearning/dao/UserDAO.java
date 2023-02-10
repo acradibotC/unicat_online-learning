@@ -34,7 +34,8 @@ public class UserDAO extends DBContext {
                 int Admin = rs.getInt("Admin");
                 int Student = rs.getInt("Student");
                 String Name = rs.getString("Name");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name);
+                String Gmail = rs.getString("Gmail");
+                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
             }
         } catch (SQLException e) {
 
@@ -42,13 +43,13 @@ public class UserDAO extends DBContext {
         return user;
     }
 
-    public boolean checkUser(String uname, int phone) {
+    public boolean checkUser(String uname, String gmail) {
         User user = null;
         try {
-            String sql = "SELECT * FROM [User] where UserName= ? or Phone= ? ";
+            String sql = "SELECT * FROM [User] where UserName= ? or Gmail= ? ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, uname);
-            ps.setInt(2, phone);
+            ps.setString(2, gmail);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int UserID = rs.getInt("UserID");
@@ -59,7 +60,8 @@ public class UserDAO extends DBContext {
                 int Admin = rs.getInt("Admin");
                 int Student = rs.getInt("Student");
                 String Name = rs.getString("Name");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name);
+                String Gmail = rs.getString("Gmail");
+                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
             }
         } catch (SQLException e) {
         }
@@ -73,24 +75,45 @@ public class UserDAO extends DBContext {
     public int insertUser(User u) {
         int kt = 0;
         try {
-            String sql = "  insert [User] ( [UserName], [PassWord], [Phone], [Dob], [Admin], [Student], [Name]) "
-                    + "values(?,?,?,?,0,1,?)";
+            String sql = "  insert [User] ( [UserName],[Gmail], [PassWord], [Phone], [Dob], [Admin], [Student], [Name]) "
+                    + "values(?,?,?,?,?,0,1,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, u.getUserName());
-            ps.setString(2, u.getPassWord());
-            ps.setString(3, u.getPhone());
-            ps.setString(4, u.getDob().toString());
-            ps.setString(5, u.getName());
+            ps.setString(2, u.getGmail());
+            ps.setString(3, u.getPassWord());
+            ps.setString(4, u.getPhone());
+            ps.setString(5, u.getDob().toString());
+            ps.setString(6, u.getName());
             kt = ps.executeUpdate();
         } catch (Exception e) {
         }
         return kt;
     }
 
+    public int UpdateUser(User u) {
+        int k = 0;
+        try {
+            String sql = "update [User]\n"
+                    + "  set [PassWord]=?,Phone=?,Dob=?,[Name]=?\n"
+                    + "  where UserID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, u.getPassWord());
+
+            ps.setString(2, u.getPhone());
+            ps.setString(3, u.getDob().toString());
+            ps.setString(4, u.getName());
+            ps.setInt(5, u.getUserID());
+            k = ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return k;
+    }
+
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
 
-        User u = new User(0, "test1", "123", "123123123", Date.valueOf("2002-12-12"), 0, 1, "le tuan 2");
-        System.out.println(ud.insertUser(u));
+        User u = new User(6, "sd2", "123", "0965689", Date.valueOf("2002-12-12"), 0, 1, "manh", "manh@gmail.com");
+        System.out.println(ud.UpdateUser(u));
     }
 }
