@@ -57,7 +57,7 @@ public class UserRegister extends HttpServlet {
                     req.setAttribute("msgHave", "User Name or Phone was existed");
                     req.getRequestDispatcher("/register.jsp").forward(req, resp);
                 } else {
-                    User user = new User(0, UserName, PassWord, Integer.parseInt(Phone), Date.valueOf(Dob), 0, 1, Name);
+                    User user = new User(0, UserName, PassWord, Phone, Date.valueOf(Dob), 0, 1, Name);
                     ud.insertUser(user);
                     resp.sendRedirect(req.getContextPath() + "/user/login");
                 }

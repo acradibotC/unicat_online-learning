@@ -14,7 +14,7 @@ public class User {
     private int UserID;
     private String UserName;
     private String PassWord;
-    private int Phone;
+    private String Phone;
     private Date Dob;
     private int Admin;
     private int Student;
@@ -23,7 +23,7 @@ public class User {
     public User() {
     }
 
-    public User(int UserID, String UserName, String PassWord, int Phone, Date Dob, int Admin, int Student, String Name) {
+    public User(int UserID, String UserName, String PassWord, String Phone, Date Dob, int Admin, int Student, String Name) {
         this.UserID = UserID;
         this.UserName = UserName;
         this.PassWord = PassWord;
@@ -58,11 +58,11 @@ public class User {
         this.PassWord = PassWord;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
-    public void setPhone(int Phone) {
+    public void setPhone(String Phone) {
         this.Phone = Phone;
     }
 

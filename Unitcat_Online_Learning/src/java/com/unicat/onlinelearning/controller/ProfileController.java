@@ -15,11 +15,11 @@ import java.io.IOException;
  *
  * @author Admin
  */
-public class Home extends HttpServlet {
+public class ProfileController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+       
     }
 
     @Override
@@ -33,8 +33,7 @@ public class Home extends HttpServlet {
                 req.setAttribute("User", u);
             }          
         }
-        req.getRequestDispatcher("/home.jsp").forward(req, resp);
-
+        req.getRequestDispatcher("/userprofile.jsp").forward(req, resp);
     }
-
+    
 }

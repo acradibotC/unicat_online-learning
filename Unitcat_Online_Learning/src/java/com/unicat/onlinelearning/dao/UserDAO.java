@@ -29,7 +29,7 @@ public class UserDAO extends DBContext {
                 int UserID = rs.getInt("UserID");
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
-                int Phone = rs.getInt("Phone");
+                String Phone = rs.getString("Phone");
                 Date Dob = rs.getDate("Dob");
                 int Admin = rs.getInt("Admin");
                 int Student = rs.getInt("Student");
@@ -54,7 +54,7 @@ public class UserDAO extends DBContext {
                 int UserID = rs.getInt("UserID");
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
-                int Phone = rs.getInt("Phone");
+                String Phone = rs.getString("Phone");
                 Date Dob = rs.getDate("Dob");
                 int Admin = rs.getInt("Admin");
                 int Student = rs.getInt("Student");
@@ -71,14 +71,14 @@ public class UserDAO extends DBContext {
     }
 
     public int insertUser(User u) {
-        int kt=0;
+        int kt = 0;
         try {
-            String sql = "insert into [User]\n"
-                    + "  values (?,?,?,?,0,1,?)";
-            PreparedStatement ps=connection.prepareStatement(sql);
+            String sql = "  insert [User] ( [UserName], [PassWord], [Phone], [Dob], [Admin], [Student], [Name]) "
+                    + "values(?,?,?,?,0,1,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getPassWord());
-            ps.setString(3, String.valueOf(u.getPhone()));
+            ps.setString(3, u.getPhone());
             ps.setString(4, u.getDob().toString());
             ps.setString(5, u.getName());
             kt = ps.executeUpdate();
@@ -89,8 +89,8 @@ public class UserDAO extends DBContext {
 
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-       
-        User u=new User(0,"test1","123",123123123,Date.valueOf("2002-12-12"),0,1, "le tuan 2");
+
+        User u = new User(0, "test1", "123", "123123123", Date.valueOf("2002-12-12"), 0, 1, "le tuan 2");
         System.out.println(ud.insertUser(u));
     }
 }
