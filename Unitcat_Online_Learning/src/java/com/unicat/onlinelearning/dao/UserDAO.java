@@ -72,6 +72,31 @@ public class UserDAO extends DBContext {
         }
     }
 
+    public User getUserByEmail(String email) {
+        User user = null;
+        try {
+            String sql = "SELECT * FROM [User] where Gmail = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int UserID = rs.getInt("UserID");
+                String UserName = rs.getString("UserName");
+                String PassWord = rs.getString("PassWord");
+                String Phone = rs.getString("Phone");
+                Date Dob = rs.getDate("Dob");
+                int Admin = rs.getInt("Admin");
+                int Student = rs.getInt("Student");
+                String Name = rs.getString("Name");
+                String Gmail = rs.getString("Gmail");
+                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
+            }
+        } catch (SQLException e) {
+
+        }
+        return user;
+    }
+
     public int insertUser(User u) {
         int kt = 0;
         try {
@@ -115,5 +140,6 @@ public class UserDAO extends DBContext {
 
         User u = new User(6, "sd2", "123", "0965689", Date.valueOf("2002-12-12"), 0, 1, "manh", "manh@gmail.com");
         System.out.println(ud.UpdateUser(u));
+        System.out.println(ud.getUserByEmail("anhnthe153221@fpt.edu.vn"));
     }
 }

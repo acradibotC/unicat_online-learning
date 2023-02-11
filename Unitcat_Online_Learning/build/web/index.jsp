@@ -1,8 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : Feb 2, 2023, 10:19:14 PM
-    Author     : tuanm
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +9,10 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="">Login With Google</a>
+        <span>Id: ${id}</span>
+        <p>Name: ${name}</p>
+        <p>Emaail: ${email}</p>
+        <br>
+        <img src="${picture}" alt="alt"/>
     </body>
 </html>
