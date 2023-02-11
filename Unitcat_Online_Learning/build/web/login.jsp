@@ -48,7 +48,7 @@
                                 <!-- The "Login with Google" button -->
                                 <div>
                                     <i class="fab fa-google-plus-circle"></i>
-                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:6789/Unicat_Online_Learning/login-google&response_type=code
+                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=http://localhost:6789/Unitcat_Online_Learning/LoginWithGoogle&response_type=code
                                    &client_id=266996363922-ffeafjv3j62257j0fc0mh5ntm8knmcrq.apps.googleusercontent.com" class="btn btn-danger">
                                      Login with Google
                                 </a>

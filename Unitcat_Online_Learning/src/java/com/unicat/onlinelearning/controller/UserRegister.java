@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.unicat.onlinelearning.controller.user;
+package com.unicat.onlinelearning.controller;
 
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dto.User;
