@@ -9,11 +9,11 @@
     </servlet>
     <servlet>
         <servlet-name>UserLogin</servlet-name>
-        <servlet-class>com.unicat.onlinelearning.controller.UserLogin</servlet-class>
+        <servlet-class>com.unicat.onlinelearning.controller.user.UserLogin</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserRegister</servlet-name>
-        <servlet-class>com.unicat.onlinelearning.controller.UserRegister</servlet-class>
+        <servlet-class>com.unicat.onlinelearning.controller.user.UserRegister</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Blog</servlet-name>
@@ -38,6 +38,10 @@
     <servlet>
         <servlet-name>Blog_Single</servlet-name>
         <servlet-class>com.unicat.onlinelearning.controller.Blog_Single</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginWithGoogle</servlet-name>
+        <servlet-class>com.unicat.onlinelearning.controller.user.LoginWithGoogle</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -74,6 +78,10 @@
     <servlet-mapping>
         <servlet-name>Blog_Single</servlet-name>
         <url-pattern>/blog_single</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginWithGoogle</servlet-name>
+        <url-pattern>/login-google</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

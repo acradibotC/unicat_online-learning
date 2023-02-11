@@ -20,7 +20,6 @@
         <link rel="stylesheet" type="text/css" href="${path}/styles/responsive.css">
         <link href="${path}/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link href="${path}/plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
-
     </head>
     <body>
         <div class="super_container">
