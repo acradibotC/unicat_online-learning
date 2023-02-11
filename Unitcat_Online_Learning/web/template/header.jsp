@@ -48,12 +48,26 @@
                                         </ul>
                                         <div class="top_bar_login ml-auto">
                                             <c:choose>
-                                                <c:when test="${student == null}">
-                                                    <div class="login_button"><a href="${path}/user/login">Register or Login</a></div>    
-                                                </c:when>
                                                 <c:when test="${student != null}">
-                                                    <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
+                                                    <div style="display: flex; gap: 10px">
+                                                        <div class="login_button">
+                                                            <a href="${path}/userprofile?p=profile">${User.getName()}</a>
+                                                        </div>
+                                                        <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
+                                                    </div>
                                                 </c:when>
+                                                <c:when test="${admin != null}">
+                                                    <div style="display: flex; gap: 10px;  " >
+                                                        <div class="login_button" style="border-radius: 5px">
+                                                            <a href="">Admin Manager</a>
+                                                        </div>
+                                                        <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="login_button"><a href="${path}/user/login">Register or Login</a></div>    
+                                                </c:otherwise>
+
                                             </c:choose>
                                         </div>
                                     </div>
@@ -83,7 +97,7 @@
                                             <li><a href="${path}/contact">Contact</a></li>
                                         </ul>
                                         <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-                                        
+
                                         <!-- Hamburger -->
 
                                         <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>

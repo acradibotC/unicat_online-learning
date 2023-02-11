@@ -40,8 +40,13 @@
         <servlet-class>com.unicat.onlinelearning.controller.Blog_Single</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>LoginWithGoogle</servlet-name>
         <servlet-class>com.unicat.onlinelearning.controller.user.LoginWithGoogle</servlet-class>
+=======
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>com.unicat.onlinelearning.controller.ProfileController</servlet-class>
+>>>>>>> f3ab77b133f083ccf5ead2790d5cfa2933f394d8
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
@@ -80,8 +85,13 @@
         <url-pattern>/blog_single</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>LoginWithGoogle</servlet-name>
         <url-pattern>/login-google</url-pattern>
+=======
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/userprofile</url-pattern>
+>>>>>>> f3ab77b133f083ccf5ead2790d5cfa2933f394d8
     </servlet-mapping>
     <session-config>
         <session-timeout>
