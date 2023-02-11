@@ -4,6 +4,7 @@
  */
 package com.unicat.onlinelearning.controller;
 
+import com.unicat.onlinelearning.dto.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import java.io.IOException;
  *
  * @author Admin
  */
-public class Home extends HttpServlet{
+public class Home extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,8 +24,17 @@ public class Home extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("student") != null) {
+            User u = (User) req.getSession().getAttribute("student");
+            req.setAttribute("User", u);
+        } else {
+            if (req.getSession().getAttribute("admin") != null) {
+                User u = (User) req.getSession().getAttribute("admin");
+                req.setAttribute("User", u);
+            }          
+        }
         req.getRequestDispatcher("/home.jsp").forward(req, resp);
 
     }
-    
+
 }
