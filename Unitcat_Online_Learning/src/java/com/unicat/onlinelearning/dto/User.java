@@ -16,21 +16,19 @@ public class User {
     private String PassWord;
     private int Phone;
     private Date Dob;
-    private int Admin;
-    private int Student;
+    private int Role;
     private String Name;
 
     public User() {
     }
 
-    public User(int UserID, String UserName, String PassWord, int Phone, Date Dob, int Admin, int Student, String Name) {
+    public User(int UserID, String UserName, String PassWord, int Phone, Date Dob, int Role, String Name) {
         this.UserID = UserID;
         this.UserName = UserName;
         this.PassWord = PassWord;
         this.Phone = Phone;
         this.Dob = Dob;
-        this.Admin = Admin;
-        this.Student = Student;
+        this.Role = Role;
         this.Name = Name;
     }
 
@@ -74,20 +72,12 @@ public class User {
         this.Dob = Dob;
     }
 
-    public int getAdmin() {
-        return Admin;
+    public int getRole() {
+        return Role;
     }
 
-    public void setAdmin(int Admin) {
-        this.Admin = Admin;
-    }
-
-    public int getStudent() {
-        return Student;
-    }
-
-    public void setStudent(int Student) {
-        this.Student = Student;
+    public void setRole(int Role) {
+        this.Role = Role;
     }
 
     public String getName() {
@@ -100,7 +90,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Phone=" + Phone + ", Dob=" + Dob + ", Admin=" + Admin + ", Student=" + Student + ", Name=" + Name + '}';
+        return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Phone=" + Phone + ", Dob=" + Dob + ", Role=" + Role + ", Name=" + Name + '}';
     }
+
 
 }

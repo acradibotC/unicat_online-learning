@@ -39,6 +39,10 @@
         <servlet-name>Blog_Single</servlet-name>
         <servlet-class>com.unicat.onlinelearning.controller.Blog_Single</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Blog_Single_PostComments</servlet-name>
+        <servlet-class>com.unicat.onlinelearning.controller.Blog_Single_PostComments</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -74,6 +78,10 @@
     <servlet-mapping>
         <servlet-name>Blog_Single</servlet-name>
         <url-pattern>/blog_single</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Blog_Single_PostComments</servlet-name>
+        <url-pattern>/blog_single/postcomments</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

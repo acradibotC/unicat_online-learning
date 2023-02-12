@@ -31,10 +31,9 @@ public class UserDAO extends DBContext {
                 String PassWord = rs.getString("PassWord");
                 int Phone = rs.getInt("Phone");
                 Date Dob = rs.getDate("Dob");
-                int Admin = rs.getInt("Admin");
-                int Student = rs.getInt("Student");
+                int Role = rs.getInt("Role");
                 String Name = rs.getString("Name");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name);
+                user = new User(UserID, UserName, PassWord, Phone, Dob, Role, Name);
             }
         } catch (SQLException e) {
 
@@ -56,10 +55,9 @@ public class UserDAO extends DBContext {
                 String PassWord = rs.getString("PassWord");
                 int Phone = rs.getInt("Phone");
                 Date Dob = rs.getDate("Dob");
-                int Admin = rs.getInt("Admin");
-                int Student = rs.getInt("Student");
+                int Role = rs.getInt("Role");
                 String Name = rs.getString("Name");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name);
+                user = new User(UserID, UserName, PassWord, Phone, Dob, Role, Name);
             }
         } catch (SQLException e) {
         }
@@ -74,7 +72,7 @@ public class UserDAO extends DBContext {
         int kt=0;
         try {
             String sql = "insert into [User]\n"
-                    + "  values (?,?,?,?,0,1,?)";
+                    + "  values (?,?,?,?,0,?)";
             PreparedStatement ps=connection.prepareStatement(sql);
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getPassWord());
@@ -86,11 +84,32 @@ public class UserDAO extends DBContext {
         }
         return kt;
     }
+    
+    public User getUserByUserID(int UserID) {
+        User user = null;
+        try {
+            String sql = "SELECT * FROM [User] where UserID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int userID = rs.getInt("UserID");
+                String UserName = rs.getString("UserName");
+                String PassWord = rs.getString("PassWord");
+                int Phone = rs.getInt("Phone");
+                Date Dob = rs.getDate("Dob");
+                int Role = rs.getInt("Role");
+                String Name = rs.getString("Name");
+                user = new User(userID, UserName, PassWord, Phone, Dob, Role, Name);
+            }
+        } catch (SQLException e) {
+        }
+        return user;
+    }
 
     public static void main(String[] args) {
-        UserDAO ud = new UserDAO();
-       
-        User u=new User(0,"test1","123",123123123,Date.valueOf("2002-12-12"),0,1, "le tuan 2");
+        UserDAO ud = new UserDAO();    
+        User u=new User(0,"test1","123",123123123,Date.valueOf("2002-12-12"),0, "le tuan 2");
         System.out.println(ud.insertUser(u));
     }
 }
