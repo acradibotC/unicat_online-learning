@@ -34,7 +34,7 @@ public class UserLogin extends HttpServlet {
             UserDAO ud = new UserDAO();
             User user = ud.getAccount(uname, pass);
             if (user != null) {
-                if (user.getRole()== 1) {
+                if (user.getAdmin() == 1) {
                     req.getSession().setAttribute("admin", user);
                 } else {
                     req.getSession().setAttribute("student", user);
