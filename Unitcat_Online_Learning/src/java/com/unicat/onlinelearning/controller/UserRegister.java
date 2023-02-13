@@ -28,6 +28,7 @@ public class UserRegister extends HttpServlet {
         String Dob = req.getParameter("txtDob");
         String rePass = req.getParameter("txtRePass");
         String Name = req.getParameter("txtName");
+        String Gmail=req.getParameter("txtGmail");
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
         }
@@ -46,18 +47,21 @@ public class UserRegister extends HttpServlet {
         if (Name.equals("")) {
             req.setAttribute("msgName", "Name is required");
         }
-        if (UserName.equals("") || PassWord.equals("") || Phone.equals("") || Dob.equals("") || rePass.equals("") || Name.equals("")) {
+        if (Gmail.equals("")){
+            req.setAttribute("msgGmail", "Gmail is required");
+        }
+        if (UserName.equals("") || PassWord.equals("") || Phone.equals("") || Dob.equals("") || rePass.equals("") || Name.equals("") || Gmail.equals("")) {
             req.getRequestDispatcher("/register.jsp").forward(req, resp);
         } else {
             if (rePass.equals(PassWord) == false) {
                 req.setAttribute("msgRePassf", "Re-Password is not match with PassWord");
                 req.getRequestDispatcher("/register.jsp").forward(req, resp);
             } else {
-                if (ud.checkUser(UserName, Integer.parseInt(Phone)) == true) {
-                    req.setAttribute("msgHave", "User Name or Phone was existed");
+                if (ud.checkUser(UserName, Gmail) == true) {
+                    req.setAttribute("msgHave", "User Name or Gmail has been used");
                     req.getRequestDispatcher("/register.jsp").forward(req, resp);
                 } else {
-                    User user = new User(0, UserName, PassWord, Integer.parseInt(Phone), Date.valueOf(Dob), 0, 1, Name);
+                    User user = new User(0, UserName, PassWord, Phone, Date.valueOf(Dob), 0, 1, Name,Gmail);
                     ud.insertUser(user);
                     resp.sendRedirect(req.getContextPath() + "/user/login");
                 }

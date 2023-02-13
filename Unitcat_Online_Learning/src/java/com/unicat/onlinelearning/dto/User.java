@@ -14,16 +14,17 @@ public class User {
     private int UserID;
     private String UserName;
     private String PassWord;
-    private int Phone;
+    private String Phone;
     private Date Dob;
     private int Admin;
     private int Student;
     private String Name;
+    private String Gmail;
 
     public User() {
     }
 
-    public User(int UserID, String UserName, String PassWord, int Phone, Date Dob, int Admin, int Student, String Name) {
+    public User(int UserID, String UserName, String PassWord, String Phone, Date Dob, int Admin, int Student, String Name,String Gmail) {
         this.UserID = UserID;
         this.UserName = UserName;
         this.PassWord = PassWord;
@@ -32,6 +33,7 @@ public class User {
         this.Admin = Admin;
         this.Student = Student;
         this.Name = Name;
+        this.Gmail=Gmail;
     }
 
     public int getUserID() {
@@ -58,11 +60,11 @@ public class User {
         this.PassWord = PassWord;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return Phone;
     }
 
-    public void setPhone(int Phone) {
+    public void setPhone(String Phone) {
         this.Phone = Phone;
     }
 
@@ -98,6 +100,14 @@ public class User {
         this.Name = Name;
     }
 
+    public String getGmail() {
+        return Gmail;
+    }
+
+    public void setGmail(String Gmail) {
+        this.Gmail = Gmail;
+    }
+    
     @Override
     public String toString() {
         return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Phone=" + Phone + ", Dob=" + Dob + ", Admin=" + Admin + ", Student=" + Student + ", Name=" + Name + '}';
