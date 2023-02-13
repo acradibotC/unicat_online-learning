@@ -100,8 +100,8 @@
                                 </div>
 
                             </div>
-                            <div style="color: red;margin-left: 5%;margin-bottom: 4%">${PoR}</div>
-                            <c:remove var="PoR" scope="session" />
+                            <div style="color: red;margin-left: 5%;margin-bottom: 4%">${msgNotMatch}</div>
+                            <c:remove var="msgNotMatch" scope="session" />
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 text-secondary">
