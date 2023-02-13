@@ -16,7 +16,8 @@ public class User {
     private String PassWord;
     private String Phone;
     private Date Dob;
-    private int Role;
+    private int Admin;
+    private int Student;
     private String Name;
     private String Gmail;
 
@@ -24,13 +25,13 @@ public class User {
     }
 
     public User(int UserID, String UserName, String PassWord, String Phone, Date Dob, int Admin, int Student, String Name,String Gmail) {
-
         this.UserID = UserID;
         this.UserName = UserName;
         this.PassWord = PassWord;
         this.Phone = Phone;
         this.Dob = Dob;
-        this.Role = Role;
+        this.Admin = Admin;
+        this.Student = Student;
         this.Name = Name;
         this.Gmail=Gmail;
     }
@@ -75,12 +76,20 @@ public class User {
         this.Dob = Dob;
     }
 
-    public int getRole() {
-        return Role;
+    public int getAdmin() {
+        return Admin;
     }
 
-    public void setRole(int Role) {
-        this.Role = Role;
+    public void setAdmin(int Admin) {
+        this.Admin = Admin;
+    }
+
+    public int getStudent() {
+        return Student;
+    }
+
+    public void setStudent(int Student) {
+        this.Student = Student;
     }
 
     public String getName() {
@@ -101,8 +110,7 @@ public class User {
     
     @Override
     public String toString() {
-        return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Phone=" + Phone + ", Dob=" + Dob + ", Role=" + Role + ", Name=" + Name + '}';
+        return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Phone=" + Phone + ", Dob=" + Dob + ", Admin=" + Admin + ", Student=" + Student + ", Name=" + Name + '}';
     }
-
 
 }
