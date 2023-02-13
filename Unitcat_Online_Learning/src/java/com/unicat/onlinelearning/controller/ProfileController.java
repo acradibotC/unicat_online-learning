@@ -52,7 +52,7 @@ public class ProfileController extends HttpServlet {
             }
             if (req.getParameter("txtPass").equals("") == false || req.getParameter("txtRepass").equals("") == false) {
                 if (req.getParameter("txtPass").equals("") || req.getParameter("txtRepass").equals("")) {
-                    req.getSession().setAttribute("PoR", "Password must match with RePassword to change password");
+                    req.getSession().setAttribute("msgNotMatch", "Password must match with RePassword to change password");
                 }
                 else{
                     if(Password.equals(Repass)==false){
