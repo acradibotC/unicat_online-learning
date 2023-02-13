@@ -142,6 +142,7 @@
 
 <!-- Blog_Single -->
 <script src="js/blog_single.js"></script>
+
 </body>
 </html>
 
