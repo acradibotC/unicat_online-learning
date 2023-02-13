@@ -31,11 +31,11 @@ public class UserDAO extends DBContext {
                 String PassWord = rs.getString("PassWord");
                 String Phone = rs.getString("Phone");
                 Date Dob = rs.getDate("Dob");
-                int Admin = rs.getInt("Admin");
-                int Student = rs.getInt("Student");
+                int Role = rs.getInt("Role");
                 String Name = rs.getString("Name");
                 String Gmail = rs.getString("Gmail");
                 user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
+
             }
         } catch (SQLException e) {
 
@@ -57,8 +57,7 @@ public class UserDAO extends DBContext {
                 String PassWord = rs.getString("PassWord");
                 String Phone = rs.getString("Phone");
                 Date Dob = rs.getDate("Dob");
-                int Admin = rs.getInt("Admin");
-                int Student = rs.getInt("Student");
+                int Role = rs.getInt("Role");
                 String Name = rs.getString("Name");
                 String Gmail = rs.getString("Gmail");
                 user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
@@ -113,6 +112,28 @@ public class UserDAO extends DBContext {
         } catch (Exception e) {
         }
         return kt;
+    }
+    
+    public User getUserByUserID(int UserID) {
+        User user = null;
+        try {
+            String sql = "SELECT * FROM [User] where UserID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int userID = rs.getInt("UserID");
+                String UserName = rs.getString("UserName");
+                String PassWord = rs.getString("PassWord");
+                int Phone = rs.getInt("Phone");
+                Date Dob = rs.getDate("Dob");
+                int Role = rs.getInt("Role");
+                String Name = rs.getString("Name");
+                user = new User(userID, UserName, PassWord, Phone, Dob, Role, Name);
+            }
+        } catch (SQLException e) {
+        }
+        return user;
     }
 
     public int UpdateUser(User u) {
