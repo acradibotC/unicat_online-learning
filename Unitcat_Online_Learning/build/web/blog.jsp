@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="styles/blog_responsive.css">
 
 <!-- Home -->
+<a href="blog.jsp"></a>
 
 <div class="home">
     <div class="breadcrumbs_container">
@@ -31,133 +32,24 @@
                 <div class="blog_post_container">
 
                     <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_image"><img src="images/blog_1.jpg" alt=""></div>
+                    <c:forEach items="${BloggDAO.getAllBlogg()}" var="x">
+                        <div class="blog_post trans_200">
+                        <div class="blog_post_image"><img src="${x.getBlogImage()}" alt=""></div>
                         <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="${path}/blog_single">Here?s What You Need to Know About Online Testing</a></div>
+                            <div class="blog_post_title"><a href="${path}/blog_single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
                             <div class="blog_post_meta">
                                 <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
+                                    <li><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getUserName()}</a></li>
+                                    <li><a href="#">${x.getPostDate()}</a></li>
                                 </ul>
                             </div>
                             <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
+                                <p>${BloggDAO.getShortString(x.getBlogDescription(), 15)}...</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="blog_single.html">With Changing Students and Times</a></div>
-                            <div class="blog_post_meta">
-                                <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
-                                </ul>
-                            </div>
-                            <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_video_container">
-                            <video class="blog_post_video video-js" data-setup='{"controls": true, "autoplay": false, "preload": "auto", "poster": "images/blog_2.jpg"}'>
-                                <source src="images/mov_bbb.mp4" type="video/mp4">
-                                <source src="images/mov_bbb.ogg" type="video/ogg">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                        <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="blog_single.html">Building Skills Outside the Classroom With New Ways</a></div>
-                            <div class="blog_post_meta">
-                                <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
-                                </ul>
-                            </div>
-                            <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_image"><img src="images/blog_3.jpg" alt=""></div>
-                        <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="blog_single.html">Law Schools Debate a Contentious Testing Alternative</a></div>
-                            <div class="blog_post_meta">
-                                <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
-                                </ul>
-                            </div>
-                            <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_video_container">
-                            <video class="blog_post_video video-js" data-setup='{"controls": true, "autoplay": false, "preload": "auto", "poster": "images/blog_4.jpg"}'>
-                                <source src="images/mov_bbb.mp4" type="video/mp4">
-                                <source src="images/mov_bbb.ogg" type="video/ogg">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                        <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="blog_single.html">Building Skills Outside the Classroom With New Ways</a></div>
-                            <div class="blog_post_meta">
-                                <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
-                                </ul>
-                            </div>
-                            <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_image"><img src="images/blog_5.jpg" alt=""></div>
-                        <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="blog_single.html">Here?s What You Need to Know About Online Testing</a></div>
-                            <div class="blog_post_meta">
-                                <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
-                                </ul>
-                            </div>
-                            <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blog Post -->
-                    <div class="blog_post trans_200">
-                        <div class="blog_post_body">
-                            <div class="blog_post_title"><a href="blog_single.html">With Changing Students and Times</a></div>
-                            <div class="blog_post_meta">
-                                <ul>
-                                    <li><a href="#">admin</a></li>
-                                    <li><a href="#">november 11, 2017</a></li>
-                                </ul>
-                            </div>
-                            <div class="blog_post_text">
-                                <p>Policy analysts generally agree on a need for reform, but not on which path policymakers should take...</p>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
+                    
 
                 </div>
             </div>
@@ -171,7 +63,6 @@
 </div>
 
 <!-- Newsletter -->
-
 <div class="newsletter">
     <div class="newsletter_background" style="background-image:url(images/newsletter_background.jpg)"></div>
     <div class="container">

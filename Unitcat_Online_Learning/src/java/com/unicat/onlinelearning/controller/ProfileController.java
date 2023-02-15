@@ -24,11 +24,16 @@ public class ProfileController extends HttpServlet {
         UserDAO ud = new UserDAO();
         if (req.getSession().getAttribute("student") != null) {
             User u = (User) req.getSession().getAttribute("student");
-            String Password, Phone, Dob, Name, Repass;
+            String Password, Phone, Dob, FullName, Repass,Address;
             if (req.getParameter("txtPass").equals("")) {
                 Password = u.getPassWord();
             } else {
                 Password = req.getParameter("txtPass");
+            }
+            if (req.getParameter("txtAddress").equals("")) {
+                Address = u.getAddress();
+            } else {
+                Address = req.getParameter("txtAddress");
             }
             if (req.getParameter("txtRepass").equals("")) {
                 Repass = u.getPassWord();
@@ -45,10 +50,10 @@ public class ProfileController extends HttpServlet {
             } else {
                 Dob = req.getParameter("txtDob");
             }
-            if (req.getParameter("txtName").equals("")) {
-                Name = u.getName();
+            if (req.getParameter("txtFullName").equals("")) {
+                FullName = u.getFullName();
             } else {
-                Name = req.getParameter("txtName");
+                FullName = req.getParameter("txtFullName");
             }
             if (req.getParameter("txtPass").equals("") == false || req.getParameter("txtRepass").equals("") == false) {
                 if (req.getParameter("txtPass").equals("") || req.getParameter("txtRepass").equals("")) {
@@ -62,8 +67,8 @@ public class ProfileController extends HttpServlet {
                     }
                 }
             }
-            u.setName(Name);
-            
+            u.setFullName(FullName);
+            u.setAddress(Address);
             u.setPhone(Phone);
             u.setDob(Date.valueOf(Dob));
             

@@ -30,9 +30,9 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="https://www.pjkconsulting.co.za/assets/images/team/team-3.jpg" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
-                                <h4>${User.getName()}</h4>
+                                <h4>${User.getFullName()}</h4>
                                 <h6>${User.getDob()}</h6>
-                                <h5>${User.getGmail()}</h5>
+                                <h5>${User.getEmail()}</h5>
                             </div>
                         </div>
                         <hr class="my-4">
@@ -54,11 +54,11 @@
                         <form action="userprofile" method="post">
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Name</h6>
+                                    <h6 class="mb-0">Full Name</h6>
                                     <span style="color:red;"></span>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="txtName" class="form-control" placeholder="${User.getName()}">
+                                    <input type="text" name="txtFullName" class="form-control" placeholder="${User.getFullName()}">
                                 </div>
 
                             </div>
@@ -81,7 +81,16 @@
                                 </div>
 
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                    <span style="color:red;"></span>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="txtAddress" class="form-control" placeholder="${User.getAddress()}">
+                                </div>
 
+                            </div>    
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">New password</h6>
