@@ -17,7 +17,21 @@ import java.sql.SQLException;
  */
 public class UserDAO extends DBContext {
 
-    public User getAccount(String uname, String pass) {
+//    public String randomString(int n) {
+//        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+//                + "0123456789"
+//                + "abcdefghijklmnopqrstuvxyz";
+//        StringBuilder sb = new StringBuilder(n);
+//        for (int i = 0; i < n; i++) {
+//            int index
+//                    = (int) (AlphaNumericString.length()
+//                    * Math.random());
+//            sb.append(AlphaNumericString
+//                    .charAt(index));
+//        }
+//        return sb.toString();
+//    }
+    public User getUser(String uname, String pass) {
         User user = null;
         try {
             String sql = "SELECT * FROM [User] where UserName= ? and PassWord= ?";
@@ -29,13 +43,17 @@ public class UserDAO extends DBContext {
                 int UserID = rs.getInt("UserID");
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
-                String Phone = rs.getString("Phone");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
                 Date Dob = rs.getDate("Dob");
-                int Role = rs.getInt("Role");
-                String Name = rs.getString("Name");
-                String Gmail = rs.getString("Gmail");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
-
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FaceBookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
             }
         } catch (SQLException e) {
 
@@ -43,38 +61,39 @@ public class UserDAO extends DBContext {
         return user;
     }
 
-    public boolean checkUser(String uname, String gmail) {
+    public User checkUser(String uname, String email) {
         User user = null;
         try {
-            String sql = "SELECT * FROM [User] where UserName= ? or Gmail= ? ";
+            String sql = "SELECT * FROM [User] where UserName= ? or Email= ? ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, uname);
-            ps.setString(2, gmail);
+            ps.setString(2, email);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int UserID = rs.getInt("UserID");
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
-                String Phone = rs.getString("Phone");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
                 Date Dob = rs.getDate("Dob");
-                int Role = rs.getInt("Role");
-                String Name = rs.getString("Name");
-                String Gmail = rs.getString("Gmail");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FaceBookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
             }
         } catch (SQLException e) {
         }
-        if (user != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return user;
     }
 
     public User getUserByEmail(String email) {
         User user = null;
         try {
-            String sql = "SELECT * FROM [User] where Gmail = ?";
+            String sql = "SELECT * FROM [User] where Email = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
@@ -82,13 +101,17 @@ public class UserDAO extends DBContext {
                 int UserID = rs.getInt("UserID");
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
-                String Phone = rs.getString("Phone");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
                 Date Dob = rs.getDate("Dob");
-                int Admin = rs.getInt("Admin");
-                int Student = rs.getInt("Student");
-                String Name = rs.getString("Name");
-                String Gmail = rs.getString("Gmail");
-                user = new User(UserID, UserName, PassWord, Phone, Dob, Admin, Student, Name, Gmail);
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FaceBookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
             }
         } catch (SQLException e) {
 
@@ -99,21 +122,26 @@ public class UserDAO extends DBContext {
     public int insertUser(User u) {
         int kt = 0;
         try {
-            String sql = "  insert [User] ( [UserName],[Gmail], [PassWord], [Phone], [Dob], [Admin], [Student], [Name]) "
-                    + "values(?,?,?,?,?,0,1,?)";
+            String sql = "INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], \n"
+                    + "  [Address],[FacebookID],[GmailID], [RoleID], [Status]) \n"
+                    + "VALUES ( ?, ?, ?, '', ?, ?,\n"
+                    + " ?,?,?,?, 3, 1)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, u.getUserName());
-            ps.setString(2, u.getGmail());
-            ps.setString(3, u.getPassWord());
-            ps.setString(4, u.getPhone());
+            ps.setString(2, u.getPassWord());
+            ps.setString(3, u.getFullName());
+            ps.setString(4, u.getEmail());
             ps.setString(5, u.getDob().toString());
-            ps.setString(6, u.getName());
+            ps.setString(6, u.getPhone());
+            ps.setString(7, u.getAddress());
+            ps.setString(8, u.getFaceBookID());
+            ps.setString(9, u.getGmailID());
             kt = ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return kt;
     }
-    
+
     public User getUserByUserID(int UserID) {
         User user = null;
         try {
@@ -122,14 +150,21 @@ public class UserDAO extends DBContext {
             ps.setInt(1, UserID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int userID = rs.getInt("UserID");
+
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
-                int Phone = rs.getInt("Phone");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
                 Date Dob = rs.getDate("Dob");
-                int Role = rs.getInt("Role");
-                String Name = rs.getString("Name");
-                user = new User(userID, UserName, PassWord, Phone, Dob, Role, Name);
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FaceBookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
+
             }
         } catch (SQLException e) {
         }
@@ -140,27 +175,25 @@ public class UserDAO extends DBContext {
         int k = 0;
         try {
             String sql = "update [User]\n"
-                    + "  set [PassWord]=?,Phone=?,Dob=?,[Name]=?\n"
-                    + "  where UserID=?";
+                    + "set [PassWord]=?,Phone=?,DOB=?,FullName=?,[Address]=?\n"
+                    + "where UserID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-
             ps.setString(1, u.getPassWord());
-
             ps.setString(2, u.getPhone());
             ps.setString(3, u.getDob().toString());
-            ps.setString(4, u.getName());
-            ps.setInt(5, u.getUserID());
+            ps.setString(4, u.getFullName());
+            ps.setString(5, u.getAddress());
+            ps.setInt(6, u.getUserID());
             k = ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
         return k;
     }
 
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-
-        User u = new User(6, "sd2", "123", "0965689", Date.valueOf("2002-12-12"), 0, 1, "manh", "manh@gmail.com");
+        
+        User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
         System.out.println(ud.UpdateUser(u));
-        System.out.println(ud.getUserByEmail("anhnthe153221@fpt.edu.vn"));
     }
 }
