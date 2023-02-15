@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
                                     <span style="color:red;">${msgName}</span>
-                                    <input type="text" name="txtName" id="fullname" class="form-control" placeholder="Full name">
+                                    <input type="text" name="txtFullName" id="fullname" class="form-control" placeholder="Full name">
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Username</label>
@@ -52,7 +52,12 @@
                                     <span style="color:red;">${msgDob}</span>
                                     <input type="date" name="txtDob" id="username" class="form-control" >
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="phone">Address</label>
+                                    <span style="color:red;">${msgAddress}</span>
+                                    
+                                    <input type="text" name="txtAddress" id="username" class="form-control" placeholder="Address">
+                                </div>    
 
                                 <div class="form-group mb-4">
                                     <label for="password">Password</label>
