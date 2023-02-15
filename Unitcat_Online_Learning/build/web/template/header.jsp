@@ -51,7 +51,7 @@
                                                 <c:when test="${student != null}">
                                                     <div style="display: flex; gap: 10px">
                                                         <div class="login_button">
-                                                            <a href="${path}/userprofile?p=profile">${User.getName()}</a>
+                                                            <a href="${path}/userprofile?p=profile">${User.getFullName()}</a>
                                                         </div>
                                                         <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>

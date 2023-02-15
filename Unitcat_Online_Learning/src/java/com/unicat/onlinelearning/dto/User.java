@@ -11,29 +11,59 @@ import java.util.Date;
  * @author Admin
  */
 public class User {
+
     private int UserID;
     private String UserName;
     private String PassWord;
-    private String Phone;
+    private String FullName;
+    private String Image;
+    private String Email;
     private Date Dob;
-    private int Admin;
-    private int Student;
-    private String Name;
-    private String Gmail;
+
+    private String Phone;
+    private String Address;
+    private String FaceBookID;
+    private String GmailID;
+    private int RoleID;
+    private int Status;
+
 
     public User() {
     }
 
-    public User(int UserID, String UserName, String PassWord, String Phone, Date Dob, int Admin, int Student, String Name,String Gmail) {
+    public User(int UserID, String UserName, String PassWord, String FullName, String Image, String Email, Date Dob, String Phone, String Address, String FaceBookID, String GmailID, int RoleID, int Status) {
+
         this.UserID = UserID;
         this.UserName = UserName;
         this.PassWord = PassWord;
-        this.Phone = Phone;
+        this.FullName = FullName;
+        this.Image = Image;
+        this.Email = Email;
         this.Dob = Dob;
-        this.Admin = Admin;
-        this.Student = Student;
-        this.Name = Name;
-        this.Gmail=Gmail;
+
+        this.Phone = Phone;
+        this.Address = Address;
+        this.FaceBookID = FaceBookID;
+        this.GmailID = GmailID;
+        this.RoleID = RoleID;
+        this.Status = Status;
+    }
+
+    public String getFaceBookID() {
+        return FaceBookID;
+    }
+
+    public void setFaceBookID(String FaceBookID) {
+        this.FaceBookID = FaceBookID;
+    }
+
+    public String getGmailID() {
+        return GmailID;
+    }
+
+    public void setGmailID(String GmailID) {
+        this.GmailID = GmailID;
+
     }
 
     public int getUserID() {
@@ -60,6 +90,30 @@ public class User {
         this.PassWord = PassWord;
     }
 
+    public String getFullName() {
+        return FullName;
+    }
+
+    public void setFullName(String FullName) {
+        this.FullName = FullName;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
     public String getPhone() {
         return Phone;
     }
@@ -76,41 +130,36 @@ public class User {
         this.Dob = Dob;
     }
 
-    public int getAdmin() {
-        return Admin;
+
+    public String getAddress() {
+        return Address;
     }
 
-    public void setAdmin(int Admin) {
-        this.Admin = Admin;
+    public void setAddress(String Address) {
+        this.Address = Address;
+
     }
 
-    public int getStudent() {
-        return Student;
+    public int getRoleID() {
+        return RoleID;
     }
 
-    public void setStudent(int Student) {
-        this.Student = Student;
+    public void setRoleID(int RoleID) {
+        this.RoleID = RoleID;
     }
 
-    public String getName() {
-        return Name;
+    public int getStatus() {
+        return Status;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setStatus(int Status) {
+        this.Status = Status;
     }
 
-    public String getGmail() {
-        return Gmail;
-    }
-
-    public void setGmail(String Gmail) {
-        this.Gmail = Gmail;
-    }
-    
     @Override
     public String toString() {
-        return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", Phone=" + Phone + ", Dob=" + Dob + ", Admin=" + Admin + ", Student=" + Student + ", Name=" + Name + '}';
+        return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", FullName=" + FullName + ", Image=" + Image + ", Email=" + Email + ", Dob=" + Dob + ", Phone=" + Phone + ", Address=" + Address + ", FaceBookID=" + FaceBookID + ", GmailID=" + GmailID + ", RoleID=" + RoleID + ", Status=" + Status + '}';
+
     }
 
 }
