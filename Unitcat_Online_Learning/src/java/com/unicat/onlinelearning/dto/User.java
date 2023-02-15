@@ -19,6 +19,7 @@ public class User {
     private String Image;
     private String Email;
     private Date Dob;
+
     private String Phone;
     private String Address;
     private String FaceBookID;
@@ -26,10 +27,12 @@ public class User {
     private int RoleID;
     private int Status;
 
+
     public User() {
     }
 
     public User(int UserID, String UserName, String PassWord, String FullName, String Image, String Email, Date Dob, String Phone, String Address, String FaceBookID, String GmailID, int RoleID, int Status) {
+
         this.UserID = UserID;
         this.UserName = UserName;
         this.PassWord = PassWord;
@@ -37,6 +40,7 @@ public class User {
         this.Image = Image;
         this.Email = Email;
         this.Dob = Dob;
+
         this.Phone = Phone;
         this.Address = Address;
         this.FaceBookID = FaceBookID;
@@ -59,6 +63,7 @@ public class User {
 
     public void setGmailID(String GmailID) {
         this.GmailID = GmailID;
+
     }
 
     public int getUserID() {
@@ -125,12 +130,14 @@ public class User {
         this.Dob = Dob;
     }
 
+
     public String getAddress() {
         return Address;
     }
 
     public void setAddress(String Address) {
         this.Address = Address;
+
     }
 
     public int getRoleID() {
@@ -152,6 +159,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "UserID=" + UserID + ", UserName=" + UserName + ", PassWord=" + PassWord + ", FullName=" + FullName + ", Image=" + Image + ", Email=" + Email + ", Dob=" + Dob + ", Phone=" + Phone + ", Address=" + Address + ", FaceBookID=" + FaceBookID + ", GmailID=" + GmailID + ", RoleID=" + RoleID + ", Status=" + Status + '}';
+
     }
 
 }
