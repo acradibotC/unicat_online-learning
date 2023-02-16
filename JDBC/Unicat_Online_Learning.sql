@@ -317,18 +317,22 @@ SET IDENTITY_INSERT [dbo].[Blog] OFF
 SET IDENTITY_INSERT [dbo].[BlogFeedbacks] ON
 			INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
 			VALUES( 1, 5, 'Ao that day lan 2', GETDATE())
+						INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
+			VALUES( 2, 5, 'Ao that day lan 2', GETDATE())
+						INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
+			VALUES( 1, 2, 'Ao that day lan 2', GETDATE())
 SET IDENTITY_INSERT [dbo].[BlogFeedbacks] OFF
 
 -- TABLE: [BlogComments]
 SET IDENTITY_INSERT [dbo].[BlogComments] ON
-INSERT INTO [BlogComments] ([BlogCommentID], [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
-			VALUES(1, 1, 5, 'rep lan 1', GETDATE())
-INSERT INTO [BlogComments] ([BlogCommentID], [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
-			VALUES(2, 1, 4, 'rep lan 2', GETDATE())
-INSERT INTO [BlogComments] ([BlogCommentID], [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
-			VALUES(3, 2, 3, 'rep lan 3', GETDATE())
-INSERT INTO [BlogComments] ([BlogCommentID], [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
-			VALUES(4, 4, 3, 'rep lan 4', GETDATE())
+INSERT INTO [BlogComments] ( [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
+			VALUES( 1, 5, 'rep lan 1', GETDATE())
+INSERT INTO [BlogComments] ( [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
+			VALUES( 1, 4, 'rep lan 2', GETDATE())
+INSERT INTO [BlogComments] ( [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
+			VALUES( 2, 3, 'rep lan 3', GETDATE())
+INSERT INTO [BlogComments] ( [BlogFeedbackID], [UserID], [BlogCommentContent], [BlogCommentDate])
+			VALUES(2, 3, 'rep lan 4', GETDATE())
 SET IDENTITY_INSERT [dbo].[BlogComments] OFF
 ------------------------------------------------- END INSERT -----------------------------------------------------
 
