@@ -150,6 +150,5 @@
     </style>
 
     <script type="text/javascript">
-
     </script>
     <%@include file="template/footer.jsp" %>
