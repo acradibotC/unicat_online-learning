@@ -56,7 +56,8 @@
                                         </a>
                                     </div>
                                 </div>
-                                <p class="login-card-footer-text">Don't have an account? <a href="${path}/user/register" class="text-reset">Register here</a></p>
+                                <p style="margin:15px 0px;">Don't have an account? <a style="color: blue" href="${path}/user/register" class="text-reset">Register here</a></p>
+                                <a style="color: blue" href="${path}/user/forgotpassword" class="text-reset">Forgot password?</a>
                                 <nav class="login-card-footer-nav">
                             </div>
                         </div>

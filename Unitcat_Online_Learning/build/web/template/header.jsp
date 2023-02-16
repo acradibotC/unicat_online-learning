@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="${path}/styles/responsive.css">
         <link href="${path}/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link href="${path}/plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet/less" type="text/css" href="styles.less" />
     </head>
     <body>
         <div class="super_container">
@@ -59,7 +60,7 @@
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="">Admin Manager</a>
+                                                            <a href="AdminManager.jsp">Admin Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>

@@ -168,7 +168,6 @@ public class UserDAO extends DBContext {
                 int RoleID = rs.getInt("RoleID");
                 int Status = rs.getInt("Status");
                 user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
-
             }
         } catch (SQLException e) {
         }
@@ -193,6 +192,25 @@ public class UserDAO extends DBContext {
         }
         return k;
     }
+    
+    public int updateGoogleUser(User u) {
+        int k = 0;
+        try {
+            String sql = "update [User]\n"
+                    + "set [FullName]=?,Image=?,GmailID=?\n"
+                    + "where Email=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, u.getFullName());
+            ps.setString(2, u.getImage());
+            ps.setString(3, u.getGmailID());
+            ps.setString(4, u.getEmail());
+            k = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return k;
+    }
+    
+    
 
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();

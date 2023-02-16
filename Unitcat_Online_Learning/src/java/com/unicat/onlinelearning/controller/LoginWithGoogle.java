@@ -52,11 +52,11 @@ public class LoginWithGoogle extends HttpServlet {
                 request.getSession().setAttribute("student", uDAO.getUserByEmail(googlePojo.getEmail()));
                 User u = uDAO.getUserByEmail(googlePojo.getEmail());
                 if (u.getGmailID() == null) {
-                    User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), null, null, null, googlePojo.getId(), 3, 1);
-                    uDAO.UpdateUser(user);
-                }
+                    User user = new User(0, null, null, googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), null, null, null, googlePojo.getId(), 3, 1);
+                    uDAO.updateGoogleUser(user);
+                } 
             } else {
-                User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), null, null, null, googlePojo.getId(), 3, 1);
+                User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), "", "", "", googlePojo.getId(), 3, 1);
                 uDAO.insertUser(user);
                 request.getSession().setAttribute("student", user);
             }
