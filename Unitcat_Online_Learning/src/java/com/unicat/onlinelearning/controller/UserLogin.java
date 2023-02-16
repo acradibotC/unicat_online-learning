@@ -32,12 +32,20 @@ public class UserLogin extends HttpServlet {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
         } else {
             UserDAO ud = new UserDAO();
-            User user = ud.getAccount(uname, pass);
+            User user = ud.getUser(uname, pass);
             if (user != null) {
-                if (user.getRole()== 1) {
-                    req.getSession().setAttribute("admin", user);
-                } else {
-                    req.getSession().setAttribute("student", user);
+                switch (user.getRoleID()) {
+                    case 1:
+                        req.getSession().setAttribute("admin", user);
+                        break;
+                    case 2:
+                        req.getSession().setAttribute("tutor", user);
+                        break;
+                    case 3:
+                        req.getSession().setAttribute("student", user);
+                        break;
+                    default:
+                        break;
                 }
                 resp.sendRedirect(req.getContextPath() + "/home");
             } else {
@@ -50,13 +58,15 @@ public class UserLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("student") != null || req.getSession().getAttribute("admin") != null) {
+        if (req.getSession().getAttribute("student") != null || req.getSession().getAttribute("admin") != null
+                || req.getSession().getAttribute("tutor") != null) {
             req.getSession().removeAttribute("student");
             req.getSession().removeAttribute("admin");
+            req.getSession().removeAttribute("tutor");
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
-        }     
+        }
     }
 
 }
