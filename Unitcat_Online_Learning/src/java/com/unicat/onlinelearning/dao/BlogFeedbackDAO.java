@@ -1,4 +1,3 @@
-
 package com.unicat.onlinelearning.dao;
 
 import com.unicat.onlinelearning.dto.BlogFeedback;
@@ -9,7 +8,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-public class BlogFeedbackDAO extends DBContext{
+public class BlogFeedbackDAO extends DBContext {
+
     public ArrayList<BlogFeedback> getAllBlogFeedbackByBlogID(int blogID) {
         ArrayList<BlogFeedback> allBlogFeedback = new ArrayList<>();
         try {
@@ -29,7 +29,7 @@ public class BlogFeedbackDAO extends DBContext{
         }
         return allBlogFeedback;
     }
-    
+
     public void InsertBlogFeedback(BlogFeedback blog) {
         try {
             String sql = "INSERT INTO [BlogFeedback] VALUES (?,?,?,?) ";
@@ -42,7 +42,7 @@ public class BlogFeedbackDAO extends DBContext{
         } catch (Exception e) {
         }
     }
-    
+
     public static void main(String[] args) {
         BlogFeedbackDAO dc = new BlogFeedbackDAO();
         ArrayList<BlogFeedback> list = dc.getAllBlogFeedbackByBlogID(1);

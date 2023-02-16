@@ -29,7 +29,7 @@ public class BlogDAO extends DBContext {
         }
         return AllBlogg;
     }
-    
+
     public Blog getBlogFromBlogID(int blogID) {
         Blog blog = null;
         try {
@@ -58,15 +58,17 @@ public class BlogDAO extends DBContext {
         for (int i = 0; i < list.length; i++) {
             shortString += list[i] + " ";
             count++;
-            if (count == number) 
-                break;            
+            if (count == number) {
+                break;
+            }
         }
-        if (shortString.contains("<img"))
+        if (shortString.contains("<img")) {
             return null;
-        else 
+        } else {
             return shortString;
+        }
     }
-    
+
     public ArrayList<Blog> getTop5LastestBlog() {
         ArrayList<Blog> AllBlogg = new ArrayList<>();
         try {
@@ -86,11 +88,11 @@ public class BlogDAO extends DBContext {
         }
         return AllBlogg;
     }
-    
+
     public static void main(String[] args) {
         BlogDAO dc = new BlogDAO();
         ArrayList<Blog> all = dc.getAllBlogg();
         Blog blog = dc.getBlogFromBlogID(1);
-        System.out.println(blog.getBlogTitler());
+        System.out.println(blog.getBlogDescription());
     }
 }

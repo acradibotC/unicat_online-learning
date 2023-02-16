@@ -11,6 +11,7 @@ import java.util.Date;
  * @author tuanm
  */
 public class Blog {
+
     private int BlogID;
     private int UserID;
     private String BlogTitler;

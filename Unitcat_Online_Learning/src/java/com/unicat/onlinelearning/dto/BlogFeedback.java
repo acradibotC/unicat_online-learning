@@ -1,11 +1,9 @@
-
 package com.unicat.onlinelearning.dto;
 
 import java.sql.Timestamp;
-import java.util.Date;
-
 
 public class BlogFeedback {
+
     private int BlogFeedbackID;
     private int BlogID;
     private int UserID;
@@ -67,5 +65,5 @@ public class BlogFeedback {
     public String toString() {
         return "BlogFeedback{" + "BlogFeedbackID=" + BlogFeedbackID + ", BlogID=" + BlogID + ", UserID=" + UserID + ", BlogFeedbackContent=" + BlogFeedbackContent + ", BlogFeedbackDate=" + BlogFeedbackDate + '}';
     }
-    
+
 }

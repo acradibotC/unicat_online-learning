@@ -53,7 +53,7 @@
                                     <div class="comment_image"><div><img src="images/comment_1.jpg" alt=""></div></div>
                                     <div class="comment_content">
                                         <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                            <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getName()}</a></div>
+                                            <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</a></div>
                                             <div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
                                             <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${x.getBlogFeedbackDate()}"/></div>
                                         </div>
@@ -72,7 +72,7 @@
                                                 <div class="comment_image"><div><img src="images/comment_2.jpg" alt=""></div></div>
                                                 <div class="comment_content">
                                                     <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(y.getUserID()).getName()}</a></div>
+                                                        <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(y.getUserID()).getFullName()}</a></div>
                                                         <div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
                                                         <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${y.getBlogCommentDate()}"/></div>
                                                     </div>

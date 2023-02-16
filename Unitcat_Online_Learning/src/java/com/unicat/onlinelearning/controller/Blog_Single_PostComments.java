@@ -1,4 +1,3 @@
-
 package com.unicat.onlinelearning.controller;
 
 import com.unicat.onlinelearning.dao.BlogFeedbackDAO;
@@ -12,19 +11,22 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Blog_Single_PostComments extends HttpServlet{
+public class Blog_Single_PostComments extends HttpServlet {
 
     public static BlogFeedbackDAO BlogFeedbackDAO = new BlogFeedbackDAO();
-    
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getSession().getAttribute("student") == null && req.getSession().getAttribute("admin") == null) 
+        if (req.getSession().getAttribute("student") == null && req.getSession().getAttribute("admin") == null && req.getSession().getAttribute("tutor") == null) {
             resp.sendRedirect(req.getContextPath() + "/user/login");
-        else {
+        } else {
             User User = null;
-            if (req.getSession().getAttribute("student") != null)
-                User = (User)req.getSession().getAttribute("student");
-            else User = (User)req.getSession().getAttribute("admin");
+            if (req.getSession().getAttribute("student") != null) 
+                User = (User) req.getSession().getAttribute("student");           
+            if (req.getSession().getAttribute("tutor") != null)
+                User = (User) req.getSession().getAttribute("tutor");
+            if (req.getSession().getAttribute("admin") != null)
+                User = (User) req.getSession().getAttribute("admin");    
             int BlogFeedbackID = 0;
             int BlogID = Integer.parseInt(req.getParameter("txtBlogID"));
             int UserID = User.getUserID();
@@ -34,5 +36,5 @@ public class Blog_Single_PostComments extends HttpServlet{
             resp.sendRedirect(req.getContextPath() + "/blog_single?BlogID=" + BlogID);
         }
     }
-    
+
 }
