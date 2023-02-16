@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://www.pjkconsulting.co.za/assets/images/team/team-3.jpg" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                            <img src="${User.getImage()}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4>${User.getFullName()}</h4>
                                 <h6>${User.getDob()}</h6>
