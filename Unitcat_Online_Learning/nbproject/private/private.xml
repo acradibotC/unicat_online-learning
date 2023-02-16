@@ -3,15 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/web/courses.jsp</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/web/template/header.jsp</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/dao/BlogFeedbackDAO.java</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/web/blog_single.jsp</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/dao/UserDAO.java</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/dto/User.java</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/Blog_Single.java</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/UserLogin.java</file>
-            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/dto/BlogFeedback.java</file>
+            <file>file:/E:/SWP_Project/Unitcat_Online_Learning/web/userprofile.jsp</file>
         </group>
     </open-files>
 </project-private>
