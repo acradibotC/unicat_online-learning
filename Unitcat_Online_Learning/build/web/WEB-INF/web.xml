@@ -40,7 +40,7 @@
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>com.unicat.onlinelearning.controller.ProfileController</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>Blog_Single_PostComments</servlet-name>
         <servlet-class>com.unicat.onlinelearning.controller.Blog_Single_PostComments</servlet-class>
     </servlet>

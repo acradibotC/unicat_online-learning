@@ -127,18 +127,19 @@ public class UserDAO extends DBContext {
         try {
             String sql = "INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], \n"
                     + "  [Address],[FacebookID],[GmailID], [RoleID], [Status]) \n"
-                    + "VALUES ( ?, ?, ?, '', ?, ?,\n"
+                    + "VALUES ( ?, ?, ?, ?, ?, ?,\n"
                     + " ?,?,?,?, 3, 1)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getPassWord());
             ps.setString(3, u.getFullName());
-            ps.setString(4, u.getEmail());
-            ps.setString(5, u.getDob().toString());
-            ps.setString(6, u.getPhone());
-            ps.setString(7, u.getAddress());
-            ps.setString(8, u.getFaceBookID());
-            ps.setString(9, u.getGmailID());
+            ps.setString(4, u.getImage());
+            ps.setString(5, u.getEmail());
+            ps.setString(6, u.getDob().toString());
+            ps.setString(7, u.getPhone());
+            ps.setString(8, u.getAddress());
+            ps.setString(9, u.getFaceBookID());
+            ps.setString(10, u.getGmailID());
             kt = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -174,7 +175,6 @@ public class UserDAO extends DBContext {
         return user;
     }
 
-
     public int UpdateUser(User u) {
         int k = 0;
         try {
@@ -196,7 +196,7 @@ public class UserDAO extends DBContext {
 
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-        
+
         User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
         System.out.println(ud.UpdateUser(u));
     }

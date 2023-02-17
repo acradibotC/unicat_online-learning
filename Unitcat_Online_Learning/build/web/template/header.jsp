@@ -85,7 +85,7 @@
                                 <div class="header_content d-flex flex-row align-items-center justify-content-start">
                                     <div class="logo_container">
                                         <a href="${path}/home">
-                                            <img style="height: 90px" src="${path}/login/images/unic.jpg" alt="logo" class="">
+                                            <img style="height: 80px" src="${path}/login/images/unic.jpg" alt="logo" class="">
                                         </a>
                                     </div>
                                     <nav class="main_nav_contaner ml-auto">
