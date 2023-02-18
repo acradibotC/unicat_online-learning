@@ -59,7 +59,7 @@
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="">Admin Manager</a>
+                                                            <a href="AdminManager.jsp">Admin Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
