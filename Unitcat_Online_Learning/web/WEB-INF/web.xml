@@ -40,10 +40,6 @@
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>com.unicat.onlinelearning.controller.ProfileController</servlet-class>
     </servlet>
-     <servlet>
-        <servlet-name>Blog_Single_PostComments</servlet-name>
-        <servlet-class>com.unicat.onlinelearning.controller.Blog_Single_PostComments</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -83,10 +79,6 @@
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/userprofile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Blog_Single_PostComments</servlet-name>
-        <url-pattern>/blog_single/postcomments</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

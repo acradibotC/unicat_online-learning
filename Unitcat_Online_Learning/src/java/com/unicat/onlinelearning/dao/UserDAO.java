@@ -47,6 +47,7 @@ public class UserDAO extends DBContext {
                 String Image = rs.getString("Image");
                 String Email = rs.getString("Email");
                 Date Dob = rs.getDate("Dob");
+
                 String Phone = rs.getString("Phone");
                 String Address = rs.getString("Address");
                 String FaceBookID = rs.getString("FaceBookID");
@@ -54,6 +55,7 @@ public class UserDAO extends DBContext {
                 int RoleID = rs.getInt("RoleID");
                 int Status = rs.getInt("Status");
                 user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
+
             }
         } catch (SQLException e) {
 
@@ -84,6 +86,7 @@ public class UserDAO extends DBContext {
                 int RoleID = rs.getInt("RoleID");
                 int Status = rs.getInt("Status");
                 user = new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status);
+
             }
         } catch (SQLException e) {
         }
@@ -170,6 +173,7 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+
 
     public int UpdateUser(User u) {
         int k = 0;
