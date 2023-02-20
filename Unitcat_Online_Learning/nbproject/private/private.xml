@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/SWP_FINAL/Unitcat_Online_Learning/web/template/header.jsp</file>
-            <file>file:/E:/SWP_FINAL/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/utils/DBContext.java</file>
-            <file>file:/E:/SWP_FINAL/Unitcat_Online_Learning/web/blog_single.jsp</file>
-            <file>file:/E:/SWP_FINAL/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/Blog_Single_PostComments.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/blog_single.jsp</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/UserRegister.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/vendor/slick/slick-theme.less</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/userprofile.jsp</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/UserManager.jsp</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/WEB-INF/web.xml</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/AdminManager.jsp</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/web/template/header.jsp</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/About.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/LoginWithFacebook.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/dao/UserDAO.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/dto/User.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/LoginWithGoogle.java</file>
+            <file>file:/E:/TaiLieuThi/New%20folder/Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/UserLogin.java</file>
         </group>
     </open-files>
 </project-private>
