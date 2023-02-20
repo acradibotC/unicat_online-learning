@@ -24,22 +24,39 @@ public class UserRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDAO ud = new UserDAO();
-        String UserName = req.getParameter("txtUserName");
+        String UserName = req.getParameter("txtUserName").trim();
         String PassWord = req.getParameter("txtPassWord");
-        String Phone = req.getParameter("txtPhone");
+        String Phone = req.getParameter("txtPhone").trim();
         String Dob = req.getParameter("txtDob");
         String rePass = req.getParameter("txtRePass");
-        String FullName = req.getParameter("txtFullName");
-        String Gmail = req.getParameter("txtGmail");
-        String Address = req.getParameter("Address");
+        String FullName = req.getParameter("txtFullName").trim();
+        String Gmail = req.getParameter("txtGmail").trim();
+        String Address = req.getParameter("txtAddress").trim();
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
+            
+        }
+        else{
+            if (ud.checkUser(UserName, Gmail)!=null){
+                req.setAttribute("msgUserName", "UserName has been used");
+            }
         }
         if (PassWord.equals("")) {
             req.setAttribute("msgPass", "PassWord is required");
+        }else{
+            if (PassWord.contains(" ")||PassWord.length()<6){
+                req.setAttribute("msgPass", "PassWord length must greater than 6 and not contain space");
+                PassWord="";
+            }
         }
         if (Phone.equals("")) {
             req.setAttribute("msgPhone", "Phone is required");
+        } else {
+            String regex = "[0-9]+";
+            if (Phone.matches(regex) == false || Phone.length() < 9) {
+                req.setAttribute("msgPhone", "Phone does not exist. Please enter valid phone number!");
+                
+            }
         }
         if (Dob.equals("")) {
             req.setAttribute("msgDob", "Date of birth is required");
@@ -52,6 +69,16 @@ public class UserRegister extends HttpServlet {
         }
         if (Gmail.equals("")) {
             req.setAttribute("msgGmail", "Gmail is required");
+        } else {
+            String regexGM = "(\\W|^)[\\w.+\\-]*@gmail\\.com(\\W|$)";
+            if (Gmail.matches(regexGM)) {
+                if (ud.getUserByEmail(Gmail) != null) {
+                    req.setAttribute("msgGmail", "Gmail has been used. Try different gmail.");
+                }
+
+            } else {
+                req.setAttribute("msgGmail", "Please enter valid Gmail. Ex: abcdef@gmail.com");
+            }
         }
         if (Address.equals("")) {
             req.setAttribute("msgAddress", "Address is required");
@@ -67,7 +94,7 @@ public class UserRegister extends HttpServlet {
                     req.setAttribute("msgHave", "User Name or Gmail has been used");
                     req.getRequestDispatcher("/register.jsp").forward(req, resp);
                 } else {
-                    User user = new User(0, UserName, PassWord, FullName, "", Gmail,Date.valueOf(Dob), Phone, Address, null, null, 0, 0);
+                    User user = new User(0, UserName, PassWord, FullName, "", Gmail, Date.valueOf(Dob), Phone, Address, null, null, 0, 0);
                     ud.insertUser(user);
                     resp.sendRedirect(req.getContextPath() + "/user/login");
                 }

@@ -16,6 +16,7 @@
 $(document).ready(function()
 {
 	"use strict";
+
 	/* 
 
 	1. Vars and Inits

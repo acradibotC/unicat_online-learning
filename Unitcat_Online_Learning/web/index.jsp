@@ -11,8 +11,8 @@
         <h1>Hello World!</h1>
         <span>Id: ${id}</span>
         <p>Name: ${name}</p>
-        <p>Email: ${email}</p>
+        <p>Emaail: ${email}</p>
         <br>
-        <img src="${picture}" width="200px" height="200px" alt="alt"/>
+        <img src="${picture}" alt="alt"/>
     </body>
 </html>
