@@ -7,6 +7,7 @@ package com.unicat.onlinelearning.controller;
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dto.User;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.sql.Date;
  *
  * @author Admin
  */
+@WebServlet("/user/register")
 public class UserRegister extends HttpServlet {
 
     @Override

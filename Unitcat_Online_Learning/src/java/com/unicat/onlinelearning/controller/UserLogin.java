@@ -7,6 +7,7 @@ package com.unicat.onlinelearning.controller;
 import com.unicat.onlinelearning.dto.User;
 import com.unicat.onlinelearning.dao.UserDAO;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import java.io.IOException;
  *
  * @author Admin
  */
+@WebServlet(urlPatterns = {"/user/login"})
 public class UserLogin extends HttpServlet {
 
     @Override
