@@ -38,8 +38,8 @@ public class LoginWithFacebook {
             } else {
                 String accessToken = RestFB.getToken(code);
                 User user = RestFB.getUserInfo(accessToken);
-                request.setAttribute("id", user.getId());
-                request.setAttribute("name", user.getName());
+                request.setAttribute("id", user.getUserID());
+                request.setAttribute("name", user.getFullName());
                 RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
                 dis.forward(request, response);
             }

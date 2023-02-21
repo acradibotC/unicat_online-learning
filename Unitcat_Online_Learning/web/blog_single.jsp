@@ -1,8 +1,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="template/header.jsp" %>
 <!-- Blog-Single -->
-<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
-<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/blog_single.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/blog_single_responsive.css">
 
 <!-- Home -->
 
@@ -25,7 +25,6 @@
 </div>
 
 <!-- Blog -->
-
 <div class="blog">
     <div class="container">
         <div class="row">
@@ -50,7 +49,7 @@
                         <c:forEach items="${BlogFeedbackDAO.getAllBlogFeedbackByBlogID(BlogID)}" var="x">
                             <li>       
                                 <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                    <div class="comment_image"><div><img src="images/comment_1.jpg" alt=""></div></div>
+                                    <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(x.getUserID()).getImage()}" alt=""></div></div>
                                     <div class="comment_content">
                                         <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                             <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</a></div>
@@ -61,7 +60,13 @@
                                             <p>${x.getBlogFeedbackContent()}</p>
                                         </div>
                                         <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                            <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
+                                            <div class="comment_extra comment_reply">
+                                                <button onclick="funcBlog();">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span>
+                                                </button></div>
+                                            <textarea id="textboxcomment" name="feedbackextra" required="required" hidden="hidden"></textarea>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +74,7 @@
                                     <ul>
                                         <li>
                                             <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                <div class="comment_image"><div><img src="images/comment_2.jpg" alt=""></div></div>
+                                                <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(y.getUserID()).getImage()}" alt=""></div></div>
                                                 <div class="comment_content">
                                                     <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                         <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(y.getUserID()).getFullName()}</a></div>
@@ -80,7 +85,10 @@
                                                         <p>${y.getBlogCommentContent()}</p>
                                                     </div>
                                                     <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
+                                                        <div class="comment_extra comment_reply">
+                                                            <button onclick="funcBlog(y.getBlogFeedbackID());"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span>
+                                                            </button></div>
+                                                        <textarea id="textboxcomment" name="feedbackextra" required="required" hidden="hidden"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,7 +105,7 @@
                                 <div class="form_title">Review*</div>
                                 <textarea class="comment_input comment_textarea" required="required" name="txtReview"></textarea>
                             </div>
-                           <input type="hidden" name="txtBlogID" value="${BlogID}"/>
+                            <input type="hidden" name="txtBlogID" value="${BlogID}"/>
                             <div>
                                 <button type="submit" class="comment_button trans_200">submit</button>
                             </div>
@@ -172,8 +180,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -181,7 +187,6 @@
 </div>
 
 <!-- Newsletter -->
-
 <div class="newsletter">
     <div class="newsletter_background" style="background-image:url(images/newsletter_background.jpg)"></div>
     <div class="container">
@@ -209,4 +214,18 @@
     </div>
 </div>
 
+
 <%@include file="template/footer.jsp" %>
+<script>
+    function funcBlog() {
+        let element = document.getElementById('textboxcomment');
+        let hidden = element.getAttribute("hidden");
+
+        if (hidden) {
+            element.removeAttribute("hidden");
+
+        } else {
+            element.setAttribute("hidden", "hidden");
+        }
+    }
+</script>

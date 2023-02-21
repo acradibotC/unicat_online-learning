@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -127,19 +128,18 @@ public class UserDAO extends DBContext {
         try {
             String sql = "INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], \n"
                     + "  [Address],[FacebookID],[GmailID], [RoleID], [Status]) \n"
-                    + "VALUES ( ?, ?, ?, ?, ?, ?,\n"
+                    + "VALUES ( ?, ?, ?, '', ?, ?,\n"
                     + " ?,?,?,?, 3, 1)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getPassWord());
             ps.setString(3, u.getFullName());
-            ps.setString(4, u.getImage());
-            ps.setString(5, u.getEmail());
-            ps.setString(6, u.getDob().toString());
-            ps.setString(7, u.getPhone());
-            ps.setString(8, u.getAddress());
-            ps.setString(9, u.getFaceBookID());
-            ps.setString(10, u.getGmailID());
+            ps.setString(4, u.getEmail());
+            ps.setString(5, u.getDob().toString());
+            ps.setString(6, u.getPhone());
+            ps.setString(7, u.getAddress());
+            ps.setString(8, u.getFaceBookID());
+            ps.setString(9, u.getGmailID());
             kt = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -154,7 +154,6 @@ public class UserDAO extends DBContext {
             ps.setInt(1, UserID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
                 String UserName = rs.getString("UserName");
                 String PassWord = rs.getString("PassWord");
                 String FullName = rs.getString("FullName");
@@ -173,6 +172,7 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+
 
     public int UpdateUser(User u) {
         int k = 0;
@@ -193,6 +193,7 @@ public class UserDAO extends DBContext {
         return k;
     }
     
+<<<<<<< HEAD
     public int updateGoogleUser(User u) {
         int k = 0;
         try {
@@ -211,11 +212,43 @@ public class UserDAO extends DBContext {
     }
     
     
+=======
+    public ArrayList<User> getAllAdminUser() {
+        ArrayList<User> Lists = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [User] where RoleID = 1";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int UserID = rs.getInt("UserID");
+                String UserName = rs.getString("UserName");
+                String PassWord = rs.getString("PassWord");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
+                Date Dob = rs.getDate("Dob");
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FaceBookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                Lists.add(new User(UserID, UserName, PassWord, FullName, Image, Email, Dob, Phone, Address, FaceBookID, GmailID, RoleID, Status));
+            }
+        } catch (SQLException e) {
+        }
+        return Lists;
+    }
+>>>>>>> develop
 
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
 
-        User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
-        System.out.println(ud.UpdateUser(u));
+
+        //User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
+        //System.out.println(ud.UpdateUser(u));
+        System.out.println(ud.getAllAdminUser().size());
+        System.out.println(ud.getUserByUserID(1).getFullName());
+
     }
 }

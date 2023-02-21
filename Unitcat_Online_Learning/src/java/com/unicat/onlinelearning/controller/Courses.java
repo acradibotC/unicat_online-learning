@@ -18,6 +18,7 @@ public class Courses extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("StatusHome", 3);
         req.getRequestDispatcher("/courses.jsp").forward(req, resp);
     }
 

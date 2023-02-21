@@ -47,7 +47,7 @@
                         <!-- Course -->
                         <div class="col-lg-6 course_col">
                             <div class="course">
-                                <div class="course_image"><img src="images/course_4.jpg" alt=""></div>
+                                <div class="course_image"><img src="images/course_4.jpg"></div>
                                 <div class="course_body">
                                     <h3 class="course_title"><a href="${path}/course">Software Training</a></h3>
                                     <div class="course_teacher">Mr. John Taylor</div>

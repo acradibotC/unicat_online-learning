@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="${path}/login/css/login.css">
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
 
     </head>
     <body>
@@ -46,19 +46,17 @@
                                 </form>
                                 <span style="color:red;">${message}</span>
                                 <!-- The "Login with Google" button -->
-
-                                <div class="row">
-                                    <div class="col-md">
-                                        <a class="btn btn-outline-dark" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=http://localhost:6789/Unitcat_Online_Learning/LoginWithGoogle&response_type=code
-                                           &client_id=266996363922-ffeafjv3j62257j0fc0mh5ntm8knmcrq.apps.googleusercontent.com" role="button" style="text-transform:none">
-                                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                                            Sign in with Google
-                                        </a>
-                                    </div>
+                                <div>
+                                    <i class="fab fa-google-plus-circle"></i>
+                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=http://localhost:6789/Unitcat_Online_Learning/LoginWithGoogle&response_type=code
+                                   &client_id=266996363922-ffeafjv3j62257j0fc0mh5ntm8knmcrq.apps.googleusercontent.com" class="btn btn-danger">
+                                     Login with Google
+                                </a>
                                 </div>
                                 <p style="margin:15px 0px;">Don't have an account? <a style="color: blue" href="${path}/user/register" class="text-reset">Register here</a></p>
                                 <a style="color: blue" href="${path}/user/forgotpassword" class="text-reset">Forgot password?</a>
                                 <nav class="login-card-footer-nav">
+
                             </div>
                         </div>
                     </div>
