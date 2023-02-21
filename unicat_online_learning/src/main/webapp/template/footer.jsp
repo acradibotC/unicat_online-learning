@@ -107,41 +107,41 @@
 </footer>
 </div>
 <!-- Home -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="styles/bootstrap4/popper.js"></script>
-<script src="styles/bootstrap4/bootstrap.min.js"></script>
-<script src="plugins/greensock/TweenMax.min.js"></script>
-<script src="plugins/greensock/TimelineMax.min.js"></script>
-<script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="plugins/greensock/animation.gsap.min.js"></script>
-<script src="plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="plugins/easing/easing.js"></script>
-<script src="plugins/parallax-js-master/parallax.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="${path}/js/jquery-3.2.1.min.js"></script>
+<script src="${path}/styles/bootstrap4/popper.js"></script>
+<script src="${path}/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="${path}/plugins/greensock/TweenMax.min.js"></script>
+<script src="${path}/plugins/greensock/TimelineMax.min.js"></script>
+<script src="${path}/plugins/scrollmagic/ScrollMagic.min.js"></script>
+<script src="${path}/plugins/greensock/animation.gsap.min.js"></script>
+<script src="${path}/plugins/greensock/ScrollToPlugin.min.js"></script>
+<script src="${path}/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="${path}/plugins/easing/easing.js"></script>
+<script src="${path}/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="${path}/js/custom.js"></script>
 
 <!-- About -->
-<script src="plugins/colorbox/jquery.colorbox-min.js"></script>
-<script src="js/about.js"></script>
+<script src="${path}/plugins/colorbox/jquery.colorbox-min.js"></script>
+<script src="${path}/js/about.js"></script>
 
 <!-- Courses -->
-<script src="js/courses.js"></script>
+<script src="${path}/js/courses.js"></script>
 
 <!-- Course -->
-<script src="js/course.js"></script>
+<script src="${path}/js/course.js"></script>
 
 <!-- Blog -->
-<script src="plugins/masonry/masonry.js"></script>
-<script src="plugins/video-js/video.min.js"></script>
-<script src="js/blog.js"></script>
+<script src="${path}/plugins/masonry/masonry.js"></script>
+<script src="${path}/plugins/video-js/video.min.js"></script>
+<script src="${path}/js/blog.js"></script>
 
 <!-- Contact -->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="plugins/marker_with_label/marker_with_label.js"></script>
-<script src="js/contact.js"></script>
+<script src="${path}/plugins/marker_with_label/marker_with_label.js"></script>
+<script src="${path}/js/contact.js"></script>
 
 <!-- Blog_Single -->
-<script src="js/blog_single.js"></script>
+<script src="${path}/js/blog_single.js"></script>
 
 </body>
 </html>
