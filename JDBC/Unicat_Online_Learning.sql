@@ -193,17 +193,17 @@ INSERT INTO [UserRole] ( [Name]) VALUES ( 'Guest')
 
 -- TABLE: [User]
 INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], [Address], [RoleID], [Status]) 
-			VALUES ( N'ANHNT', N'123', 'Nguyen Tuan Anh', '', '', CAST(N'2005-12-04' AS Date), 123456789, 'Bac ninh', 1, 1)
+			VALUES ( N'ANHNT', N'123', 'Nguyen Tuan Anh', 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg', '', CAST(N'2005-12-04' AS Date), 123456789, 'Bac ninh', 1, 1)
 INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], [Address], [RoleID], [Status]) 
-			VALUES ( N'PHUNL', N'123', 'Nguyen Luong Phu', '', '', CAST(N'2005-12-04' AS Date), 123456789, 'Ha Noi', 1, 1)
+			VALUES ( N'PHUNL', N'123', 'Nguyen Luong Phu', 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg', '', CAST(N'2005-12-04' AS Date), 123456789, 'Ha Noi', 1, 1)
 INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], [Address], [RoleID], [Status]) 
-			VALUES ( N'TUANLN', N'123', 'Le Nam Tuan', '', '', CAST(N'2005-12-04' AS Date), 123456789, 'Thai Nguyen', 1, 1)
+			VALUES ( N'TUANLN', N'123', 'Le Nam Tuan', 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg', '', CAST(N'2005-12-04' AS Date), 123456789, 'Thai Nguyen', 1, 1)
 INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], [Address], [RoleID], [Status]) 
-			VALUES ( N'ANHHD', N'123', 'Hoang Duc Anh', '', '', CAST(N'2005-12-04' AS Date), 123456789, 'Thanh Hoa', 1, 1)
+			VALUES ( N'ANHHD', N'123', 'Hoang Duc Anh', 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg', '', CAST(N'2005-12-04' AS Date), 123456789, 'Thanh Hoa', 1, 1)
 INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], [Address], [RoleID], [Status]) 
-			VALUES ( N'MANHND', N'123', 'Nguyen Dinh Manh', '', '', CAST(N'2005-12-04' AS Date), 123456789, 'Bac ninh', 1, 1)
+			VALUES ( N'MANHND', N'123', 'Nguyen Dinh Manh', 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg', '', CAST(N'2005-12-04' AS Date), 123456789, 'Bac ninh', 1, 1)
 INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], [Address], [RoleID], [Status]) 
-			VALUES ( N'sd', N'123', 'Nguyen Dinh Manh', '', '', CAST(N'2005-12-04' AS Date), 123456789, 'Bac ninh', 3, 1)
+			VALUES ( N'12345', N'123', 'Nguyen Dinh Manh', 'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg', '', CAST(N'2005-12-04' AS Date), 123456789, 'Bac ninh', 3, 1)
 
 -- TABLE: [Blog]
 SET IDENTITY_INSERT [dbo].[Blog] ON 
@@ -310,16 +310,44 @@ INSERT INTO [Blog] ([BlogID], [UserID], [BlogTitler], [BlogImage], [BlogDescript
 				',
 				GETDATE())
 
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(1, 'What is an API (Application Programming Interface)?', 'https://media.geeksforgeeks.org/wp-content/uploads/20230216170349/What-is-an-API.png', 
+			'<p>Everyone is in search of the highest-paying job so as to get into it. And, in the list, the web developer is on the top for years and will remain in the same place due to its demand. If you’re the one who’s looking for getting into it. you must be aware of the most important terms used in it. Out of all the terms, API is yet another term that plays a very important role while building a website. Now, what is an API – (Application Programming Interface)?</p>',
+			GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(3, 'What is JavaDoc tool and how to use it?', 'https://media.geeksforgeeks.org/wp-content/uploads/20190408123340/JavaDoc-tool.jpg', 
+			'<p>JavaDoc tool is a document generator tool in Java programming language for generating standard documentation in HTML format. It generates API documentation. It parses the declarations ad documentation in a set of source file describing classes, methods, constructors, and fields.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(3, 'What is Linked List', 'https://media.geeksforgeeks.org/wp-content/uploads/20220816144425/LLdrawio.png',
+			'<p>Like arrays, a Linked List is a linear data structure. Unlike arrays, linked list elements are not stored at a contiguous location; the elements are linked using pointers. They include a series of connected nodes. Here, each node stores the data and the address of the next node.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(3, 'Requirements to become a full stack developer', 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230215141955/Requirements-to-become-a-full-stack-developer.png',
+			'<p>A full stack developer is a person who is an expert in designing, building, maintaining, and updating both the front end and back end of a website or a web application. A full-stack developer is someone who can develop both client and server software. One should be well familiar with front-end, and back-end technologies frameworks and database management systems, and web hosting platforms.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(4, 'How To Write Thank You Email After Interview?', 'https://media.geeksforgeeks.org/wp-content/uploads/20230209164630/How-To-Write-Thank-You-Email-After-Interview.gif',
+			'<p>Sending a thank you email after an interview is a great way to show your appreciation and express your enthusiasm for the opportunity presented to you. It also serves as an opportunity to reiterate why you feel you would be a great fit for the role and remind the hiring manager of your skills and qualifications. We’ve covered more about how to write a thank you email after an interview in this article.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(4, 'Role of Business Intelligence in Finance', 'https://media.geeksforgeeks.org/wp-content/uploads/20230208105137/Role-of-Business-Intelligence-in-Finance.png', 
+			'<p>Business Intelligence is the abbreviation for the technology, instruments, and procedures that businesses employ to analyze data and come to wise business judgments. In the field of finance, business intelligence (BI) is essential for assisting firms in tracking their financial performance, spotting patterns, and making data-driven choices. In this article, we’ll cover the role of business intelligence in finance and what are its pros.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(5, 'How to Write a Cover Letter in 2023', 'https://media.geeksforgeeks.org/wp-content/uploads/20230209132824/How-to-Write-a-Cover-Letter-That-Will-Get-You-Noticed-(2023).png',
+			'<p>After hours of job hunting, when you finally get the perfect opportunity that you were looking forward to, only submitting a great resume will not guarantee your success. It would be best if you had something more to ensure the recruiter that you are different and perfect for the opportunity. There is one more document that can fill this gap for you – Cover Letter. In this article, we’re going to talk about how to write a cover letter that will get you noticed.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(2, '5 Websites for online surveys to make quick money', 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230210172004/5-Websites-for-online-surveys-to-make-quick-money.png',
+			'<p>Extra money hurts-said nobody ever!! To some, the extra income might help to improve their present and future life. So those looking to earn extra money to increase their net worth, save for a big goal, or pay a debt, can take up a side gig and earn a respectable amount of cash. Working from home has created the perfect environment for anyone to earn extra money with a side hustle. Whether you are a student who wants a source of income or someone who is just looking to supplement your regular income with some online side jobs, there are many viable options available today like taking online surveys, freelancing, testing, blogging, tutoring, etc.</p>', GETDATE())
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate])
+			VALUES(2, 'Grid System in UI Design [Beginner’s Guide]', 'https://media.geeksforgeeks.org/wp-content/uploads/20230209170229/Grid-System-In-UI-Design.gif',
+			'<p>Grid layouts are the building blocks of final amazing-looking designs. Creating symmetric and unified designs using grids is very important. Effective use of grids helps designers in creating designs that are simple for end users to scan and use. Grids ensure consistency across different platforms by adjusting to different screen sizes and orientations. In this article, we’ll dive deep into the concept of grids and understand how to use this tool to create consistent and unified designs. In this article, we’ll cover Grid System In UI Design. </p>', GETDATE())
 SET IDENTITY_INSERT [dbo].[Blog] OFF
 
 
 -- TABLE: [BlogFeedbacks]
 SET IDENTITY_INSERT [dbo].[BlogFeedbacks] ON
-			INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
+INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
 			VALUES( 1, 5, 'Ao that day lan 2', GETDATE())
-						INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
+INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
 			VALUES( 2, 5, 'Ao that day lan 2', GETDATE())
-						INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
+INSERT INTO [BlogFeedback] ( [BlogID], [UserID], [BlogFeedbackContent], [BlogFeedbackDate])
 			VALUES( 1, 2, 'Ao that day lan 2', GETDATE())
 SET IDENTITY_INSERT [dbo].[BlogFeedbacks] OFF
 
@@ -338,9 +366,15 @@ SET IDENTITY_INSERT [dbo].[BlogComments] OFF
 
 ------------------------------------------------- TEST -----------------------------------------------------
 select * from Blog
-select * from [User]
+select * from [User] where [roleID] =1
 select * from BlogFeedback
 select * from BlogComments
 select * from BlogFeedback WHERE BlogID = 1
 
-SELECT TOP 5 * FROM Blog ORDER BY BlogID DESC
+SELECT TOP 9 * FROM Blog ORDER BY BlogID DESC
+delete from [User] WHERE UserID > 6
+
+SELECT TOP 5 * FROM Blog 
+WHERE BlogID != (SELECT Max(BlogID) FROM Blog) 
+ORDER BY BlogID DESC
+

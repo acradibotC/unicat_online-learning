@@ -90,11 +90,43 @@
                                     </div>
                                     <nav class="main_nav_contaner ml-auto">
                                         <ul class="main_nav">
-                                            <li class="active"><a href="${path}/home">Home</a></li>
-                                            <li><a href="${path}/about">About</a></li>
-                                            <li><a href="${path}/courses">Courses</a></li>
-                                            <li><a href="${path}/blog">Blog</a></li>
-                                            <li><a href="${path}/contact">Contact</a></li>
+                                            <c:choose>
+                                                <c:when test="${StatusHome == 1}">
+                                                    <li class="active"><a href="${path}/home">Home</a></li>
+                                                    <li><a href="${path}/about">About</a></li>
+                                                    <li><a href="${path}/courses">Courses</a></li>
+                                                    <li><a href="${path}/blog">Blog</a></li>
+                                                    <li><a href="${path}/contact">Contact</a></li>
+                                                    </c:when>
+                                                    <c:when test="${StatusHome == 2}">
+                                                    <li><a href="${path}/home">Home</a></li>
+                                                    <li class="active"><a href="${path}/about">About</a></li>
+                                                    <li><a href="${path}/courses">Courses</a></li>
+                                                    <li><a href="${path}/blog">Blog</a></li>
+                                                    <li><a href="${path}/contact">Contact</a></li>
+                                                    </c:when>
+                                                    <c:when test="${StatusHome == 3}">
+                                                    <li><a href="${path}/home">Home</a></li>
+                                                    <li><a href="${path}/about">About</a></li>
+                                                    <li class="active"><a href="${path}/courses">Courses</a></li>
+                                                    <li><a href="${path}/blog">Blog</a></li>
+                                                    <li><a href="${path}/contact">Contact</a></li>
+                                                    </c:when>
+                                                    <c:when  test="${StatusHome == 4}">
+                                                    <li><a href="${path}/home">Home</a></li>
+                                                    <li><a href="${path}/about">About</a></li>
+                                                    <li><a href="${path}/courses">Courses</a></li>
+                                                    <li class="active"><a href="${path}/blog">Blog</a></li>
+                                                    <li><a href="${path}/contact">Contact</a></li>
+                                                    </c:when>
+                                                    <c:when  test="${StatusHome == 5}">
+                                                    <li><a href="${path}/home">Home</a></li>
+                                                    <li><a href="${path}/about">About</a></li>
+                                                    <li><a href="${path}/courses">Courses</a></li>
+                                                    <li><a href="${path}/blog">Blog</a></li>
+                                                    <li class="active"><a href="${path}/contact">Contact</a></li>
+                                                    </c:when>
+                                                </c:choose>
                                         </ul>
                                         <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
 
