@@ -32,19 +32,18 @@ public class UserRegister extends HttpServlet {
         String Address = req.getParameter("txtAddress").trim();
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
-            
-        }
-        else{
-            if (ud.checkUser(UserName, Gmail)!=null){
+
+        } else {
+            if (ud.checkUser(UserName, Gmail) != null) {
                 req.setAttribute("msgUserName", "UserName has been used");
             }
         }
         if (PassWord.equals("")) {
             req.setAttribute("msgPass", "PassWord is required");
-        }else{
-            if (PassWord.contains(" ")||PassWord.length()<6){
+        } else {
+            if (PassWord.contains(" ") || PassWord.length() < 6) {
                 req.setAttribute("msgPass", "PassWord length must greater than 6 and not contain space");
-                PassWord="";
+                PassWord = "";
             }
         }
         if (Phone.equals("")) {
@@ -53,7 +52,7 @@ public class UserRegister extends HttpServlet {
             String regex = "[0-9]+";
             if (Phone.matches(regex) == false || Phone.length() < 9) {
                 req.setAttribute("msgPhone", "Phone does not exist. Please enter valid phone number!");
-                
+
             }
         }
         if (Dob.equals("")) {
