@@ -1,22 +1,18 @@
+
 package com.unicat.onlinelearning.controller;
 
-import com.unicat.onlinelearning.dao.BlogCommentsDAO;
-import com.unicat.onlinelearning.dao.BlogDAO;
-import com.unicat.onlinelearning.dao.BlogFeedbackDAO;
-import com.unicat.onlinelearning.dao.UserDAO;
-import com.unicat.onlinelearning.dto.Blog;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Blog_Single extends HttpServlet {
+public class Blog_Single extends HttpServlet{
 
-    public static BlogDAO BlogDAO = new BlogDAO();
-    public static UserDAO UserDAO = new UserDAO();
-    public static BlogFeedbackDAO BlogFeedbackDAO = new BlogFeedbackDAO();
-    public static BlogCommentsDAO BlogCommentDAO = new BlogCommentsDAO();
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/blog_single.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,4 +42,5 @@ public class Blog_Single extends HttpServlet {
         }
 
     }
+
 }

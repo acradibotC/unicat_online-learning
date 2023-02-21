@@ -1,13 +1,13 @@
+
 package com.unicat.onlinelearning.controller;
 
-import com.unicat.onlinelearning.dao.BlogDAO;
-import com.unicat.onlinelearning.dao.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class Blog extends HttpServlet {
 
@@ -37,6 +37,7 @@ public class Blog extends HttpServlet {
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);
+
         req.getRequestDispatcher("/blog.jsp").forward(req, resp);
     }
 

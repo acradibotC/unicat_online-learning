@@ -4,7 +4,9 @@
 <link rel="stylesheet" type="text/css" href="${path}/styles/blog_responsive.css">
 <link rel="stylesheet" type="text/css" href="${path}/styles/pagination.css">
 <!-- Home -->
+
 <a href="${path}/blog"></a>
+
 
 <div class="home">
     <div class="breadcrumbs_container">
@@ -38,6 +40,7 @@
             <div class="col">
                 <div class="blog_post_container">
                     <!-- Blog Post -->
+
                     <c:forEach items="${list}" var="x">
                         <div class="blog_post trans_200">
                             <div class="blog_post_image"><img src="${x.getBlogImage()}" alt=""></div>
@@ -55,6 +58,7 @@
                             </div>
                         </div>
                     </c:forEach>
+
                 </div>
             </div>
         </div>
@@ -93,6 +97,7 @@
 
 
 <!-- Newsletter -->
+
 <div class="newsletter">
     <div class="newsletter_background" style="background-image:url(${path}/images/newsletter_background.jpg)"></div>
     <div class="container">
@@ -121,3 +126,4 @@
 </div>
 
 <%@include file="template/footer.jsp" %>
+
