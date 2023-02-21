@@ -13,6 +13,7 @@ public class Contact extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("StatusHome", 5);
         req.getRequestDispatcher("/contact.jsp").forward(req, resp);
     }
 
