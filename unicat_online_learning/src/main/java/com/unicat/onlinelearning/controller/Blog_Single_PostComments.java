@@ -19,6 +19,7 @@ public class Blog_Single_PostComments extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("StatusHome", 4);
         if (req.getSession().getAttribute("student") == null && req.getSession().getAttribute("admin") == null && req.getSession().getAttribute("tutor") == null) {
             resp.sendRedirect(req.getContextPath() + "/user/login");
         } else {
