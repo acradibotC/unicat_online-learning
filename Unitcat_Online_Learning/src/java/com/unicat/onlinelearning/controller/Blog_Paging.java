@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.unicat.onlinelearning.controller;
 
 import com.unicat.onlinelearning.dao.BlogDAO;
@@ -9,18 +13,22 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Blog extends HttpServlet {
+/**
+ *
+ * @author tuanm
+ */
+public class Blog_Paging extends HttpServlet {
 
     public static BlogDAO BlogDAO = new BlogDAO();
     public static UserDAO UserDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("StatusHome", 4);
         req.setAttribute("BlogDAO", BlogDAO);
         req.setAttribute("UserDAO", UserDAO);
-
-        //Paging (category.jsp)
+        req.setAttribute("StatusHome", 4);
+        
+        //Paging
         ArrayList<com.unicat.onlinelearning.dto.Blog> AllBlog = BlogDAO.getAllBlogg();
         int page, numPerPage = 6;
         int size = AllBlog.size();
@@ -29,7 +37,15 @@ public class Blog extends HttpServlet {
         if (xpage == null) {
             page = 1;
         } else {
-            page = Integer.parseInt(xpage);
+            try {
+                page = Integer.parseInt(xpage);
+                if (page < 1) 
+                    throw new Exception();             
+                if (page > number) 
+                    page = number;                
+            } catch (Exception e) {
+                page = 1;
+            }
         }
         int start = (page - 1) * numPerPage;
         int end = Math.min(page * numPerPage, size);
@@ -42,7 +58,7 @@ public class Blog extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
 }

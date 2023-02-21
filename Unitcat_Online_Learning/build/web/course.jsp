@@ -1,7 +1,7 @@
 <%@include file="template/header.jsp" %>
 <!-- Course -->
-<link rel="stylesheet" type="text/css" href="styles/course.css">
-<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/course.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/course_responsive.css">
 <!-- Home -->
 
 <div class="home">

@@ -29,7 +29,7 @@ public class UserRegister extends HttpServlet {
         String rePass = req.getParameter("txtRePass");
         String FullName = req.getParameter("txtFullName");
         String Gmail = req.getParameter("txtGmail");
-        String Address = req.getParameter("Address");
+        String Address = req.getParameter("txtAddress");
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
         }
@@ -65,7 +65,7 @@ public class UserRegister extends HttpServlet {
                     req.setAttribute("msgHave", "User Name or Gmail has been used");
                     req.getRequestDispatcher("/register.jsp").forward(req, resp);
                 } else {
-                    User user = new User(0, UserName, PassWord, FullName, "", Gmail,Date.valueOf(Dob), Phone, Address, null, null, 0, 0);
+                    User user = new User(0, UserName, PassWord, FullName, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSspo2X04SWQwUFrC6fjwsD8z4BSV2893LtBv9iEALUcQ&s", Gmail,Date.valueOf(Dob), Phone, Address, null, null, 0, 0);
                     ud.insertUser(user);
                     resp.sendRedirect(req.getContextPath() + "/user/login");
                 }
