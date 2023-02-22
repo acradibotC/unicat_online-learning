@@ -207,8 +207,8 @@ INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB]
 
 -- TABLE: [Blog]
 SET IDENTITY_INSERT [dbo].[Blog] ON 
-INSERT INTO [Blog] ([BlogID], [UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate]) 
-			VALUES(1, 1,
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate]) 
+			VALUES(1,
 			'Top 3 Programming Languages to Learn in 2023',
 			'https://media.geeksforgeeks.org/wp-content/uploads/20230117173131/Top-10-Programming-Languages-That-You-Should-Learn-in-2023.png',
 			'<div class="blog_image"><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Best-Programming-Languages-to-Start-Learning-Today.jpg" alt=""></div>
@@ -257,8 +257,8 @@ INSERT INTO [Blog] ([BlogID], [UserID], [BlogTitler], [BlogImage], [BlogDescript
 				<p style="font-weight: bold;">Average Annual Salary of Java Developer – $104,000</p>',
 				GETDATE())
 
-INSERT INTO [Blog] ([BlogID], [UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate]) 
-			VALUES(2, 2,
+INSERT INTO [Blog] ([UserID], [BlogTitler], [BlogImage], [BlogDescription], [PostDate]) 
+			VALUES(2,
 			'5 Ways to Improve Time Management Skills',
 			'https://media.geeksforgeeks.org/wp-content/uploads/20230202174722/5-Ways-to-Improve-Time-Management.gif',
 			'	<p>Time management is a task that requires constant attention to stay on track and achieve goals. It involves planning, prioritizing, and executing tasks in a way that allows you to meet deadlines and achieve the most critical goals in your life. If you want to enhance your time management skills but need help figuring out where to start, this blog is for you! In this article, we’ll cover the most practical ways to improve time management.</p>
