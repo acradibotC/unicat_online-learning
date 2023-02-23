@@ -39,11 +39,11 @@
                                             <li><div class="question">Have any questions?</div></li>
                                             <li>
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                <div>0988-123-8888</div>
+                                                <div>0987 666 555</div>
                                             </li>
                                             <li>
                                                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                                <div>info.unicatlearning@gmail.com</div>
+                                                <div>UnicatOnlineLearning@gmail.com</div>
                                             </li>
                                         </ul>
                                         <div class="top_bar_login ml-auto">
@@ -56,6 +56,16 @@
                                                         <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
+                                                
+                                                <c:when test="${tutor != null}">
+                                                    <div style="display: flex; gap: 10px">
+                                                        <div class="login_button">
+                                                            <a href="${path}/userprofile?p=profile">${User.getFullName()}</a>
+                                                        </div>
+                                                        <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
+                                                    </div>
+                                                </c:when>
+                                                
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
@@ -181,7 +191,6 @@
                         <li class="menu_mm"><a href="${path}/about">About</a></li>
                         <li class="menu_mm"><a href="${path}/courses">Courses</a></li>
                         <li class="menu_mm"><a href="${path}/blog">Blog</a></li>
-                        <li class="menu_mm"><a href="#">Page</a></li>
                         <li class="menu_mm"><a href="${path}/contact">Contact</a></li>
                     </ul>
                 </nav>

@@ -23,7 +23,8 @@ public class Blog extends HttpServlet {
         req.setAttribute("StatusHome", 4);
         req.setAttribute("BlogDAO", BlogDAO);
         req.setAttribute("UserDAO", UserDAO);
-
+        
+        
         //Paging (category.jsp)
         ArrayList<com.unicat.onlinelearning.dto.Blog> AllBlog = BlogDAO.getAllBlogg();
         int page, numPerPage = 6;
@@ -37,7 +38,10 @@ public class Blog extends HttpServlet {
         }
         int start = (page - 1) * numPerPage;
         int end = Math.min(page * numPerPage, size);
-        ArrayList<com.unicat.onlinelearning.dto.Blog> list = BlogDAO.getListBySearching(AllBlog, start, end);
+        ArrayList<com.unicat.onlinelearning.dto.Blog> list;
+        if (AllBlog.isEmpty()) {
+          list = null;  
+        } else list = BlogDAO.getListBySearching(AllBlog, start, end);
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);

@@ -1,3 +1,4 @@
+
 package com.unicat.onlinelearning.controller;
 
 import com.unicat.onlinelearning.dao.BlogDAO;
@@ -12,45 +13,35 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/courses")
-public class Courses extends HttpServlet {
+@WebServlet("/courses/search")
+public class Courses_Searching extends HttpServlet{
 
     public static CategoryDAO CategoryDAO = new CategoryDAO();
     public static CoursesDAO CoursesDAO = new CoursesDAO();
     public static UserDAO UserDAO = new UserDAO();
     public static BlogDAO BlogDAO = new BlogDAO();
-
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("StatusHome", 3);
         req.setAttribute("CategoryDAO", CategoryDAO);
         req.setAttribute("CoursesDAO", CoursesDAO);
         req.setAttribute("UserDAO", UserDAO);
         req.setAttribute("BlogDAO", BlogDAO);
-
-        String CategoryIDString = req.getParameter("CategoryID");
-        int CategoryID;
-        if (CategoryIDString == null) {
-            CategoryID = 0;
-        } else {
-            try {
-                CategoryID = Integer.parseInt(req.getParameter("CategoryID"));
-                if (CategoryID < 0)
-                    throw new Exception();
-                if (CategoryID > CategoryDAO.getAllCategory().size())
-                    CategoryID = CategoryDAO.getAllCategory().size();
-            } catch (Exception e) {
-                CategoryID = 0;
-            }
-        }
-
+        
+        int CategoryID = Integer.parseInt(req.getParameter("txtOption"));
         //Paging
         int page, size, numPerPage = 4;
         ArrayList<com.unicat.onlinelearning.dto.Course> AllCourse;
         if (CategoryID == 0) {
-            AllCourse = CoursesDAO.getAllCourse();
+            AllCourse = CoursesDAO.getAllCourseSearching(req.getParameter("txtNameSearch"));
         } else {
-            AllCourse = CoursesDAO.getAllCourseByCategoryID(CategoryID);
+            AllCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("txtNameSearch"));
         }
 
         size = AllCourse.size();
@@ -75,7 +66,7 @@ public class Courses extends HttpServlet {
         int end = Math.min(page * numPerPage, size);
         ArrayList<com.unicat.onlinelearning.dto.Course> list;
         if (AllCourse.isEmpty()) {
-          list = null;  
+            list = null;  
         } else list = CoursesDAO.getListBySearching(AllCourse, start, end);
         req.setAttribute("list", list);
         req.setAttribute("page", page);
@@ -83,14 +74,9 @@ public class Courses extends HttpServlet {
         //End Paging
         
         req.setAttribute("AllCourse", AllCourse);
+        req.setAttribute("NameSearch", req.getParameter("txtNameSearch"));
         req.setAttribute("CategoryID", CategoryID);
-        req.setAttribute("NameSearch", null);
-        req.getRequestDispatcher("/courses.jsp").forward(req, resp);
+        req.getRequestDispatcher("/courses.jsp").forward(req, resp);    
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
+    
 }
