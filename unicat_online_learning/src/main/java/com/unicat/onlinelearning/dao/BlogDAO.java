@@ -72,10 +72,10 @@ public class BlogDAO extends DBContext {
         }
     }
 
-    public ArrayList<Blog> getTop5LastestBlog() {
+    public ArrayList<Blog> getTopLastestBlog(int num) {
         ArrayList<Blog> AllBlogg = new ArrayList<>();
         try {
-            String sql = "SELECT TOP 5 * FROM [Blog] ORDER BY BlogID DESC";
+            String sql = "SELECT TOP "+ num + " * FROM [Blog] ORDER BY BlogID DESC";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -98,46 +98,6 @@ public class BlogDAO extends DBContext {
             String sql = "SELECT TOP 5 * FROM Blog \n"
                     + "WHERE BlogID != (SELECT Max(BlogID) FROM Blog) \n"
                     + "ORDER BY BlogID DESC";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int BlogID = rs.getInt("BlogID");
-                int UserID = rs.getInt("UserID");
-                String BlogTitler = rs.getString("BlogTitler");
-                String BlogImage = rs.getString("BlogImage");
-                String BlogDescription = rs.getString("BlogDescription");
-                Date PostDate = rs.getDate("PostDate");
-                AllBlogg.add(new Blog(BlogID, UserID, BlogTitler, BlogImage, BlogDescription, PostDate));
-            }
-        } catch (SQLException e) {
-        }
-        return AllBlogg;
-    }
-
-    public ArrayList<Blog> getTop6LastestBlog() {
-        ArrayList<Blog> AllBlogg = new ArrayList<>();
-        try {
-            String sql = "SELECT TOP 6 * FROM [Blog] ORDER BY BlogID DESC";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int BlogID = rs.getInt("BlogID");
-                int UserID = rs.getInt("UserID");
-                String BlogTitler = rs.getString("BlogTitler");
-                String BlogImage = rs.getString("BlogImage");
-                String BlogDescription = rs.getString("BlogDescription");
-                Date PostDate = rs.getDate("PostDate");
-                AllBlogg.add(new Blog(BlogID, UserID, BlogTitler, BlogImage, BlogDescription, PostDate));
-            }
-        } catch (SQLException e) {
-        }
-        return AllBlogg;
-    }
-
-    public ArrayList<Blog> getTop9LastestBlog() {
-        ArrayList<Blog> AllBlogg = new ArrayList<>();
-        try {
-            String sql = "SELECT TOP 6 * FROM [Blog] ORDER BY BlogID DESC";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -185,7 +145,7 @@ public class BlogDAO extends DBContext {
         BlogDAO dc = new BlogDAO();
         ArrayList<Blog> all = dc.getAllBlogg();
         Blog blog = dc.getBlogFromBlogID(1);
-        // System.out.println(blog.getBlogDescription());
-        System.out.println(dc.getTop5LastestBlog());
+ 
+        System.out.println(dc.getShortString(blog.getBlogDescription(), 10));
     }
 }

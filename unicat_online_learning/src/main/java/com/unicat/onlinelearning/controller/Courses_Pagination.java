@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/courses")
-public class Courses extends HttpServlet {
+@WebServlet("/courses/paging")
+public class Courses_Pagination extends HttpServlet {
 
     public static CategoryDAO CategoryDAO = new CategoryDAO();
     public static CoursesDAO CoursesDAO = new CoursesDAO();
@@ -48,9 +48,9 @@ public class Courses extends HttpServlet {
         int page, size, numPerPage = 4;
         ArrayList<com.unicat.onlinelearning.dto.Course> AllCourse;
         if (CategoryID == 0) {
-            AllCourse = CoursesDAO.getAllCourse();
+            AllCourse = CoursesDAO.getAllCourseSearching(req.getParameter("Name"));
         } else {
-            AllCourse = CoursesDAO.getAllCourseByCategoryID(CategoryID);
+            AllCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("Name"));
         }
 
         size = AllCourse.size();
@@ -84,7 +84,7 @@ public class Courses extends HttpServlet {
         
         req.setAttribute("AllCourse", AllCourse);
         req.setAttribute("CategoryID", CategoryID);
-        req.setAttribute("NameSearch", null);
+        req.setAttribute("NameSearch", req.getParameter("Name"));
         req.getRequestDispatcher("/courses.jsp").forward(req, resp);
     }
 

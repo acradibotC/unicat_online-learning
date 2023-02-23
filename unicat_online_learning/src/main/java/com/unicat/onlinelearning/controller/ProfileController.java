@@ -14,10 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
-/**
- *
- * @author Admin
- */
+
 @WebServlet("/userprofile")
 public class ProfileController extends HttpServlet {
 
