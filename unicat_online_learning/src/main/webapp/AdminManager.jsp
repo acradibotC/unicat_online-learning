@@ -40,7 +40,10 @@
                                                     </li>
                                                     <li>
                                                         <a href="UserManager.jsp">User Manager</a>
-                                                    </li>                                                             
+                                                    </li>      
+                                                    <li>
+                                                        <a href="UserDetails.jsp">User Details</a>
+                                                    </li> 
 
                                                 </ul>
                                             </nav>

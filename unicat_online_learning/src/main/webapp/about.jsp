@@ -160,10 +160,10 @@
             <!-- Team Item -->
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
-                    <div class="team_image"><img src="images/team_1.jpg" alt=""></div>
+                    <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
                         <div class="team_title"><a href="#">Nguyen Tuan Anh</a></div>
-                        <div class="team_subtitle">HE15xxx</div>
+                        <div class="team_subtitle"></div>
                         <div class="social_list">
                             <ul>
                                 <li><a href="https://www.facebook.com/AnhNT206"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -178,10 +178,10 @@
             <!-- Team Item -->
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
-                    <div class="team_image"><img src="images/team_2.jpg" alt=""></div>
+                    <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
                         <div class="team_title"><a href="#">Le Nam Tuan</a></div>
-                        <div class="team_subtitle">HE16xxx</div>
+                        <div class="team_subtitle"></div>
                         <div class="social_list">
                             <ul>
                                 <li><a href="https://www.facebook.com/profile.php?id=100010194286370"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -196,10 +196,10 @@
             <!-- Team Item -->
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
-                    <div class="team_image"><img src="images/team_3.jpg" alt=""></div>
+                    <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
                         <div class="team_title"><a href="#">Nguyen Dinh Manh</a></div>
-                        <div class="team_subtitle">HE16xxx</div>
+                        <div class="team_subtitle"></div>
                         <div class="social_list">
                             <ul>
                                 <li><a href="https://www.facebook.com/dinhmanh310"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -214,10 +214,10 @@
             <!-- Team Item -->
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
-                    <div class="team_image"><img src="images/team_4.jpg" alt=""></div>
+                    <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
                         <div class="team_title"><a href="#">Nguyen Luong Phu</a></div>
-                        <div class="team_subtitle">HE16xxx</div>
+                        <div class="team_subtitle"></div>
                         <div class="social_list">
                             <ul>
                                 <li><a href="https://www.facebook.com/luongphu.nguyen.3"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -234,8 +234,8 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/320072216_905181770641736_7580457190545031480_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=174925&_nc_ohc=2Up4iGqa7S8AX9t5vpL&_nc_ht=scontent.fhan2-4.fna&oh=00_AfB_l5HWoxJQwig1oHVosEoontrTQo9lbMhTwPfAeaVnBg&oe=63FA19FD" alt=""></div>
                     <div class="team_body">
-                        <div class="team_title"><a href="#">Hoang Duc Anh</a></div>
-                        <div class="team_subtitle">HE163200</div>
+                        <div class="team_title"><a href="Details.jsp">Hoang Duc Anh</a></div>
+                        <div class="team_subtitle"></div>
                         <div class="social_list">
                             <ul>
                                 <li><a href="https://www.facebook.com/duc.anh.23.11.01"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
