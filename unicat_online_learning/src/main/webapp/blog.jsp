@@ -40,57 +40,63 @@
             <div class="col">
                 <div class="blog_post_container">
                     <!-- Blog Post -->
-
-                    <c:forEach items="${list}" var="x">
-                        <div class="blog_post trans_200">
-                            <div class="blog_post_image" style="background-size: cover;"><img style="max-width: 360px; max-height: 170px;" src="${x.getBlogImage()}" alt=""></div>
-                            <div class="blog_post_body">
-                                <div class="blog_post_title"><a href="${path}/blog_single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
-                                <div class="blog_post_meta">
-                                    <ul>
-                                        <li><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getUserName()}</a></li>
-                                        <li><a href="#">${x.getPostDate()}</a></li>
-                                    </ul>
-                                </div>
-                                <div class="blog_post_text">
-                                    <p>${BlogDAO.getShortString(x.getBlogDescription(), 8)}...</p>
+                    <c:if test="${list != null}">
+                        <c:forEach items="${list}" var="x">
+                            <div class="blog_post trans_200">
+                                <div class="blog_post_image" style="background-size: cover;"><img style="max-width: 360px; max-height: 170px;" src="${x.getBlogImage()}" alt=""></div>
+                                <div class="blog_post_body">
+                                    <div class="blog_post_title"><a href="${path}/blog_single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
+                                    <div class="blog_post_meta">
+                                        <ul>
+                                            <li><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getUserName()}</a></li>
+                                            <li><a href="#">${x.getPostDate()}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="blog_post_text">
+                                        <p>${BlogDAO.getShortString(x.getBlogDescription(), 8)}...</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${list == null}">
+                        <div class="blog_post_container">No Items Found!</div>
+                    </c:if>
 
                 </div>
             </div>
         </div>
     </div>
-    <div class="paginationBlog">
-        <c:if test="${page == 1}">
-            <li class="page-itemBlog previous-page BlogDisable"><a class="page-linkBlog" href="">Prev</a></li>
-            </c:if>
-            <c:if test="${page != 1}">
-            <li class="page-itemBlog previous-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${page-1}">Prev</a></li>
-            </c:if>
+    <c:if test="${list != null}">
+        <div class="paginationBlog">
+            <c:if test="${page == 1}">
+                <li class="page-itemBlog previous-page BlogDisable"><a class="page-linkBlog" href="">Prev</a></li>
+                </c:if>
+                <c:if test="${page != 1}">
+                <li class="page-itemBlog previous-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${page-1}">Prev</a></li>
+                </c:if>
 
-        <c:forEach begin="${1}" end="${number}" var="i">    
-            <c:choose>
-                <c:when test="${page == i}">
-                    <input type="hidden" name="page" value="${i}" />
-                    <li class="page-itemBlog current-page BlogActive"><a class="page-linkBlog" href="${path}/blog/paging?page=${i}">${i}</a></li>
-                    </c:when>
-                <c:otherwise>
-                    <input type="hidden" name="page" value="${i}" />
-                    <li class="page-itemBlog current-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${i}">${i}</a></li>
-                    </c:otherwise>
-            </c:choose>
-        </c:forEach>
+            <c:forEach begin="${1}" end="${number}" var="i">    
+                <c:choose>
+                    <c:when test="${page == i}">
+                        <input type="hidden" name="page" value="${i}" />
+                        <li class="page-itemBlog current-page BlogActive"><a class="page-linkBlog" href="${path}/blog/paging?page=${i}">${i}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                        <input type="hidden" name="page" value="${i}" />
+                        <li class="page-itemBlog current-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${i}">${i}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
 
-        <c:if test="${page == number}">
-            <li class="page-itemBlog next-page BlogDisable"><a class="page-linkBlog" href="">Next</a></li>
-            </c:if>    
-            <c:if test="${page != number}">
-            <li class="page-itemBlog next-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${page+1}">Next</a></li>
-            </c:if>    
-    </div>
+            <c:if test="${page == number}">
+                <li class="page-itemBlog next-page BlogDisable"><a class="page-linkBlog" href="">Next</a></li>
+                </c:if>    
+                <c:if test="${page != number}">
+                <li class="page-itemBlog next-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${page+1}">Next</a></li>
+                </c:if>    
+        </div>
+    </c:if>
 </div>
 
 

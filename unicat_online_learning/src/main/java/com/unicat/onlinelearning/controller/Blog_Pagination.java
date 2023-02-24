@@ -51,7 +51,10 @@ public class Blog_Pagination extends HttpServlet {
         }
         int start = (page - 1) * numPerPage;
         int end = Math.min(page * numPerPage, size);
-        ArrayList<com.unicat.onlinelearning.dto.Blog> list = BlogDAO.getListBySearching(AllBlog, start, end);
+        ArrayList<com.unicat.onlinelearning.dto.Blog> list;
+        if (AllBlog.isEmpty()) {
+          list = null;  
+        } else list = BlogDAO.getListBySearching(AllBlog, start, end);
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);

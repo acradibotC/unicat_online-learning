@@ -3,8 +3,8 @@ package com.unicat.onlinelearning.controller;
 import com.unicat.onlinelearning.dao.BlogCommentsDAO;
 import com.unicat.onlinelearning.dao.BlogDAO;
 import com.unicat.onlinelearning.dao.BlogFeedbackDAO;
+import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
-import com.unicat.onlinelearning.dto.Blog;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,10 +20,12 @@ public class Blog_Single extends HttpServlet{
     public static BlogDAO BlogDAO = new BlogDAO();
     public static BlogFeedbackDAO BlogFeedbackDAO = new BlogFeedbackDAO();
     public static BlogCommentsDAO BlogCommentDAO = new BlogCommentsDAO();
+    public static CoursesDAO CoursesDAO = new CoursesDAO();
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        req.setAttribute("StatusHome", 4);
+        
     }
 
     @Override
@@ -35,6 +37,7 @@ public class Blog_Single extends HttpServlet{
         req.setAttribute("BlogDAO", BlogDAO);
         req.setAttribute("BlogFeedbackDAO", BlogFeedbackDAO);
         req.setAttribute("BlogCommentDAO", BlogCommentDAO);
+        req.setAttribute("CoursesDAO", CoursesDAO);
         try {
             BlogID = Integer.parseInt(req.getParameter("BlogID"));
             if (BlogID < 1 || BlogID > BlogDAO.getLastBlog().getBlogID()) {

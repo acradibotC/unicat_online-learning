@@ -1,7 +1,7 @@
 <%@include file="template/header.jsp" %>
 <!-- Course -->
-<link rel="stylesheet" type="text/css" href="styles/course.css">
-<link rel="stylesheet" type="text/css" href="styles/course_responsive.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/course.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/course_responsive.css">
 <!-- Home -->
 
 <div class="home">
@@ -32,13 +32,13 @@
             <div class="col-lg-8">
 
                 <div class="course_container">
-                    <div class="course_title">Software Training</div>
+                    <div class="course_title">${Course.getName()}</div>
                     <div class="course_info d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
 
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Teacher:</div>
-                            <div class="course_info_text"><a href="#">Jacke Masito</a></div>
+                            <div class="course_info_text"><a href="#">${UserDAO.getUserByUserID(Course.getUserID()).getFullName()}</a></div>
                         </div>
 
                         <!-- Course Info Item -->
@@ -50,13 +50,13 @@
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Categories:</div>
-                            <div class="course_info_text"><a href="#">Languages</a></div>
+                            <div class="course_info_text"><a href="#">${CategoryDAO.getCategoryNameByCategoryID(Course.getCategoryID())}</a></div>
                         </div>
 
                     </div>
 
                     <!-- Course Image -->
-                    <div class="course_image"><img src="images/course_image.jpg" alt=""></div>
+                    <div class="course_image"><img src="${Course.getImage()}" alt=""></div>
 
                     <!-- Course Tabs -->
                     <div class="course_tabs_container">
@@ -69,24 +69,21 @@
 
                             <!-- Description -->
                             <div class="tab_panel active">
-                                <div class="tab_panel_title">Software Training</div>
+                                <div class="tab_panel_title">Introduction</div>
                                 <div class="tab_panel_content">
                                     <div class="tab_panel_text">
-                                        <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc. Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                                        <p>${Course.getCourseInfo()}</p>
                                     </div>
                                     <div class="tab_panel_section">
-                                        <div class="tab_panel_subtitle">Requirements</div>
+                                        <div class="tab_panel_subtitle"></div>
                                         <ul class="tab_panel_bullets">
-                                            <li>Lorem Ipsn gravida nibh vel velit auctor aliquet. Class aptent taciti sociosquad litora torquent.</li>
-                                            <li>Cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a.</li>
-                                            <li>Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat.</li>
-                                            <li>Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle">What is the target audience?</div>
                                         <div class="tab_panel_text">
-                                            <p>This course is intended for anyone interested in learning to master his or her own body.This course is aimed at beginners, so no previous experience with hand balancing skillts is necessary Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium, consectetur leo at, congue quam. Nullam hendrerit porta ante vitae tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+                                            <p>${Course.getDescription()}</p>
                                         </div>
                                     </div>
                                     <div class="tab_panel_faq">
@@ -338,7 +335,7 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
-                            <div class="course_price">$180</div>
+                            <div class="course_price">Free</div>
 
                             <!-- Features -->
                             <div class="feature_list">
@@ -382,10 +379,9 @@
                         <div class="sidebar_section_title">Teacher</div>
                         <div class="sidebar_teacher">
                             <div class="teacher_title_container d-flex flex-row align-items-center justify-content-start">
-                                <div class="teacher_image"><img src="images/teacher.jpg" alt=""></div>
+                                <div class="teacher_image"><img src="${UserDAO.getUserByUserID(Course.getUserID()).getImage()}" alt=""></div>
                                 <div class="teacher_title">
-                                    <div class="teacher_name"><a href="#">Jacke Masito</a></div>
-                                    <div class="teacher_position">Marketing & Management</div>
+                                    <div class="teacher_name"><a href="#">${UserDAO.getUserByUserID(Course.getUserID()).getFullName()}</a></div>
                                 </div>
                             </div>
                             <div class="teacher_meta_container">
@@ -406,7 +402,7 @@
                                 </div>
                             </div>
                             <div class="teacher_info">
-                                <p>Hi! I am Masion, I?m a marketing & management  eros pulvinar velit laoreet, sit amet egestas erat dignissim. Sed quis rutrum tellus, sit amet viverra felis. Cras sagittis sem sit amet urna feugiat rutrum nam nulla ipsum.</p>
+                                <p></p>
                             </div>
                         </div>
                     </div>
@@ -416,32 +412,16 @@
                         <div class="sidebar_section_title">Latest Courses</div>
                         <div class="sidebar_latest">
 
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_1.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">How to Design a Logo a Beginners Course</a></div>
-                                    <div class="latest_price">Free</div>
+                            <c:forEach items="${CoursesDAO.getFewLatestCourse(5)}" var="x">
+                                <!-- Latest Course -->
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>
+                                    <div class="latest_content">
+                                        <div class="latest_title"><a href="${path}/course?CourseID=${x.getCourseID()}">${x.getName()}</a></div>
+                                        <div class="latest_price">Free</div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_2.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-                                    <div class="latest_price">$170</div>
-                                </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_3.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-                                    <div class="latest_price">$220</div>
-                                </div>
-                            </div>
+                            </c:forEach>
 
                         </div>
                     </div>
@@ -455,7 +435,7 @@
 <!-- Newsletter -->
 
 <div class="newsletter">
-    <div class="newsletter_background" style="background-image:url(images/newsletter_background.jpg)"></div>
+    <div class="newsletter_background" style="background-image:url(${path}/images/newsletter_background.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col">

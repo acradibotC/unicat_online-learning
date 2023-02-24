@@ -31,7 +31,7 @@ public class UserRegister extends HttpServlet {
         String rePass = req.getParameter("txtRePass");
         String FullName = req.getParameter("txtFullName");
         String Gmail = req.getParameter("txtGmail");
-        String Address = req.getParameter("Address");
+        String Address = req.getParameter("txtAddress");
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
 <<<<<<< HEAD:Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/UserRegister.java

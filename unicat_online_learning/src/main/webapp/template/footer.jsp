@@ -1,7 +1,7 @@
 
 
 <footer class="footer">
-    <div class="footer_background" style="background-image:url(images/footer_background.png)"></div>
+    <div class="footer_background" style="background-image:url(${path}/images/footer_background.png)"></div>
     <div class="container">
         <div class="row footer_row">
             <div class="col">
@@ -18,7 +18,7 @@
                                     </a>
                                 </div>
                                 <div class="footer_about_text">
-                                    <p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+                                    <p></p>
                                 </div>
                                 <div class="footer_social">
                                     <ul>
@@ -39,9 +39,9 @@
                                 <div class="footer_title">Contact Us</div>
                                 <div class="footer_contact_info">
                                     <ul>
-                                        <li>Email: Info.deercreative@gmail.com</li>
-                                        <li>Phone:  +(88) 111 555 666</li>
-                                        <li>40 Baria Sreet 133/2 New York City, United States</li>
+                                        <li>Email: UnicatOnlineLearning@gmail.com</li>
+                                        <li>Phone:  0987 666 555</li>
+                                        <li>FPT University, Thach That, Ha Noi Capital</li>
                                     </ul>
                                 </div>
                             </div>
@@ -55,14 +55,11 @@
                                 <div class="footer_title">Contact Us</div>
                                 <div class="footer_links_container">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="#">Features</a></li>
-                                        <li><a href="courses.html">Courses</a></li>
-                                        <li><a href="#">Events</a></li>
-                                        <li><a href="#">Gallery</a></li>
-                                        <li><a href="#">FAQs</a></li>
+                                        <li><a href="${path}/home">Home</a></li>
+                                        <li><a href="${path}/about">About</a></li>
+                                        <li><a href="${path}/blog">Blog</a></li>
+                                        <li><a href="${path}/contact">Contact</a></li>                                      
+                                        <li><a href="${path}/courses">Courses</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -75,30 +72,13 @@
                             <div class="footer_section footer_mobile">
                                 <div class="footer_title">Mobile</div>
                                 <div class="footer_mobile_content">
-                                    <div class="footer_image"><a href="#"><img src="images/mobile_1.png" alt=""></a></div>
-                                    <div class="footer_image"><a href="#"><img src="images/mobile_2.png" alt=""></a></div>
+                                    <div class="footer_image"><a href="#"><img src="${path}/images/mobile_1.png" alt=""></a></div>
+                                    <div class="footer_image"><a href="#"><img src="${path}/images/mobile_2.png" alt=""></a></div>
                                 </div>
                             </div>
 
                         </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row copyright_row">
-            <div class="col">
-                <div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
-                    <div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-                    <div class="ml-lg-auto cr_links">
-                        <ul class="cr_list">
-                            <li><a href="#">Copyright notification</a></li>
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>

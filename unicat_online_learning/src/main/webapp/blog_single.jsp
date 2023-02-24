@@ -127,7 +127,7 @@
                         <div class="sidebar_section_title">Latest Blogs</div>
                         <div class="sidebar_latest">
                             <!-- Latest Blogs -->
-                            <c:forEach items="${BlogDAO.getTop5LastestBlog()}" var="x">
+                            <c:forEach items="${BlogDAO.getTopLastestBlog(5)}" var="x">
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image"><div><img src="${x.getBlogImage()}" alt=""></div></div>
                                     <div class="latest_content">
@@ -143,33 +143,16 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Latest Courses</div>
                         <div class="sidebar_latest">
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_1.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">How to Design a Logo a Beginners Course</a></div>
-                                    <div class="latest_date">november 11, 2017</div>
+                            <c:forEach items="${CoursesDAO.getFewLatestCourse(5)}" var="x">
+                                <!-- Latest Course -->
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>
+                                    <div class="latest_content">
+                                        <div class="latest_title"><a href="course.html">${x.getName()}</a></div>
+                                        <div class="latest_price">Free</div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_2.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-                                    <div class="latest_date">november 11, 2017</div>
-                                </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_3.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-                                    <div class="latest_date">november 11, 2017</div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
 
