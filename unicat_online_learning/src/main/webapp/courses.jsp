@@ -2,6 +2,7 @@
 <!-- Courses -->
 <link rel="stylesheet" type="text/css" href="${path}/styles/courses.css">
 <link rel="stylesheet" type="text/css" href="${path}/styles/courses_responsive.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/pagination.css">
 
 <!-- Home -->
 <div class="home">
@@ -30,207 +31,92 @@
             <!-- Courses Main Content -->
             <div class="col-lg-8">
                 <div class="courses_search_container">
-                    <form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-                        <input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
-                        <select id="courses_search_select" class="courses_search_select courses_search_input">
-                            <option>All Categories</option>
-                            <option>Category</option>
-                            <option>Category</option>
-                            <option>Category</option>
+                    <form action="${path}/courses/search" method="post" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+                        <input type="search" name="txtNameSearch" value="${NameSearch}" class="courses_search_input" placeholder="Search Courses">
+                        <select name="txtOption" id="courses_search_select" class="courses_search_select courses_search_input">
+                            <option value="0">All Categories</option>
+                            <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
+                                <c:if test="${CategoryID == x.getCategoryID()}">
+                                    <option value="${x.getCategoryID()}" selected="">${x.getName()}</option>
+                                </c:if>
+                                <c:if test="${CategoryID != x.getCategoryID()}">                      
+                                    <option value="${x.getCategoryID()}">${x.getName()}</option>
+                                </c:if>
+                            </c:forEach>
                         </select>
                         <button action="submit" class="courses_search_button ml-auto">search now</button>
                     </form>
                 </div>
+
                 <div class="courses_container">
-                    <div class="row courses_row">
+                    <c:if test="${list != null}">
+                        <div class="row courses_row">
 
-                        <!-- Course -->
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img src="images/course_4.jpg" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="${path}/course">Software Training</a></h3>
-                                    <div class="course_teacher">Mr. John Taylor</div>
-                                    <div class="course_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
+                            <c:forEach items="${list}" var="x">
+                                <!-- Course --> 
+                                <div class="col-lg-6 course_col">
+                                    <div class="course">
+                                        <div class="course_image"><img src="${x.getImage()}" alt=""></div>
+                                        <div class="course_body">
+                                            <h3 class="course_title"><a href="${path}/course?CourseID=${x.getCourseID()}">${x.getName()}</a></h3>
+                                            <div class="course_teacher">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</div>
+                                            <div class="course_text">
+                                                <c:if test="${x.getCourseInfo().length() != 0}">
+                                                    <p>${BlogDAO.getShortString(x.getCourseInfo(), 10)}...</p>
+                                                </c:if>                       
+                                            </div>
+                                        </div>
+                                        <div class="course_footer">
+                                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                <div class="course_info">
+                                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                    <span>20 Student</span>
+                                                </div>
+                                                <div class="course_info">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <span>5 Ratings</span>
+                                                </div>
+                                                <div class="course_price ml-auto">Free</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>20 Student</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>5 Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto">$130</div>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
+                        <c:if test="${AllCourse.size() > 4}">
+                            <div class="paginationBlog">
+                                <c:if test="${page == 1}">
+                                    <li class="page-itemBlog previous-page BlogDisable"><a class="page-linkBlog" href="">Prev</a></li>
+                                    </c:if>
+                                    <c:if test="${page != 1}">
+                                    <li class="page-itemBlog previous-page"><a class="page-linkBlog" href="${path}/courses/paging?page=${page-1}&CategoryID=${CategoryID}&Name=${NameSearch}">Prev</a></li>
+                                    </c:if>
 
-                        <!-- Course -->
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img src="images/course_5.jpg" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="course.html">Developing Mobile Apps</a></h3>
-                                    <div class="course_teacher">Ms. Lucius</div>
-                                    <div class="course_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                    </div>
-                                </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>20 Student</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>5 Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto">Free</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                <c:forEach begin="${1}" end="${number}" var="i">    
+                                    <c:choose>
+                                        <c:when test="${page == i}">
+                                            <input type="hidden" name="page" value="${i}" />
+                                            <li class="page-itemBlog current-page BlogActive"><a class="page-linkBlog" href="${path}/courses/paging?page=${i}&CategoryID=${CategoryID}&Name=${NameSearch}">${i}</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <input type="hidden" name="page" value="${i}" />
+                                            <li class="page-itemBlog current-page"><a class="page-linkBlog" href="${path}/courses/paging?page=${i}&CategoryID=${CategoryID}&Name=${NameSearch}">${i}</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
 
-                        <!-- Course -->
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img src="images/course_6.jpg" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="course.html">Starting a Startup</a></h3>
-                                    <div class="course_teacher">Mr. Charles</div>
-                                    <div class="course_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                    </div>
-                                </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>20 Student</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>5 Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto"><span>$320</span>$220</div>
-                                    </div>
-                                </div>
+                                <c:if test="${page == number}">
+                                    <li class="page-itemBlog next-page BlogDisable"><a class="page-linkBlog" href="">Next</a></li>
+                                    </c:if>    
+                                    <c:if test="${page != number}">
+                                    <li class="page-itemBlog next-page"><a class="page-linkBlog" href="${path}/courses/paging?page=${page+1}&CategoryID=${CategoryID}&Name=${NameSearch}">Next</a></li>
+                                    </c:if>    
                             </div>
-                        </div>
-
-                        <!-- Course -->
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img src="images/course_7.jpg" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="course.html">Learn Basic German Fast</a></h3>
-                                    <div class="course_teacher">Mr. John Taylor</div>
-                                    <div class="course_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                    </div>
-                                </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>20 Student</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>5 Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto">$130</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Course -->
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img src="images/course_8.jpg" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="course.html">Business Groud Up</a></h3>
-                                    <div class="course_teacher">Ms. Lucius</div>
-                                    <div class="course_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                    </div>
-                                </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>20 Student</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>5 Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto">Free</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Course -->
-                        <div class="col-lg-6 course_col">
-                            <div class="course">
-                                <div class="course_image"><img src="images/course_9.jpg" alt=""></div>
-                                <div class="course_body">
-                                    <h3 class="course_title"><a href="course.html">Java Technology</a></h3>
-                                    <div class="course_teacher">Mr. Charles</div>
-                                    <div class="course_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipi elitsed do eiusmod tempor</p>
-                                    </div>
-                                </div>
-                                <div class="course_footer">
-                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                        <div class="course_info">
-                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                            <span>20 Student</span>
-                                        </div>
-                                        <div class="course_info">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            <span>5 Ratings</span>
-                                        </div>
-                                        <div class="course_price ml-auto"><span>$320</span>$220</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row pagination_row">
-                        <div class="col">
-                            <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
-                                <ul class="pagination_list">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>
-                                <div class="courses_show_container ml-auto clearfix">
-                                    <div class="courses_show_text">Showing <span class="courses_showing">1-6</span> of <span class="courses_total">26</span> results:</div>
-                                    <div class="courses_show_content">
-                                        <span>Show: </span>
-                                        <select id="courses_show_select" class="courses_show_select">
-                                            <option>06</option>
-                                            <option>12</option>
-                                            <option>24</option>
-                                            <option>36</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${list == null}">
+                        <div class="courses_container">No Items Found!</div>
+                    </c:if>
                 </div>
             </div>
 
@@ -243,11 +129,9 @@
                         <div class="sidebar_section_title">Categories</div>
                         <div class="sidebar_categories">
                             <ul>
-                                <li><a href="#">Art & Design</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">IT & Software</a></li>
-                                <li><a href="#">Languages</a></li>
-                                <li><a href="#">Programming</a></li>
+                                <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
+                                    <li><a href="${path}/courses?CategoryID=${x.getCategoryID()}">${x.getName()}</a></li>
+                                    </c:forEach>
                             </ul>
                         </div>
                     </div>
@@ -256,108 +140,19 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Latest Courses</div>
                         <div class="sidebar_latest">
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_1.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">How to Design a Logo a Beginners Course</a></div>
-                                    <div class="latest_price">Free</div>
+                            <c:forEach items="${CoursesDAO.getFewLatestCourse(5)}" var="x">
+                                <!-- Latest Course -->
+                                <div class="latest d-flex flex-row align-items-start justify-content-start">
+                                    <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>
+                                    <div class="latest_content">
+                                        <div class="latest_title"><a href="${path}/course?CourseID=${x.getCourseID()}">${x.getName()}</a></div>
+                                        <div class="latest_price">Free</div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_2.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">Photography for Beginners Masterclass</a></div>
-                                    <div class="latest_price">$170</div>
-                                </div>
-                            </div>
-
-                            <!-- Latest Course -->
-                            <div class="latest d-flex flex-row align-items-start justify-content-start">
-                                <div class="latest_image"><div><img src="images/latest_3.jpg" alt=""></div></div>
-                                <div class="latest_content">
-                                    <div class="latest_title"><a href="course.html">The Secrets of Body Language</a></div>
-                                    <div class="latest_price">$220</div>
-                                </div>
-                            </div>
-
+                            </c:forEach>
                         </div>
                     </div>
 
-                    <!-- Gallery -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_section_title">Instagram</div>
-                        <div class="sidebar_gallery">
-                            <ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="images/gallery_1_large.jpg">
-                                        <img src="images/gallery_1.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="images/gallery_2_large.jpg">
-                                        <img src="images/gallery_2.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="images/gallery_3_large.jpg">
-                                        <img src="images/gallery_3.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="images/gallery_4_large.jpg">
-                                        <img src="images/gallery_4.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="images/gallery_5_large.jpg">
-                                        <img src="images/gallery_5.jpg" alt="">
-                                    </a>
-                                </li>
-                                <li class="gallery_item">
-                                    <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">+</div>
-                                    <a class="colorbox" href="images/gallery_6_large.jpg">
-                                        <img src="images/gallery_6.jpg" alt="">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Tags -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_section_title">Tags</div>
-                        <div class="sidebar_tags">
-                            <ul class="tags_list">
-                                <li><a href="#">creative</a></li>
-                                <li><a href="#">unique</a></li>
-                                <li><a href="#">photography</a></li>
-                                <li><a href="#">ideas</a></li>
-                                <li><a href="#">wordpress</a></li>
-                                <li><a href="#">startup</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Banner -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_banner d-flex flex-column align-items-center justify-content-center text-center">
-                            <div class="sidebar_banner_background" style="background-image:url(images/banner_1.jpg)"></div>
-                            <div class="sidebar_banner_overlay"></div>
-                            <div class="sidebar_banner_content">
-                                <div class="banner_title">Free Book</div>
-                                <div class="banner_button"><a href="#">download now</a></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -367,7 +162,7 @@
 <!-- Newsletter -->
 
 <div class="newsletter">
-    <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
+    <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="${path}/images/newsletter.jpg" data-speed="0.8"></div>
     <div class="container">
         <div class="row">
             <div class="col">
