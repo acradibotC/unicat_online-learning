@@ -34,7 +34,7 @@ public class UserRegister extends HttpServlet {
         String Address = req.getParameter("txtAddress");
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
-<<<<<<< HEAD:Unitcat_Online_Learning/src/java/com/unicat/onlinelearning/controller/UserRegister.java
+
 
         } else {
             if (ud.checkUser(UserName, Gmail) != null) {
@@ -57,14 +57,14 @@ public class UserRegister extends HttpServlet {
                 req.setAttribute("msgPhone", "Phone does not exist. Please enter valid phone number!");
 
             }
-=======
+
         }
         if (PassWord.equals("")) {
             req.setAttribute("msgPass", "PassWord is required");
         }
         if (Phone.equals("")) {
             req.setAttribute("msgPhone", "Phone is required");
->>>>>>> develop:unicat_online_learning/src/main/java/com/unicat/onlinelearning/controller/UserRegister.java
+
         }
         if (Dob.equals("")) {
             req.setAttribute("msgDob", "Date of birth is required");
