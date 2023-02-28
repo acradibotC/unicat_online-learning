@@ -3,7 +3,9 @@ package com.unicat.onlinelearning.controller;
 import com.unicat.onlinelearning.dao.BlogDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
+import com.unicat.onlinelearning.dao.LessonDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
+import com.unicat.onlinelearning.dto.Lesson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -90,7 +92,7 @@ public class Courses extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+       
     }
 
 }
