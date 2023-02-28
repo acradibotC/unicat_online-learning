@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.unicat.onlinelearning.utils;
 
 import java.sql.Connection;
@@ -11,14 +15,14 @@ import java.util.logging.Logger;
  *
  * @author Anhnt206
  */
-public class DBContext {
+public class azureSql {
 
-    public static Connection makeConnection() {
+   public static Connection makeConnection() {
         Connection conn = null;
         try {
 
-            String dbURL = "jdbc:sqlserver://acradiboc-server.database.windows.net:1433;database=unicat-db;encrypt=true;trustServerCertificate=true;";
-            String user = "unicat-admin@acradiboc-server";
+            String dbURL = "jdbc:sqlserver://unicat-online-server.database.windows.net:1433;database=unicat-online-db;encrypt=true;trustServerCertificate=true;";
+            String user = "unicat-admin@unicat-online-server";
             String pass = "nta020601@";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(dbURL, user, pass);
