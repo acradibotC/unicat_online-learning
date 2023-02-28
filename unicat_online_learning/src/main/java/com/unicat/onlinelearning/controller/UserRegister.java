@@ -34,12 +34,37 @@ public class UserRegister extends HttpServlet {
         String Address = req.getParameter("txtAddress");
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
+
+
+        } else {
+            if (ud.checkUser(UserName, Gmail) != null) {
+                req.setAttribute("msgUserName", "UserName has been used");
+            }
+        }
+        if (PassWord.equals("")) {
+            req.setAttribute("msgPass", "PassWord is required");
+        } else {
+            if (PassWord.contains(" ") || PassWord.length() < 6) {
+                req.setAttribute("msgPass", "PassWord length must greater than 6 and not contain space");
+                PassWord = "";
+            }
+        }
+        if (Phone.equals("")) {
+            req.setAttribute("msgPhone", "Phone is required");
+        } else {
+            String regex = "[0-9]+";
+            if (Phone.matches(regex) == false || Phone.length() < 9) {
+                req.setAttribute("msgPhone", "Phone does not exist. Please enter valid phone number!");
+
+            }
+
         }
         if (PassWord.equals("")) {
             req.setAttribute("msgPass", "PassWord is required");
         }
         if (Phone.equals("")) {
             req.setAttribute("msgPhone", "Phone is required");
+
         }
         if (Dob.equals("")) {
             req.setAttribute("msgDob", "Date of birth is required");
