@@ -227,19 +227,23 @@ public class UserDAO extends DBContext {
     public ArrayList<CourseEnroll> getAllCourseOfUser(int UserID) {
         ArrayList<CourseEnroll> List = new ArrayList<>();
         try {
-            String sql = "select * from CourseEnroll ce where ce.UserID=?";
+            String sql = "  select ce.*,c.Name as 'CourseName' from CourseEnroll ce join Course c "
+                    + "on ce.CourseID=c.CourseID where ce.UserID=? order by EnrollDate desc";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, UserID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                int CourseEnrollID = rs.getInt("CourseEnrollID");
                 int CourseID = rs.getInt("CourseID");
                 Date EnrollDate = rs.getDate("EnrollDate");
-                int LessionCurrent = rs.getInt("LessionCurrent");
+                int LessonCurrent = rs.getInt("LessonCurrent");
                 int CourseStatus = rs.getInt("CourseStatus");
-                CourseEnroll ce=new CourseEnroll(0, UserID, CourseID, EnrollDate, LessionCurrent, CourseStatus);
+                String CourseName = rs.getString("CourseName");
+                CourseEnroll ce = new CourseEnroll(CourseEnrollID, UserID, CourseID, EnrollDate, LessonCurrent, CourseStatus, CourseName);
                 List.add(ce);
             }
         } catch (SQLException e) {
+            return null;
         }
         return List;
 
@@ -250,8 +254,7 @@ public class UserDAO extends DBContext {
 
         //User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
         //System.out.println(ud.UpdateUser(u));
-        System.out.println(ud.getAllAdminUser().size());
-        System.out.println(ud.getUserByUserID(1).getFullName());
+        System.out.println(ud.getAllCourseOfUser(6));
 
     }
 }

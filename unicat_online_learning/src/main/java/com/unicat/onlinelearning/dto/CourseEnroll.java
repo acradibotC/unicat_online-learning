@@ -11,20 +11,40 @@ import java.util.Date;
  * @author Admin
  */
 public class CourseEnroll {
+
     private int CourseEnrollID;
     private int UserID;
     private int CourseID;
     private Date EnrollDate;
-    private int LessionCurrent;
+    private int LessonCurrent;
     private int CourseStatus;
+    private String CourseName;
 
-    public CourseEnroll(int CourseEnrollID, int UserID, int CourseID, Date EnrollDate, int LessionCurrent, int CourseStatus) {
+    public CourseEnroll(int CourseEnrollID, int UserID, int CourseID, Date EnrollDate, int LessonCurrent, int CourseStatus) {
         this.CourseEnrollID = CourseEnrollID;
         this.UserID = UserID;
         this.CourseID = CourseID;
         this.EnrollDate = EnrollDate;
-        this.LessionCurrent = LessionCurrent;
+        this.LessonCurrent = LessonCurrent;
         this.CourseStatus = CourseStatus;
+    }
+
+    public CourseEnroll(int CourseEnrollID, int UserID, int CourseID, Date EnrollDate, int LessonCurrent, int CourseStatus, String CourseName) {
+        this.CourseEnrollID = CourseEnrollID;
+        this.UserID = UserID;
+        this.CourseID = CourseID;
+        this.EnrollDate = EnrollDate;
+        this.LessonCurrent = LessonCurrent;
+        this.CourseStatus = CourseStatus;
+        this.CourseName = CourseName;
+    }
+
+    public String getCourseName() {
+        return CourseName;
+    }
+
+    public void setCourseName(String CourseName) {
+        this.CourseName = CourseName;
     }
 
     public CourseEnroll() {
@@ -62,12 +82,12 @@ public class CourseEnroll {
         this.EnrollDate = EnrollDate;
     }
 
-    public int getLessionCurrent() {
-        return LessionCurrent;
+    public int getLessonCurrent() {
+        return LessonCurrent;
     }
 
-    public void setLessionCurrent(int LessionCurrent) {
-        this.LessionCurrent = LessionCurrent;
+    public void setLessonCurrent(int LessonCurrent) {
+        this.LessonCurrent = LessonCurrent;
     }
 
     public int getCourseStatus() {
@@ -77,5 +97,5 @@ public class CourseEnroll {
     public void setCourseStatus(int CourseStatus) {
         this.CourseStatus = CourseStatus;
     }
-    
+
 }
