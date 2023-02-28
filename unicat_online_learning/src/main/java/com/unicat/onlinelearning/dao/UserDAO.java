@@ -4,6 +4,8 @@
  */
 package com.unicat.onlinelearning.dao;
 
+import com.unicat.onlinelearning.dto.Course;
+import com.unicat.onlinelearning.dto.CourseEnroll;
 import com.unicat.onlinelearning.utils.DBContext;
 import com.unicat.onlinelearning.dto.User;
 import java.sql.Connection;
@@ -34,6 +36,7 @@ public class UserDAO extends DBContext {
 //        }
 //        return sb.toString();
 //    }
+
     public User getUser(String uname, String pass) {
         User user = null;
         try {
@@ -175,7 +178,6 @@ public class UserDAO extends DBContext {
         return user;
     }
 
-
     public int UpdateUser(User u) {
         int k = 0;
         try {
@@ -194,7 +196,7 @@ public class UserDAO extends DBContext {
         }
         return k;
     }
-    
+
     public ArrayList<User> getAllAdminUser() {
         ArrayList<User> Lists = new ArrayList<>();
         try {
@@ -222,9 +224,29 @@ public class UserDAO extends DBContext {
         return Lists;
     }
 
+    public ArrayList<CourseEnroll> getAllCourseOfUser(int UserID) {
+        ArrayList<CourseEnroll> List = new ArrayList<>();
+        try {
+            String sql = "select * from CourseEnroll ce where ce.UserID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int CourseID = rs.getInt("CourseID");
+                Date EnrollDate = rs.getDate("EnrollDate");
+                int LessionCurrent = rs.getInt("LessionCurrent");
+                int CourseStatus = rs.getInt("CourseStatus");
+                CourseEnroll ce=new CourseEnroll(0, UserID, CourseID, EnrollDate, LessionCurrent, CourseStatus);
+                List.add(ce);
+            }
+        } catch (SQLException e) {
+        }
+        return List;
+
+    }
+
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-
 
         //User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
         //System.out.println(ud.UpdateUser(u));
