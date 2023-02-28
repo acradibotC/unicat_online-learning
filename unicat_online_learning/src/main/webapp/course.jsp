@@ -77,7 +77,7 @@
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle"></div>
                                         <ul class="tab_panel_bullets">
-                                            
+
                                         </ul>
                                     </div>
                                     <div class="tab_panel_section">
@@ -335,7 +335,12 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
-                            <div class="course_price">Free</div>
+                            
+                            
+                                <form action="LessonDetail" method="POST">
+                                <button class="btn btn-primary btn-lg" type="submit" name="courseId" value="${Course.getCourseID()}">Enroll Now</button>
+                            </form>
+                            
 
                             <!-- Features -->
                             <div class="feature_list">
