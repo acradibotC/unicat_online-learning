@@ -1,6 +1,7 @@
 package com.unicat.onlinelearning.dao;
 
 import com.unicat.onlinelearning.dto.Course;
+import com.unicat.onlinelearning.dto.CourseEnroll;
 import com.unicat.onlinelearning.dto.User;
 import com.unicat.onlinelearning.utils.DBContext;
 import java.sql.Connection;
@@ -137,14 +138,34 @@ public class CoursesDAO extends DBContext {
         return kt;
     }
 
+    public CourseEnroll GetCourseEnrolledByUserID(int CourseID, int UserID) {
+        CourseEnroll c = new CourseEnroll();
+        try {
+            String sql = "SELECT * FROM [CourseEnroll] WHERE CourseID = ? and UserID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CourseID);
+            ps.setInt(2, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Date EnrollDate=rs.getDate("EnrollDate");
+                int LessonCurrent=rs.getInt("LessonCurrent");
+                int CourseStatus=rs.getInt("CourseStatus");
+                c=new CourseEnroll(0, UserID, CourseID, EnrollDate, LessonCurrent, CourseStatus);
+            }
+        } catch (SQLException e) {
+            
+        }
+        return c;
+    }
+
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         //System.out.println(dao.getFewLatestCourse(1).size());
         BlogDAO dc = new BlogDAO();
 
-        System.out.println(dao.EnrollCoure(6, 4));
+        System.out.println(dao.GetCourseEnrolledByUserID(6, 1));
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
-        
+
     }
 }

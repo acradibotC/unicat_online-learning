@@ -335,12 +335,26 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
-                            
-                            
-                                <form action="LessonDetail" method="POST">
-                                <button class="btn btn-primary btn-lg" type="submit" name="courseId" value="${Course.getCourseID()}">Enroll Now</button>
-                            </form>
-                            
+                            <c:if test="${student ne null}">
+                                <c:url value="/course" var="enroll">
+                                    <c:param name="cid" value="${Course.getCourseID()}"/>
+
+                                </c:url>
+                                <c:if test="${ce eq null}">
+                                    <form action="${enroll}" method="POST">
+                                        <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
+                                    </form>
+                                </c:if>
+                                <c:if test="${ce ne null}">
+                                    <a href="">
+                                        <div style="margin: 10px;font-size: 18px;padding: 3%;
+                                             background-color: #14bdee; border-radius: 10px;text-align: center;color: black">
+                                            <b>Go to Course</b> </div></a>
+                                        </c:if>
+
+                            </c:if>
+
+
 
                             <!-- Features -->
                             <div class="feature_list">
