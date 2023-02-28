@@ -36,11 +36,16 @@
                             </div>
                         </div>
                         <hr class="my-4">
-                        <div> My Course</div>
-                        <c:forEach items = "${listcn}" var = "lc">
+                        <div style="color: black; font-size: 20px"> My Course</div>
+                        <c:forEach items = "${listcourseenroll}" var = "lc">
                             <hr class="my-4">
-                            <div>
-                                <li>${lc.getCourseName()} </li><a href="unenrolled?courseID=${lc.getCourseID()}">Quit</a>
+                            <div style="color: black">
+                                <li><b>Course Name</b> : ${lc.getCourseName()} </li>
+                                <li><b>Lesson Current</b> : ${lc.getLessonCurrent()}</li>
+                                <li><b>Enroll Date</b> : ${lc.getEnrollDate()}</li>
+                                <a href=""><div style="margin: 10px;font-size: 18px;padding: 3%;
+                                                background-color: #14bdee; border-radius: 10px;text-align: center;color: black">
+                                        <b>Go to Course</b> </div></a>
                             </div>
                         </c:forEach>
                     </div>

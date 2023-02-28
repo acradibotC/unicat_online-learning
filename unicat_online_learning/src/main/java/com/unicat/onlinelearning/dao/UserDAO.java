@@ -4,6 +4,8 @@
  */
 package com.unicat.onlinelearning.dao;
 
+import com.unicat.onlinelearning.dto.Course;
+import com.unicat.onlinelearning.dto.CourseEnroll;
 import com.unicat.onlinelearning.utils.DBContext;
 import com.unicat.onlinelearning.dto.User;
 import java.sql.Connection;
@@ -34,6 +36,7 @@ public class UserDAO extends DBContext {
 //        }
 //        return sb.toString();
 //    }
+
     public User getUser(String uname, String pass) {
         User user = null;
         try {
@@ -175,7 +178,6 @@ public class UserDAO extends DBContext {
         return user;
     }
 
-
     public int UpdateUser(User u) {
         int k = 0;
         try {
@@ -194,7 +196,7 @@ public class UserDAO extends DBContext {
         }
         return k;
     }
-    
+
     public ArrayList<User> getAllAdminUser() {
         ArrayList<User> Lists = new ArrayList<>();
         try {
@@ -222,14 +224,37 @@ public class UserDAO extends DBContext {
         return Lists;
     }
 
+    public ArrayList<CourseEnroll> getAllCourseOfUser(int UserID) {
+        ArrayList<CourseEnroll> List = new ArrayList<>();
+        try {
+            String sql = "  select ce.*,c.Name as 'CourseName' from CourseEnroll ce join Course c "
+                    + "on ce.CourseID=c.CourseID where ce.UserID=? order by EnrollDate desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int CourseEnrollID = rs.getInt("CourseEnrollID");
+                int CourseID = rs.getInt("CourseID");
+                Date EnrollDate = rs.getDate("EnrollDate");
+                int LessonCurrent = rs.getInt("LessonCurrent");
+                int CourseStatus = rs.getInt("CourseStatus");
+                String CourseName = rs.getString("CourseName");
+                CourseEnroll ce = new CourseEnroll(CourseEnrollID, UserID, CourseID, EnrollDate, LessonCurrent, CourseStatus, CourseName);
+                List.add(ce);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return List;
+
+    }
+
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
 
-
         //User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
         //System.out.println(ud.UpdateUser(u));
-        System.out.println(ud.getAllAdminUser().size());
-        System.out.println(ud.getUserByUserID(1).getFullName());
+        System.out.println(ud.getAllCourseOfUser(6));
 
     }
 }
