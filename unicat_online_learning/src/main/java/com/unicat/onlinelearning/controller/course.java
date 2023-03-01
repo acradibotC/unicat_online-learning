@@ -39,11 +39,13 @@ public class Course extends HttpServlet {
         }
         com.unicat.onlinelearning.dto.Course Course = CoursesDAO.getCourseByCourseID(CourseID);
         req.setAttribute("Course", Course);
+        CourseEnroll ce = null;
         if (req.getSession().getAttribute("student") != null) {
             User u = (User) req.getSession().getAttribute("student");
             CoursesDAO cd = new CoursesDAO();
-            CourseEnroll ce=cd.GetCourseEnrolledByUserID(CourseID, u.getUserID());
+            ce = cd.GetCourseEnrolledByUserID(CourseID, u.getUserID());
             req.setAttribute("ce", ce);
+            req.setAttribute("User", u);
         }
         req.getRequestDispatcher("/course.jsp").forward(req, resp);
     }
@@ -55,7 +57,7 @@ public class Course extends HttpServlet {
             User u = (User) req.getSession().getAttribute("student");
             CoursesDAO cd = new CoursesDAO();
             cd.EnrollCoure(u.getUserID(), CourseID);
-            resp.sendRedirect(req.getContextPath() + "/home");
+            resp.sendRedirect(req.getContextPath() + "/course?CourseID="+CourseID);
         }
     }
 

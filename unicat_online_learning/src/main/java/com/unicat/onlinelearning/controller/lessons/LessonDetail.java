@@ -54,17 +54,18 @@ public class LessonDetail extends HttpServlet {
             ce = cd.GetCourseEnrolledByUserID(CourseID, u.getUserID());
 
         }
+        //Check xem user đã enroll khóa chưa
         if (ce == null) {
-            resp.sendRedirect(req.getContextPath() + "/home");
+            resp.sendRedirect(req.getContextPath() + "/course?CourseID="+CourseID);
         } else {
             int lessonNum = Integer.parseInt(req.getParameter("Id"));
-            int courseId = (int) req.getSession().getAttribute("courseId");
-            ArrayList<Lesson> Lessons = lessondao.getAllLessonByCourseID(courseId);
+            
+            ArrayList<Lesson> Lessons = lessondao.getAllLessonByCourseID(CourseID);
             int totalLesson = Lessons.size() - 1;
 
-            Lesson curLesson = lessondao.getLesson(lessonNum, courseId);
+            Lesson curLesson = lessondao.getLesson(lessonNum, CourseID);
 
-            req.setAttribute("courseName", CoursesDAO.getCourseByCourseID(courseId).getName());
+            req.setAttribute("courseName", CoursesDAO.getCourseByCourseID(CourseID).getName());
 
             req.setAttribute("list", Lessons);
             req.setAttribute("curLesson", curLesson);
