@@ -41,6 +41,7 @@ public class UserDAO extends DBContext {
         User user = null;
         try {
             String sql = "SELECT * FROM [User] where UserName= ? and PassWord= ?";
+            
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, uname);
             ps.setString(2, pass);

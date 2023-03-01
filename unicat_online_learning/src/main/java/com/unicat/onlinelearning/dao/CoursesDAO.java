@@ -139,7 +139,7 @@ public class CoursesDAO extends DBContext {
     }
 
     public CourseEnroll GetCourseEnrolledByUserID(int CourseID, int UserID) {
-        CourseEnroll c = new CourseEnroll();
+        CourseEnroll c = null;
         try {
             String sql = "SELECT * FROM [CourseEnroll] WHERE CourseID = ? and UserID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -163,7 +163,7 @@ public class CoursesDAO extends DBContext {
         //System.out.println(dao.getFewLatestCourse(1).size());
         BlogDAO dc = new BlogDAO();
 
-        System.out.println(dao.GetCourseEnrolledByUserID(6, 1));
+        System.out.println(dao.GetCourseEnrolledByUserID(1, 6));
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
 

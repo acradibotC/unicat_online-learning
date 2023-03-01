@@ -17,9 +17,12 @@ public class DBContext {
         Connection conn = null;
         try {
 
-            String dbURL = "jdbc:sqlserver://acradiboc-server.database.windows.net:1433;database=unicat-db;encrypt=true;trustServerCertificate=true;";
-            String user = "unicat-admin@acradiboc-server";
-            String pass = "nta020601@";
+            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=Unicat Online Learning;encrypt=true;trustServerCertificate=true;";
+            String user = "sa";
+            String pass = "123123";
+//            String dbURL = "jdbc:sqlserver://acradiboc-server.database.windows.net:1433;database=unicat-db;encrypt=true;trustServerCertificate=true;";
+//            String user = "unicat-admin@acradiboc-server";
+//            String pass = "nta020601@";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(dbURL, user, pass);
             //System.out.println("Connect to DB successfully");
