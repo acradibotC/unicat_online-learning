@@ -34,6 +34,8 @@ public class LoginWithGoogle extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public static UserDAO uDAO = new UserDAO();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String code = request.getParameter("code");
@@ -47,17 +49,17 @@ public class LoginWithGoogle extends HttpServlet {
             request.setAttribute("name", googlePojo.getName());
             request.setAttribute("email", googlePojo.getEmail());
             request.setAttribute("picture", googlePojo.getPicture());
-            UserDAO uDAO = new UserDAO();
             if (uDAO.getUserByEmail(googlePojo.getEmail()) != null) {
                 request.getSession().setAttribute("student", uDAO.getUserByEmail(googlePojo.getEmail()));
                 User u = uDAO.getUserByEmail(googlePojo.getEmail());
                 if (u.getGmailID() == null) {
-                    User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), null, null, null, googlePojo.getId(), 3, 1);
+                    User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), "", "", "", googlePojo.getId(), 3, 1);
                     uDAO.UpdateUser(user);
                 }
             } else {
-                User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), null, null, null, googlePojo.getId(), 3, 1);
-                uDAO.insertUser(user);
+                User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), "", "", "", googlePojo.getId(), 3, 1);
+                uDAO.insertSocialUser(user);
+                user = uDAO.getUserByEmail(googlePojo.getEmail());
                 request.getSession().setAttribute("student", user);
             }
             RequestDispatcher dis = request.getRequestDispatcher("/home");

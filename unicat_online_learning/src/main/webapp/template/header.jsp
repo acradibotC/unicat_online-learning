@@ -20,6 +20,8 @@
         <link rel="stylesheet" type="text/css" href="${path}/styles/responsive.css">
         <link href="${path}/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link href="${path}/plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
     </head>
     <body>
         <div class="super_container">
@@ -56,7 +58,7 @@
                                                         <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
-                                                
+
                                                 <c:when test="${tutor != null}">
                                                     <div style="display: flex; gap: 10px">
                                                         <div class="login_button">
@@ -65,7 +67,7 @@
                                                         <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
-                                                
+
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
@@ -103,7 +105,7 @@
                                 <div class="header_content d-flex flex-row align-items-center justify-content-start">
                                     <div class="logo_container">
                                         <a href="${path}/home">
-                                            <img style="height: 90px" src="${path}/login/images/unic.jpg" alt="logo" class="">
+                                            <img style="height: 80px" src="${path}/login/images/unic.jpg" alt="logo" class="">
                                         </a>
                                     </div>
                                     <nav class="main_nav_contaner ml-auto">

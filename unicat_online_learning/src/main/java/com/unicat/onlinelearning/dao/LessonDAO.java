@@ -42,12 +42,12 @@ public class LessonDAO extends DBContext {
         return lessons;
     }
     
-    public Lesson getLesson(int Id, int CourseId) {
+    public Lesson getLesson(int lessonNum, int CourseId) {
         Lesson lesson = null;
         try {
             String sql = "SELECT * FROM Lesson WHERE LessonNum =? AND CourseID =?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, Id);
+            ps.setInt(1, lessonNum);
             ps.setInt(2,CourseId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

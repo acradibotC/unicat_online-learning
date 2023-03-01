@@ -338,19 +338,23 @@
                             <c:if test="${student ne null}">
                                 <c:url value="/course" var="enroll">
                                     <c:param name="cid" value="${Course.getCourseID()}"/>
-
                                 </c:url>
+
                                 <c:if test="${ce eq null}">
                                     <form action="${enroll}" method="POST">
                                         <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
                                     </form>
                                 </c:if>
+
                                 <c:if test="${ce ne null}">
-                                    <a href="">
-                                        <div style="margin: 10px;font-size: 18px;padding: 3%;
-                                             background-color: #14bdee; border-radius: 10px;text-align: center;color: black">
-                                            <b>Go to Course</b> </div></a>
-                                        </c:if>
+                                    <form action="LessonDetail" method="POST">
+
+                                        <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
+                                                Go to Course
+                                        </button> 
+
+                                    </form>
+                                </c:if>
 
                             </c:if>
 

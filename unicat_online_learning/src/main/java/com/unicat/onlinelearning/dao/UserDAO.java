@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -41,7 +42,7 @@ public class UserDAO extends DBContext {
         User user = null;
         try {
             String sql = "SELECT * FROM [User] where UserName= ? and PassWord= ?";
-            
+
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, uname);
             ps.setString(2, pass);
@@ -250,11 +251,36 @@ public class UserDAO extends DBContext {
 
     }
 
+    public int insertSocialUser(User u) {
+        int kt = 0;
+        try {
+            String sql = "INSERT INTO [User] ( [UserName], [PassWord], [FullName], [Image], [Email], [DOB], [Phone], \n"
+                    + "  [Address],[FacebookID],[GmailID], [RoleID], [Status]) \n"
+                    + "VALUES ( ?, ?, ?, ?, ?, ?,\n"
+                    + " ?, ?, ?, ?, 3, 1)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, u.getUserName());
+            ps.setString(2, u.getPassWord());
+            ps.setString(3, u.getFullName());
+            ps.setString(4, u.getImage());
+            ps.setString(5, u.getEmail());
+            ps.setString(6, u.getDob().toString());
+            ps.setString(7, u.getPhone());
+            ps.setString(8, u.getAddress());
+            ps.setString(9, u.getFaceBookID());
+            ps.setString(10, u.getGmailID());
+            kt = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return kt;
+    }
+
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
 
         //User u = new User(9, "sdd", "123", "NguyenMAnh", "", "manhdinh@gmail", Date.valueOf("2020-12-12"), "036541254", "VN", null, null, 3, 1);
         //System.out.println(ud.UpdateUser(u));
+//        User user = new User(0, "", "", googlePojo.getName(), googlePojo.getPicture(), googlePojo.getEmail(), Date.valueOf(LocalDate.now()), "", "", "", googlePojo.getId(), 3, 1);
         System.out.println(ud.getAllCourseOfUser(6));
 
     }

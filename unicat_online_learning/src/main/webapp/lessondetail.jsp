@@ -2,6 +2,9 @@
 <link rel="stylesheet" type="text/css" href="styles/contact.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
 
+
+
+
 <!-- Home -->
 <div class="home">
     <div class="breadcrumbs_container">
@@ -19,6 +22,8 @@
         </div>
     </div>			
 </div>
+                            
+        ${toastMsg}
 
 <!-- Video -->
 
@@ -29,7 +34,7 @@
         <div class="col-md-9">
             <h1>${courseName}</h1>
             <div class="embed-responsive embed-responsive-16by9">
-                ${curLesson.getVideo()}
+                ${currentLesson.getVideo()}
             </div>
         </div>
         <div class="col-md-3">
@@ -40,9 +45,8 @@
                         <c:forEach items="${list}" var="o">
                             <!--<a class="dropdown-item" href="LessonDetail?Id=${o.getLessonNum()}">${o.getLessonNum()}. ${o.getName()}</a>-->
                             <div class="list-group">
-                                <a class="list-group-item list-group-item-action ${Id == o.getLessonNum()-1 ? "active": ""}" href="LessonDetail?Id=${o.getLessonNum()}">${o.getLessonNum()}. ${o.getName()}</a>
+                                <a  class="list-group-item list-group-item-action ${o.getLessonNum() <= currentLessonNum ? "": "btn disabled"}" href="LessonDetail?Id=${o.getLessonNum()}">${o.getLessonNum()}. ${o.getName()}</a>
                             </div>
-
                         </c:forEach>
                     </div>
                 </li>
@@ -51,11 +55,19 @@
     </div>
 
     <div class="container">
-        <h2>${curLesson.getTitle()}</h2>
-        <br>
-        <div class="col-md-8">
-            <h4>${curLesson.getDescription()}
-            </h4>
+        <div class="row-">
+            <h2>${currentLesson.getTitle()}</h2>
+            <br>
+            <div class="col-md-8">
+                <h4>${currentLesson.getDescription()}
+                </h4>
+            </div>
+            <div class="col-md-4">
+                <div >
+                    <a id="invokesToastMessage"  class="btn btn-success" href="LessonDetail?Id=${currentLessonNum + 1}&?status=done}">Done</a>
+                </div>
+            </div>
+
         </div>
     </div>
 

@@ -5,6 +5,7 @@
 package com.unicat.onlinelearning.controller;
 
 import com.unicat.onlinelearning.dao.CoursesDAO;
+import com.unicat.onlinelearning.dao.LessonDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dto.CourseEnroll;
 import com.unicat.onlinelearning.dto.User;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 
 @WebServlet("/userprofile")
 public class ProfileController extends HttpServlet {
+
+    public static LessonDAO lessonDAO = new LessonDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
