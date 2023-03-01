@@ -49,7 +49,7 @@
 
                                 <div class="row">
                                     <div class="col-md">
-                                        <a class="btn btn-outline-dark" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=http://localhost:6789/Unicat_Online_Learning/LoginWithGoogle&response_type=code
+                                        <a class="btn btn-outline-dark" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=http://localhost:6789/Unicat_online_learning/LoginWithGoogle&response_type=code
                                            &client_id=266996363922-ffeafjv3j62257j0fc0mh5ntm8knmcrq.apps.googleusercontent.com" role="button" style="text-transform:none">
                                             <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                             Sign in with Google

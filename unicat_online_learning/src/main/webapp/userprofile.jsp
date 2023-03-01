@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="${User.getImage()}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                            <img src="${User.getImage()}" alt="user-image" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4>${User.getFullName()}</h4>
                                 <h6>${User.getDob()}</h6>
@@ -39,14 +39,25 @@
                         <div style="color: black; font-size: 20px"> My Course</div>
                         <c:forEach items = "${listcourseenroll}" var = "lc">
                             <hr class="my-4">
-                            <div style="color: black">
-                                <li><b>Course Name</b> : ${lc.getCourseName()} </li>
-                                <li><b>Lesson Current</b> : ${lc.getLessonCurrent()}</li>
-                                <li><b>Enroll Date</b> : ${lc.getEnrollDate()}</li>
-                                <a href=""><div style="margin: 10px;font-size: 18px;padding: 3%;
-                                                background-color: #14bdee; border-radius: 10px;text-align: center;color: black">
-                                        <b>Go to Course</b> </div></a>
-                            </div>
+                            <form action="LessonDetail" method="POST">
+                                <div style="color: black">
+                                    <li><b>Course Name</b> : ${lc.getCourseName()} </li>
+<!--                                    <li><b>Lesson Current</b> : ${lc.getLessonCurrent()}</li>-->
+                                    <li><b>Enroll Date</b> : ${lc.getEnrollDate()}</li>
+                                    <li><b>Progress</b></li>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" aria-valuenow="${lc.getLessonCurrent()}" aria-valuemin="0" aria-valuemax="10" style="width: ${lc.getLessonCurrent()/10*100}%"></div>
+                                    </div>
+                                    <div>
+                                        </br>
+                                        <button class="btn btn-primary btn-info" type="submit" value="${lc.getCourseID()}" name="courseId">
+                                            Go to Course
+                                        </button> 
+                                    </div>
+
+                                </div>
+                            </form>
+
                         </c:forEach>
                     </div>
                 </div>
