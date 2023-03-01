@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/course")
-public class Course extends HttpServlet{
+public class course extends HttpServlet{
 
     public static CoursesDAO CoursesDAO = new CoursesDAO();
     public static CategoryDAO CategoryDAO = new CategoryDAO();
