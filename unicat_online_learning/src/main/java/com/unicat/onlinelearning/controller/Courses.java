@@ -85,6 +85,11 @@ public class Courses extends HttpServlet {
         } else {
             list = CoursesDAO.getListBySearching(AllCourse, start, end);
         }
+        if (req.getSession().getAttribute("student") != null) {
+            User u = (User) req.getSession().getAttribute("student");
+
+            req.setAttribute("User", u);
+        }
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);

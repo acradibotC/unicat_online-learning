@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name="Home", urlPatterns={"/index.html", "/home", "/show_dbs"})
+@WebServlet(name="Home", urlPatterns={"/index.html", "/home"})
 public class Home extends HttpServlet {
 
     public static BlogDAO BlogDAO = new BlogDAO();
