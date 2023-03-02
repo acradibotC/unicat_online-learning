@@ -33,17 +33,14 @@
                                             <nav class="navbar-sidebar1">
                                                 <ul class="list-unstyled navbar__list1">
                                                     <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                            <li>
-                                                                <a href="Dashboard.jsp">Dashboard</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="UserManager.jsp">User Manager</a>
-                                                            </li>                                                             
-                                                            <li>
-                                                                <a href="BlogMangager.jsp">Blog Manager</a>
-                                                            </li>                                                        
+                                                        <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
+                                                    </li>
+                                                    <li>
+                                                        <a href="ContactManager">Contact Manager</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="UserManager.jsp">User Manager</a>
+                                                    </li>                                                             
 
                                                 </ul>
                                             </nav>

@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/blog_single")
+@WebServlet("/blog/single")
 public class Blog_Single extends HttpServlet{
     
     public static UserDAO UserDAO = new UserDAO();  

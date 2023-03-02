@@ -127,11 +127,25 @@ public class CoursesDAO extends DBContext {
         int kt = 0;
         try {
             String sql = "insert into CourseEnroll (UserID,CourseID,EnrollDate,LessonCurrent,CourseStatus) "
-                    + "values (?,?,?,0,0)";
+                    + "values (?,?,?,1,0)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, UserID);
             ps.setInt(2, CourseID);
             ps.setDate(3, Date.valueOf(java.time.LocalDate.now()));
+            kt = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return kt;
+    }
+
+    public int doneCurrentLesson(int UserID, int CourseID, int LessonCurrent) {
+        int kt = 0;
+        try {
+            String sql = "UPDATE CourseEnroll SET LessonCurrent = ? WHERE UserID = ? AND CourseID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, LessonCurrent);
+            ps.setInt(1, UserID);
+            ps.setInt(2, CourseID);
             kt = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -147,13 +161,13 @@ public class CoursesDAO extends DBContext {
             ps.setInt(2, UserID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Date EnrollDate=rs.getDate("EnrollDate");
-                int LessonCurrent=rs.getInt("LessonCurrent");
-                int CourseStatus=rs.getInt("CourseStatus");
-                c=new CourseEnroll(0, UserID, CourseID, EnrollDate, LessonCurrent, CourseStatus);
+                Date EnrollDate = rs.getDate("EnrollDate");
+                int LessonCurrent = rs.getInt("LessonCurrent");
+                int CourseStatus = rs.getInt("CourseStatus");
+                c = new CourseEnroll(0, UserID, CourseID, EnrollDate, LessonCurrent, CourseStatus);
             }
         } catch (SQLException e) {
-            
+
         }
         return c;
     }
