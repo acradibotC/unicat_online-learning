@@ -59,13 +59,7 @@ public class UserRegister extends HttpServlet {
             }
 
         }
-        if (PassWord.equals("")) {
-            req.setAttribute("msgPass", "PassWord is required");
-        }
-        if (Phone.equals("")) {
-            req.setAttribute("msgPhone", "Phone is required");
 
-        }
         if (Dob.equals("")) {
             req.setAttribute("msgDob", "Date of birth is required");
         }
