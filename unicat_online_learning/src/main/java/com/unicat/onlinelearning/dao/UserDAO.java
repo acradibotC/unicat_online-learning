@@ -4,7 +4,6 @@
  */
 package com.unicat.onlinelearning.dao;
 
-import com.unicat.onlinelearning.dto.Course;
 import com.unicat.onlinelearning.dto.CourseEnroll;
 import com.unicat.onlinelearning.utils.DBContext;
 import com.unicat.onlinelearning.dto.User;
@@ -13,7 +12,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -37,6 +35,33 @@ public class UserDAO extends DBContext {
 //        }
 //        return sb.toString();
 //    }
+
+    public ArrayList<User> getAllUser() {
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            String sql = "Select * from [User]";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String UserName = rs.getString("UserName");
+                String PassWord = rs.getString("PassWord");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
+                Date DOB = rs.getDate("DOB");
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FacebookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                list.add(new User(rs.getInt("UserID"), UserName, PassWord, FullName, Image, Email, DOB, Phone, Address, FaceBookID, GmailID, RoleID, Status));
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return list;
+    }
 
     public User getUser(String uname, String pass) {
         User user = null;
