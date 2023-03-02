@@ -15,11 +15,9 @@
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="styles/Admin.css">
         <link rel="stylesheet" type="text/css" href="styles/mamager.css">
-        <link rel="stylesheet" type="text/css" href="styles/courses.css">
-        <link rel="stylesheet" type="text/css" href="${path}/styles/courses_responsive.css">
         <link href="styles/theme.css" rel="stylesheet" media="all">
     </head>
-
+    
     <body class="animsition">
         <div><%@include file="template/header.jsp" %></div>
         <div class="page-wrapper">            
@@ -34,27 +32,15 @@
                                         <div class="menu-sidebar1__content js-scrollbar">
                                             <nav class="navbar-sidebar1">
                                                 <ul class="list-unstyled navbar__list1">
-                                                    <c:choose>
-                                                        <c:when test="${admin != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                            <li>
-                                                                <a href="Dashboard.jsp">Dashboard</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="UserManager.jsp">User Manager</a>
-                                                            </li>                                                             
-                                                            <li>
-                                                                <a href="BlogMangager.jsp">Blog Manager</a>
-                                                            </li>  
-                                                        </c:when>
-                                                        <c:when test="${tutor != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                        </c:when>
-                                                    </c:choose>
+                                                    <li class="active has-sub1">
+                                                        <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
+                                                    </li>
+                                                    <li>
+                                                        <a href="ContactManager">Contact Manager</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="UserManager.jsp">User Manager</a>
+                                                    </li>                                                             
 
                                                 </ul>
                                             </nav>
@@ -63,27 +49,8 @@
                                 </div>
                                 <div class="col-lg-12"style="float: left;padding-top: 30px">
                                     <h2 class="title-1 m-b-25" >Course Manager</h2>
-
-                                    <div class="courses_search_container">
-                                        <form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
-                                            <input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
-                                            <select id="courses_search_select" class="courses_search_select courses_search_input">
-                                                <option>All Categories</option>
-                                                <option>Category</option>
-                                                <option>Category</option>
-                                                <option>Category</option>
-                                            </select>
-                                            <button action="submit" class="courses_search_button ml-auto">search now</button>
-                                        </form>
-                                    </div>
                                     <div class="table-responsive table--no-card m-b-40">
-                                        <c:choose>
-                                            <c:when test="${tutor != null}">
-                                                <div class ="col-lg-3"style="float: right;">
-                                                    <a style="color: #fff; background-color: #14bdee; display: block; width: 200px; text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 20px" href="InsertCourse.jsp" >Add new Course</a>                                  
-                                                </div>
-                                            </c:when>
-                                        </c:choose>
+                                        
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead style="background-color: #0092ef">
                                                 <tr>
@@ -94,16 +61,7 @@
                                                     <th>Course Creator</th>
                                                     <th>Course Inf</th>
                                                     <th>Course Description</th>
-                                                        <c:choose>
-                                                            <c:when test="${admin != null}">
-                                                            <th style="width: 70px">Status</th>
-                                                            </c:when>
-                                                            <c:when test="${tutor != null}">
-                                                            <th style="width: 70px">Delete</th>
-                                                            <th style="width: 70px">Update</th>
-                                                            <th style="width: 70px"> Edit Lesson</th>
-                                                            </c:when>
-                                                        </c:choose>
+                                                    <th style="width: 70px">Status</th>
 
                                                 </tr>
                                             </thead>
@@ -117,16 +75,8 @@
                                                     <th>Anh Bom</th>
                                                     <th>basic Java</th>
                                                     <th>How about to learn java</th>
-                                                        <c:choose>
-                                                            <c:when test="${admin != null}">
-                                                            <th>Status</th>
-                                                            </c:when>
-                                                            <c:when test="${tutor != null}">
-                                                            <th> <a href="DeleteCourse?CourseID=">Delete</th>  
-                                                            <th> <a href="UpdateCourse.jsp?CourseID="> Update  </th> 
-                                                            <th> <a href="LessonManager.jsp?CourseID="> Edit Lesson </th> 
-                                                            </c:when>
-                                                        </c:choose>
+                                                    <th> <a href="DeleteCourse?CourseID="></th>  
+
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -142,11 +92,31 @@
 
         </div>
 
-       
+        <!-- Jquery JS-->
+        <script src="js/manager.js" type="text/javascript"></script>
+        <script src="vendor/jquery-3.2.1.min.js"></script>
+        <!-- Bootstrap JS-->
+        <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+        <!-- Vendor JS       -->
+        <script src="vendor/slick/slick.min.js">
+        </script>
+        <script src="vendor/wow/wow.min.js"></script>
+        <script src="vendor/animsition/animsition.min.js"></script>
+        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        </script>
+        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="vendor/counter-up/jquery.counterup.min.js">
+        </script>
+        <script src="vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="vendor/select2/select2.min.js">
+        </script>
 
         <!-- Main JS-->
         <script src="js/main.js"></script>
-
+        
     </body>
 </html>
 

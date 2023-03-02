@@ -3,7 +3,7 @@
 <%@include file="template/header.jsp" %>
 
 
-</div>
+
 <div style="margin-top: 10%"> </div>
 <div class="breadcrumbs_container">
     <div class="container">
@@ -164,7 +164,6 @@
             margin-right: .5rem!important;
         }
     </style>
+</div>
 
-    <script type="text/javascript">
-    </script>
-    <%@include file="template/footer.jsp" %>
+<%@include file="template/footer.jsp" %>

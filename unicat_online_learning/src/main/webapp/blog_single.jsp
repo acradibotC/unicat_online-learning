@@ -1,9 +1,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="template/header.jsp" %>
 <!-- Blog-Single -->
-<link rel="stylesheet" type="text/css" href="styles/blog_single.css">
-<link rel="stylesheet" type="text/css" href="styles/blog_single_responsive.css">
-
+<link rel="stylesheet" type="text/css" href="${path}/styles/blog_single.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/blog_single_responsive.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/delete_Button.css">
 <!-- Home -->
 
 <div class="home">
@@ -42,7 +42,6 @@
                     </div>
                     ${Blog.getBlogDescription()}
                 </div>
-
                 <!-- Comments -->
                 <div class="comments_container">
                     <div class="comments_title"><span>${BlogFeedbackDAO.getAllBlogFeedbackByBlogID(BlogID).size() + BlogCommentDAO.getAllBlogCommentsByBlogID(BlogID).size()}</span> Comments</div>
@@ -50,7 +49,7 @@
                         <c:forEach items="${BlogFeedbackDAO.getAllBlogFeedbackByBlogID(BlogID)}" var="x">
                             <li>       
                                 <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                    <div class="comment_image"><div><img src="images/comment_1.jpg" alt=""></div></div>
+                                    <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(x.getUserID()).getImage()}" alt=""></div></div>
                                     <div class="comment_content">
                                         <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                             <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</a></div>
@@ -61,15 +60,79 @@
                                             <p>${x.getBlogFeedbackContent()}</p>
                                         </div>
                                         <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                            <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
+                                            <div class="comment_extra comment_reply">
+                                                <form action="${path}/blog/comment/transaction" method="post">
+                                                    <input name="txtStatus" value="1" hidden=""/>
+                                                    <input name="txtBlogFeedbackID" value="${x.getBlogFeedbackID()}" hidden=""/>
+                                                    <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                    <button style="border-radius: 15px; width: 60px; height: 25px; border: 1px solid white; background-color: white;">
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                        <span>Reply</span>
+                                                    </button>
+                                                </form>
+                                            </div>
+
+                                            <!-- Role: Tutor and Admin -->
+                                            <c:if test="${tutor.getUserID() != null || admin.getUserID() != null}">
+
+                                                <!-- Feedback -->
+                                                <div class="comment_extra comment_reply" style="margin-left: 80%;">
+                                                    <form action="${path}/blog/comment/transaction" method="post">
+                                                        <input name="txtStatus" value="2" hidden=""/>
+                                                        <input name="txtBlogFeedbackID" value="${x.getBlogFeedbackID()}" hidden=""/>
+                                                        <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                    <form action="${path}/blog/feedback" method="post">
+                                                        <input name="txtStatus" value="3" hidden=""/>
+                                                        <input name="txtBlogFeedbackID" value="${x.getBlogFeedbackID()}" hidden=""/>
+                                                        <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>                         
+                                            </c:if>
+
+                                            <!-- Role: User -->
+                                            <c:if test="${student.getUserID() == x.getUserID()}">
+                                                <!-- Feedback -->
+                                                <div class="comment_extra comment_reply" style="margin-left: 80%;">
+                                                    <form action="${path}/blog/comment/transaction" method="post">
+                                                        <input name="txtStatus" value="2" hidden=""/>
+                                                        <input name="txtBlogFeedbackID" value="${x.getBlogFeedbackID()}" hidden=""/>
+                                                        <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                    <form action="${path}/blog/feedback" method="post">
+                                                        <input name="txtStatus" value="3" hidden=""/>
+                                                        <input name="txtBlogFeedbackID" value="${x.getBlogFeedbackID()}" hidden=""/>
+                                                        <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>                                            
+                                            </c:if>
+
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Comment -->
                                 <c:forEach items="${BlogCommentDAO.getAllBlogCommentsByBlogFeedbackID(x.getBlogFeedbackID())}" var="y">
                                     <ul>
                                         <li>
                                             <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                <div class="comment_image"><div><img src="images/comment_2.jpg" alt=""></div></div>
+                                                <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(y.getUserID()).getImage()}" alt=""></div></div>
                                                 <div class="comment_content">
                                                     <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                         <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(y.getUserID()).getFullName()}</a></div>
@@ -80,7 +143,63 @@
                                                         <p>${y.getBlogCommentContent()}</p>
                                                     </div>
                                                     <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Reply</span></a></div>
+                                                        <div class="comment_extra comment_reply">
+                                                            <form action="${path}/blog/comment/transaction" method="post">
+                                                                <input name="txtStatus" value="1" hidden=""/>
+                                                                <input name="txtBlogCommentID" value="${y.getBlogCommentID()}" hidden=""/>
+                                                                <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                                <button style="border-radius: 15px; width: 60px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                    <span>Reply</span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <c:if test="${tutor.getUserID() != null || admin.getUserID() != null}">
+                                                            <div class="comment_extra comment_reply" style="margin-left: 80%;">
+                                                                <form action="${path}/blog/comment/transaction" method="post">
+                                                                    <input name="txtStatus" value="2" hidden=""/>
+                                                                    <input name="txtBlogCommentID" value="${y.getBlogCommentID()}" hidden=""/>
+                                                                    <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                                <form action="${path}/blog/comment" method="post">
+                                                                    <input name="txtStatus" value="3" hidden=""/>
+                                                                    <input name="txtBlogCommentID" value="${y.getBlogCommentID()}" hidden=""/>
+                                                                    <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </c:if>
+
+                                                        <c:if test="${student.getUserID() == y.getUserID()}">
+                                                            <div class="comment_extra comment_reply" style="margin-left: 80%;">
+                                                                <form action="${path}/blog/comment/transaction" method="post">
+                                                                    <input name="txtStatus" value="2" hidden=""/>
+                                                                    <input name="txtBlogCommentID" value="${y.getBlogCommentID()}" hidden=""/>
+                                                                    <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                            <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                                <form action="${path}/blog/comment" method="post">
+                                                                    <input name="txtStatus" value="3" hidden=""/>
+                                                                    <input name="txtBlogCommentID" value="${y.getBlogCommentID()}" hidden=""/>
+                                                                    <input name="txtBlogID" value="${x.getBlogID()}" hidden=""/>
+                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </c:if>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,12 +211,13 @@
                     </ul>
                     <div class="add_comment_container">
                         <div class="add_comment_title">Write a comment</div>
-                        <form action="${path}/blog_single/postcomments" class="comment_form" method="post">
+                        <form action="${path}/blog/feedback" class="comment_form" method="post">
                             <div>
                                 <div class="form_title">Review*</div>
                                 <textarea class="comment_input comment_textarea" required="required" name="txtReview"></textarea>
                             </div>
-                           <input type="hidden" name="txtBlogID" value="${BlogID}"/>
+                            <input type="hidden" name="txtStatus" value="1"/>
+                            <input type="hidden" name="txtBlogID" value="${BlogID}"/>
                             <div>
                                 <button type="submit" class="comment_button trans_200">submit</button>
                             </div>
@@ -110,19 +230,6 @@
             <div class="col-lg-4">
                 <div class="sidebar">
 
-                    <!-- Categories -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_section_title">Categories</div>
-                        <div class="sidebar_categories">
-                            <ul class="categories_list">
-                                <li><a href="#" class="clearfix">Art & Design<span>(25)</span></a></li>
-                                <li><a href="#" class="clearfix">Business<span>(10)</span></a></li>
-                                <li><a href="#" class="clearfix">IT & Software<span>(22)</span></a></li>
-                                <li><a href="#" class="clearfix">Languages<span>(12)</span></a></li>
-                                <li><a href="#" class="clearfix">Programming<span>(18)</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Latest Blogs</div>
                         <div class="sidebar_latest">
@@ -131,7 +238,7 @@
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image"><div><img src="${x.getBlogImage()}" alt=""></div></div>
                                     <div class="latest_content">
-                                        <div class="latest_title"><a href="${path}/blog_single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
+                                        <div class="latest_title"><a href="${path}/blog/single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
                                         <div class="latest_date">${x.getPostDate()}</div>
                                     </div>
                                 </div>
@@ -148,7 +255,7 @@
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>
                                     <div class="latest_content">
-                                        <div class="latest_title"><a href="course.html">${x.getName()}</a></div>
+                                        <div class="latest_title"><a href="${path}/course?CourseID=${x.getCourseID()}">${x.getName()}</a></div>
                                         <div class="latest_price">Free</div>
                                     </div>
                                 </div>
@@ -166,7 +273,7 @@
 <!-- Newsletter -->
 
 <div class="newsletter">
-    <div class="newsletter_background" style="background-image:url(images/newsletter_background.jpg)"></div>
+    <div class="newsletter_background" style="background-image:url(${path}/images/newsletter_background.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col">
