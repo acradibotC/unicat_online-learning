@@ -34,13 +34,13 @@
                                             <nav class="navbar-sidebar1">
                                                 <ul class="list-unstyled navbar__list1">
                                                     <li class="active has-sub1">
-                                                        <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
+                                                        <a class="js-arrow" href="${path}/admin/manager">Course Manager</a>                           
                                                     </li>
                                                     <li>
                                                         <a href="ContactManager">Contact Manager</a>
                                                     </li>
                                                     <li>
-                                                        <a href="UserManager.jsp">User Manager</a>
+                                                        <a href="${path}/admin/manager/user">User Manager</a>
                                                     </li>                                                             
                                                 </ul>
                                             </nav>
@@ -70,11 +70,11 @@
                                                 <c:forEach items="${CoursesDAO.getAllCourse()}" var="x">
                                                     <tr>
                                                         <th>${x.getCourseID()}</th>
-                                                        <th>${x.getCategoryID()}</th>
+                                                        <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
                                                         <th>${x.getName()}</th>
                                                         <th><img class="image" src=""</img></th>
                                                         <th>${x.getUserID()}</th>
-                                                        <th> <a href="DeleteCourse?CourseID="></th>  
+                                                        <th><a href="DeleteCourse?CourseID="></th>  
                                                     </tr>
                                                 </c:forEach>
 

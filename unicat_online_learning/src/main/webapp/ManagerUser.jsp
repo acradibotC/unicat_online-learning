@@ -6,16 +6,17 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <c:set value="${pageContext.request.contextPath}" var="path"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="styles/bootstrap4/bootstrap.min.css" rel="stylesheet" media="all">   
-        <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-        <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-        <link rel="stylesheet" type="text/css" href="styles/Admin.css">
-        <link rel="stylesheet" type="text/css" href="styles/mamager.css">
-        <link href="styles/theme.css" rel="stylesheet" media="all">
+        <link href="${path}/styles/bootstrap4/bootstrap.min.css" rel="stylesheet" media="all">   
+        <link href="${path}/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="${path}/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="${path}/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="${path}/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+        <link rel="stylesheet" type="text/css" href="${path}/plugins/OwlCarousel2-2.2.1/animate.css">
+        <link rel="stylesheet" type="text/css" href="${path}/styles/Admin.css">
+        <link rel="stylesheet" type="text/css" href="${path}/styles/mamager.css">
+        <link href="${path}/styles/theme.css" rel="stylesheet" media="all">
     </head>
 
     <body class="animsition">
@@ -56,27 +57,28 @@
                                                 <tr>
                                                     <th style="width: 70px">User ID</th>
                                                     <th>Username</th>
+                                                    <th>Full Name</th>
                                                     <th>Gmail</th>
                                                     <th>Phone</th>
                                                     <th>DOB</th>
-                                                    <th>Name</th>
-                                                    <th></th>
+                                                    <th>Role</th>                                                   
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th>1</th>
-                                                    <th>sd1</th>
-                                                    <th>stu@gmail.com</th>
-
-                                                    <th>210011001</th>
-                                                    <th>2005-12-04</th>
-                                                    <th>Student</th>
-                                                    <th> <a href="">View Profile</th> 
-                                                    <th><a href="">Ban</th>
-
-                                                </tr>
+                                                <c:forEach items="${UserDAO.getAllUser()}" var="x">
+                                                    <tr>
+                                                        <th>${x.getUserID()}</th>
+                                                        <th>${x.getFullName()}</th>
+                                                        <th>${x.getUserName()}</th>
+                                                        <th>${x.getEmail()}</th>
+                                                        <th>${x.getPhone()}</th>
+                                                        <th>${x.getDob()}</th>
+                                                        <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
+                                                        <th><a href="">View Profile</th> 
+                                                        <th><a href="">Ban</th>
+                                                    </tr>
+                                                </c:forEach> 
                                             </tbody>
                                         </table>
                                     </div>
@@ -92,28 +94,26 @@
 
 
         <!-- Jquery JS-->
-        <script src="js/manager.js" type="text/javascript"></script>
-        <script src="vendor/jquery-3.2.1.min.js"></script>
+        <script src="${path}/js/manager.js" type="text/javascript"></script>
+        <script src="${path}/vendor/jquery-3.2.1.min.js"></script>
         <!-- Bootstrap JS-->
-        <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-        <!-- Vendor JS       -->
-        <script src="vendor/slick/slick.min.js">
-        </script>
-        <script src="vendor/wow/wow.min.js"></script>
-        <script src="vendor/animsition/animsition.min.js"></script>
-        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-        </script>
-        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-        <script src="vendor/counter-up/jquery.counterup.min.js">
-        </script>
-        <script src="vendor/circle-progress/circle-progress.min.js"></script>
-        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-        <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-        <script src="vendor/select2/select2.min.js">
-        </script>
+        <script src="${path}/vendor/bootstrap-4.1/popper.min.js"></script>
+        <script src="${path}/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+
+        <!-- Vendor JS-->
+        <script src="${path}/vendor/slick/slick.min.js"></script>
+        <script src="${path}/vendor/wow/wow.min.js"></script>
+        <script src="${path}/vendor/animsition/animsition.min.js"></script>
+        <script src="${path}/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="${path}/vendor/counter-up/jquery.waypoints.min.js"></script>
+        <script src="${path}/vendor/counter-up/jquery.counterup.min.js"></script>
+        <script src="${path}/vendor/circle-progress/circle-progress.min.js"></script>
+        <script src="${path}/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="${path}/vendor/chartjs/Chart.bundle.min.js"></script>
+        <script src="${path}/vendor/select2/select2.min.js"></script>
+
         <!-- Main JS-->
-        <script src="js/main.js"></script>
+        <script src="${path}/js/main.js"></script>
     </body>
 </html>
 
