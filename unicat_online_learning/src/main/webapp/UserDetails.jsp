@@ -3,7 +3,7 @@
 <%@include file="template/header.jsp" %>
 
 
-
+</div>
 <div style="margin-top: 10%"> </div>
 <div class="breadcrumbs_container">
     <div class="container">
@@ -13,7 +13,7 @@
                     <ul style="display: flex;font-size: 20px; padding: 10px;gap: 10px">
                         <li><a style="text-decoration: underline" href="home">Home</a> </li>
                         |
-                        <li style="text-decoration: underline">User Profile</li>
+                        <li style="text-decoration: underline"></li>
                     </ul>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="${User.getImage()}" alt="user-image" class="rounded-circle p-1 bg-primary" width="110">
+                            <img src="${User.getImage()}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                             <div class="mt-3">
                                 <h4>${User.getFullName()}</h4>
                                 <h6>${User.getDob()}</h6>
@@ -36,28 +36,12 @@
                             </div>
                         </div>
                         <hr class="my-4">
-                        <div style="color: black; font-size: 20px"> My Course</div>
-                        <c:forEach items = "${listcourseenroll}" var = "lc">
+                        <div> My Course</div>
+                        <c:forEach items = "${listcn}" var = "lc">
                             <hr class="my-4">
-                            <form action="LessonDetail" method="POST">
-                                <div style="color: black">
-                                    <li><b>Course Name</b> : ${lc.getCourseName()} </li>
-<!--                                    <li><b>Lesson Current</b> : ${lc.getLessonCurrent()}</li>-->
-                                    <li><b>Enroll Date</b> : ${lc.getEnrollDate()}</li>
-                                    <li><b>Progress</b></li>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" aria-valuenow="${lc.getLessonCurrent()}" aria-valuemin="0" aria-valuemax="10" style="width: ${lc.getLessonCurrent()/10*100}%"></div>
-                                    </div>
-                                    <div>
-                                        </br>
-                                        <button class="btn btn-primary btn-info" type="submit" value="${lc.getCourseID()}" name="courseId">
-                                            Go to Course
-                                        </button> 
-                                    </div>
-
-                                </div>
-                            </form>
-
+                            <div>
+                                <li>${lc.getCourseName()} </li><a href="unenrolled?courseID=${lc.getCourseID()}">Quit</a>
+                            </div>
                         </c:forEach>
                     </div>
                 </div>
@@ -164,6 +148,7 @@
             margin-right: .5rem!important;
         }
     </style>
-</div>
 
-<%@include file="template/footer.jsp" %>
+    <script type="text/javascript">
+    </script>
+    <%@include file="template/footer.jsp" %>

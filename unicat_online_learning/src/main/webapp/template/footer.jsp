@@ -120,6 +120,8 @@
 <script src="${path}/plugins/marker_with_label/marker_with_label.js"></script>
 <script src="${path}/js/contact.js"></script>
 
+<!-- Admin Manager -->
+
 <!-- Blog_Single -->
 <script src="${path}/js/blog_single.js"></script>
 
