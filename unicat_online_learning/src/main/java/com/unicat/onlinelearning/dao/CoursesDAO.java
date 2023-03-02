@@ -2,7 +2,6 @@ package com.unicat.onlinelearning.dao;
 
 import com.unicat.onlinelearning.dto.Course;
 import com.unicat.onlinelearning.dto.CourseEnroll;
-import com.unicat.onlinelearning.dto.User;
 import com.unicat.onlinelearning.utils.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 public class CoursesDAO extends DBContext {
 
