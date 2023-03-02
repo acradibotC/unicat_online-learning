@@ -59,31 +59,24 @@
                                                     </div>
                                                 </c:when>
 
-                                                <c:when test="${tutor != null}">
-                                                    <div style="display: flex; gap: 10px">
-                                                        <div class="login_button">
-                                                            <a href="${path}/userprofile?p=profile">${User.getFullName()}</a>
-                                                        </div>
-                                                        <div class="login_button"><a href="${path}/user/login">Log Out</a></div>
-                                                    </div>
-                                                </c:when>
-
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="AdminManager.jsp">Admin Manager</a>
+                                                            <a href="${path}/admin/manager">Admin Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
-                                                <c:when test="${tutor != null}">
+                                                
+                                                <c:when test="${tutor != null}">                                                
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="AdminManager.jsp">Tutor Manager</a>
+                                                            <a href="${path}/admin/manager">Tutor Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
+                                                
                                                 <c:otherwise>
                                                     <div class="login_button"><a href="${path}/user/login">Register or Login</a></div>    
                                                 </c:otherwise>
@@ -146,6 +139,13 @@
                                                     <li><a href="${path}/blog">Blog</a></li>
                                                     <li class="active"><a href="${path}/contact">Contact</a></li>
                                                     </c:when>
+                                                    <c:otherwise>
+                                                    <li><a href="${path}/home">Home</a></li>
+                                                    <li><a href="${path}/about">About</a></li>
+                                                    <li><a href="${path}/courses">Courses</a></li>
+                                                    <li><a href="${path}/blog">Blog</a></li>
+                                                    <li><a href="${path}/contact">Contact</a></li>
+                                                    </c:otherwise>
                                                 </c:choose>
                                         </ul>
                                         <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
