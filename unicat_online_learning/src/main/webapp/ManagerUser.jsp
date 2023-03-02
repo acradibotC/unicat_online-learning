@@ -40,7 +40,7 @@
                                                         <a href="ContactManager">Contact Manager</a>
                                                     </li>
                                                     <li>
-                                                        <a href="UserManager.jsp">User Manager</a>
+                                                        <a href="${path}/admin/manager/user">User Manager</a>
                                                     </li>                                                             
 
                                                 </ul>
@@ -54,10 +54,12 @@
 
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead style="background-color: #0092ef">
+                                                 <input type="search" name="txtNameSearch" value="${NameSearch}" class="courses_search_input" placeholder="Search">
+                                                  <button action="submit" class="courses_search_button ml-auto">search</button>
                                                 <tr>
                                                     <th style="width: 70px">User ID</th>
-                                                    <th>Username</th>
                                                     <th>Full Name</th>
+                                                    <th>Username</th>
                                                     <th>Gmail</th>
                                                     <th>Phone</th>
                                                     <th>DOB</th>
@@ -75,8 +77,8 @@
                                                         <th>${x.getPhone()}</th>
                                                         <th>${x.getDob()}</th>
                                                         <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
-                                                        <th><a href="">View Profile</th> 
-                                                        <th><a href="">Ban</th>
+                                                        <th><a href="UserDetails.jsp">View Profile</th> 
+                                                        <th><a href="delete?uid=${x.getUserID()}">Ban</a></th>
                                                     </tr>
                                                 </c:forEach> 
                                             </tbody>

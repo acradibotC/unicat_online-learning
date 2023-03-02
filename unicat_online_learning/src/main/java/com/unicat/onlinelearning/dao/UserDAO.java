@@ -155,6 +155,17 @@ public class UserDAO extends DBContext {
         return user;
     }
 
+    public void deleteUser(String id) {
+        String query = "delete from [User]\n"
+                + "where UserID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public int insertUser(User u) {
         int kt = 0;
         try {

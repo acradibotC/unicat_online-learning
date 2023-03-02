@@ -162,13 +162,10 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
-<<<<<<< HEAD
                         <div class="team_title"><a href="#">Nguyen Tuan Anh</a></div>
                         <div class="team_subtitle"></div>
-=======
                         <div class="team_title"><a href="#">Jacke Masito</a></div>
                         <div class="team_subtitle">Marketing & Management</div>
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -185,13 +182,10 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
-<<<<<<< HEAD
                         <div class="team_title"><a href="#">Le Nam Tuan</a></div>
                         <div class="team_subtitle"></div>
-=======
                         <div class="team_title"><a href="#">William James</a></div>
                         <div class="team_subtitle">Designer & Website</div>
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -208,13 +202,10 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
-<<<<<<< HEAD
                         <div class="team_title"><a href="#">Nguyen Dinh Manh</a></div>
                         <div class="team_subtitle"></div>
-=======
                         <div class="team_title"><a href="#">John Tyler</a></div>
                         <div class="team_subtitle">Quantum mechanics</div>
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -231,13 +222,11 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
-<<<<<<< HEAD
                         <div class="team_title"><a href="#">Nguyen Luong Phu</a></div>
                         <div class="team_subtitle"></div>
-=======
                         <div class="team_title"><a href="#">Veronica Vahn</a></div>
                         <div class="team_subtitle">Math & Physics</div>
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
+
                         <div class="social_list">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -249,7 +238,7 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
+
             <!-- Team Item -->
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
@@ -268,8 +257,7 @@
                 </div>
             </div>
             
-=======
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
+
         </div>
     </div>
 </div>

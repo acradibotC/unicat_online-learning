@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -33,53 +32,18 @@
                                         <div class="menu-sidebar1__content js-scrollbar">
                                             <nav class="navbar-sidebar1">
                                                 <ul class="list-unstyled navbar__list1">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                                    <li class="active has-sub1">
-                                                        <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-=======
                                                     <li class="active has-sub1">
                                                         <a class="js-arrow" href="${path}/admin/manager">Course Manager</a>                           
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                                                     </li>
                                                     <li>
                                                         <a href="ContactManager">Contact Manager</a>
                                                     </li>
                                                     <li>
-<<<<<<< HEAD
-                                                        <a href="UserManager.jsp">User Manager</a>
-                                                    </li>      
-                                                    <li>
-                                                        <a href="UserDetails.jsp">User Details</a>
-                                                    </li> 
-=======
-                                                    <c:choose>
-                                                        <c:when test="${admin != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                            <li>
-                                                                <a href="Dashboard.jsp">Dashboard</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="UserManager.jsp">User Manager</a>
-                                                            </li>                                                             
-                                                            <li>
-                                                                <a href="BlogMangager.jsp">Blog Manager</a>
-                                                            </li>  
-                                                        </c:when>
-                                                        <c:when test="${tutor != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                        </c:when>
-                                                    </c:choose>
->>>>>>> develop
-
-=======
                                                         <a href="${path}/admin/manager/user">User Manager</a>
-                                                    </li>                                                             
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
+                                                    </li>   
+                                                    <li>
+                                                        <a href="${path}/admin/details/user">User Details</a>
+                                                    </li> 
                                                 </ul>
                                             </nav>
                                         </div>
@@ -154,4 +118,3 @@
 
     </body>
 </html>
-
