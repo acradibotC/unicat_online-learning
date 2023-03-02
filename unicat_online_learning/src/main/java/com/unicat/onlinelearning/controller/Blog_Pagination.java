@@ -14,10 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author tuanm
- */
 @WebServlet("/blog/paging")
 public class Blog_Pagination extends HttpServlet {
 
@@ -55,6 +51,7 @@ public class Blog_Pagination extends HttpServlet {
         if (AllBlog.isEmpty()) {
           list = null;  
         } else list = BlogDAO.getListBySearching(AllBlog, start, end);
+        req.setAttribute("AllBlog", AllBlog);
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);

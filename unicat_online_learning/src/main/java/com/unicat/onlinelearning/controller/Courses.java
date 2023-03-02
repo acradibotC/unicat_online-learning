@@ -3,7 +3,10 @@ package com.unicat.onlinelearning.controller;
 import com.unicat.onlinelearning.dao.BlogDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
+import com.unicat.onlinelearning.dao.LessonDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
+import com.unicat.onlinelearning.dto.Lesson;
+import com.unicat.onlinelearning.dto.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,6 +25,7 @@ public class Courses extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         req.setAttribute("StatusHome", 3);
         req.setAttribute("CategoryDAO", CategoryDAO);
         req.setAttribute("CoursesDAO", CoursesDAO);
@@ -35,10 +39,12 @@ public class Courses extends HttpServlet {
         } else {
             try {
                 CategoryID = Integer.parseInt(req.getParameter("CategoryID"));
-                if (CategoryID < 0)
+                if (CategoryID < 0) {
                     throw new Exception();
-                if (CategoryID > CategoryDAO.getAllCategory().size())
+                }
+                if (CategoryID > CategoryDAO.getAllCategory().size()) {
                     CategoryID = CategoryDAO.getAllCategory().size();
+                }
             } catch (Exception e) {
                 CategoryID = 0;
             }
@@ -57,31 +63,38 @@ public class Courses extends HttpServlet {
         int number = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
         String xpage = req.getParameter("page");
         if (xpage == null) {
-                page = 1;
-            } else {
-                try {
-                    page = Integer.parseInt(xpage);
-                    if (page < 1) {
-                        throw new Exception();
-                    }
-                    if (page > number) {
-                        page = number;
-                    }
-                } catch (Exception e) {
-                    page = 1;
+            page = 1;
+        } else {
+            try {
+                page = Integer.parseInt(xpage);
+                if (page < 1) {
+                    throw new Exception();
                 }
+                if (page > number) {
+                    page = number;
+                }
+            } catch (Exception e) {
+                page = 1;
             }
+        }
         int start = (page - 1) * numPerPage;
         int end = Math.min(page * numPerPage, size);
         ArrayList<com.unicat.onlinelearning.dto.Course> list;
         if (AllCourse.isEmpty()) {
-          list = null;  
-        } else list = CoursesDAO.getListBySearching(AllCourse, start, end);
+            list = null;
+        } else {
+            list = CoursesDAO.getListBySearching(AllCourse, start, end);
+        }
+        if (req.getSession().getAttribute("student") != null) {
+            User u = (User) req.getSession().getAttribute("student");
+
+            req.setAttribute("User", u);
+        }
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);
         //End Paging
-        
+
         req.setAttribute("AllCourse", AllCourse);
         req.setAttribute("CategoryID", CategoryID);
         req.setAttribute("NameSearch", null);
@@ -90,7 +103,7 @@ public class Courses extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+
     }
 
 }

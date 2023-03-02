@@ -45,7 +45,7 @@
                             <div class="blog_post trans_200">
                                 <div class="blog_post_image" style="background-size: cover;"><img style="max-width: 360px; max-height: 170px;" src="${x.getBlogImage()}" alt=""></div>
                                 <div class="blog_post_body">
-                                    <div class="blog_post_title"><a href="${path}/blog_single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
+                                    <div class="blog_post_title"><a href="${path}/blog/single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
                                     <div class="blog_post_meta">
                                         <ul>
                                             <li><a href="#">${UserDAO.getUserByUserID(x.getUserID()).getUserName()}</a></li>
@@ -59,15 +59,11 @@
                             </div>
                         </c:forEach>
                     </c:if>
-                    <c:if test="${list == null}">
-                        <div class="blog_post_container">No Items Found!</div>
-                    </c:if>
-
                 </div>
             </div>
         </div>
     </div>
-    <c:if test="${list != null}">
+    <c:if test="${AllBlog.size() > 6}">
         <div class="paginationBlog">
             <c:if test="${page == 1}">
                 <li class="page-itemBlog previous-page BlogDisable"><a class="page-linkBlog" href="">Prev</a></li>
@@ -96,6 +92,9 @@
                 <li class="page-itemBlog next-page"><a class="page-linkBlog" href="${path}/blog/paging?page=${page+1}">Next</a></li>
                 </c:if>    
         </div>
+    </c:if>
+    <c:if test="${AllBlog.size() == 0}">
+         <div class="paginationBlog">No Items Found!</div>
     </c:if>
 </div>
 

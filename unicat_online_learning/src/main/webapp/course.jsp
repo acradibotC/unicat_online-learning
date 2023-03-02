@@ -77,7 +77,7 @@
                                     <div class="tab_panel_section">
                                         <div class="tab_panel_subtitle"></div>
                                         <ul class="tab_panel_bullets">
-                                            
+
                                         </ul>
                                     </div>
                                     <div class="tab_panel_section">
@@ -335,7 +335,30 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
-                            <div class="course_price">Free</div>
+                            <c:if test="${student ne null}">
+                                <c:url value="/course" var="enroll">
+                                    <c:param name="cid" value="${Course.getCourseID()}"/>
+                                </c:url>
+
+                                <c:if test="${ce eq null}">
+                                    <form action="${enroll}" method="POST">
+                                        <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
+                                    </form>
+                                </c:if>
+
+                                <c:if test="${ce ne null}">
+                                    <form action="LessonDetail" method="POST">
+
+                                        <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
+                                                Go to Course
+                                        </button> 
+
+                                    </form>
+                                </c:if>
+
+                            </c:if>
+
+
 
                             <!-- Features -->
                             <div class="feature_list">

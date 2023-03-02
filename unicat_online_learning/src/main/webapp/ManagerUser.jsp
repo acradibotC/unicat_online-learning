@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>      
+    <head>
         <meta charset="UTF-8">
         <c:set value="${pageContext.request.contextPath}" var="path"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
 
     <body class="animsition">
         <div><%@include file="template/header.jsp" %></div>
-        <div class="page-wrapper">            
+        <div class="page-wrapper">
             <div class="page-container">
                 <!-- MAIN CONTENT-->
                 <div class="main-content">
@@ -33,89 +33,52 @@
                                         <div class="menu-sidebar1__content js-scrollbar">
                                             <nav class="navbar-sidebar1">
                                                 <ul class="list-unstyled navbar__list1">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                     <li class="active has-sub1">
                                                         <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-=======
-                                                    <li class="active has-sub1">
-                                                        <a class="js-arrow" href="${path}/admin/manager">Course Manager</a>                           
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                                                     </li>
                                                     <li>
                                                         <a href="ContactManager">Contact Manager</a>
                                                     </li>
                                                     <li>
-<<<<<<< HEAD
                                                         <a href="UserManager.jsp">User Manager</a>
-                                                    </li>      
-                                                    <li>
-                                                        <a href="UserDetails.jsp">User Details</a>
-                                                    </li> 
-=======
-                                                    <c:choose>
-                                                        <c:when test="${admin != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                            <li>
-                                                                <a href="Dashboard.jsp">Dashboard</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="UserManager.jsp">User Manager</a>
-                                                            </li>                                                             
-                                                            <li>
-                                                                <a href="BlogMangager.jsp">Blog Manager</a>
-                                                            </li>  
-                                                        </c:when>
-                                                        <c:when test="${tutor != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
-                                                            </li>
-                                                        </c:when>
-                                                    </c:choose>
->>>>>>> develop
-
-=======
-                                                        <a href="${path}/admin/manager/user">User Manager</a>
                                                     </li>                                                             
->>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
+
                                                 </ul>
                                             </nav>
                                         </div>
                                     </aside>
                                 </div>
                                 <div class="col-lg-12"style="float: left;padding-top: 30px">
-                                    <h2 class="title-1 m-b-25" >Course Manager</h2>
+                                    <h2 class="title-1 m-b-25" >User Manager</h2>
                                     <div class="table-responsive table--no-card m-b-40">
 
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead style="background-color: #0092ef">
                                                 <tr>
-                                                    <th style="width: 70px">Course ID</th>
-                                                    <th>Category ID</th>
-                                                    <th>Course Name</th>
-                                                    <th>Course Image</th>
-                                                    <th>Course Creator</th>
-                                                    <th>Course Inf</th>
-                                                    <th>Course Description</th>
-                                                    <th style="width: 70px">Status</th>
-
+                                                    <th style="width: 70px">User ID</th>
+                                                    <th>Username</th>
+                                                    <th>Full Name</th>
+                                                    <th>Gmail</th>
+                                                    <th>Phone</th>
+                                                    <th>DOB</th>
+                                                    <th>Role</th>                                                   
+                                                    <th></th>
                                                 </tr>
                                             </thead>
-
                                             <tbody>
-                                                <c:forEach items="${CoursesDAO.getAllCourse()}" var="x">
+                                                <c:forEach items="${UserDAO.getAllUser()}" var="x">
                                                     <tr>
-                                                        <th>${x.getCourseID()}</th>
-                                                        <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
-                                                        <th>${x.getName()}</th>
-                                                        <th><img class="image" src=""</img></th>
                                                         <th>${x.getUserID()}</th>
-                                                        <th><a href="DeleteCourse?CourseID="></th>  
+                                                        <th>${x.getFullName()}</th>
+                                                        <th>${x.getUserName()}</th>
+                                                        <th>${x.getEmail()}</th>
+                                                        <th>${x.getPhone()}</th>
+                                                        <th>${x.getDob()}</th>
+                                                        <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
+                                                        <th><a href="">View Profile</th> 
+                                                        <th><a href="">Ban</th>
                                                     </tr>
-                                                </c:forEach>
-
+                                                </c:forEach> 
                                             </tbody>
                                         </table>
                                     </div>
@@ -127,8 +90,8 @@
                 <!-- END MAIN CONTENT-->
                 <!-- END PAGE CONTAINER-->
             </div>
-
         </div>
+
 
         <!-- Jquery JS-->
         <script src="${path}/js/manager.js" type="text/javascript"></script>
@@ -151,7 +114,7 @@
 
         <!-- Main JS-->
         <script src="${path}/js/main.js"></script>
-
     </body>
 </html>
+
 

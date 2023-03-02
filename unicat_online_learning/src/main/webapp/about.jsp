@@ -29,7 +29,7 @@
             <div class="col">
                 <div class="section_title_container text-center">
                     <h2 class="section_title">Welcome To Unicat E-Learning</h2>
-                    <div class="section_subtitle"><p>A place to share knowledge about programming</p></div>
+                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu Vestibulum</p></div>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <div class="about_item_image"><img src="images/about_1.jpg" alt=""></div>
                     <div class="about_item_title"><a href="#">Our Stories</a></div>
                     <div class="about_item_text">
-                        <p>Unicat E-Learning was established in January 2023. The founders are a group of 3th semester students of FPT University who are majoring in software engineering. With a common feeling of the majority of students when studying information technology, outside school hours it is very necessary to self-study on the internet. So we decided to create a good learning environment for everyone with this website</p>
+                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <div class="about_item_image"><img src="images/about_2.jpg" alt=""></div>
                     <div class="about_item_title"><a href="#">Our Mission</a></div>
                     <div class="about_item_text">
-                        <p>Unicat-learning has the task of improving programming knowledge for learners, learners will firmly grasp the knowledge they have learned through tests, helping learners feel more interesting programming.</p>
+                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
                     </div>
                 </div>
             </div>
@@ -162,11 +162,16 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
+<<<<<<< HEAD
                         <div class="team_title"><a href="#">Nguyen Tuan Anh</a></div>
                         <div class="team_subtitle"></div>
+=======
+                        <div class="team_title"><a href="#">Jacke Masito</a></div>
+                        <div class="team_subtitle">Marketing & Management</div>
+>>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
-                                <li><a href="https://www.facebook.com/AnhNT206"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                             </ul>
@@ -180,11 +185,16 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
+<<<<<<< HEAD
                         <div class="team_title"><a href="#">Le Nam Tuan</a></div>
                         <div class="team_subtitle"></div>
+=======
+                        <div class="team_title"><a href="#">William James</a></div>
+                        <div class="team_subtitle">Designer & Website</div>
+>>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
-                                <li><a href="https://www.facebook.com/profile.php?id=100010194286370"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                             </ul>
@@ -198,11 +208,16 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
+<<<<<<< HEAD
                         <div class="team_title"><a href="#">Nguyen Dinh Manh</a></div>
                         <div class="team_subtitle"></div>
+=======
+                        <div class="team_title"><a href="#">John Tyler</a></div>
+                        <div class="team_subtitle">Quantum mechanics</div>
+>>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
-                                <li><a href="https://www.facebook.com/dinhmanh310"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                             </ul>
@@ -216,11 +231,16 @@
                 <div class="team_item">
                     <div class="team_image"><img src="https://thuthuatnhanh.com/wp-content/uploads/2020/02/avatar-nguoi-dau-mat-thug-life-ngau-loi.jpg" alt=""></div>
                     <div class="team_body">
+<<<<<<< HEAD
                         <div class="team_title"><a href="#">Nguyen Luong Phu</a></div>
                         <div class="team_subtitle"></div>
+=======
+                        <div class="team_title"><a href="#">Veronica Vahn</a></div>
+                        <div class="team_subtitle">Math & Physics</div>
+>>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
                         <div class="social_list">
                             <ul>
-                                <li><a href="https://www.facebook.com/luongphu.nguyen.3"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
                             </ul>
@@ -229,6 +249,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Team Item -->
             <div class="col-lg-3 col-md-6 team_col">
                 <div class="team_item">
@@ -247,6 +268,8 @@
                 </div>
             </div>
             
+=======
+>>>>>>> 317fd122c175ec190ee69f52808e641fae8b4286
         </div>
     </div>
 </div>
