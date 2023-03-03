@@ -18,7 +18,23 @@
         <link rel="stylesheet" type="text/css" href="${path}/styles/mamager.css">
         <link href="${path}/styles/theme.css" rel="stylesheet" media="all">
     </head>
+    <style>
+        .image{
+            width: 120px;
 
+
+        }
+        thead tr th,
+        tbody tr th:nth-child(1),
+        tbody tr th:nth-child(2),
+        tbody tr th:nth-child(3),
+        tbody tr th:nth-child(4),
+        tbody tr th:nth-child(5),
+        tbody tr th:nth-child(8),
+        tbody tr th:nth-child(9){
+            text-align: center;
+        }
+    </style>
     <body class="animsition">
         <div><%@include file="template/header.jsp" %></div>
         <div class="page-wrapper">            
@@ -49,6 +65,13 @@
                                 </div>
                                 <div class="col-lg-12"style="float: left;padding-top: 30px">
                                     <h2 class="title-1 m-b-25" >Course Manager</h2>
+                                    <c:choose>
+                                        <c:when test="${tutor != null}">
+                                            <div class ="col-lg-3"style="float: right;">
+                                                <a style="color: #fff; background-color: #14bdee; display: block; width: 200px; text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 20px" href="${path}/admin/manager/add" >Add new Course</a>                                  
+                                            </div>
+                                        </c:when>
+                                    </c:choose>
                                     <div class="table-responsive table--no-card m-b-40">
 
                                         <table class="table table-borderless table-striped table-earning">
@@ -59,10 +82,15 @@
                                                     <th>Course Name</th>
                                                     <th>Course Image</th>
                                                     <th>Course Creator</th>
-                                                    <th>Course Inf</th>
-                                                    <th>Course Description</th>
-                                                    <th style="width: 70px">Status</th>
-
+                                                        <c:choose>
+                                                            <c:when test="${admin != null}">
+                                                            <th style="width: 70px">Status</th>
+                                                            </c:when>
+                                                            <c:when test="${tutor != null}">
+                                                            <th style="width: 70px">Delete</th>
+                                                            <th style="width: 70px">Update</th>
+                                                            </c:when>
+                                                        </c:choose>
                                                 </tr>
                                             </thead>
 
@@ -72,9 +100,17 @@
                                                         <th>${x.getCourseID()}</th>
                                                         <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
                                                         <th>${x.getName()}</th>
-                                                        <th><img class="image" src=""</img></th>
-                                                        <th>${x.getUserID()}</th>
-                                                        <th><a href="DeleteCourse?CourseID="></th>  
+                                                        <th><img class="image" src="${x.getImage()}"</img></th>
+                                                        <th>${UserRoleDAO.getRoleNameByRoleID(x.getUserID())}</th>
+                                                            <c:choose>
+                                                                <c:when test="${admin != null}">
+                                                                <th>Status</th>
+                                                                </c:when>
+                                                                <c:when test="${tutor != null}">
+                                                                <th> <a href="DeleteCourse?CourseID=${x.getCourseID()}">Delete</th>  
+                                                                <th> <a href="UpdateCourse.jsp?CourseID="> Update  </th> 
+                                                                </c:when>
+                                                            </c:choose>
                                                     </tr>
                                                 </c:forEach>
 
