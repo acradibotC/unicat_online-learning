@@ -78,7 +78,7 @@
                                                         <th>${x.getDob()}</th>
                                                         <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
                                                         <th><a href="UserDetails.jsp">View Profile</th> 
-                                                        <th><a href="${path}/delete?uid=${x.getUserID()}">Ban</a></th>
+                                                        <th><a href="delete?uid=${x.getUserID()}">Ban</a></th>
                                                     </tr>
                                                 </c:forEach> 
                                             </tbody>
