@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -57,7 +56,10 @@
                                                     </li>
                                                     <li>
                                                         <a href="${path}/admin/manager/user">User Manager</a>
-                                                    </li>                                                             
+                                                    </li>   
+                                                    <li>
+                                                        <a href="${path}/admin/details/user">User Details</a>
+                                                    </li> 
                                                 </ul>
                                             </nav>
                                         </div>
@@ -152,4 +154,3 @@
 
     </body>
 </html>
-
