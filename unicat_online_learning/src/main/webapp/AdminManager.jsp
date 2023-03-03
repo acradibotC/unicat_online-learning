@@ -72,7 +72,7 @@
                                                         <th>${x.getCourseID()}</th>
                                                         <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
                                                         <th>${x.getName()}</th>
-                                                        <th><img class="image" src=""</img></th>
+                                                        <th><img class="image" src=""></img></th>
                                                         <th>${x.getUserID()}</th>
                                                         <th><a href="DeleteCourse?CourseID="></th>  
                                                     </tr>

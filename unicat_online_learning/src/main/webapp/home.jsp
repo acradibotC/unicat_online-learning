@@ -446,7 +446,7 @@
                 <div class="news_post_large_container">
                     <div class="news_post_large">
                         <div class="news_post_image"><img src="${LatestBlog.getBlogImage()}" alt=""></div>
-                        <div class="news_post_large_title"><a href="${path}/blog_single?BlogID=${LatestBlog.getBlogID()}">${LatestBlog.getBlogTitler()}</a></div>
+                        <div class="news_post_large_title"><a href="${path}/blog/single?BlogID=${LatestBlog.getBlogID()}">${LatestBlog.getBlogTitler()}</a></div>
                         <div class="news_post_meta">
                             <ul>
                                 <li><a href="">${UserDAO.getUserByUserID(LatestBlog.getUserID()).getUserName()}</a></li>
@@ -456,7 +456,7 @@
                         <div class="news_post_text">
                             <p>${BlogDAO.getShortString(LatestBlog.getBlogDescription(), 15)}...</p>
                         </div>
-                        <div class="news_post_link"><a href="${path}/blog_single?BlogID=${LatestBlog.getBlogID()}">read more</a></div>
+                        <div class="news_post_link"><a href="${path}/blog/single?BlogID=${LatestBlog.getBlogID()}">read more</a></div>
                     </div>
                 </div>
             </div>
@@ -466,7 +466,7 @@
                     <!-- News Posts Small -->
                     <c:forEach items="${BlogDAO.getTop5LatestBlogExceptLatestBlog()}" var="x">                       
                         <div class="news_post_small">
-                            <div class="news_post_small_title"><a href="${path}/blog_single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
+                            <div class="news_post_small_title"><a href="${path}/blog/single?BlogID=${x.getBlogID()}">${x.getBlogTitler()}</a></div>
                             <div class="news_post_meta">
                                 <ul>
                                     <li><a href="">${UserDAO.getUserByUserID(x.getUserID()).getUserName()}</a></li>
@@ -485,7 +485,7 @@
 <!-- Newsletter -->
 
 <div class="newsletter">
-    <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
+    <div class="newsletter_background parallax-window" data-parallax="scroll" data-image-src="${path}/images/newsletter.jpg" data-speed="0.8"></div>
     <div class="container">
         <div class="row">
             <div class="col">
