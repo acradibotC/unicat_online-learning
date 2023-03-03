@@ -168,6 +168,17 @@ public class CoursesDAO extends DBContext {
         }
         return c;
     }
+    
+    public void deleteCourse(int CourseID) {
+        
+        try {
+            String sql = "delete from Course where CourseID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CourseID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
