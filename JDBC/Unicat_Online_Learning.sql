@@ -163,24 +163,22 @@ CREATE TABLE [Review] (
 CREATE TABLE [ReviewFeedback] (
 	[ReviewFeedbackID] [int] IDENTITY(1,1) NOT NULL,
 	[ReviewID] [int] NOT NULL,
-	[UserID] [int] NOT NULL,
 	[ReviewFeedbackContent] [nvarchar](max) NOT NULL,
 	[ReviewFeedbackDate] [datetime] NOT NULL,
 	CONSTRAINT PK_ReviewFeedback_ReviewFeedbackID PRIMARY KEY (ReviewFeedbackID),
-	CONSTRAINT FK_ReviewFeedback_ReviewID FOREIGN KEY (ReviewID) REFERENCES [Review](ReviewID),
-	CONSTRAINT FK_ReviewFeedback_UserID FOREIGN KEY (UserID) REFERENCES [User](UserID)
+	CONSTRAINT FK_ReviewFeedback_ReviewID FOREIGN KEY (ReviewID) REFERENCES [Review](ReviewID)
 )
 
 -- TABLE: [ReviewComments]
 CREATE TABLE [ReviewComments] (
 	[ReviewCommentID] [int] IDENTITY(1,1) NOT NULL,
 	[ReviewFeedbackID] [int] NOT NULL,
-	[UserID] [int] NOT NULL,
+	[ReviewID] [int] NOT NULL,
 	[ReviewCommentContent] [nvarchar](max) NOT NULL,
 	[ReviewCommentDate] [datetime] NOT NULL,
 	CONSTRAINT PK_ReviewComments_ReviewCommentID PRIMARY KEY (ReviewCommentID),
 	CONSTRAINT FK_ReviewComments_ReviewFeedbackID FOREIGN KEY (ReviewFeedbackID) REFERENCES [ReviewFeedback](ReviewFeedbackID),
-	CONSTRAINT FK_ReviewComments_UserID FOREIGN KEY (UserID) REFERENCES [User](UserID)
+	CONSTRAINT FK_ReviewComments_ReviewID FOREIGN KEY (ReviewID) REFERENCES [Review](ReviewID)
 )
 
 ------------------------------------------------- END CREATE -----------------------------------------------------
@@ -414,6 +412,21 @@ INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [De
 		VALUES(3, 'Adobe LightRoom Part II', 'https://www.classcentral.com/report/wp-content/uploads/2022/08/Adobe-Lightroom-BCG-Banner.png', 8, N'Phần Xử Lý Hậu Kỳ',
 		N'', 
 		1)
+
+-- TABLE: [Review]
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 1, 2)
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (2, 1, 0)
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (3, 1, 0)
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 2, 2)
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 1, 2)
+
+-- TABLE: [ReviewFeedback]
+INSERT INTO [ReviewFeedback] ([ReviewID], [ReviewFeedbackContent], [ReviewFeedbackDate]) VALUES(1, '123', GETDATE())
+INSERT INTO [ReviewFeedback] ([ReviewID], [ReviewFeedbackContent], [ReviewFeedbackDate]) VALUES(1, '112233', GETDATE())
+INSERT INTO [ReviewFeedback] ([ReviewID], [ReviewFeedbackContent], [ReviewFeedbackDate]) VALUES(2, '456', GETDATE())
+INSERT INTO [ReviewFeedback] ([ReviewID], [ReviewFeedbackContent], [ReviewFeedbackDate]) VALUES(3, '789', GETDATE())
+INSERT INTO [ReviewFeedback] ([ReviewID], [ReviewFeedbackContent], [ReviewFeedbackDate]) VALUES(4, '123', GETDATE())
+
 ------------------------------------------------- END INSERT -----------------------------------------------------
 
 ------------------------------------------------- TEST -----------------------------------------------------
@@ -432,6 +445,26 @@ ORDER BY BlogID DESC
 
 select * from category
 
-SELECT * FROM [UserRole]
+SELECT * FROM [UserRole] ORDER BY [RoleID] desc
 
 SELECT * FROM [Course] WHERE [Name] LIKE '%te%'
+SELECT * FROM Review
+SELECT * FROM [ReviewFeedback]
+
+SELECT a.ReviewID, a.UserID, a.CourseID, a.Vote, b.ReviewFeedbackID, b.ReviewFeedbackContent, b.ReviewFeedbackDate
+FROM [Review] a JOIN [ReviewFeedback] b
+ON a.ReviewID = b.ReviewID 
+WHERE a.CourseID = 1
+
+SELECT a.ReviewID, a.UserID, a.CourseID, a.Vote, b.ReviewFeedbackID, b.ReviewFeedbackContent, b.ReviewFeedbackDate
+FROM [Review] a JOIN [ReviewFeedback] b
+ON a.ReviewID = b.ReviewID 
+WHERE b.ReviewFeedbackID = 4
+
+DELETE FROM [Review] 
+
+SELECT * FROM [Review]
+SELECT * FROM [ReviewComments]
+SELECT * FROM [ReviewFeedback]
+
+INSERT INTO [ReviewComments] VALUES(9, 10, 'testcomment', GETDATE())
