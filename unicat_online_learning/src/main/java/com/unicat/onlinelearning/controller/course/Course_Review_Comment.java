@@ -1,4 +1,4 @@
-package com.unicat.onlinelearning.controller;
+package com.unicat.onlinelearning.controller.course;
 
 import com.unicat.onlinelearning.dao.ReviewCommentsDAO;
 import com.unicat.onlinelearning.dao.ReviewDAO;

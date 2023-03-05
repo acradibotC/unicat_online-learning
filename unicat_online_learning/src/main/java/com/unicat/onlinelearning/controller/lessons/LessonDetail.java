@@ -41,7 +41,8 @@ public class LessonDetail extends HttpServlet {
         int currentLessonNum = CourseEnroll.getLessonCurrent();
         Lesson currentLesson = lessonDAO.getLesson(currentLessonNum, courseId);
         int totalLesson = Lessons.size() - 1;
-        
+
+        req.setAttribute("User", user);
         req.setAttribute("courseName", CoursesDAO.getCourseByCourseID(courseId).getName());
         req.setAttribute("list", Lessons);
         req.setAttribute("currentLesson", currentLesson);
@@ -54,28 +55,22 @@ public class LessonDetail extends HttpServlet {
         int lessonNum = Integer.parseInt(req.getParameter("Id"));
         User user = (User) req.getSession().getAttribute("student");
         int courseId = (int) req.getSession().getAttribute("courseId");
-        String toastMsg = "";
-        if (req.getParameter("status").isEmpty()) {
-            int done = CoursesDAO.doneCurrentLesson(user.getUserID(), courseId, lessonNum);
-            toastMsg = "You have done lesson" + lessonNum;
-        }
 
         ArrayList<Lesson> Lessons = lessonDAO.getAllLessonByCourseID(courseId);
         CourseEnroll CourseEnroll = CoursesDAO.GetCourseEnrolledByUserID(courseId, user.getUserID());
 
         req.getSession().setAttribute("courseId", courseId);
-        int currentLessonNum = CourseEnroll.getLessonCurrent();
-        Lesson currentLesson = lessonDAO.getLesson(currentLessonNum, courseId);
+        
+        int currentLessonNum = lessonNum;
+        Lesson currentLesson = lessonDAO.getLesson(lessonNum, courseId);
         int totalLesson = Lessons.size() - 1;
 
+        req.setAttribute("User", user);
         req.setAttribute("courseName", CoursesDAO.getCourseByCourseID(courseId).getName());
         req.setAttribute("list", Lessons);
         req.setAttribute("currentLesson", currentLesson);
         req.setAttribute("currentLessonNum", currentLessonNum);
-        req.setAttribute("toastMsg", toastMsg);
         req.getRequestDispatcher("lessondetail.jsp").forward(req, resp);
-
     }
 
-   
 }
