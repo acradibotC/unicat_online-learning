@@ -1,6 +1,5 @@
 package com.unicat.onlinelearning.controller;
 
-import static com.unicat.onlinelearning.controller.Courses_Searching.CoursesDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
