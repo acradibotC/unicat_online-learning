@@ -37,15 +37,15 @@ public class Home extends HttpServlet {
         //Set ROLE
         if (req.getSession().getAttribute("student") != null) {
             User u = (User) req.getSession().getAttribute("student");
-            req.setAttribute("User", u);
+            req.getSession().setAttribute("User", u);
         }
         if (req.getSession().getAttribute("admin") != null) {
             User u = (User) req.getSession().getAttribute("admin");
-            req.setAttribute("User", u);
+            req.getSession().setAttribute("User", u);
         }
         if (req.getSession().getAttribute("tutor") != null) {
             User u = (User) req.getSession().getAttribute("tutor");
-            req.setAttribute("User", u);
+            req.getSession().setAttribute("User", u);
         }
         
         req.getRequestDispatcher("/home.jsp").forward(req, resp);
