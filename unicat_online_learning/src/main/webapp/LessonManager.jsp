@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head>      
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="styles/bootstrap4/bootstrap.min.css" rel="stylesheet" media="all">   
@@ -15,12 +15,14 @@
         <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="styles/Admin.css">
         <link rel="stylesheet" type="text/css" href="styles/mamager.css">
+        <link rel="stylesheet" type="text/css" href="styles/courses.css">
+        <link rel="stylesheet" type="text/css" href="${path}/styles/courses_responsive.css">
         <link href="styles/theme.css" rel="stylesheet" media="all">
     </head>
 
     <body class="animsition">
         <div><%@include file="template/header.jsp" %></div>
-        <div class="page-wrapper">
+        <div class="page-wrapper">            
             <div class="page-container">
                 <!-- MAIN CONTENT-->
                 <div class="main-content">
@@ -36,46 +38,58 @@
                                                         <a class="js-arrow" href="AdminManager.jsp">Course Manager</a>                           
                                                     </li>
                                                     <li>
-                                                        <a href="ContactManager">Contact Manager</a>
+                                                        <a href="LessonManager.jsp">Lesson Manager</a>                           
                                                     </li>
-                                                    <li>
-                                                        <a href="UserManager.jsp">User Manager</a>
-                                                    </li>                                                             
-
                                                 </ul>
                                             </nav>
                                         </div>
                                     </aside>
                                 </div>
                                 <div class="col-lg-12"style="float: left;padding-top: 30px">
-                                    <h2 class="title-1 m-b-25" >User Manager</h2>
-                                    <div class="table-responsive table--no-card m-b-40">
+                                    <h2 class="title-1 m-b-25" >Lesson Manager</h2>
 
+                                    <div class="courses_search_container">
+                                        <form action="#" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+                                            <input type="search" class="courses_search_input" placeholder="Search Courses" required="required">
+                                            <select id="courses_search_select" class="courses_search_select courses_search_input">
+                                                <option>All Categories</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <button action="submit" class="courses_search_button ml-auto">search now</button>
+                                        </form>
+                                    </div>
+                                    <div class="table-responsive table--no-card m-b-40">
+                                        <div class ="col-lg-3"style="float: right;">
+                                            <a style="color: #fff; background-color: #14bdee; display: block; width: 200px; text-align: center; margin: 0 auto; margin-bottom: 10px; margin-top: 20px" href="InsertLesson.jsp" >Add new Lesson</a>                                  
+                                        </div>
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead style="background-color: #0092ef">
                                                 <tr>
-                                                    <th style="width: 70px">User ID</th>
-                                                    <th>Username</th>
-                                                    <th>Gmail</th>
-                                                    <th>Phone</th>
-                                                    <th>DOB</th>
+                                                    <th style="width: 70px">Lesson ID</th>
+                                                    <th>Course ID</th>
                                                     <th>Name</th>
-                                                    <th></th>
-                                                    <th></th>
+                                                    <th>Title</th>
+                                                    <th>Content</th>
+                                                    <th>Video</th>
+                                                    <th style="width: 70px">Delete</th>
+                                                    <th style="width: 70px">Update</th>
+                                                    <th style="width: 70px">View Lesson</th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
                                                 <tr>
                                                     <th>1</th>
-                                                    <th>sd1</th>
-                                                    <th>stu@gmail.com</th>
-
-                                                    <th>210011001</th>
-                                                    <th>2005-12-04</th>
-                                                    <th>Student</th>
-                                                    <th> <a href="">View Profile</th> 
-                                                    <th><a href="">Ban</th>
-
+                                                    <th>1</th>
+                                                    <th>Anh Bom</th>
+                                                    <th>basic Java</th>
+                                                    <th>How about to learn java</th>
+                                                    <th><img class="image" src=""</img></th>
+                                                    <th> <a href="DeleteCourse?CourseID=">Delete</th>  
+                                                    <th> <a href="UpdateCourse.jsp?CourseID="> Update  </th> 
+                                                    <th> <a href="">View</th> 
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -88,33 +102,14 @@
                 <!-- END MAIN CONTENT-->
                 <!-- END PAGE CONTAINER-->
             </div>
+
         </div>
 
 
-        <!-- Jquery JS-->
-        <script src="js/manager.js" type="text/javascript"></script>
-        <script src="vendor/jquery-3.2.1.min.js"></script>
-        <!-- Bootstrap JS-->
-        <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-        <!-- Vendor JS       -->
-        <script src="vendor/slick/slick.min.js">
-        </script>
-        <script src="vendor/wow/wow.min.js"></script>
-        <script src="vendor/animsition/animsition.min.js"></script>
-        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-        </script>
-        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-        <script src="vendor/counter-up/jquery.counterup.min.js">
-        </script>
-        <script src="vendor/circle-progress/circle-progress.min.js"></script>
-        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-        <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-        <script src="vendor/select2/select2.min.js">
-        </script>
+
         <!-- Main JS-->
         <script src="js/main.js"></script>
+        <script src="js/manager.js" type="text/javascript"></script>
     </body>
 </html>
-
 

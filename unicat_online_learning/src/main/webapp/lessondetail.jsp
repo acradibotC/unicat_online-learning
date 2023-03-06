@@ -45,7 +45,7 @@
                         <c:forEach items="${list}" var="o">
                             <!--<a class="dropdown-item" href="LessonDetail?Id=${o.getLessonNum()}">${o.getLessonNum()}. ${o.getName()}</a>-->
                             <div class="list-group">
-                                <a  class="list-group-item list-group-item-action ${o.getLessonNum() <= currentLessonNum ? "": "btn disabled"}" href="LessonDetail?Id=${o.getLessonNum()}">${o.getLessonNum()}. ${o.getName()}</a>
+                                <a  class="list-group-item list-group-item-action ${o.getLessonNum() <= currentLessonNum ? "": ""}" href="LessonDetail?Id=${o.getLessonNum()}">${o.getLessonNum()}. ${o.getName()}</a>
                             </div>
                         </c:forEach>
                     </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-4">
                 <div >
-                    <a id="invokesToastMessage"  class="btn btn-success" href="LessonDetail?Id=${currentLessonNum + 1}&?status=done}">Done</a>
+                    <a id="invokesToastMessage"  class="btn btn-success" href="LessonDetail?Id=${currentLessonNum + 1}&?status=done">Done</a>
                 </div>
             </div>
 

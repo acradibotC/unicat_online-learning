@@ -1,7 +1,9 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="template/header.jsp" %>
 <!-- Course -->
 <link rel="stylesheet" type="text/css" href="${path}/styles/course.css">
 <link rel="stylesheet" type="text/css" href="${path}/styles/course_responsive.css">
+<link rel="stylesheet" type="text/css" href="${path}/styles/blog_single.css">
 <!-- Home -->
 
 <div class="home">
@@ -255,70 +257,206 @@
                                 <!-- Comments -->
                                 <div class="comments_container">
                                     <ul class="comments_list">
-                                        <li>
-                                            <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                <div class="comment_image"><div><img src="images/comment_1.jpg" alt=""></div></div>
-                                                <div class="comment_content">
-                                                    <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_author"><a href="#">Milley Cyrus</a></div>
-                                                        <div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-                                                        <div class="comment_time ml-auto">1 day ago</div>
-                                                    </div>
-                                                    <div class="comment_text">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-                                                    </div>
-                                                    <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-                                                        <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul>
-                                                <li>
-                                                    <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                        <div class="comment_image"><div><img src="images/comment_2.jpg" alt=""></div></div>
-                                                        <div class="comment_content">
-                                                            <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_author"><a href="#">John Tyler</a></div>
-                                                                <div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-                                                                <div class="comment_time ml-auto">1 day ago</div>
+                                        <c:forEach items="${ReviewFeedbackDAO.getAllReviewFeedbackByCourseID(Course.getCourseID())}" var="x">
+                                            <li>
+                                                <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                    <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()).getImage()}" alt=""></div></div>
+                                                    <div class="comment_content">
+                                                        <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                            <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()).getFullName()}</a></div>
+                                                            <div class="comment_rating">
+                                                                <div class="rating_r rating_r_${ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getVote()}"><i></i><i></i><i></i><i></i><i></i></div>
                                                             </div>
-                                                            <div class="comment_text">
-                                                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-                                                            </div>
-                                                            <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                                <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-                                                                <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-                                                            </div>
+                                                            <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${x.getReviewFeedbackDate()}"/></div>
+                                                        </div>
+                                                        <div class="comment_text">
+                                                            <p>${x.getReviewFeedbackContent()}</p>
+                                                        </div>
+                                                        <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                            <!-- Role: Student, Tutor, Admin (Can reply)-->
+                                                            <c:if test="${student != null || tutor != null || admin != null}">
+                                                                <div class="comment_extra comment_reply">
+                                                                    <form action="${path}/course/review/transaction" method="post">
+                                                                        <input name="txtStatus" value="1" hidden=""/>
+                                                                        <input name="txtReviewFeedbackID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                        <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                        <button style="border-radius: 15px; width: 60px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                            <span>Reply</span>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>  
+                                                            </c:if>
+
+                                                            <!-- Role: Tutor, Admin (Can delete, update all Feedback)-->
+                                                            <c:if test="${tutor != null || admin != null}">
+                                                                <div class="comment_extra comment_reply" style="margin-left: 70%;">
+                                                                    <form action="${path}/course/review/transaction" method="post">
+                                                                        <input name="txtStatus" value="2" hidden=""/>
+                                                                        <input name="txtReviewFeedbackID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                        <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                                    <form action="${path}/course/review/feedback" method="post">
+                                                                        <input name="txtStatus" value="3" hidden=""/>
+                                                                        <input name="txtReviewFeedbackID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                        <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>       
+                                                            </c:if>
+
+                                                            <!-- Role: Student can Delete Update their Feedback -->
+                                                            <c:if test="${student.getUserID() == ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()}">
+                                                                <div class="comment_extra comment_reply" style="margin-left: 70%;">
+                                                                    <form action="${path}/course/review/transaction" method="post">
+                                                                        <input name="txtStatus" value="2" hidden=""/>
+                                                                        <input name="txtReviewFeedbackID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                        <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                                    <form action="${path}/course/review/feedback" method="post">
+                                                                        <input name="txtStatus" value="3" hidden=""/>
+                                                                        <input name="txtReviewFeedbackID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                        <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                        <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div> 
+                                                            </c:if>
                                                         </div>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
-                                                <div class="comment_image"><div><img src="images/comment_3.jpg" alt=""></div></div>
-                                                <div class="comment_content">
-                                                    <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_author"><a href="#">Milley Cyrus</a></div>
-                                                        <div class="comment_rating"><div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div></div>
-                                                        <div class="comment_time ml-auto">1 day ago</div>
-                                                    </div>
-                                                    <div class="comment_text">
-                                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have alteration in some form, by injected humour.</p>
-                                                    </div>
-                                                    <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
-                                                        <div class="comment_extra comment_likes"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i><span>15</span></a></div>
-                                                        <div class="comment_extra comment_reply"><a href="#"><i class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a></div>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                                <c:forEach items="${ReviewCommentsDAO.getAllReviewCommentsByReviewFeedbackID(x.getReviewFeedbackID())}" var="y">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                                <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(y.getReviewFeedbackID()).getUserID()).getImage()}" alt=""></div></div>
+                                                                <div class="comment_content">
+                                                                    <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                                        <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getUserID()).getFullName()}</a></div>
+                                                                        <div class="comment_rating"><div class="rating_r rating_r_${ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getVote()}"><i></i><i></i><i></i><i></i><i></i></div></div>
+                                                                        <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${y.getReviewCommentDate()}"/></div>
+                                                                    </div>
+                                                                    <div class="comment_text">
+                                                                        <p>${y.getReviewCommentContent()}</p>
+                                                                    </div>
+                                                                    <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                                        <!-- Role: Student, Tutor, Admin (Can reply)-->
+                                                                        <c:if test="${student != null || tutor != null || admin != null}">
+                                                                            <div class="comment_extra comment_reply">
+                                                                                <form action="${path}/course/review/transaction" method="post">
+                                                                                    <input name="txtStatus" value="1" hidden=""/>
+                                                                                    <input name="txtReviewCommentID" value="${y.getReviewCommentID()}" hidden=""/>
+                                                                                    <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                                    <button style="border-radius: 15px; width: 60px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                                        <span>Reply</span>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>  
+                                                                        </c:if>
+
+                                                                        <!-- Role: Tutor, Admin (Can delete, update all comment)-->
+                                                                        <!-- Edit -->
+                                                                        <c:if test="${tutor != null || admin != null}">
+                                                                            <div class="comment_extra comment_reply" style="margin-left: 70%;">
+                                                                                <form action="${path}/course/review/transaction" method="post">
+                                                                                    <input name="txtStatus" value="2" hidden=""/>
+                                                                                    <input name="txtReviewCommentID" value="${y.getReviewCommentID()}" hidden=""/>
+                                                                                    <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>
+                                                                            <!-- Delete -->
+                                                                            <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                                                <form action="${path}/course/review/comment" method="post">
+                                                                                    <input name="txtStatus" value="3" hidden=""/>
+                                                                                    <input name="txtReviewCommentID" value="${y.getReviewCommentID()}" hidden=""/>
+                                                                                    <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>       
+                                                                        </c:if>
+
+                                                                        <!-- Role: Student (can Delete Update their comment) -->
+                                                                        <c:if test="${student.getUserID() == ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()}">
+                                                                            <!-- Edit -->
+                                                                            <div class="comment_extra comment_reply" style="margin-left: 70%;">
+                                                                                <form action="${path}/course/review/transaction" method="post">
+                                                                                    <input name="txtStatus" value="2" hidden=""/>
+                                                                                    <input name="txtReviewFeedbackID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                                    <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>
+
+                                                                            <!-- Delete -->
+                                                                            <div class="comment_extra comment_reply" style="margin-left: 10px;">
+                                                                                <form action="${path}/course/review/comment" method="post">
+                                                                                    <input name="txtStatus" value="3" hidden=""/>
+                                                                                    <input name="txtReviewCommentID" value="${x.getReviewFeedbackID()}" hidden=""/>
+                                                                                    <input name="txtCourseID" value="${Course.getCourseID()}" hidden=""/>
+                                                                                    <button style="width: 15px; height: 25px; border: 1px solid white; background-color: white;">
+                                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div> 
+                                                                        </c:if>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </c:forEach>
+                                            </li>
+                                        </c:forEach>
                                     </ul>
-                                    <div class="add_comment_container">
-                                        <div class="add_comment_title">Add a review</div>
-                                        <div class="add_comment_text">You must be <a href="#">logged</a> in to post a comment.</div>
-                                    </div>
+
+                                    <c:choose>
+                                        <c:when test="${student != null || tutor != null || admin != null}">
+                                            <div class="add_comment_container">
+                                                <div class="add_comment_title">Write a comment</div>
+                                                <form action="${path}/course/review/feedback" class="comment_form" method="post">
+                                                    <div>
+                                                        <div class="form_title">Review*</div>
+                                                        <textarea class="comment_input comment_textarea" required="required" name="txtReview"></textarea>
+                                                    </div>
+                                                    <input type="hidden" name="txtStatus" value="1"/>
+                                                    <input type="hidden" name="txtVoteStatus" value="0"/>
+                                                    <input type="hidden" name="txtCourseID" value="${Course.getCourseID()}"/>
+                                                    <div>
+                                                        <button type="submit" class="comment_button trans_200">submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="add_comment_container">
+                                                <div class="add_comment_title">Add a review</div>
+                                                <div class="add_comment_text">You must be <a href="${path}/user/login">logged</a> in to post a comment.</div>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </div>
                             </div>
 
@@ -341,16 +479,16 @@
                                 </c:url>
 
                                 <c:if test="${ce eq null}">
-                                    <form action="${enroll}" method="POST">
+                                    <form action="${enroll}" method="post">
                                         <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
                                     </form>
                                 </c:if>
 
                                 <c:if test="${ce ne null}">
-                                    <form action="LessonDetail" method="POST">
+                                    <form action="LessonDetail" method="post">
 
                                         <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
-                                                Go to Course
+                                            Go to Course
                                         </button> 
 
                                     </form>

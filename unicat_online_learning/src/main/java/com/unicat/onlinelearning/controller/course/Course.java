@@ -1,7 +1,10 @@
-package com.unicat.onlinelearning.controller;
+package com.unicat.onlinelearning.controller.course;
 
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
+import com.unicat.onlinelearning.dao.ReviewCommentsDAO;
+import com.unicat.onlinelearning.dao.ReviewDAO;
+import com.unicat.onlinelearning.dao.ReviewFeedbackDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dto.CourseEnroll;
 import com.unicat.onlinelearning.dto.User;
@@ -18,6 +21,9 @@ public class Course extends HttpServlet {
     public static CoursesDAO CoursesDAO = new CoursesDAO();
     public static CategoryDAO CategoryDAO = new CategoryDAO();
     public static UserDAO UserDAO = new UserDAO();
+    public static ReviewFeedbackDAO ReviewFeedbackDAO = new ReviewFeedbackDAO();
+    public static ReviewDAO ReviewDAO = new ReviewDAO();
+    public static ReviewCommentsDAO ReviewCommentsDAO = new ReviewCommentsDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +31,9 @@ public class Course extends HttpServlet {
         req.setAttribute("CoursesDAO", CoursesDAO);
         req.setAttribute("CategoryDAO", CategoryDAO);
         req.setAttribute("UserDAO", UserDAO);
+        req.setAttribute("ReviewFeedbackDAO", ReviewFeedbackDAO);
+        req.setAttribute("ReviewCommentsDAO", ReviewCommentsDAO);
+        req.setAttribute("ReviewDAO", ReviewDAO);
         int CourseID;
         try {
             CourseID = Integer.parseInt(req.getParameter("CourseID"));
