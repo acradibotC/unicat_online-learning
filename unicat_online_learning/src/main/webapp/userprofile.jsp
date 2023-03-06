@@ -97,6 +97,7 @@
                                 </div>
 
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Address</h6>
@@ -115,6 +116,7 @@
                                     <input type="password" name="txtPass" class="form-control" placeholder="*****">
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Retype password</h6>
