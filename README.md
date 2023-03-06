@@ -1,6 +1,8 @@
 # Unicat_Online-Learning
+Link to access: [Unicat Online Learning](https://unicat.azurewebsites.net)
 
 ![logo](https://user-images.githubusercontent.com/118791918/217361076-0e31d062-1057-4ca6-93d3-d211ebabed5c.svg)
+
 
 ## Feature by role
 
@@ -21,9 +23,9 @@
 ## Technology
 
 - Frontend
-     - 
+     - JSP, Boostrap, CSS
 - Backend
-     - Java - JSP, Servlet
+     - Java, Servlet
      - Entity Framework - Object–relational mapping
      - SQL Server 2019 - Database
 - Design Pattern
@@ -32,6 +34,8 @@
      - SOLID Principles
 - Deployment
      - Github Action - CI/CD
+     - Microsoft Azure
+     - Microsoft Azure SQL Database
 
 ## Team Member
 
