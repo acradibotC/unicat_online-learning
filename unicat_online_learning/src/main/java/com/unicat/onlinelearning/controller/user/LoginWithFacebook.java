@@ -33,14 +33,14 @@ public class LoginWithFacebook {
             String code = request.getParameter("code");
 
             if (code == null || code.isEmpty()) {
-                RequestDispatcher dis = request.getRequestDispatcher("/login");
+                RequestDispatcher dis = request.getRequestDispatcher("/user/login");
                 dis.forward(request, response);
             } else {
                 String accessToken = RestFB.getToken(code);
                 User user = RestFB.getUserInfo(accessToken);
                 request.setAttribute("id", user.getId());
                 request.setAttribute("name", user.getName());
-                RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+                RequestDispatcher dis = request.getRequestDispatcher("/home");
                 dis.forward(request, response);
             }
 

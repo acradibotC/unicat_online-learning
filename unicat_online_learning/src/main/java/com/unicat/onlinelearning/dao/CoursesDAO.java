@@ -141,8 +141,8 @@ public class CoursesDAO extends DBContext {
             String sql = "UPDATE CourseEnroll SET LessonCurrent = ? WHERE UserID = ? AND CourseID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, LessonCurrent);
-            ps.setInt(1, UserID);
-            ps.setInt(2, CourseID);
+            ps.setInt(2, UserID);
+            ps.setInt(3, CourseID);
             kt = ps.executeUpdate();
         } catch (SQLException e) {
         }
