@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 
-
 public class CoursesDAO extends DBContext {
 
     private Connection connection = DBContext.makeConnection();
@@ -168,24 +167,57 @@ public class CoursesDAO extends DBContext {
         }
         return c;
     }
-    
-    public void deleteCourse(int CourseID) {
-        
+
+    public ArrayList<Course> getAllCourseByUserID(int UserID) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where UserID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+
+    public void deleteCourse(String CourseID) {
+
         try {
             String sql = "delete from Course where CourseID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, CourseID);
+            ps.setString(1, CourseID);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
+    
 
+    public void insertCourse(int CategoryID, String Name, String Image, int UserID, String CourseInfo, String Description, int PublishStatus) {
+        
+        try {
+            String sql = "insert into Course ( CategoryID, Name, Image, UserID, CourseInfo, Description, PublishStatus) values (?,?,?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CategoryID);
+            ps.setString(2, Name);
+            ps.setString(3, Image);
+            ps.setInt(4, UserID);
+            ps.setString(5, CourseInfo);
+            ps.setString(6, Description);
+            ps.setInt(7, PublishStatus);
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         //System.out.println(dao.getFewLatestCourse(1).size());
         BlogDAO dc = new BlogDAO();
-
-        System.out.println(dao.GetCourseEnrolledByUserID(1, 6));
+        
+        System.out.println(dao.getAllCourseByUserID(8).size());
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
 

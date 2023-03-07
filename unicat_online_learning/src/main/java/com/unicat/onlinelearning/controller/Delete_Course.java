@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @author User
  */
-@WebServlet("/DeleteCourse")
+@WebServlet("/admin/manager/delete")
 public class Delete_Course extends HttpServlet{
     public static CoursesDAO CoursesDAO = new CoursesDAO();
     @Override
@@ -26,10 +26,9 @@ public class Delete_Course extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String xCourseID = req.getParameter("CourseID");
-        int CourseID = Integer.parseInt(xCourseID);
+        String CourseID = req.getParameter("CourseID");
         CoursesDAO.deleteCourse(CourseID);
-        resp.sendRedirect("${path}/admin/manager");
+        resp.sendRedirect(req.getContextPath() + "/admin/manager");
     }
     
 }

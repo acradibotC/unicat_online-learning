@@ -38,7 +38,7 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">    
-                        <form action="InsertCourse" method="POST"> 
+                        <form action="add" method="POST"> 
                             <div class="modal-header">						
                                 <h4 class="modal-title">Add Course</h4>                               
                             </div>
@@ -60,10 +60,6 @@
                                         </select>                                   
                                     </div>
                                     <div class="form-group">
-                                        <label>Course ID</label>                                   
-                                        <input name="CourseID"  type="text" class="form-control" required>                                   
-                                    </div>
-                                    <div class="form-group">
                                         <label>Course Name</label>
                                         <input name="CourseName" type="text" class="form-control" required>
                                     </div>
@@ -72,21 +68,12 @@
                                         <textarea name="CourseImage" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Course Creator</label>
-                                        <textarea name="CourseCreator" class="form-control" required></textarea>
-
-                                    </div>
-                                    <div class="form-group">
                                         <label>Course Info </label>
                                         <textarea name="CourseInf" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Course Description </label>
                                         <textarea name="CourseDescription" class="form-control" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Lesson ID</label>                                   
-                                        <input name="LessonID"  type="text" class="form-control" required>                                   
                                     </div>
 
                                     <p> <input type="submit" value="InsertCourse"/>
