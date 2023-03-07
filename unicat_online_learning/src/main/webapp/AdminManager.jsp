@@ -78,7 +78,7 @@
                             <th><img class="image" src="${x.getImage()}" /></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
                             <th> <a href="${path}/admin/manager/delete?CourseID=${x.getCourseID()}">Delete</th>  
-                            <th> <a href="UpdateCourse.jsp?CourseID="> Update  </th> 
+                            <th> <a href="${path}/admin/manager/update?CourseID=${x.getCourseID()}"> Update </th> 
                         </tr>
                     </c:forEach>
 
