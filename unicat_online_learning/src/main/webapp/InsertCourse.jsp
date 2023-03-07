@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <c:set value="${pageContext.request.contextPath}" var="path"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,7 +39,7 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">    
-                        <form action="InsertCourse" method="POST"> 
+                        <form action="add" method="POST"> 
                             <div class="modal-header">						
                                 <h4 class="modal-title">Add Course</h4>                               
                             </div>
@@ -60,10 +61,6 @@
                                         </select>                                   
                                     </div>
                                     <div class="form-group">
-                                        <label>Course ID</label>                                   
-                                        <input name="CourseID"  type="text" class="form-control" required>                                   
-                                    </div>
-                                    <div class="form-group">
                                         <label>Course Name</label>
                                         <input name="CourseName" type="text" class="form-control" required>
                                     </div>
@@ -72,21 +69,12 @@
                                         <textarea name="CourseImage" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Course Creator</label>
-                                        <textarea name="CourseCreator" class="form-control" required></textarea>
-
-                                    </div>
-                                    <div class="form-group">
                                         <label>Course Info </label>
                                         <textarea name="CourseInf" class="form-control" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Course Description </label>
                                         <textarea name="CourseDescription" class="form-control" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Lesson ID</label>                                   
-                                        <input name="LessonID"  type="text" class="form-control" required>                                   
                                     </div>
 
                                     <p> <input type="submit" value="InsertCourse"/>
