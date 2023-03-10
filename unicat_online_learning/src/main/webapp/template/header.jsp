@@ -21,7 +21,7 @@
         <link href="${path}/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
         <link href="${path}/plugins/video-js/video-js.css" rel="stylesheet" type="text/css">
         <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </head>
     <body>
         <div class="super_container">
@@ -62,21 +62,21 @@
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="${path}/admin/manager">Admin Manager</a>
+                                                            <a href="${path}/admin/manager/course">Admin Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
-                                                
+
                                                 <c:when test="${tutor != null}">                                                
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="${path}/admin/manager">Tutor Manager</a>
+                                                            <a href="${path}/admin/manager/course">Tutor Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
                                                 </c:when>
-                                                
+
                                                 <c:otherwise>
                                                     <div class="login_button"><a href="${path}/user/login">Register or Login</a></div>    
                                                 </c:otherwise>

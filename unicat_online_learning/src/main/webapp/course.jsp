@@ -486,7 +486,7 @@
 
                                 <c:if test="${ce ne null}">
                                     <form action="LessonDetail" method="post">
-
+                                        <input value="${6789}" name="status" hidden></input>
                                         <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
                                             Go to Course
                                         </button> 

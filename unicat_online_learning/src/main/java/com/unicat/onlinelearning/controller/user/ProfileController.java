@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -22,40 +23,51 @@ import java.util.ArrayList;
 public class ProfileController extends HttpServlet {
 
     public static LessonDAO lessonDAO = new LessonDAO();
-
+    public static SecureRandom rand = new SecureRandom();
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDAO ud = new UserDAO();
         if (req.getSession().getAttribute("student") != null) {
             User u = (User) req.getSession().getAttribute("student");
-            String Password, Phone, Dob, FullName, Repass, Address;
-            if (req.getParameter("txtPass").equals("")) {
+            String Password, Phone = "", Dob, FullName, Repass, Address;
+
+            if (req.getParameter("txtPass").equals("") || req.getParameter("txtPass").contains(" ") || req.getParameter("txtPass").length() < 6) {
                 Password = u.getPassWord();
+
             } else {
                 Password = req.getParameter("txtPass");
             }
-            if (req.getParameter("txtAddress").equals("")) {
-                Address = u.getAddress();
-            } else {
-                Address = req.getParameter("txtAddress");
-            }
             if (req.getParameter("txtRepass").equals("")) {
                 Repass = u.getPassWord();
+
             } else {
                 Repass = req.getParameter("txtRepass");
             }
-            if (req.getParameter("txtPhone").equals("")) {
+            if (req.getParameter("txtAddress").equals("")) {
+                Address = u.getAddress();
+
+            } else {
+                Address = req.getParameter("txtAddress");
+            }
+
+            String regexPhone = "[0-9]+";
+            if (req.getParameter("txtPhone").matches(regexPhone) == false || req.getParameter("txtPhone").length() < 9) {
                 Phone = u.getPhone();
+
             } else {
                 Phone = req.getParameter("txtPhone");
+
             }
-            if (req.getParameter("txtDob").equals("")) {
+            if (req.getParameter("txtDob").equals("") || req.getParameter("txtDob").compareTo(Date.valueOf(java.time.LocalDate.now()).toString()) > 0) {
                 Dob = u.getDob().toString();
+
             } else {
                 Dob = req.getParameter("txtDob");
             }
             if (req.getParameter("txtFullName").equals("")) {
                 FullName = u.getFullName();
+
             } else {
                 FullName = req.getParameter("txtFullName");
             }
@@ -74,8 +86,8 @@ public class ProfileController extends HttpServlet {
             u.setAddress(Address);
             u.setPhone(Phone);
             u.setDob(Date.valueOf(Dob));
-
             ud.UpdateUser(u);
+
             resp.sendRedirect(req.getContextPath() + "/userprofile?p=profile");
         }
     }
@@ -93,7 +105,8 @@ public class ProfileController extends HttpServlet {
                     ArrayList<CourseEnroll> listcourseenroll = ud.getAllCourseOfUser(u.getUserID());
 
                     req.setAttribute("listcourseenroll", listcourseenroll);
-
+                    req.setAttribute("LessonDAO", lessonDAO);
+                    req.setAttribute("rand", rand);
                     req.getRequestDispatcher("/userprofile.jsp").forward(req, resp);
                 } else {
                     req.getRequestDispatcher("/PageNotFound.jsp").forward(req, resp);

@@ -84,11 +84,11 @@
             <version>3.1.0</version>
         </dependency>
         
-<!--         https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+        <!--         https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>11.2.3.jre18</version>
+            <version>11.2.3.jre17</version>
         </dependency>
 
 
@@ -133,8 +133,9 @@
         <dependency>
             <groupId>com.restfb</groupId>
             <artifactId>restfb</artifactId>
-            <version>2.3.0</version>
+            <version>2023.3.0</version>
         </dependency>
+
         
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
@@ -187,8 +188,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>18</source>
-                    <target>18</target>
+                    <source>17</source>
+                    <target>17</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
