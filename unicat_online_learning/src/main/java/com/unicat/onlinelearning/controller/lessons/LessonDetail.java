@@ -72,7 +72,8 @@ public class LessonDetail extends HttpServlet {
         CourseEnroll CourseEnroll = CoursesDAO.GetCourseEnrolledByUserID(courseId, user.getUserID());
 
         req.getSession().setAttribute("courseId", courseId);
-
+        Course c=CoursesDAO.getCourseByCourseID(courseId);
+        
         int currentLessonNum = lessonNum;
         int nextLessonNum = currentLessonNum + 1;
         Lesson currentLesson = lessonDAO.getLesson(lessonNum, courseId);
@@ -83,7 +84,7 @@ public class LessonDetail extends HttpServlet {
             currentLesson = lessonDAO.getLesson(nextLessonNum, courseId);
             CourseEnroll = CoursesDAO.GetCourseEnrolledByUserID(courseId, user.getUserID());
         }
-
+        
         req.setAttribute("rand", rand);
         req.setAttribute("User", user);
         req.setAttribute("courseName", CoursesDAO.getCourseByCourseID(courseId).getName());

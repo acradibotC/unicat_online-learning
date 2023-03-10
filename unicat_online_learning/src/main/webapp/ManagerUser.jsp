@@ -22,6 +22,7 @@
             <tbody>
                 <c:forEach items="${UserDAO.getAllUser()}" var="x">
                     <tr>
+
                         <th>${x.getUserID()}</th>
                         <th>${x.getFullName()}</th>
                         <th>${x.getUserName()}</th>
@@ -29,13 +30,20 @@
                         <th>${x.getPhone()}</th>
                         <th>${x.getDob()}</th>
                         <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
-                        <th><a href="UserDetails.jsp">View Profile</th> 
-                        <th><a href="${path}/delete?uid=${x.getUserID()}">Ban</a></th>
+
+
+                        <th><a href="${path}/admin/manager/user?ViewUserID=${x.getUserID()}">View Profile</th> 
+                            <c:if test="${x.getStatus() eq 1}">
+                            <th><a href="${path}/delete?uid=${x.getUserID()}">Ban User</a></th>
+                            </c:if>
+                            <c:if test="${x.getStatus() eq 0}">
+                            <th><a href="${path}/delete?uid=${x.getUserID()}">Un Ban User</a></th>
+                            </c:if>
                     </tr>
                 </c:forEach> 
             </tbody>
         </table>
     </div>
 </div>
-            
+
 <%@include file="template/footerAdmin.jsp" %>  
