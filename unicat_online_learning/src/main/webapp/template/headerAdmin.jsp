@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="${path}/styles/courses.css">
         <link rel="stylesheet" type="text/css" href="${path}/styles/courses_responsive.css">
         <link href="${path}/styles/theme.css" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </head>
     <style>
         .image{
@@ -53,7 +54,7 @@
                                                     <c:choose>
                                                         <c:when test="${tutor != null}">
                                                             <li class="active has-sub1">
-                                                                <a class="js-arrow" href="${path}/admin/manager">Course Manager</a>                           
+                                                                <a class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
                                                             </li>
                                                             <li>
                                                                 <a href="LessonManager.jsp">Lesson Manager</a>
@@ -61,7 +62,7 @@
                                                         </c:when>
                                                         <c:when test="${admin != null}">
                                                             <li class="active has-sub1">
-                                                                <a class="js-arrow" href="${path}/admin/manager">Course Manager</a>                           
+                                                                <a class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
                                                             </li>
                                                             <li>
                                                                 <a href="${path}/admin/manager/user">User Manager</a>

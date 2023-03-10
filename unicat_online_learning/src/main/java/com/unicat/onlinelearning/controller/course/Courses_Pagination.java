@@ -35,10 +35,12 @@ public class Courses_Pagination extends HttpServlet {
         } else {
             try {
                 CategoryID = Integer.parseInt(req.getParameter("CategoryID"));
-                if (CategoryID < 0)
+                if (CategoryID < 0) {
                     throw new Exception();
-                if (CategoryID > CategoryDAO.getAllCategory().size())
+                }
+                if (CategoryID > CategoryDAO.getAllCategory().size()) {
                     CategoryID = CategoryDAO.getAllCategory().size();
+                }
             } catch (Exception e) {
                 CategoryID = 0;
             }
@@ -57,31 +59,33 @@ public class Courses_Pagination extends HttpServlet {
         int number = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
         String xpage = req.getParameter("page");
         if (xpage == null) {
-                page = 1;
-            } else {
-                try {
-                    page = Integer.parseInt(xpage);
-                    if (page < 1) {
-                        throw new Exception();
-                    }
-                    if (page > number) {
-                        page = number;
-                    }
-                } catch (Exception e) {
-                    page = 1;
+            page = 1;
+        } else {
+            try {
+                page = Integer.parseInt(xpage);
+                if (page < 1) {
+                    throw new Exception();
                 }
+                if (page > number) {
+                    page = number;
+                }
+            } catch (Exception e) {
+                page = 1;
             }
+        }
         int start = (page - 1) * numPerPage;
         int end = Math.min(page * numPerPage, size);
         ArrayList<com.unicat.onlinelearning.dto.Course> list;
         if (AllCourse.isEmpty()) {
-          list = null;  
-        } else list = CoursesDAO.getListBySearching(AllCourse, start, end);
+            list = null;
+        } else {
+            list = CoursesDAO.getListBySearching(AllCourse, start, end);
+        }
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);
         //End Paging
-        
+
         req.setAttribute("AllCourse", AllCourse);
         req.setAttribute("CategoryID", CategoryID);
         req.setAttribute("NameSearch", req.getParameter("Name"));
