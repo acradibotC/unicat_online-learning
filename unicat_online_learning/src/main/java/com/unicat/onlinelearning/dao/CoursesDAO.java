@@ -140,8 +140,8 @@ public class CoursesDAO extends DBContext {
             String sql = "UPDATE CourseEnroll SET LessonCurrent = ? WHERE UserID = ? AND CourseID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, LessonCurrent);
-            ps.setInt(1, UserID);
-            ps.setInt(2, CourseID);
+            ps.setInt(2, UserID);
+            ps.setInt(3, CourseID);
             kt = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -212,12 +212,33 @@ public class CoursesDAO extends DBContext {
         } catch (Exception e) {
         }
     }
+    
+    
+    public void updateCourse(Course course){
+        try {
+            String sql = "update [Course] "
+                    + "set [CategoryID]=?, [Name]=?, [Image]=?, CourseInfo=?, [Description]=? "
+                    + "where CourseID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, course.getCategoryID());
+            ps.setString(2, course.getName());
+            ps.setString(3, course.getImage());
+            ps.setString(4, course.getCourseInfo());
+            ps.setString(5, course.getCourseInfo());
+            ps.setInt(6, course.getCourseID());
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
+            
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         //System.out.println(dao.getFewLatestCourse(1).size());
         BlogDAO dc = new BlogDAO();
-        
-        System.out.println(dao.getAllCourseByUserID(8).size());
+        Course course = dao.getCourseByCourseID(16);
+        course.setName("dm duc anh");
+        dao.updateCourse(course);
+        System.out.println(course.getName());
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
 

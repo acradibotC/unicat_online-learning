@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -22,7 +23,8 @@ import java.util.ArrayList;
 public class ProfileController extends HttpServlet {
 
     public static LessonDAO lessonDAO = new LessonDAO();
-
+    public static SecureRandom rand = new SecureRandom();
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDAO ud = new UserDAO();
@@ -84,7 +86,6 @@ public class ProfileController extends HttpServlet {
             u.setAddress(Address);
             u.setPhone(Phone);
             u.setDob(Date.valueOf(Dob));
-
             ud.UpdateUser(u);
 
             resp.sendRedirect(req.getContextPath() + "/userprofile?p=profile");
@@ -104,7 +105,8 @@ public class ProfileController extends HttpServlet {
                     ArrayList<CourseEnroll> listcourseenroll = ud.getAllCourseOfUser(u.getUserID());
 
                     req.setAttribute("listcourseenroll", listcourseenroll);
-
+                    req.setAttribute("LessonDAO", lessonDAO);
+                    req.setAttribute("rand", rand);
                     req.getRequestDispatcher("/userprofile.jsp").forward(req, resp);
                 } else {
                     req.getRequestDispatcher("/PageNotFound.jsp").forward(req, resp);

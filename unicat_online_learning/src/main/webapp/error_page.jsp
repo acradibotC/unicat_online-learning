@@ -30,7 +30,7 @@
 
                                 <p>The page you are looking for not avaible!</p>
                                 <form action="home" method="get"></a>
-                                    <input class="link_404" type="submit" value="Go to Home">
+                                    <input class="link_404" type="submit" value="Go to Home"/>
                                 </form>
 
                             </div>
