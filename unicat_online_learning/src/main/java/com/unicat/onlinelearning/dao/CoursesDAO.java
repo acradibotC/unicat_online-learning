@@ -59,6 +59,25 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+    
+    public ArrayList<Course> getAllCourseSearchingByCategoryIDAndUserID(int UserID, int CategoryID, String Search) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String temp = null;
+            String sql = "SELECT * FROM [Course] WHERE [Name] LIKE ? AND CategoryID = ? AND UserID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ps.setInt(2, CategoryID);
+            ps.setInt(3, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
 
     public ArrayList<Course> getAllCourseSearchingByCategoryID(int CategoryID, String Search) {
         ArrayList<Course> List = new ArrayList<>();
@@ -81,7 +100,6 @@ public class CoursesDAO extends DBContext {
     public ArrayList<Course> getAllCourseSearching(String Search) {
         ArrayList<Course> List = new ArrayList<>();
         try {
-            String temp = null;
             String sql = "SELECT * FROM [Course] WHERE [Name] LIKE ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + Search + "%");
@@ -184,30 +202,31 @@ public class CoursesDAO extends DBContext {
         return List;
     }
 
-    public void deleteCourse(String CourseID) {
+    public void deleteCourseByCourseID(int courseID) {
 
         try {
-            String sql = "delete from Course where CourseID=?";
+            String sql = "DELETE FROM Course WHERE CourseID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, CourseID);
+            ps.setInt(1, courseID);
             ps.executeUpdate();
         } catch (Exception e) {
         }
     }
     
 
-    public void insertCourse(int CategoryID, String Name, String Image, int UserID, String CourseInfo, String Description, int PublishStatus) {
+    // Insert Course
+    public void insertCourse(Course course) {
         
         try {
             String sql = "insert into Course ( CategoryID, Name, Image, UserID, CourseInfo, Description, PublishStatus) values (?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, CategoryID);
-            ps.setString(2, Name);
-            ps.setString(3, Image);
-            ps.setInt(4, UserID);
-            ps.setString(5, CourseInfo);
-            ps.setString(6, Description);
-            ps.setInt(7, PublishStatus);
+            ps.setInt(1, course.getCategoryID());
+            ps.setString(2, course.getName());
+            ps.setString(3, course.getImage());
+            ps.setInt(4, course.getUserID());
+            ps.setString(5, course.getCourseInfo());
+            ps.setString(6, course.getDescription());
+            ps.setInt(7, course.getPublishStatus());
             ps.execute();
         } catch (Exception e) {
         }
