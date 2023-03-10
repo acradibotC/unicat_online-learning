@@ -55,7 +55,14 @@
                             <th>${x.getName()}</th>
                             <th><img class="image" src="${x.getImage()}" /></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
-                            <th>Status</th>
+                                <c:choose>
+                                    <c:when test="${x.getPublishStatus() == 1}">
+                                    <th style="text-align: center;">Published</th>
+                                    </c:when>
+                                    <c:otherwise>
+                                    <th style="text-align: center;">Pending</th>
+                                    </c:otherwise>
+                                </c:choose>
                         </tr>
                     </c:forEach>
                 </tbody>
