@@ -22,5 +22,13 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-2">
+                <a class="btn btn-group-lg btn-dark" href="LessonDetail?Id=${currentLessonNum}&status=${-1}">Back to Lesson</a>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-group-lg btn-success" href="LessonDetail?Id=${currentLessonNum+1}&status=${random.nextInt(10000)}">Go to next Lesson</a>
+            </div>
+        </div>
     </div>
     <%@include file="template/footer.jsp" %>
