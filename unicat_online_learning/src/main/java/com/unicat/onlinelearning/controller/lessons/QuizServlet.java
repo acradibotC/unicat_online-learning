@@ -5,6 +5,7 @@
 package com.unicat.onlinelearning.controller.lessons;
 
 import static com.unicat.onlinelearning.controller.lessons.LessonDetail.lessonDAO;
+import static com.unicat.onlinelearning.controller.lessons.LessonDetail.rand;
 import com.unicat.onlinelearning.dao.AnswerDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.QuestionDAO;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 /**
@@ -28,13 +30,17 @@ public class QuizServlet extends HttpServlet {
 
     public static QuestionDAO questionDAO = new QuestionDAO();
     public static AnswerDAO answerDAO = new AnswerDAO();
+    public static SecureRandom rand = new SecureRandom();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        int lessonId = 1;
+        int lessonId = Integer.parseInt(req.getParameter("Id"));
         ArrayList<Question> questions = questionDAO.getAllQuestionByLessonId(lessonId);
 
+        req.setAttribute("rand", rand);
+        req.setAttribute("currentLessonNum", req.getSession().getAttribute("currentLessonNum"));
+        req.setAttribute("lessonId", lessonId);
         req.setAttribute("questions", questions);
         req.setAttribute("answerDAO", answerDAO);
         req.setAttribute("questionIndex", 0);
