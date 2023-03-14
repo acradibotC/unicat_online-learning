@@ -236,7 +236,7 @@ public class CoursesDAO extends DBContext {
     public void updateCourse(Course course){
         try {
             String sql = "update [Course] "
-                    + "set [CategoryID]=?, [Name]=?, [Image]=?, CourseInfo=?, [Description]=? "
+                    + "set [CategoryID]=?, [Name]=?, [Image]=?, CourseInfo=?, [Description]=?, [PublishStatus] = ? "
                     + "where CourseID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, course.getCategoryID());
@@ -244,12 +244,100 @@ public class CoursesDAO extends DBContext {
             ps.setString(3, course.getImage());
             ps.setString(4, course.getCourseInfo());
             ps.setString(5, course.getCourseInfo());
-            ps.setInt(6, course.getCourseID());
+            ps.setInt(6, course.getPublishStatus());
+            ps.setInt(7, course.getCourseID());            
             ps.execute();
         } catch (Exception e) {
         }
     }
-            
+           
+    // Publish Status
+    public ArrayList<Course> getAllCourseWithStatus(int Status) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] WHERE PublishStatus = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<Course> getAllCourseByCategoryIDWithStatus(int Status, int CategoryID) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] WHERE CategoryID = ? AND PublishStatus = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CategoryID);
+            ps.setInt(2, Status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<Course> getAllCourseSearchingWithStatus(String Search, int Status) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] WHERE [Name] LIKE ? AND PublishStatus = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ps.setInt(2, Status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<Course> getAllCourseSearchingByCategoryIDWithStatus(int CategoryID, String Search, int Status) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String temp = null;
+            String sql = "SELECT * FROM [Course] WHERE [Name] LIKE ? AND CategoryID = ? AND PublishStatus = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ps.setInt(2, CategoryID);
+            ps.setInt(3, Status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<Course> getFewLatestCourseWithStatus(int num, int Status) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP " + num + "* FROM [Course] WHERE PublishStatus = ? ORDER BY CourseID DESC";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, Status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    // End PublishStatus
+    
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         //System.out.println(dao.getFewLatestCourse(1).size());

@@ -54,33 +54,38 @@
 
                             <c:forEach items="${list}" var="x">
                                 <!-- Course --> 
-                                <div class="col-lg-6 course_col">
-                                    <div class="course">
-                                        <div class="course_image"><img src="${x.getImage()}" alt=""></div>
-                                        <div class="course_body">
-                                            <h3 class="course_title"><a href="${path}/course?CourseID=${x.getCourseID()}">${x.getName()}</a></h3>
-                                            <div class="course_teacher">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</div>
-                                            <div class="course_text">
-                                                <c:if test="${x.getCourseInfo().length() != 0}">
-                                                    <p>${BlogDAO.getShortString(x.getCourseInfo(), 10)}...</p>
-                                                </c:if>                       
+                                <c:choose>
+                                    <c:when test="${x.getPublishStatus() == 1}">
+                                        <div class="col-lg-6 course_col">
+                                            <div class="course">
+                                                <div class="course_image"><img src="${x.getImage()}" alt=""></div>
+                                                <div class="course_body">
+                                                    <h3 class="course_title"><a href="${path}/course?CourseID=${x.getCourseID()}">${x.getName()}</a></h3>
+                                                    <div class="course_teacher">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</div>
+                                                    <div class="course_text">
+                                                        <c:if test="${x.getCourseInfo().length() != 0}">
+                                                            <p>${BlogDAO.getShortString(x.getCourseInfo(), 10)}...</p>
+                                                        </c:if>                       
+                                                    </div>
+                                                </div>
+                                                <div class="course_footer">
+                                                    <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                        <div class="course_info">
+                                                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                                            <span>20 Student</span>
+                                                        </div>
+                                                        <div class="course_info">
+                                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                                            <span>5 Ratings</span>
+                                                        </div>
+                                                        <div class="course_price ml-auto">Free</div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="course_footer">
-                                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
-                                                <div class="course_info">
-                                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                    <span>20 Student</span>
-                                                </div>
-                                                <div class="course_info">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                    <span>5 Ratings</span>
-                                                </div>
-                                                <div class="course_price ml-auto">Free</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </c:when>
+                                </c:choose>
+
                             </c:forEach>
                         </div>
                         <c:if test="${AllCourse.size() > 4}">
@@ -140,7 +145,7 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Latest Courses</div>
                         <div class="sidebar_latest">
-                            <c:forEach items="${CoursesDAO.getFewLatestCourse(5)}" var="x">
+                            <c:forEach items="${CoursesDAO.getFewLatestCourseWithStatus(5, 1)}" var="x">
                                 <!-- Latest Course -->
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>

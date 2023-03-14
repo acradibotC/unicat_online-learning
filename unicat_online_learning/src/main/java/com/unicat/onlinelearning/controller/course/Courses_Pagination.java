@@ -50,9 +50,9 @@ public class Courses_Pagination extends HttpServlet {
         int page, size, numPerPage = 4;
         ArrayList<com.unicat.onlinelearning.dto.Course> AllCourse;
         if (CategoryID == 0) {
-            AllCourse = CoursesDAO.getAllCourseSearching(req.getParameter("Name"));
+            AllCourse = CoursesDAO.getAllCourseSearchingWithStatus(req.getParameter("Name"), 1);
         } else {
-            AllCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("Name"));
+            AllCourse = CoursesDAO.getAllCourseSearchingByCategoryIDWithStatus(CategoryID, req.getParameter("Name"), 1);
         }
 
         size = AllCourse.size();
@@ -91,10 +91,4 @@ public class Courses_Pagination extends HttpServlet {
         req.setAttribute("NameSearch", req.getParameter("Name"));
         req.getRequestDispatcher("/courses.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
-
 }
