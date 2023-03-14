@@ -39,9 +39,9 @@ public class Courses_Searching extends HttpServlet{
         int page, size, numPerPage = 4;
         ArrayList<com.unicat.onlinelearning.dto.Course> AllCourse;
         if (CategoryID == 0) {
-            AllCourse = CoursesDAO.getAllCourseSearching(req.getParameter("txtNameSearch"));
+            AllCourse = CoursesDAO.getAllCourseSearchingWithStatus(req.getParameter("txtNameSearch"), 1);
         } else {
-            AllCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("txtNameSearch"));
+            AllCourse = CoursesDAO.getAllCourseSearchingByCategoryIDWithStatus(CategoryID, req.getParameter("txtNameSearch"), 1);
         }
 
         size = AllCourse.size();

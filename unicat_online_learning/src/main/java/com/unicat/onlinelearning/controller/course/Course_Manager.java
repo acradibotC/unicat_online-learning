@@ -83,7 +83,13 @@ public class Course_Manager extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = null;
         if (req.getSession().getAttribute("admin") != null) {
-            user = (User) req.getSession().getAttribute("admin");
+            //user = (User) req.getSession().getAttribute("admin");
+            
+            // Set Status Course --> Published 
+            com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+            course.setPublishStatus(1);
+            CoursesDAO.updateCourse(course);
+            resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
         }
         if (req.getSession().getAttribute("tutor") != null) {
             user = (User) req.getSession().getAttribute("tutor");

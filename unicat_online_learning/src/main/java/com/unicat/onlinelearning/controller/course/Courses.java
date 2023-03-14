@@ -52,9 +52,9 @@ public class Courses extends HttpServlet {
         int page, size, numPerPage = 4;
         ArrayList<com.unicat.onlinelearning.dto.Course> AllCourse;
         if (CategoryID == 0) {
-            AllCourse = CoursesDAO.getAllCourse();
+            AllCourse = CoursesDAO.getAllCourseWithStatus(1);
         } else {
-            AllCourse = CoursesDAO.getAllCourseByCategoryID(CategoryID);
+            AllCourse = CoursesDAO.getAllCourseByCategoryIDWithStatus(1, CategoryID);
         }
 
         size = AllCourse.size();
