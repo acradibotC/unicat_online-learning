@@ -15,10 +15,9 @@ public class DBContext {
     public static Connection makeConnection() {
         Connection conn = null;
         try {
-            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=Unicat Online Learning;encrypt=true;trustServerCertificate=true;";
-            String user = "sa";
-            String pass = "123456";
-            
+           String dbURL = "jdbc:sqlserver://acradiboc-server.database.windows.net;database=unicat-db;encrypt=true;trustServerCertificate=true;";
+            String user = "unicat-admin@acradiboc-server";
+            String pass = "nta020601@";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(dbURL, user, pass);
             System.out.println("Connect to DB successfully");

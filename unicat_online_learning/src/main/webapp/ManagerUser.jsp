@@ -4,13 +4,13 @@
     <h2 class="title-1 m-b-25" >User Manager</h2>
     <div class="table-responsive table--no-card m-b-40">
 
-        <table class="table table-borderless table-striped table-earning">
+        <table class="table table-bordered table-striped table-earning">
             <thead style="background-color: #0092ef">
             <input type="search" name="txtNameSearch" value="${NameSearch}" class="courses_search_input" placeholder="Search">
             <button action="submit" class="courses_search_button ml-auto">search</button>
             <tr>               
                 <th>Full Name</th>                
-                <th>Gmaill</th>
+                <th>Email</th>
                 <th>Phone</th>
                 <th>DOB</th>
                 <th>Role</th>                                                   

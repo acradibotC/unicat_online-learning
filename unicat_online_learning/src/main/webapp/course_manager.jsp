@@ -36,7 +36,7 @@
 
         <!-- Role: Admin -->
         <c:if test="${admin != null}">
-            <table class="table table-borderless table-striped table-earning">
+            <table class="table table-striped table-earning table-bordered">
                 <thead style="background-color: #0092ef">
                     <tr>
                         <th style="width: 70px">Course ID</th>
@@ -44,8 +44,8 @@
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
-                        <th></th>
-                        <th></th>
+                        <th>Action</th>
+                        <th>Reference</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,11 +68,11 @@
                                     <form action="${path}/admin/manager/course" method="post">
                                         <input name="txtStatusPublish" value="UnPublish" type="hidden"/>
                                         <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
-                                        <button class="btn btn-warning" type="submit">Un Publish</button>
+                                        <button class="btn btn-danger" type="submit">Un-publish</button>
                                     </form>
                                 </c:if>
                             </th>
-                            <th><a style="background-color: #00b5e9;color: black;text-align: center;padding:15px;border-radius: 10px" href="${path}/course?CourseID=${x.getCourseID()}">
+                            <th><a class="btn btn-info" href="${path}/course?CourseID=${x.getCourseID()}">
                                     Go to Course</a> </th>
                         </tr>
                     </c:forEach>
