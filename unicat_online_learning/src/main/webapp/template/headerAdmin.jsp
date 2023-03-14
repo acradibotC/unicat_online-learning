@@ -61,11 +61,13 @@
                                                             </li>
                                                         </c:when>
                                                         <c:when test="${admin != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
+                                                            <li style="<c:if test="${p eq 'coursemanager'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
                                                             </li>
-                                                            <li>
-                                                                <a href="${path}/admin/manager/user">User Manager</a>
+                                                            <li style="<c:if test="${p eq 'usermanager'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" href="${path}/admin/manager/user">User Manager</a>
                                                             </li>   
                                                         </c:when>
                                                     </c:choose>
