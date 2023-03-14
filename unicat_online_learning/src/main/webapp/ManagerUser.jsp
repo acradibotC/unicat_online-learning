@@ -10,7 +10,7 @@
             <button action="submit" class="courses_search_button ml-auto">search</button>
             <tr>               
                 <th>Full Name</th>                
-                <th>Gmail</th>
+                <th>Gmaill</th>
                 <th>Phone</th>
                 <th>DOB</th>
                 <th>Role</th>                                                   
