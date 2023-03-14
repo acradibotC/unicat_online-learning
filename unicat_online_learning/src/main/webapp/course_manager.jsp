@@ -39,21 +39,23 @@
             <table class="table table-borderless table-striped table-earning">
                 <thead style="background-color: #0092ef">
                     <tr>
-                        <th style="width: 70px">Course ID</th>
+
                         <th>Category ID</th>
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
                         <th>Status</th>
                         <th></th>
+
                     </tr>
                 </thead>
+
                 <tbody>
                     <c:forEach items="${list}" var="x">
-                        <tr>
-                            <th>${x.getCourseID()}</th>
-                            <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
-                            <th>${x.getName()}</th>
+                        <tr >
+
+                            <th style="color: black">${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
+                            <th style="color: black">${x.getName()}</th>
                             <th><img class="image" src="${x.getImage()}" /></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
                             <th>
@@ -70,6 +72,7 @@
                                     </form>
                                 </c:if>                               
                             </th>
+
                         </tr>
                     </c:forEach>
                 </tbody>

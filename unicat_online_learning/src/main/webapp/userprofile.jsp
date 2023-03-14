@@ -44,7 +44,12 @@
                                     <li><b>Course Name</b> : ${lc.getCourseName()} </li>
 <!--                                    <li><b>Lesson Current</b> : ${lc.getLessonCurrent()}</li>-->
                                     <li><b>Enroll Date</b> : ${lc.getEnrollDate()}</li>
-                                    <li><b>Progress</b>: ${Math.round(lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100)}%</li>
+                                        <c:if test="${lc.getLessonCurrent() eq 1}">
+                                        <li><b>Progress</b>: 0%</li>
+                                        </c:if>
+                                        <c:if test="${lc.getLessonCurrent() ne 1}">
+                                        <li><b>Progress</b>: ${Math.round(lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100)}%</li>
+                                        </c:if>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
                                              aria-valuenow="${lc.getLessonCurrent()}" aria-valuemin="0" aria-valuemax="10" 

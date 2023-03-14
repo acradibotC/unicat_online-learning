@@ -469,11 +469,11 @@
             <div class="col-lg-4">
                 <div class="sidebar">
 
-                    <!-- Feature -->
+                    <!--------- Feature --------------------------------------------------------------------------------------->
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
-                            <c:if test="${student ne null}">
+                            <c:if test="${student ne null or admin ne null}">
                                 <c:url value="/course" var="enroll">
                                     <c:param name="cid" value="${Course.getCourseID()}"/>
                                 </c:url>

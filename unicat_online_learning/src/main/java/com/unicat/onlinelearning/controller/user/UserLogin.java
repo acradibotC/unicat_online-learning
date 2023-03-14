@@ -36,20 +36,23 @@ public class UserLogin extends HttpServlet {
             UserDAO ud = new UserDAO();
             User user = ud.getUser(uname, pass);
             if (user != null) {
-                switch (user.getRoleID()) {
-                    case 1:
-                        req.getSession().setAttribute("admin", user);
-                        break;
-                    case 2:
-                        req.getSession().setAttribute("tutor", user);
-                        break;
-                    case 3:
-                        req.getSession().setAttribute("student", user);
-                        break;
-                    default:
-                        break;
+                if (user.getStatus() == 0) {
+                    //User has been banned , move into Contact page for help
+                    
+                } else {
+                    switch (user.getRoleID()) {
+                        case 1 ->
+                            req.getSession().setAttribute("admin", user);
+                        case 2 ->
+                            req.getSession().setAttribute("tutor", user);
+                        case 3 ->
+                            req.getSession().setAttribute("student", user);
+                        default -> {
+                        }
+                    }
+                    resp.sendRedirect(req.getContextPath() + "/home");
                 }
-                resp.sendRedirect(req.getContextPath() + "/home");
+
             } else {
                 req.setAttribute("message", "Account's not found");
                 req.getRequestDispatcher("/login.jsp").forward(req, resp);

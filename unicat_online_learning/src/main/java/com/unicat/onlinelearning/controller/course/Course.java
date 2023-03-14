@@ -34,39 +34,51 @@ public class Course extends HttpServlet {
         req.setAttribute("ReviewFeedbackDAO", ReviewFeedbackDAO);
         req.setAttribute("ReviewCommentsDAO", ReviewCommentsDAO);
         req.setAttribute("ReviewDAO", ReviewDAO);
-        int CourseID;
+        int CourseID = -1;
         try {
             CourseID = Integer.parseInt(req.getParameter("CourseID"));
             if (CourseID < 1) {
                 throw new Exception();
             }
             if (CourseID > CoursesDAO.getAllCourse().size()) {
-                CourseID = CoursesDAO.getAllCourse().size();
+                CourseID = -1;
             }
         } catch (Exception e) {
-            CourseID = 1;
+            CourseID = -1;
         }
-        com.unicat.onlinelearning.dto.Course Course = CoursesDAO.getCourseByCourseID(CourseID);
-        req.setAttribute("Course", Course);
-        CourseEnroll ce = null;
-        if (req.getSession().getAttribute("student") != null) {
-            User u = (User) req.getSession().getAttribute("student");
-            CoursesDAO cd = new CoursesDAO();
-            ce = cd.GetCourseEnrolledByUserID(CourseID, u.getUserID());
-            req.setAttribute("ce", ce);
-            req.setAttribute("User", u);
+        if (CourseID != -1) {
+            com.unicat.onlinelearning.dto.Course Course = CoursesDAO.getCourseByCourseID(CourseID);
+            req.setAttribute("Course", Course);
+            CourseEnroll ce = null;
+            if (req.getSession().getAttribute("student") != null || req.getSession().getAttribute("admin") != null) {
+                User u = (User) req.getSession().getAttribute("student");
+                if (req.getSession().getAttribute("admin") != null) {
+                    u = (User) req.getSession().getAttribute("admin");
+                }
+                CoursesDAO cd = new CoursesDAO();
+                ce = cd.GetCourseEnrolledByUserID(CourseID, u.getUserID());
+                req.setAttribute("ce", ce);
+                req.setAttribute("User", u);
+            }
+            req.getRequestDispatcher("/course.jsp").forward(req, resp);
         }
-        req.getRequestDispatcher("/course.jsp").forward(req, resp);
+        else{
+            resp.sendRedirect(req.getContextPath() + "/courses");
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int CourseID = Integer.parseInt(req.getParameter("cid"));
-        if (req.getSession().getAttribute("student") != null) {
+        if (req.getSession().getAttribute("student") != null || req.getSession().getAttribute("admin") != null) {
             User u = (User) req.getSession().getAttribute("student");
+            if (req.getSession().getAttribute("admin") != null) {
+                u = (User) req.getSession().getAttribute("admin");
+            }
             CoursesDAO cd = new CoursesDAO();
             cd.EnrollCoure(u.getUserID(), CourseID);
-            resp.sendRedirect(req.getContextPath() + "/course?CourseID="+CourseID);
+            resp.sendRedirect(req.getContextPath() + "/course?CourseID=" + CourseID);
         }
     }
 
