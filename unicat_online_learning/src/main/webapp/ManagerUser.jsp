@@ -10,7 +10,7 @@
             <button action="submit" class="courses_search_button ml-auto">search</button>
             <tr>               
                 <th>Full Name</th>                
-                <th>Gmail</th>
+                <th>Gmaill</th>
                 <th>Phone</th>
                 <th>DOB</th>
                 <th>Role</th>                                                   
@@ -32,12 +32,12 @@
                         <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
 
 
-                        <th><a href="${path}/admin/manager/user?ViewUserID=${x.getUserID()}">View Profile</th> 
+                        <th style="text-align: center"><a  href="${path}/admin/manager/user?ViewUserID=${x.getUserID()}">View Profile</th> 
                             <c:if test="${x.getStatus() eq 1}">
-                            <th><a href="${path}/delete?uid=${x.getUserID()}">Ban User</a></th>
+                            <th style="text-align: center"><a  href="${path}/delete?uid=${x.getUserID()}">Ban User</a></th>
                             </c:if>
                             <c:if test="${x.getStatus() eq 0}">
-                            <th><a href="${path}/delete?uid=${x.getUserID()}">Un Ban User</a></th>
+                            <th style="text-align: center"><a  href="${path}/delete?uid=${x.getUserID()}">Un Ban User</a></th>
                             </c:if>
                     </tr>
                 </c:forEach> 
