@@ -72,11 +72,7 @@ public class LessonDetail extends HttpServlet {
         CourseEnroll CourseEnroll = CoursesDAO.GetCourseEnrolledByUserID(courseId, user.getUserID());
         
         req.getSession().setAttribute("courseId", courseId);
-<<<<<<< HEAD
-        Course c=CoursesDAO.getCourseByCourseID(courseId);
-=======
->>>>>>> f69af66072be1ea7a127fbcd8898ccb44e9082b8
-        
+
         int currentLessonNum = lessonNum;
         int nextLessonNum = currentLessonNum + 1;
         
