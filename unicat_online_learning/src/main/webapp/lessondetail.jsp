@@ -21,7 +21,6 @@
     </div>			
 </div>
 
-${toastMsg}
 
 <!-- Video -->
 
@@ -63,16 +62,25 @@ ${toastMsg}
 </div>
 
 <div class="container">
-    <div class="row">
+    <div class="">
         <h2>${currentLesson.getTitle()}</h2>
         <br>
-        <div class="col-md-8">
+        <div class="row col-md-8">
             <h4>${currentLesson.getDescription()}
             </h4>
         </div>
-        <div class="col-md-4">
-            <div>
-                <a id="invokesToastMessage"  class="btn btn-success" href="LessonDetail?Id=${nextLessonNum}&status=${rand.nextInt(10000)}">Done</a>
+            
+        <!--Done button go to next lesson-->
+<!--        <div class="row">
+            <div class="col-md-4">
+                <a class="btn btn-group-lg btn-success" href="LessonDetail?Id=${nextLessonNum}&status=${rand.nextInt(10000)}">Done</a>
+            </div>
+        </div>-->
+
+        <!--//Take Quiz button go to Quiz screen-->
+        <div class="row">
+            <div class="col-md-4">
+                <a class="btn btn-group-lg btn-success" href="Quiz?Id=${currentLesson.getLessonID()}&status=${-1}">Take the challenge</a>
             </div>
         </div>
 

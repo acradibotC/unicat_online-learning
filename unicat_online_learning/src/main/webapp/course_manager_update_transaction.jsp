@@ -1,13 +1,10 @@
-<%-- 
-    Document   : UpdateCourse
-    Created on : Mar 6, 2023, 11:05:10 PM
-    Author     : User
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <c:set value="${pageContext.request.contextPath}" var="path"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -15,7 +12,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="styles/manager.css" rel="stylesheet" type="text/css"/>
+        <link href="${path}/styles/manager.css" rel="stylesheet" type="text/css"/>
         <title>Update Course</title>
     </head>
     <body>
@@ -42,18 +39,29 @@
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">    
-                        <form action="update" method="POST"> 
+                        <form action="${path}/admin/manager/course" method="post"> 
                             <div class="modal-header">						
                                 <h4 class="modal-title">Update Course</h4>                             
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>Course ID</label>
-                                    <input value="${course.getCourseID()}" name="txtCourseID" type="text" class="form-control" />
+                                    <input value="${course.getCourseID()}" name="txtCourseID" type="text" class="form-control" disabled=""/>
                                 </div>
                                 <div class="form-group">
                                     <label>Category ID </label>
-                                    <input type="text" name="txtCategoryID" value="${course.getCategoryID()}" class="form-control" />
+                                    <div>
+                                        <select name="txtCategoryID">
+                                            <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
+                                                <c:if test="${course.getCategoryID() == x.getCategoryID()}">
+                                                    <option value="${x.getCategoryID()}" selected="">${x.getName()}</option>
+                                                </c:if>
+                                                <c:if test="${course.getCategoryID() != x.getCategoryID()}">                      
+                                                    <option value="${x.getCategoryID()}">${x.getName()}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Course Name </label>                                     
@@ -71,17 +79,18 @@
                                     <label>Course Description </label>
                                     <textarea type="text" name="txtCourseDescription" class="form-control">${course.getDescription()} </textarea>                                   
                                 </div>
-
-                                <p> <input type="submit" value="UpdateCourse"/>
+                                <input type="hidden" name="txtStatus" value="2"/>
+                                <input value="${course.getCourseID()}" name="txtCourseID" type="text" class="form-control" hidden=""/>
+                                <p><input type="submit" value="UpdateCourse"/>
+                                <div><button onclick='window.location.href = "http://localhost:6789/Unicat_online_learning/admin/manager/course"'>Cancel</button></div>
                             </div>
                         </form>
-                        <button onclick='window.location.href = "http://localhost:6789/Unicat_online_learning/admin/manager"'>Cancel</button>
                     </div>
                 </div>
 
             </div>
 
 
-            <script src="js/manager.js" type="text/javascript"></script>
+            <script src="${path}/js/manager.js" type="text/javascript"></script>
     </body>
 </html>

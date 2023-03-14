@@ -1,4 +1,4 @@
-package com.unicat.onlinelearning.controller;
+package com.unicat.onlinelearning.controller.blog;
 
 import com.unicat.onlinelearning.dao.BlogFeedbackDAO;
 import com.unicat.onlinelearning.dto.BlogFeedback;

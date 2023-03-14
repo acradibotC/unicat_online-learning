@@ -3,9 +3,7 @@ package com.unicat.onlinelearning.controller.course;
 import com.unicat.onlinelearning.dao.BlogDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
-import com.unicat.onlinelearning.dao.LessonDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
-import com.unicat.onlinelearning.dto.Lesson;
 import com.unicat.onlinelearning.dto.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,32 +30,10 @@ public class Courses extends HttpServlet {
         req.setAttribute("UserDAO", UserDAO);
         req.setAttribute("BlogDAO", BlogDAO);
 
-        String CategoryIDString = req.getParameter("CategoryID");
-        int CategoryID;
-        if (CategoryIDString == null) {
-            CategoryID = 0;
-        } else {
-            try {
-                CategoryID = Integer.parseInt(req.getParameter("CategoryID"));
-                if (CategoryID < 0) {
-                    throw new Exception();
-                }
-                if (CategoryID > CategoryDAO.getAllCategory().size()) {
-                    CategoryID = CategoryDAO.getAllCategory().size();
-                }
-            } catch (Exception e) {
-                CategoryID = 0;
-            }
-        }
-
         //Paging
         int page, size, numPerPage = 4;
         ArrayList<com.unicat.onlinelearning.dto.Course> AllCourse;
-        if (CategoryID == 0) {
-            AllCourse = CoursesDAO.getAllCourse();
-        } else {
-            AllCourse = CoursesDAO.getAllCourseByCategoryID(CategoryID);
-        }
+        AllCourse = CoursesDAO.getAllCourse();
 
         size = AllCourse.size();
         int number = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
@@ -96,7 +72,7 @@ public class Courses extends HttpServlet {
         //End Paging
 
         req.setAttribute("AllCourse", AllCourse);
-        req.setAttribute("CategoryID", CategoryID);
+        req.setAttribute("CategoryID", 0);
         req.setAttribute("NameSearch", null);
         req.getRequestDispatcher("/courses.jsp").forward(req, resp);
     }

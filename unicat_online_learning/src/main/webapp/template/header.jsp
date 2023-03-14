@@ -62,7 +62,7 @@
                                                 <c:when test="${admin != null}">
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="${path}/admin/manager">Admin Manager</a>
+                                                            <a href="${path}/admin/manager/course">Admin Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
@@ -71,7 +71,7 @@
                                                 <c:when test="${tutor != null}">                                                
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="${path}/admin/manager">Tutor Manager</a>
+                                                            <a href="${path}/admin/manager/course">Tutor Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
