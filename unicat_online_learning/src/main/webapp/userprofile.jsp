@@ -47,7 +47,7 @@
                                         <c:if test="${lc.getLessonCurrent() eq 1}">
                                         <li><b>Progress</b>: 0%</li>
                                         </c:if>
-                                        <c:if test="${lc.getLessonCurrent() ne 0}">
+                                        <c:if test="${lc.getLessonCurrent() ne 1}">
                                         <li><b>Progress</b>: ${Math.round(lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100)}%</li>
                                         </c:if>
                                     <div class="progress">

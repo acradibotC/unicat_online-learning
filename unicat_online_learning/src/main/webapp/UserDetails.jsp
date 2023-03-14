@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <hr class="my-4">
-                        <div style="color: black; font-size: 20px"> My Course</div>
+                        <div style="color: black; font-size: 20px"> User's Course</div>
                         <c:forEach items = "${listcourseenroll}" var = "lc">
                             <hr class="my-4">
                             <form action="" method="POST">
@@ -47,7 +47,7 @@
                                         <c:if test="${lc.getLessonCurrent() eq 1}">
                                         <li><b>Progress</b>: 0%</li>
                                         </c:if>
-                                        <c:if test="${lc.getLessonCurrent() ne 0}">
+                                        <c:if test="${lc.getLessonCurrent() ne 1}">
                                         <li><b>Progress</b>: ${Math.round(lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100)}%</li>
                                         </c:if>
 
@@ -112,25 +112,7 @@
                             </div>
 
                         </div>    
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">New password</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="password" name="txtPass" class="form-control" placeholder="*****">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Retype password</h6>
-                                <span style="color:red;">${notice}</span>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="password" name="txtRepass" class="form-control" placeholder="*****">
-                            </div>
-
-                        </div>
+                        
 
 
                     </div>
