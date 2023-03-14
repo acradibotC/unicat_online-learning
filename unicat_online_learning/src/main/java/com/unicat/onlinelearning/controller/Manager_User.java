@@ -39,11 +39,12 @@ public class Manager_User extends HttpServlet {
 
                 ArrayList<CourseEnroll> ce = UserDAO.getAllCourseOfUser(ID);
                 req.setAttribute("User", u);
-                req.setAttribute("listcourseenroll",ce);
+                req.setAttribute("listcourseenroll", ce);
                 req.setAttribute("LessonDAO", lessonDAO);
-                
+
                 req.getRequestDispatcher("/UserDetails.jsp").forward(req, resp);
             } else {
+                req.setAttribute("p", "usermanager");
                 req.getRequestDispatcher("/ManagerUser.jsp").forward(req, resp);
             }
         } else {

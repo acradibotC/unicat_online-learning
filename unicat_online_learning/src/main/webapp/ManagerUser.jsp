@@ -8,24 +8,23 @@
             <thead style="background-color: #0092ef">
             <input type="search" name="txtNameSearch" value="${NameSearch}" class="courses_search_input" placeholder="Search">
             <button action="submit" class="courses_search_button ml-auto">search</button>
-            <tr>
-                <th style="width: 70px">User ID</th>
-                <th>Full Name</th>
-                <th>Username</th>
+            <tr>               
+                <th>Full Name</th>                
                 <th>Gmail</th>
                 <th>Phone</th>
                 <th>DOB</th>
                 <th>Role</th>                                                   
-                <th></th>
+                <th>Profile</th>
+                <th>Ban</th>
             </tr>
             </thead>
             <tbody>
                 <c:forEach items="${UserDAO.getAllUser()}" var="x">
                     <tr>
 
-                        <th>${x.getUserID()}</th>
+                            
                         <th>${x.getFullName()}</th>
-                        <th>${x.getUserName()}</th>
+                        
                         <th>${x.getEmail()}</th>
                         <th>${x.getPhone()}</th>
                         <th>${x.getDob()}</th>

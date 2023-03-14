@@ -29,15 +29,17 @@ public class Course_Manager extends HttpServlet {
             req.setAttribute("UserRoleDAO", UserRoleDAO);
             req.setAttribute("UserDAO", UserDAO);
             req.setAttribute("CategoryID", 0);
-            
+
             User user = null;
             ArrayList<com.unicat.onlinelearning.dto.Course> allCourse = null;
 
             if (req.getSession().getAttribute("tutor") != null) {
                 user = (User) req.getSession().getAttribute("tutor");
                 allCourse = CoursesDAO.getAllCourseByUserID(user.getUserID());
-            } else allCourse = CoursesDAO.getAllCourse();
-            
+            } else {
+                allCourse = CoursesDAO.getAllCourse();
+            }
+
             //Paging
             int page, numPerPage = 6;
             int size = allCourse.size();
@@ -71,8 +73,8 @@ public class Course_Manager extends HttpServlet {
             req.setAttribute("page", page);
             req.setAttribute("number", number);
             //End Paging
+            req.setAttribute("p", "coursemanager");
 
-            
             req.getRequestDispatcher("/course_manager.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/home");

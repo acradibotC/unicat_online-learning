@@ -39,23 +39,28 @@
             <table class="table table-borderless table-striped table-earning">
                 <thead style="background-color: #0092ef">
                     <tr>
-                        <th style="width: 70px">Course ID</th>
+
                         <th>Category ID</th>
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
                         <th>Status</th>
+                        <th>-----</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <c:forEach items="${list}" var="x">
-                        <tr>
-                            <th>${x.getCourseID()}</th>
-                            <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
-                            <th>${x.getName()}</th>
+                        <tr >
+
+                            <th style="color: black">${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
+                            <th style="color: black">${x.getName()}</th>
                             <th><img class="image" src="${x.getImage()}" /></th>
-                            <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
-                            <th>Status</th>
+                            <th style="color: black">${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
+                            <c:if test="${x.getPublishStatus() eq 1}"><th style="color: black"> Publish </th></c:if>
+                            <c:if test="${x.getPublishStatus() eq 0}"><th style="color: black"> Un Publish </th></c:if>
+                            <th><a style="background-color: #00b5e9;color: black;text-align: center;padding:20px;border-radius: 10px" href="${path}/course?CourseID=${x.getCourseID()}">
+                                    Go to Course</a> </th>
                         </tr>
                     </c:forEach>
                 </tbody>
