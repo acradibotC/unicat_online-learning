@@ -103,7 +103,7 @@ public class ProfileController extends HttpServlet {
                 String s = req.getParameter("p");
                 if (s.equals("profile")) {
                     ArrayList<CourseEnroll> listcourseenroll = ud.getAllCourseOfUser(u.getUserID());
-
+                    req.setAttribute("CoursesDAO", cd);
                     req.setAttribute("listcourseenroll", listcourseenroll);
                     req.setAttribute("LessonDAO", lessonDAO);
                     req.setAttribute("rand", rand);

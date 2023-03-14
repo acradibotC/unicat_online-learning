@@ -56,16 +56,21 @@
                                              style="width: ${lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100}%;
                                              color: red;"></div>
                                     </div>
-                                    <div>
-                                        </br>
-                                        <input value="${rand.nextInt(10000)}" name="status" hidden></>
-                                        <button class="btn btn-primary btn-info" type="submit" value="${lc.getCourseID()}" name="courseId">
-                                            Go to Course
-                                        </button> 
-                                    </div>
+                                    <c:if test="${CoursesDAO.getCourseByCourseID(lc.getCourseID()).getPublishStatus() eq 1}">
+                                        <div>
+                                            </br>
+                                            <input value="${rand.nextInt(10000)}" name="status" hidden></>
+                                            <button class="btn btn-primary btn-info" type="submit" value="${lc.getCourseID()}" name="courseId">
+                                                Go to Course
+                                            </button> 
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${CoursesDAO.getCourseByCourseID(lc.getCourseID()).getPublishStatus() eq 0}">
+                                    <button disabled class="btn btn-danger"style="margin: 10px">Updating</button></c:if>
 
-                                </div>
-                            </form>
+
+                                    </div>
+                                </form>
 
                         </c:forEach>
                     </div>
