@@ -17,7 +17,7 @@ public class DBContext {
         try {
             String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=Unicat Online Learning;encrypt=true;trustServerCertificate=true;";
             String user = "sa";
-            String pass = "123123";
+            String pass = "123456";
             
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             conn = DriverManager.getConnection(dbURL, user, pass);

@@ -40,7 +40,7 @@ public class Course extends HttpServlet {
             if (CourseID < 1) {
                 throw new Exception();
             }
-            if (CourseID > CoursesDAO.getAllCourse().size()) {
+            if (CourseID > CoursesDAO.getCourseByLatestCourseID().getCourseID()) {
                 CourseID = -1;
             }
         } catch (Exception e) {

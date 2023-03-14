@@ -44,20 +44,18 @@ public class CoursesDAO extends DBContext {
         return List;
     }
 
-    public ArrayList<Course> getAllCourseByCategoryID(int CategoryID) {
-        ArrayList<Course> List = new ArrayList<>();
+    public Course getCourseByLatestCourseID() {
         try {
-            String sql = "SELECT * FROM [Course] WHERE CategoryID = ?";
+            String sql = "SELECT TOP 1* FROM [Course] ORDER BY CourseID DESC ";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, CategoryID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                return new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"));
             }
         } catch (Exception e) {
         }
-        return List;
+        return null;
     }
     
     public ArrayList<Course> getAllCourseSearchingByCategoryIDAndUserID(int UserID, int CategoryID, String Search) {
@@ -341,11 +339,7 @@ public class CoursesDAO extends DBContext {
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         //System.out.println(dao.getFewLatestCourse(1).size());
-        BlogDAO dc = new BlogDAO();
-        Course course = dao.getCourseByCourseID(16);
-        course.setName("dm duc anh");
-        dao.updateCourse(course);
-        System.out.println(course.getName());
+        System.out.println(dao.getAllCourse().size());
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
 
