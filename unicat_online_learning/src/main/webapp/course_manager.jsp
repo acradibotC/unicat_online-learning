@@ -39,40 +39,41 @@
             <table class="table table-borderless table-striped table-earning">
                 <thead style="background-color: #0092ef">
                     <tr>
-
+                        <th style="width: 70px">Course ID</th>
                         <th>Category ID</th>
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
-                        <th>Status</th>
                         <th></th>
-
+                        <th></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <c:forEach items="${list}" var="x">
-                        <tr >
-
-                            <th style="color: black">${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
-                            <th style="color: black">${x.getName()}</th>
+                        <tr>
+                            <th>${x.getCourseID()}</th>
+                            <th>${CategoryDAO.getCategoryNameByCategoryID(x.getCategoryID())}</th>
+                            <th>${x.getName()}</th>
                             <th><img class="image" src="${x.getImage()}" /></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
                             <th>
-                                <c:choose>
-                                    <c:when test="${x.getPublishStatus() == 0}"><div style="color: red; text-align: center;">Pending</div></c:when>
-                                    <c:when test="${x.getPublishStatus() == 1}"><div style="color: blue; text-align: center;">Published</div></c:when>
-                                </c:choose>
-                            </th>
-                            <th>
                                 <c:if test="${x.getPublishStatus() == 0}">
                                     <form action="${path}/admin/manager/course" method="post">
+                                        <input name="txtStatusPublish" value="Publish" type="hidden"/>
                                         <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
                                         <button class="btn btn-primary" type="submit">Publish</button>
                                     </form>
-                                </c:if>                               
+                                </c:if>         
+                                <c:if test="${x.getPublishStatus() == 1}">
+                                    <form action="${path}/admin/manager/course" method="post">
+                                        <input name="txtStatusPublish" value="UnPublish" type="hidden"/>
+                                        <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
+                                        <button class="btn btn-warning" type="submit">Un Publish</button>
+                                    </form>
+                                </c:if>
                             </th>
-
+                            <th><a style="background-color: #00b5e9;color: black;text-align: center;padding:15px;border-radius: 10px" href="${path}/course?CourseID=${x.getCourseID()}">
+                                    Go to Course</a> </th>
                         </tr>
                     </c:forEach>
                 </tbody>

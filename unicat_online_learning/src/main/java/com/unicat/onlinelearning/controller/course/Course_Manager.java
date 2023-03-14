@@ -86,12 +86,25 @@ public class Course_Manager extends HttpServlet {
         User user = null;
         if (req.getSession().getAttribute("admin") != null) {
             //user = (User) req.getSession().getAttribute("admin");
+
+            // Set Status Course
+            // Set Status = 1
+            if (req.getParameter("txtStatusPublish").equalsIgnoreCase("Publish")) {
+                com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+                course.setPublishStatus(1);
+                CoursesDAO.updateCourse(course);
+                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
+            }
             
-            // Set Status Course --> Published 
-            com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
-            course.setPublishStatus(1);
-            CoursesDAO.updateCourse(course);
-            resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
+            
+            // Set Status = 0
+            if (req.getParameter("txtStatusPublish").equalsIgnoreCase("UnPublish")) {
+                com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+                course.setPublishStatus(0);
+                CoursesDAO.updateCourse(course);
+                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
+            }
+            
         }
         if (req.getSession().getAttribute("tutor") != null) {
             user = (User) req.getSession().getAttribute("tutor");
