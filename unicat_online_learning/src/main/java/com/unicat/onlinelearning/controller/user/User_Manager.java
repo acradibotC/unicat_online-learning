@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.unicat.onlinelearning.controller;
+package com.unicat.onlinelearning.controller.user;
 
 import static com.unicat.onlinelearning.controller.user.ProfileController.lessonDAO;
+import com.unicat.onlinelearning.dao.AdminDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
-import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dao.UserRoleDAO;
 import com.unicat.onlinelearning.dto.CourseEnroll;
@@ -20,12 +16,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet("/admin/manager/user")
-public class Manager_User extends HttpServlet {
-
+public class User_Manager extends HttpServlet {
+    
     public static UserDAO UserDAO = new UserDAO();
     public static CategoryDAO CategoryDAO = new CategoryDAO();
     public static UserRoleDAO UserRoleDAO = new UserRoleDAO();
-
+    public static AdminDAO AdminDAO = new AdminDAO();
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getSession().getAttribute("admin") != null) {
@@ -36,25 +33,36 @@ public class Manager_User extends HttpServlet {
             if (req.getParameter("ViewUserID") != null) {
                 int ID = Integer.parseInt(str);
                 User u = UserDAO.getUserByUserID(ID);
-
+                
                 ArrayList<CourseEnroll> ce = UserDAO.getAllCourseOfUser(ID);
                 req.setAttribute("User", u);
                 req.setAttribute("listcourseenroll", ce);
                 req.setAttribute("LessonDAO", lessonDAO);
-
+                
                 req.getRequestDispatcher("/UserDetails.jsp").forward(req, resp);
             } else {
                 req.setAttribute("p", "usermanager");
-                req.getRequestDispatcher("/ManagerUser.jsp").forward(req, resp);
+                req.getRequestDispatcher("/user_manager.jsp").forward(req, resp);
             }
         } else {
             resp.sendRedirect(req.getContextPath() + "/home");
         }
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
 
+        // Ban User
+        if (req.getParameter("txtStatus").equalsIgnoreCase("Ban")) {
+            AdminDAO.BanUser(Integer.parseInt(req.getParameter("txtUserID")));
+            resp.sendRedirect(req.getContextPath() + "/admin/manager/user");
+        }
+        
+        // Un Ban User
+        if (req.getParameter("txtStatus").equalsIgnoreCase("UnBan")) {
+            AdminDAO.UnBanUser(Integer.parseInt(req.getParameter("txtUserID")));
+            resp.sendRedirect(req.getContextPath() + "/admin/manager/user");
+        }
+    }
+    
 }
