@@ -1,5 +1,6 @@
 package com.unicat.onlinelearning.controller.user;
 
+import static com.unicat.onlinelearning.controller.course.Course_Manager.CoursesDAO;
 import static com.unicat.onlinelearning.controller.user.ProfileController.lessonDAO;
 import com.unicat.onlinelearning.dao.AdminDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
@@ -41,6 +42,8 @@ public class User_Manager extends HttpServlet {
                 
                 req.getRequestDispatcher("/UserDetails.jsp").forward(req, resp);
             } else {
+                int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
+                req.setAttribute("NumRequest", NumRequest);
                 req.setAttribute("p", "usermanager");
                 req.getRequestDispatcher("/user_manager.jsp").forward(req, resp);
             }

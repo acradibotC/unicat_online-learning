@@ -17,11 +17,12 @@ public class Course {
     private String CourseInfo;
     private String Description;
     private int PublishStatus;
+    private String Request;
 
     public Course() {
     }
 
-    public Course(int CourseID, int CategoryID, String Name, String Image, int UserID, String CourseInfo, String Description, int PublishStatus) {
+    public Course(int CourseID, int CategoryID, String Name, String Image, int UserID, String CourseInfo, String Description, int PublishStatus,String Request) {
         this.CourseID = CourseID;
         this.CategoryID = CategoryID;
         this.Name = Name;
@@ -30,8 +31,17 @@ public class Course {
         this.CourseInfo = CourseInfo;
         this.Description = Description;
         this.PublishStatus = PublishStatus;
+        this.Request=Request;
     }
 
+    public String getRequest() {
+        return Request;
+    }
+
+    public void setRequest(String Request) {
+        this.Request = Request;
+    }
+    
     public int getCourseID() {
         return CourseID;
     }

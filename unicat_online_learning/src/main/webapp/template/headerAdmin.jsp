@@ -63,12 +63,23 @@
                                                         <c:when test="${admin != null}">
                                                             <li style="<c:if test="${p eq 'coursemanager'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
-                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/admin/manager/course">Courses</a>                           
                                                             </li>
                                                             <li style="<c:if test="${p eq 'usermanager'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
                                                                     <a style="text-align: center;color: black" href="${path}/admin/manager/user">User Manager</a>
-                                                            </li>   
+                                                            </li> 
+                                                            <li style="border-radius: 10px;margin: 5px;background-color:
+                                                                <c:if test="${p eq 'RequestPublish' or p eq 'RequestUnPublish'}">
+                                                                    #14bdee;color: black
+                                                                </c:if>
+                                                                <c:if test="${p ne 'RequestUnPublish' and p ne 'RequestPublish' and NumRequest ne 0}">
+                                                                    #cd2737;color: white important
+                                                                </c:if>">
+                                                                <a style="text-align: center" href="${path}/admin/manager/request?view=RequestPublish">
+                                                                    Request <c:if test="${NumRequest ne 0}">(${NumRequest})</c:if>
+                                                                </a>
+                                                            </li>
                                                         </c:when>
                                                     </c:choose>
 
