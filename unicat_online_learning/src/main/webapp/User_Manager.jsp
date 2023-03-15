@@ -20,27 +20,33 @@
             </tr>
             </thead>
             <tbody>
-                <c:forEach items="${UserDAO.getAllUser()}" var="x">
+                <c:forEach items="${UserDAO.getAllUserExceptAdmin()}" var="x">
                     <tr>
-
-                            
                         <th>${x.getFullName()}</th>
-                        
                         <th>${x.getEmail()}</th>
                         <th>${x.getPhone()}</th>
                         <th>${x.getDob()}</th>
                         <th>${UserRoleDAO.getRoleNameByRoleID(x.getRoleID())}</th>
 
+                        <th style="text-align: center">
+                            <a  href="${path}/admin/manager/user?ViewUserID=${x.getUserID()}">View Profile
+                        </th> 
 
-                        <th style="text-align: center"><a  href="${path}/admin/manager/user?ViewUserID=${x.getUserID()}">View Profile</th> 
-                            <c:if test="${x.getStatus() eq 1}">
-                            <th style="text-align: center"><a  href="${path}/delete?uid=${x.getUserID()}">Ban User</a></th>
-                            </c:if>
-                            <c:if test="${x.getStatus() eq 0}">
-                            <th style="text-align: center"><a  href="${path}/delete?uid=${x.getUserID()}">Un Ban User</a></th>
-                            </c:if>
-                    </tr>
-                </c:forEach> 
+                <form action="${path}/admin/manager/user" method="post">
+                    <c:if test="${x.getStatus() eq 1}">
+                        <input type="hidden" name="txtStatus" value="Ban"/>     
+                        <input type="hidden" name="txtUserID" value="${x.getUserID()}"/>
+                        <th style="text-align: center"><button class="btn btn-primary" type="submit">Ban User</button></th>
+                        </c:if>
+                        <c:if test="${x.getStatus() eq 0}">
+                        <input type="hidden" name="txtStatus" value="UnBan"/>     
+                        <input type="hidden" name="txtUserID" value="${x.getUserID()}"/>
+                        <th style="text-align: center"><button class="btn btn-warning" type="submit">Un Ban User</button></th>
+                        </c:if> 
+                </form>
+
+                </tr>
+            </c:forEach> 
             </tbody>
         </table>
     </div>
