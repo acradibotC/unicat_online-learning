@@ -469,30 +469,34 @@
             <div class="col-lg-4">
                 <div class="sidebar">
 
-                    <!-- Feature -->
+                    <!--------- Feature --------------------------------------------------------------------------------------->
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
-                            <c:if test="${student ne null}">
-                                <c:url value="/course" var="enroll">
-                                    <c:param name="cid" value="${Course.getCourseID()}"/>
-                                </c:url>
+                            <!--Check course publish-->
+                            <c:if test="${student ne null or admin ne null}">
+                                <c:if test="${Course.getPublishStatus() eq 1}">
+                                    <c:url value="/course" var="enroll">
+                                        <c:param name="cid" value="${Course.getCourseID()}"/>
+                                    </c:url>
 
-                                <c:if test="${ce eq null}">
-                                    <form action="${enroll}" method="post">
-                                        <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
-                                    </form>
+                                    <c:if test="${ce eq null}">
+                                        <form action="${enroll}" method="post">
+                                            <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
+                                        </form>
+                                    </c:if>
+
+                                    <c:if test="${ce ne null}">
+                                        <form action="LessonDetail" method="post">
+                                            <input value="${6789}" name="status" hidden></input>
+                                            <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
+                                                Go to Course
+                                            </button> 
+
+                                        </form>
+                                    </c:if>
                                 </c:if>
-
-                                <c:if test="${ce ne null}">
-                                    <form action="LessonDetail" method="post">
-
-                                        <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
-                                            Go to Course
-                                        </button> 
-
-                                    </form>
-                                </c:if>
+                                <c:if test="${Course.getPublishStatus() eq 0}"><h2 style="color: red">Updating</h2></c:if>
 
                             </c:if>
 
@@ -573,7 +577,7 @@
                         <div class="sidebar_section_title">Latest Courses</div>
                         <div class="sidebar_latest">
 
-                            <c:forEach items="${CoursesDAO.getFewLatestCourse(5)}" var="x">
+                            <c:forEach items="${CoursesDAO.getFewLatestCourseWithStatus(5, 1)}" var="x">
                                 <!-- Latest Course -->
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>

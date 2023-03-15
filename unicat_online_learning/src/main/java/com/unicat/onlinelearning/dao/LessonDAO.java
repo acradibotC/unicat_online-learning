@@ -30,7 +30,7 @@ public class LessonDAO extends DBContext {
             while (rs.next()) {
                 int LessonID = rs.getInt("LessonID");
                 int LessonNum = rs.getInt("LessonNum");
-                int  CourseID = rs.getInt("CourseID");
+                int CourseID = rs.getInt("CourseID");
                 String Name = rs.getString("Name");
                 String Title = rs.getString("Title");
                 String Description = rs.getString("Description");
@@ -41,19 +41,19 @@ public class LessonDAO extends DBContext {
         }
         return lessons;
     }
-    
+
     public Lesson getLesson(int lessonNum, int CourseId) {
         Lesson lesson = null;
         try {
             String sql = "SELECT * FROM Lesson WHERE LessonNum =? AND CourseID =?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, lessonNum);
-            ps.setInt(2,CourseId);
+            ps.setInt(2, CourseId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int LessonID = rs.getInt("LessonID");
                 int LessonNum = rs.getInt("LessonNum");
-                int  CourseID = rs.getInt("CourseID");
+                int CourseID = rs.getInt("CourseID");
                 String Name = rs.getString("Name");
                 String Title = rs.getString("Title");
                 String Description = rs.getString("Description");
@@ -64,11 +64,28 @@ public class LessonDAO extends DBContext {
         }
         return lesson;
     }
-    
+
+    public int getNumberOfLessonsOfCourse(int courseId) {
+        int total = 0;
+        try {
+            String sql = "SELECT COUNT(LessonNum) AS [Total Lesson]\n"
+                    + "FROM Lesson\n"
+                    + "WHERE  CourseID =?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                total = rs.getInt("Total Lesson");
+            }
+        } catch (SQLException e) {
+        }
+        return total;
+    }
+
     public static void main(String[] args) {
         LessonDAO dao = new LessonDAO();
 //        ArrayList<Lesson> list = dao.getAllLessonByCourseID(1);
-        Lesson o = dao.getLesson(1,1);
+        Lesson o = dao.getLesson(1, 1);
         System.out.println(o);
     }
 

@@ -11,6 +11,6 @@ package com.unicat.onlinelearning.controller.user;
 public class FBConstants {
     public static String FACEBOOK_APP_ID = "753071829542784";
     public static String FACEBOOK_APP_SECRET = "f0f02d0f4a5fd68a018c4aceb5243bfa";
-    public static String FACEBOOK_REDIRECT_URL = "https://localhost:6789/Unitcat_Online_Learning/login-facebook";
+    public static String FACEBOOK_REDIRECT_URL = "https://unicat.azurewebsites.net/login-facebook";
     public static String FACEBOOK_LINK_GET_TOKEN = "https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&redirect_uri=%s&code=%s";
 }

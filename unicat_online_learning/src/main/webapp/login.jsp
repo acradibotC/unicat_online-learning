@@ -47,15 +47,25 @@
                                 <span style="color:red;">${message}</span>
                                 <!-- The "Login with Google" button -->
 
-                                <div class="row">
+                                <div class="row" style="margin-bottom: 5px">
                                     <div class="col-md">
-                                        <a class="btn btn-outline-dark" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=http://localhost:6789/Unicat_online_learning/LoginWithGoogle&response_type=code
+                                        <a class="btn btn-block btn-outline-secondary" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&&redirect_uri=https://unicat.azurewebsites.net/LoginWithGoogle&response_type=code
                                            &client_id=266996363922-ffeafjv3j62257j0fc0mh5ntm8knmcrq.apps.googleusercontent.com" role="button" style="text-transform:none">
                                             <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                             Sign in with Google
                                         </a>
                                     </div>
                                 </div>
+
+                                <div class="row" style="margin-bottom: 4px">
+                                    <div class="col-md">
+                                        <a class="btn btn-block btn-primary" href="https://www.facebook.com/dialog/oauth?client_id=753071829542784&redirect_uri=https://unicat.azurewebsites.net/login-facebook"  role="button" style="text-transform:none">
+                                            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Facebook sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/640px-Facebook-icon-1.png" />
+                                            Sign in with Facebook
+                                        </a>
+                                    </div>
+                                </div>
+
                                 <p class="login-card-footer-text">Don't have an account? <a href="${path}/user/register" class="text-reset">Register here</a></p>
                                 <nav class="login-card-footer-nav">
                             </div>

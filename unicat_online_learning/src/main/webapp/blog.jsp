@@ -25,7 +25,7 @@
     </div>			
 </div>
 
-<!-- Blog -->\
+<!-- Blog -->
 <c:if test="${tutor != null || admin != null}">
     <div class="row">
         <div class="col text-center">

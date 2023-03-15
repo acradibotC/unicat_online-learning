@@ -15,7 +15,10 @@
         <link rel="stylesheet" type="text/css" href="${path}/plugins/OwlCarousel2-2.2.1/animate.css">
         <link rel="stylesheet" type="text/css" href="${path}/styles/Admin.css">
         <link rel="stylesheet" type="text/css" href="${path}/styles/mamager.css">
+        <link rel="stylesheet" type="text/css" href="${path}/styles/courses.css">
+        <link rel="stylesheet" type="text/css" href="${path}/styles/courses_responsive.css">
         <link href="${path}/styles/theme.css" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </head>
     <style>
         .image{
@@ -48,18 +51,27 @@
                                         <div class="menu-sidebar1__content js-scrollbar">
                                             <nav class="navbar-sidebar1">
                                                 <ul class="list-unstyled navbar__list1">
-                                                    <li class="active has-sub1">
-                                                        <a class="js-arrow" href="${path}/admin/manager">Course Manager</a>                           
-                                                    </li>
-                                                    <li>
-                                                        <a href="ContactManager">Contact Manager</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="${path}/admin/manager/user">User Manager</a>
-                                                    </li>   
-                                                    <li>
-                                                        <a href="${path}/admin/details/user">User Details</a>
-                                                    </li> 
+                                                    <c:choose>
+                                                        <c:when test="${tutor != null}">
+                                                            <li class="active has-sub1">
+                                                                <a class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
+                                                            </li>
+                                                            <li>
+                                                                <a href="LessonManager.jsp">Lesson Manager</a>
+                                                            </li>
+                                                        </c:when>
+                                                        <c:when test="${admin != null}">
+                                                            <li style="<c:if test="${p eq 'coursemanager'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
+                                                            </li>
+                                                            <li style="<c:if test="${p eq 'usermanager'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" href="${path}/admin/manager/user">User Manager</a>
+                                                            </li>   
+                                                        </c:when>
+                                                    </c:choose>
+
                                                 </ul>
                                             </nav>
                                         </div>

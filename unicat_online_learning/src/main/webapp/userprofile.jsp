@@ -44,19 +44,33 @@
                                     <li><b>Course Name</b> : ${lc.getCourseName()} </li>
 <!--                                    <li><b>Lesson Current</b> : ${lc.getLessonCurrent()}</li>-->
                                     <li><b>Enroll Date</b> : ${lc.getEnrollDate()}</li>
-                                    <li><b>Progress</b></li>
+                                        <c:if test="${lc.getLessonCurrent() eq 1}">
+                                        <li><b>Progress</b>: 0%</li>
+                                        </c:if>
+                                        <c:if test="${lc.getLessonCurrent() ne 1}">
+                                        <li><b>Progress</b>: ${Math.round(lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100)}%</li>
+                                        </c:if>
                                     <div class="progress">
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" aria-valuenow="${lc.getLessonCurrent()}" aria-valuemin="0" aria-valuemax="10" style="width: ${lc.getLessonCurrent()/10*100}%"></div>
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                                             aria-valuenow="${lc.getLessonCurrent()}" aria-valuemin="0" aria-valuemax="10" 
+                                             style="width: ${lc.getLessonCurrent()/LessonDAO.getNumberOfLessonsOfCourse(lc.getCourseID())*100}%;
+                                             color: red;"></div>
                                     </div>
-                                    <div>
-                                        </br>
-                                        <button class="btn btn-primary btn-info" type="submit" value="${lc.getCourseID()}" name="courseId">
-                                            Go to Course
-                                        </button> 
-                                    </div>
+                                    <c:if test="${CoursesDAO.getCourseByCourseID(lc.getCourseID()).getPublishStatus() eq 1}">
+                                        <div>
+                                            </br>
+                                            <input value="${rand.nextInt(10000)}" name="status" hidden></>
+                                            <button class="btn btn-primary btn-info" type="submit" value="${lc.getCourseID()}" name="courseId">
+                                                Go to Course
+                                            </button> 
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${CoursesDAO.getCourseByCourseID(lc.getCourseID()).getPublishStatus() eq 0}">
+                                    <button disabled class="btn btn-danger"style="margin: 10px">Updating</button></c:if>
 
-                                </div>
-                            </form>
+
+                                    </div>
+                                </form>
 
                         </c:forEach>
                     </div>
@@ -97,6 +111,7 @@
                                 </div>
 
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Address</h6>
@@ -115,6 +130,7 @@
                                     <input type="password" name="txtPass" class="form-control" placeholder="*****">
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Retype password</h6>
