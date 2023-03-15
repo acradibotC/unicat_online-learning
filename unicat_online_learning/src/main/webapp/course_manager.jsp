@@ -4,7 +4,6 @@
 <div class="col-lg-12"style="float: left;padding-top: 30px">
     <h2 class="title-1 m-b-25" >Course Manager</h2>
     <div class="col-lg-8" style="padding-bottom: 20px">
-
         <!-- Search -->
         <div class="courses_search_container">
             <form action="${path}/admin/manager/course/search" method="post" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">

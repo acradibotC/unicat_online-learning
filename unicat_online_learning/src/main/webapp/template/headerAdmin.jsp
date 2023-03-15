@@ -57,7 +57,7 @@
                                                                 <a class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
                                                             </li>
                                                             <li>
-                                                                <a href="LessonManager.jsp">Lesson Manager</a>
+                                                                <a href="${path}/admin/manager/lesson">Lesson Manager</a>
                                                             </li>
                                                         </c:when>
                                                         <c:when test="${admin != null}">
