@@ -82,6 +82,104 @@ public class LessonDAO extends DBContext {
         return total;
     }
 
+    public ArrayList<Lesson> getAllLesson() {
+        ArrayList<Lesson> lessons = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Lesson]";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int LessonID = rs.getInt("LessonID");
+                int LessonNum = rs.getInt("LessonNum");
+                int CourseID = rs.getInt("CourseID");
+                String Name = rs.getString("Name");
+                String Title = rs.getString("Title");
+                String Description = rs.getString("Description");
+                String Video = rs.getString("Video");
+                lessons.add(new Lesson(LessonID, LessonNum, CourseID, Name, Title, Description, Video));
+            }
+        } catch (SQLException e) {
+        }
+        return lessons;
+    }
+
+    public void deleteLessonByLessonID(int lessonID) {
+
+        try {
+            String sql = "DELETE FROM [Lesson] WHERE LessonID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, lessonID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public void updateLesson(Lesson lesson) {
+        try {
+            String sql = "update [Lesson] "
+                    + "set [LessonNum]=?, [CourseID]=?, [Name]=?, [Title]=?, [Description]=?, [Video] = ? "
+                    + "where LessonID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, lesson.getLessonID());
+            ps.setInt(2, lesson.getCourseID());
+            ps.setString(3, lesson.getName());
+            ps.setString(4, lesson.getTitle());
+            ps.setString(5, lesson.getDescription());
+            ps.setString(6, lesson.getVideo());
+            ps.setInt(7, lesson.getLessonID());
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
+    
+    public Lesson getLessonByLessonID(int LessonID) {
+        Lesson lesson = null;
+        try {
+            String sql = "SELECT * FROM [Lesson] WHERE LessonID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, LessonID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Lesson(rs.getInt("LessonID"), rs.getInt("LessonNum"), rs.getInt("CourseID"), rs.getString("Name"),
+                        rs.getString("Title"), rs.getString("Description"), rs.getString("Video"));
+            }
+        } catch (Exception e) {
+        }
+        return lesson;
+    }
+    
+     public Lesson getLastLessonNum(int courseID) {
+        Lesson lesson = null;
+        try {
+            String sql = "select top 1.* from Lesson where CourseID = ? order by LessonNum desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Lesson(rs.getInt("LessonID"), rs.getInt("LessonNum"), rs.getInt("CourseID"), rs.getString("Name"),
+                        rs.getString("Title"), rs.getString("Description"), rs.getString("Video"));
+            }
+        } catch (Exception e) {
+        }
+        return lesson;
+    }
+     
+    public void insertLesson(Lesson lesson) {
+        
+        try {
+            String sql = "insert into Lesson ( LessonNum, CourseID, Name, Title, Description, Video) values (?,?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, lesson.getLessonNum());
+            ps.setInt(2, lesson.getCourseID());
+            ps.setString(3, lesson.getName());
+            ps.setString(4, lesson.getTitle());
+            ps.setString(5, lesson.getDescription());
+            ps.setString(6, lesson.getVideo());
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
         LessonDAO dao = new LessonDAO();
 //        ArrayList<Lesson> list = dao.getAllLessonByCourseID(1);

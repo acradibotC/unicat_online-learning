@@ -336,6 +336,21 @@ public class CoursesDAO extends DBContext {
     }
     // End PublishStatus
     
+    public String getCourseNameByCourseID(int CourseID) {
+        try {
+            String sql = "SELECT * FROM [Course] WHERE CourseID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CourseID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                return rs.getString("Name");
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         //System.out.println(dao.getFewLatestCourse(1).size());
