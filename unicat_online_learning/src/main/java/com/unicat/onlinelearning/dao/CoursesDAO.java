@@ -22,7 +22,8 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
             }
         } catch (Exception e) {
         }
@@ -37,7 +38,7 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
@@ -51,13 +52,13 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request"));
             }
         } catch (Exception e) {
         }
         return null;
     }
-    
+
     public ArrayList<Course> getAllCourseSearchingByCategoryIDAndUserID(int UserID, int CategoryID, String Search) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -70,7 +71,7 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
@@ -88,7 +89,7 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
@@ -104,7 +105,7 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
@@ -120,7 +121,7 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request"));
             }
         } catch (Exception e) {
         }
@@ -193,7 +194,7 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
@@ -210,11 +211,10 @@ public class CoursesDAO extends DBContext {
         } catch (Exception e) {
         }
     }
-    
 
     // Insert Course
     public void insertCourse(Course course) {
-        
+
         try {
             String sql = "insert into Course ( CategoryID, Name, Image, UserID, CourseInfo, Description, PublishStatus) values (?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -225,17 +225,15 @@ public class CoursesDAO extends DBContext {
             ps.setString(5, course.getCourseInfo());
             ps.setString(6, course.getDescription());
             ps.setInt(7, course.getPublishStatus());
-            ps.execute();
+            ps.executeUpdate();
         } catch (Exception e) {
         }
     }
-    
-    
-    public void updateCourse(Course course){
+
+    public void updateCourse(Course course) {
         try {
             String sql = "update [Course] "
-                    + "set [CategoryID]=?, [Name]=?, [Image]=?, CourseInfo=?, [Description]=?, [PublishStatus] = ? "
-                    + "where CourseID=?";
+                    + "set CategoryID=?, Name=?, Image=?, CourseInfo=?, Description=?, PublishStatus = ? ,Request=? where CourseID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, course.getCategoryID());
             ps.setString(2, course.getName());
@@ -243,12 +241,13 @@ public class CoursesDAO extends DBContext {
             ps.setString(4, course.getCourseInfo());
             ps.setString(5, course.getCourseInfo());
             ps.setInt(6, course.getPublishStatus());
-            ps.setInt(7, course.getCourseID());            
-            ps.execute();
-        } catch (Exception e) {
+            ps.setString(7, course.getRequest());
+            ps.setInt(8, course.getCourseID());
+            ps.executeUpdate();
+        } catch (SQLException e) {
         }
     }
-           
+
     // Publish Status
     public ArrayList<Course> getAllCourseWithStatus(int Status) {
         ArrayList<Course> List = new ArrayList<>();
@@ -259,13 +258,13 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
         return List;
     }
-    
+
     public ArrayList<Course> getAllCourseByCategoryIDWithStatus(int Status, int CategoryID) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -276,13 +275,13 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
         return List;
     }
-    
+
     public ArrayList<Course> getAllCourseSearchingWithStatus(String Search, int Status) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -293,13 +292,13 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
         return List;
     }
-    
+
     public ArrayList<Course> getAllCourseSearchingByCategoryIDWithStatus(int CategoryID, String Search, int Status) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -312,13 +311,13 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
         return List;
     }
-    
+
     public ArrayList<Course> getFewLatestCourseWithStatus(int num, int Status) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -328,18 +327,70 @@ public class CoursesDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
-                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus")));
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
             }
         } catch (Exception e) {
         }
         return List;
     }
+
+    public ArrayList<Course> getAllPublishCourse() {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where PublishStatus =1  and Request='None'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
+            }
+        } catch (SQLException e) {
+        }
+        return List;
+    }
+
+    public ArrayList<Course> getAllRequestPublishCourse() {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where Request='RequestPublish' ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
+            }
+        } catch (SQLException e) {
+        }
+        return List;
+    }
+
+    public ArrayList<Course> getAllRequestUnPublishCourse() {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where Request='RequestUnPublish' ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
+            }
+        } catch (SQLException e) {
+        }
+        return List;
+    }
+
     // End PublishStatus
-    
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
+        Course c = dao.getCourseByCourseID(1);
+        c.setPublishStatus(1);
+        c.setRequest("None");
+
         //System.out.println(dao.getFewLatestCourse(1).size());
-        System.out.println(dao.getAllCourse().size());
+        
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
 

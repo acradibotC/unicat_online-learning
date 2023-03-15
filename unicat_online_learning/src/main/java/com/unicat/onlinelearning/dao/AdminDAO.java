@@ -47,7 +47,7 @@ public class AdminDAO extends DBContext {
     public int PublishCourse(int CourseID) {
         int ck = 0;
         try {
-            String sql = "Update Course set PublishStatus=1 where CourseID=?";
+            String sql = "Update Course set PublishStatus=1,Request='None' where CourseID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, CourseID);
             ck = ps.executeUpdate();
