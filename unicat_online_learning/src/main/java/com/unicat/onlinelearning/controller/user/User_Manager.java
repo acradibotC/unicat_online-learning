@@ -45,7 +45,7 @@ public class User_Manager extends HttpServlet {
                 int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
                 req.setAttribute("NumRequest", NumRequest);
                 req.setAttribute("p", "usermanager");
-                req.getRequestDispatcher("/user_manager.jsp").forward(req, resp);
+                req.getRequestDispatcher("/User_Manager.jsp").forward(req, resp);
             }
         } else {
             resp.sendRedirect(req.getContextPath() + "/home");

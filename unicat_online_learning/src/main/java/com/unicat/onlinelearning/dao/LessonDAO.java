@@ -183,8 +183,7 @@ public class LessonDAO extends DBContext {
     public static void main(String[] args) {
         LessonDAO dao = new LessonDAO();
 //        ArrayList<Lesson> list = dao.getAllLessonByCourseID(1);
-        Lesson o = dao.getLesson(1, 1);
-        System.out.println(o);
+        System.out.println(dao.getNumberOfLessonsOfCourse(1));
     }
 
 }
