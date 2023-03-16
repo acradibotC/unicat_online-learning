@@ -99,7 +99,7 @@
                 <div class="modal-content">    
 
                     <div class="modal-body">
-                        <div class="form-group">
+                        <div class="form-group" style="font-size: 16px">
                             <c:if test="${c.getRequest() eq 'Updating'}">
                                 <a href="${path}/tutor/manager/course?page=UpdateCourse&CourseID=${c.getCourseID()}">
                                     <div  style="font-size:17px;background-color: #cd2737;padding: 15px;width: 280px;color: white;border-radius: 15px;margin-bottom: 20px">
@@ -110,12 +110,12 @@
 
                             <div class="form-group">
                                 <label>Category</label>
-                                <select name="txtCategoryID" class="form-select" aria-label="Default select example" disabled="">
+                                <select name="txtCategoryID" class="form-select"  disabled="">
                                     <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
-                                        <c:if test="${CategoryID == x.getCategoryID()}">
+                                        <c:if test="${c.getCategoryID() == x.getCategoryID()}">
                                             <option value="${x.getCategoryID()}" selected="">${x.getName()}</option>
                                         </c:if>
-                                        <c:if test="${CategoryID != x.getCategoryID()}">                      
+                                        <c:if test="${c.getCategoryID() != x.getCategoryID()}">                      
                                             <option value="${x.getCategoryID()}">${x.getName()}</option>
                                         </c:if>
                                     </c:forEach>
@@ -149,7 +149,7 @@
                 </div>
                 <c:forEach items="${listlesson}" var="x">
 
-                    <div class="form-group">
+                    <div class="form-group" style="font-size: 16px">
 
                         <div class="modal-content">  
                             <div style="display: flex">

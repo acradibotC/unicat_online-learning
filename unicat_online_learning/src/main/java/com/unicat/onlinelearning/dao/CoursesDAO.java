@@ -29,6 +29,21 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+    public ArrayList<Course> getAllPublishedCourse() {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where PublishStatus=1 and Request='None'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
 
     public ArrayList<Course> getFewLatestCourse(int num) {
         ArrayList<Course> List = new ArrayList<>();

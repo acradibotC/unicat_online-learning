@@ -47,10 +47,10 @@
                     <div class="modal-content">    
                         <form action="${path}/tutor/manager/course" method="post"> 
 
-                            <div class="modal-body">
+                            <div class="modal-body" style="font-size: 16px">
 
                                 <div class="form-group">
-                                    <label>Category</label>
+                                    
                                     <div>
                                         <select name="txtCategoryID">
                                             <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
