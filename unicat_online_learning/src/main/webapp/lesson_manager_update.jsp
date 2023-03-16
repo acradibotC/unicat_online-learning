@@ -36,7 +36,7 @@
                 </a>
             </div>
 
-            <div id="editEmployeeModal">
+            <div id="editEmployeeModal" style="font-size: 16px">
                 <div class="modal-dialog">
                     <div class="modal-content">    
                         <form action="${path}/tutor/manager/course" method="post"> 
@@ -56,7 +56,7 @@
                                     <textarea type="text" name="txtTitle" class="form-control">${lesson.getTitle()} </textarea>                                
                                 </div>
                                 <div class="form-group">
-                                    <label>lesson Description </label>
+                                    <label>Lesson Description </label>
                                     <textarea type="text" name="txtDescription" class="form-control">${lesson.getDescription()} </textarea>                                   
                                 </div>
                                 <div class="form-group">

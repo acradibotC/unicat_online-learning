@@ -56,7 +56,9 @@ public class CourseTutor extends HttpServlet {
                 if (Update.equals("UpdateCourseInfor")) {
                     int CourseID = Integer.parseInt(req.getParameter("CourseID"));
                     com.unicat.onlinelearning.dto.Course c = cd.getCourseByCourseID(CourseID);
-                    c.setCategoryID(Integer.parseInt(req.getParameter("txtCategoryID")));
+                    int CategoryID=Integer.parseInt(req.getParameter("txtCategoryID"));
+                    req.getSession().setAttribute("ck",CategoryID);
+                    c.setCategoryID(CategoryID);
                     c.setName(req.getParameter("txtName"));
                     c.setImage(req.getParameter("txtCourseImage"));
                     c.setCourseInfo(req.getParameter("txtCourseInf"));

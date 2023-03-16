@@ -130,7 +130,7 @@
                     <th>Course Image</th>
                     <th>Course Creator</th>
                     <th>Action</th>
-
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
