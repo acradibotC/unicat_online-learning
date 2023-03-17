@@ -13,12 +13,12 @@ public class Review {
     private int ReviewID;
     private int UserID;
     private int CourseID;
-    private int Vote;
+    private float Vote;
 
     public Review() {
     }
 
-    public Review(int ReviewID, int UserID, int CourseID, int Vote) {
+    public Review(int ReviewID, int UserID, int CourseID, float Vote) {
         this.ReviewID = ReviewID;
         this.UserID = UserID;
         this.CourseID = CourseID;
@@ -49,11 +49,11 @@ public class Review {
         this.CourseID = CourseID;
     }
 
-    public int getVote() {
+    public float getVote() {
         return Vote;
     }
 
-    public void setVote(int Vote) {
+    public void setVote(float Vote) {
         this.Vote = Vote;
     }
 
