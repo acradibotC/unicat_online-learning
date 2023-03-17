@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet("/admin/manager/add")
+@WebServlet("/tutor/manager/course/add")
 public class Course_Manager_Insert_Transaction extends HttpServlet {
 
     public static CategoryDAO CategoryDAO = new CategoryDAO();

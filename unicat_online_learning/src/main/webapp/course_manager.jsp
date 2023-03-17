@@ -39,7 +39,6 @@
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
-                        <!--<th>Action</th>-->
                         <th>Reference</th>
                     </tr>
                 </thead>
@@ -51,22 +50,6 @@
                             <th>${x.getName()}</th>
                             <th><img class="image" src="${x.getImage()}" /></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
-                            <!--<th>
-                            <c:if test="${x.getPublishStatus() == 0}">
-                                <form action="${path}/admin/manager/course" method="post">
-                                    <input name="txtStatusPublish" value="Publish" type="hidden"/>
-                                    <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
-                                    <button class="btn btn-primary" type="submit">Publish</button>
-                                </form>
-                            </c:if>         
-                            <c:if test="${x.getPublishStatus() == 1}">
-                                <form action="${path}/admin/manager/course" method="post">
-                                    <input name="txtStatusPublish" value="UnPublish" type="hidden"/>
-                                    <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
-                                    <button class="btn btn-danger" type="submit">Un-publish</button>
-                                </form>
-                            </c:if>
-                        </th>-->
                             <th><a class="btn btn-info" href="${path}/course?CourseID=${x.getCourseID()}">
                                     Go to Course</a> </th>
                         </tr>

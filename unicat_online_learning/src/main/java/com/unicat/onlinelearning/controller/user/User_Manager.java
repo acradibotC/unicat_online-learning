@@ -66,6 +66,7 @@ public class User_Manager extends HttpServlet {
             AdminDAO.UnBanUser(Integer.parseInt(req.getParameter("txtUserID")));
             resp.sendRedirect(req.getContextPath() + "/admin/manager/user");
         }
+        
     }
     
 }
