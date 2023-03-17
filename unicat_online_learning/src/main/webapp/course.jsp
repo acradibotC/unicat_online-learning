@@ -474,7 +474,7 @@
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
                             <!--Check course publish-->
-                            <c:if test="${student ne null or admin ne null}">
+                            <c:if test="${student ne null}">
                                 <c:if test="${Course.getPublishStatus() eq 1}">
                                     <c:url value="/course" var="enroll">
                                         <c:param name="cid" value="${Course.getCourseID()}"/>
@@ -499,7 +499,26 @@
                                 <c:if test="${Course.getPublishStatus() eq 0}"><h2 style="color: red">Updating</h2></c:if>
 
                             </c:if>
+                            <c:if test="${admin ne null}">
+                                <c:url value="/course" var="enroll">
+                                    <c:param name="cid" value="${Course.getCourseID()}"/>
+                                </c:url>
+                                <c:if test="${ce eq null}">
+                                    <form action="${enroll}" method="post">
+                                        <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
+                                    </form>
+                                </c:if>
 
+                                <c:if test="${ce ne null}">
+                                    <form action="LessonDetail" method="post">
+                                        <input value="${6789}" name="status" hidden></input>
+                                        <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
+                                            Go to Course
+                                        </button> 
+
+                                    </form>
+                                </c:if>
+                            </c:if>
 
 
                             <!-- Features -->

@@ -53,9 +53,10 @@
                                                 <ul class="list-unstyled navbar__list1">
                                                     <c:choose>
                                                         <c:when test="${tutor != null}">
-                                                            <li style="<c:if test="${p eq 'AddCourse'}">background-color: #14bdee;</c:if>
-                                                                border-radius: 10px;margin: 5px">
-                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course/add">Add new Course</a>                           
+                                                            <li style="background-color: #f44336;border-radius: 10px;margin: 10px;padding: 10px;">
+                                                                    <a style="text-align: center;color: white" class="js-arrow" href="${path}/tutor/manager/course/add">
+                                                                        <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add new Course
+                                                                    </a>                           
                                                             </li>
                                                             <li style="<c:if test="${p eq 'CoursePublished'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
@@ -64,7 +65,7 @@
 
                                                             <li style="<c:if test="${p eq 'UpdatingCourse'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
-                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=UpdatingCourse">Update Course</a>                           
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=UpdatingCourse">Updating Courses</a>                           
                                                             </li>
 
 

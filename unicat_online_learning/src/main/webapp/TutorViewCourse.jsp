@@ -33,17 +33,18 @@
 
                     </div>
                 </div>
-                <div >
-                    <a href="${path}/tutor/manager/course?page=CoursePublished">
-                        <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 210px;color: black;border-radius: 15px;margin: 10px">
+                <div style="color: black">
+                    <a style="color: black;width: 210px;height: 210px" href="${path}/tutor/manager/course?page=CoursePublished">
+                        <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 210px;border-radius: 15px;margin: 10px">
                             <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i>   Published Courses
                         </div>
-                    </a> 
-                    <a href="${path}/tutor/manager/request?view=RequestPublish">
-                        <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 210px;color: black;border-radius: 15px;margin: 10px">
+                    </a>   
+                    <a style="color: black" class="button" href="${path}/tutor/manager/request?view=RequestPublish">
+                        <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 210px;border-radius: 15px;margin: 10px">
                             <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> All Request
                         </div>
                     </a> 
+
                     <c:if test="${c.getRequest() eq 'None'}">
 
                         <div style="color: red;font-size: 20px; margin-top: 15px">This Course is Published . If you want to Update please sent request to ADMIN</div>
@@ -182,7 +183,7 @@
                                                 <input type="hidden" name="CourseID" value="${c.getCourseID()}" />
                                                 <input type="hidden" name="Update" value="DeleteLesson"/>
                                                 <button style="font-size:17px;background-color: #cd2737;padding: 10px;width: 200px;color: white;border-radius: 15px;margin: 20px;text-align: center" class="btn btn-danger" type="submit">
-                                                    <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Delete Lesson ${x.getLessonNum()}
+                                                    <i style="margin-right: 10px;font-size: 20px" class="fa fa-minus-square-o"></i>Delete Lesson ${x.getLessonNum()}
                                                 </button>
                                             </form>
                                         </div>

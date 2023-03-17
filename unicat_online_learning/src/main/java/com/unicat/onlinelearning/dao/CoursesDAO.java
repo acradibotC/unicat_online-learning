@@ -142,6 +142,22 @@ public class CoursesDAO extends DBContext {
         }
         return course;
     }
+    public Course getLastCourseCreatedByUserID(int UserID) {
+        Course course = null;
+        try {
+            String sql = "select top 1.* from Course where UserID=? order by CourseID desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request"));
+            }
+        } catch (SQLException e) {
+            
+        }
+        return course;
+    }
 
     public ArrayList<Course> getListBySearching(ArrayList<Course> list, int start, int end) {
         ArrayList<Course> arr = new ArrayList<>();
@@ -259,6 +275,25 @@ public class CoursesDAO extends DBContext {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+    public int AddnewCourse(Course course) {
+        int k=0;
+        try {
+            String sql = "insert into Course ( CategoryID, Name, Image, UserID, CourseInfo, Description, PublishStatus,Request) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, course.getCategoryID());
+            ps.setString(2, course.getName());
+            ps.setString(3, course.getImage());
+            ps.setInt(4, course.getUserID());
+            ps.setString(5, course.getCourseInfo());
+            ps.setString(6, course.getDescription());
+            ps.setInt(7, course.getPublishStatus());
+            ps.setString(8, course.getRequest());
+            k=ps.executeUpdate();
+        } catch (Exception e) {
+            return -1;
+        }
+        return k;
     }
 
     public void updateCourse(Course course) {
@@ -496,10 +531,9 @@ public class CoursesDAO extends DBContext {
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         Course c = dao.getCourseByCourseID(1);
-        c.setPublishStatus(1);
-        c.setRequest("None");
+        
 
-        System.out.println(dao.CheckTutorCreatedCourseID(1, 7));
+        System.out.println(dao.AddnewCourse(c));
 
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());

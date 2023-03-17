@@ -35,11 +35,11 @@
                     </div>
 
                 </div>
-                <a href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
-                    <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 180px;color: black;border-radius: 15px;margin: 10px">
+                <div  style="font-size:17px;background-color: #cd2737;width: 220px;padding: 15px;border-radius: 15px;margin: 10px">
+                    <a style="color: white" href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
                         <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Cancel Update
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
 
             <div id="editEmployeeModal">
