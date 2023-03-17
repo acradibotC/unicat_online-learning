@@ -35,11 +35,11 @@
                     </div>
 
                 </div>
-                <a href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
-                    <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 180px;color: black;border-radius: 15px;margin: 10px">
+                <div  style="font-size:17px;background-color: #cd2737;width: 220px;padding: 15px;border-radius: 15px;margin: 10px">
+                    <a style="color: white" href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
                         <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Cancel Update
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
 
             <div id="editEmployeeModal">
@@ -50,8 +50,10 @@
                             <div class="modal-body" style="font-size: 16px">
 
                                 <div class="form-group">
-                                    
+
                                     <div>
+                                        <label>Category</label>
+
                                         <select name="txtCategoryID">
                                             <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
                                                 <c:if test="${course.getCategoryID() == x.getCategoryID()}">
@@ -82,7 +84,10 @@
                                 </div>
                                 <input type="hidden" name="Update" value="UpdateCourseInfor"/>
                                 <input type="hidden" name="CourseID" value="${course.getCourseID()}"/>
-                                <div ><input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" type="submit" value="Update Course"/></div>
+                                <div >
+                                    <input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" 
+                                           type="submit" value="Update Course"/>
+                                </div>
                             </div>
                         </form>
                     </div>

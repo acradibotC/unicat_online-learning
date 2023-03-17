@@ -11,7 +11,7 @@
         <!-- Role: Tutor -->
         <c:if test="${tutor != null}">
             <table class="table table-borderless table-striped table-earning">
-                <thead style="background-color: #0092ef">
+                <thead style="background-color: #0092ef;text-align: center">
                     <tr>
 
                         <th>Category</th>
@@ -19,7 +19,7 @@
                         <th>Course Image</th>
                         <th>Status</th>
                         <th>Request</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -40,9 +40,9 @@
                                 </form>
                             </th>
                             <th>
-                                <a style="background-color:  #14bdee;border-radius: 10px;margin: 5px;padding:10px 25px;color: black" 
+                                <a style="background-color:  #ffeb3b;border-radius: 10px;margin: 5px;padding:10px 25px;color: black" 
                                    href="${path}/tutor/manager/course?page=view&CourseID=${x.getCourseID()}">
-                                    View
+                                    Update
                                 </a>
 
                             </th>                           
