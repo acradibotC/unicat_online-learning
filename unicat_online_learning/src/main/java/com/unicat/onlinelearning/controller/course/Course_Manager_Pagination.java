@@ -15,12 +15,12 @@ import java.util.ArrayList;
 
 @WebServlet("/admin/manager/course/paging")
 public class Course_Manager_Pagination extends HttpServlet {
-    
+
     public static CoursesDAO CoursesDAO = new CoursesDAO();
     public static CategoryDAO CategoryDAO = new CategoryDAO();
     public static UserRoleDAO UserRoleDAO = new UserRoleDAO();
     public static UserDAO UserDAO = new UserDAO();
-    
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getSession().getAttribute("tutor") != null || req.getSession().getAttribute("admin") != null) {
@@ -28,7 +28,7 @@ public class Course_Manager_Pagination extends HttpServlet {
             req.setAttribute("CategoryDAO", CategoryDAO);
             req.setAttribute("UserRoleDAO", UserRoleDAO);
             req.setAttribute("UserDAO", UserDAO);
-            
+            int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
             String CategoryIDString = req.getParameter("CategoryID");
             int CategoryID;
             if (CategoryIDString == null) {
@@ -67,7 +67,7 @@ public class Course_Manager_Pagination extends HttpServlet {
                     allCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("Name"));
                 }
             }
-            
+
             int page, numPerPage = 6;
             int size = allCourse.size();
             int number = (size % numPerPage == 0 ? (size / numPerPage) : ((size / numPerPage) + 1));
@@ -100,7 +100,8 @@ public class Course_Manager_Pagination extends HttpServlet {
             req.setAttribute("page", page);
             req.setAttribute("number", number);
             //End Paging
-            
+            req.setAttribute("NumRequest", NumRequest);
+            req.setAttribute("p", "coursemanager");
             req.setAttribute("NameSearch", req.getParameter("Name"));
             req.setAttribute("CategoryID", CategoryID);
             req.getRequestDispatcher("/course_manager.jsp").forward(req, resp);
@@ -108,10 +109,10 @@ public class Course_Manager_Pagination extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/home");
         }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
+
 }

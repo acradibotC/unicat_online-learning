@@ -62,7 +62,7 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
-    
+
     public ArrayList<User> getAllUserExceptAdmin() {
         ArrayList<User> list = new ArrayList<>();
         try {
@@ -336,6 +336,31 @@ public class UserDAO extends DBContext {
         } catch (SQLException e) {
         }
         return kt;
+    }
+
+    public ArrayList<User> getAllUserSearching(String Search) {
+        ArrayList<User> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [User] WHERE [FullName] LIKE ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new User(rs.getInt("UserID"), rs.getString("UserName"), rs.getString("PassWord"), rs.getString("FullName"),
+                        rs.getString("Image"), rs.getString("Email"), rs.getDate("DOB"), rs.getString("Phone"),
+                        rs.getString("Address"), rs.getString("FacebookID"), rs.getString("GmailID"), rs.getInt("RoleID"), rs.getInt("Status")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<User> getListBySearching(ArrayList<User> list, int start, int end) {
+        ArrayList<User> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
     }
 
     public static void main(String[] args) {
