@@ -28,7 +28,7 @@ public class CourseTutor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CoursesDAO cd = new CoursesDAO();
-        LessonDAO ld=new LessonDAO();
+        LessonDAO ld = new LessonDAO();
         if (req.getParameter("Request") != null) {
             String Request = req.getParameter("Request");
             int CourseID = Integer.parseInt(req.getParameter("txtCourseID"));
@@ -56,8 +56,8 @@ public class CourseTutor extends HttpServlet {
                 if (Update.equals("UpdateCourseInfor")) {
                     int CourseID = Integer.parseInt(req.getParameter("CourseID"));
                     com.unicat.onlinelearning.dto.Course c = cd.getCourseByCourseID(CourseID);
-                    int CategoryID=Integer.parseInt(req.getParameter("txtCategoryID"));
-                    req.getSession().setAttribute("ck",CategoryID);
+                    int CategoryID = Integer.parseInt(req.getParameter("txtCategoryID"));
+                    req.getSession().setAttribute("ck", CategoryID);
                     c.setCategoryID(CategoryID);
                     c.setName(req.getParameter("txtName"));
                     c.setImage(req.getParameter("txtCourseImage"));
@@ -67,15 +67,30 @@ public class CourseTutor extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + c.getCourseID());
                 }
                 if (Update.equals("UpdateLesson")) {
-                    int LessonID=Integer.parseInt(req.getParameter("LessonID"));
-                    Lesson l=ld.getLessonByLessonID(LessonID);
-                    
+                    int LessonNum = Integer.parseInt(req.getParameter("LessonNum"));
+                    int CourseID = Integer.parseInt(req.getParameter("CourseID"));
+                    Lesson l = ld.getLesson(LessonNum, CourseID);
+
                     l.setName(req.getParameter("txtName"));
                     l.setTitle(req.getParameter("txtTitle"));
                     l.setDescription(req.getParameter("txtDescription"));
                     l.setVideo(req.getParameter("txtVideo"));
                     ld.updateLesson(l);
                     resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + l.getCourseID());
+                }
+                if (Update.equals("AddLesson")) {
+                    int LessonNum = Integer.parseInt(req.getParameter("LessonNum"));
+                    int CourseID = Integer.parseInt(req.getParameter("CourseID"));
+
+                    ld.insertLessonNum(LessonNum, CourseID);
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=UpdateCourse&CourseID=" + CourseID + "&Lesson=" + LessonNum);
+                }
+                if (Update.equals("DeleteLesson")) {
+                    int LessonNum = Integer.parseInt(req.getParameter("LessonNum"));
+                    int CourseID = Integer.parseInt(req.getParameter("CourseID"));
+
+                    ld.deleteLessonNum(LessonNum, CourseID);
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + CourseID );
                 }
             }
         }
@@ -102,7 +117,7 @@ public class CourseTutor extends HttpServlet {
             if (p.equals("UpdateCourse")) {
                 //Update Course
                 int CourseID = 0;
-                int LessonID = 0;
+                int LessonNum = 0;
                 String check = req.getParameter("Lesson");
                 if (check == null) {
                     try {
@@ -116,33 +131,36 @@ public class CourseTutor extends HttpServlet {
                 } else {
                     try {
                         CourseID = Integer.parseInt(req.getParameter("CourseID"));
-                        LessonID = Integer.parseInt(req.getParameter("Lesson"));
+                        LessonNum = Integer.parseInt(req.getParameter("Lesson"));
                         if (CourseID > cd.getCourseByLatestCourseID().getCourseID()) {
                             CourseID = -1;
                         }
-                        if (LessonID > LessonDAO.getNumberOfLessonsOfCourse(CourseID) || LessonID <= 0) {
-                            LessonID = -1;
-                        }
+
                     } catch (NumberFormatException e) {
                         CourseID = -1;
-                        LessonID = -1;
+                        LessonNum = -1;
                     }
                 }
                 if (cd.CheckTutorCreatedCourseID(CourseID, user.getUserID()) && CourseID > 0) {
                     com.unicat.onlinelearning.dto.Course c = cd.getCourseByCourseID(CourseID);
                     req.setAttribute("course", c);
-                    if (LessonID <= 0) {
+
+                    if (LessonNum <= 0) {
                         //Update Course Information only
                         req.getRequestDispatcher("/course_manager_update_transaction.jsp").forward(req, resp);
                     } else {
                         //Update Lesson of course
-                        Lesson lesson=LessonDAO.getLessonByLessonID(LessonID);
-                        req.setAttribute("lesson", lesson);
-                        req.getRequestDispatcher("/lesson_manager_update.jsp").forward(req, resp);
+                        if (LessonNum > LessonDAO.getNumberOfLessonsOfCourse(CourseID) || LessonNum <= 0) {
+                            resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
+                        } else {
+                            Lesson lesson = LessonDAO.getLesson(LessonNum, CourseID);
+                            req.setAttribute("lesson", lesson);
+                            req.getRequestDispatcher("/lesson_manager_update.jsp").forward(req, resp);
+                        }
                     }
 
                 } else {
-                    req.getSession().setAttribute("Notify", "You not dont have permission to view this course as an tutor");
+                    req.getSession().setAttribute("Notify", "You not dont have permission to access");
                     resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
                 }
                 //End Update   
@@ -163,6 +181,7 @@ public class CourseTutor extends HttpServlet {
                         com.unicat.onlinelearning.dto.Course c = cd.getCourseByCourseID(CourseID);
                         ArrayList<Lesson> listlesson = LessonDAO.getAllLessonByCourseID(CourseID);
                         req.setAttribute("c", c);
+
                         req.setAttribute("listlesson", listlesson);
                         req.getRequestDispatcher("/TutorViewCourse.jsp").forward(req, resp);
                     } else {

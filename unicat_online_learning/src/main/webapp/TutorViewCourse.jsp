@@ -149,18 +149,45 @@
                 </div>
                 <c:forEach items="${listlesson}" var="x">
 
-                    <div class="form-group" style="font-size: 16px">
+                    <c:if test="${c.getRequest() eq 'Updating'}">
+                        <div>
+                            <form action="${path}/tutor/manager/course" method="post">
+                                <input type="hidden" name="LessonNum" value="${x.getLessonNum()}" />
+                                <input type="hidden" name="CourseID" value="${x.getCourseID()}" />
+                                <input type="hidden" name="Update" value="AddLesson"/>
+                                <button style="margin: 10px;padding: 10px 20px;text-align: center;width: 580px" class="btn btn-danger" type="submit">
+                                    <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add a Lesson
+                                </button>
+                            </form>
 
+                        </div>
+
+                    </c:if>
+                    <div class="form-group" style="font-size: 16px">
                         <div class="modal-content">  
-                            <div style="display: flex">
+                            <div style="">
                                 <h4 style="margin: 20px;background-color: #435d7d;color: white;padding: 10px;border-radius: 5px;width: 400px">Lesson ${x.getLessonNum()}</h4>
-                                <c:if test="${c.getRequest() eq 'Updating'}">
-                                    <a href="${path}/tutor/manager/course?page=UpdateCourse&CourseID=${c.getCourseID()}&Lesson=${x.getLessonNum()}">
-                                        <div  style="font-size:17px;background-color: #cd2737;padding: 10px;width: 200px;color: white;border-radius: 15px;margin: 20px;text-align: center">
-                                            Update Lesson ${x.getLessonNum()}<i style="font-size: 20px;margin-left: 10px" class="fa fa-arrow-circle-right"></i>
+                                <div style="display: flex">
+                                    <c:if test="${c.getRequest() eq 'Updating'}">
+                                        <a href="${path}/tutor/manager/course?page=UpdateCourse&CourseID=${c.getCourseID()}&Lesson=${x.getLessonNum()}">
+                                            <div  style="font-size:17px;background-color: #cd2737;padding: 10px;width: 200px;color: white;border-radius: 15px;margin: 20px;text-align: center">
+                                                Update Lesson ${x.getLessonNum()}<i style="font-size: 20px;margin-left: 10px" class="fa fa-arrow-circle-right"></i>
+                                            </div>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${c.getRequest() eq 'Updating'}">
+                                        <div>
+                                            <form action="${path}/tutor/manager/course" method="post">
+                                                <input type="hidden" name="LessonNum" value="${x.getLessonNum()}" />
+                                                <input type="hidden" name="CourseID" value="${c.getCourseID()}" />
+                                                <input type="hidden" name="Update" value="DeleteLesson"/>
+                                                <button style="font-size:17px;background-color: #cd2737;padding: 10px;width: 200px;color: white;border-radius: 15px;margin: 20px;text-align: center" class="btn btn-danger" type="submit">
+                                                    <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Delete Lesson ${x.getLessonNum()}
+                                                </button>
+                                            </form>
                                         </div>
-                                    </a>
-                                </c:if>
+                                    </c:if>
+                                </div>
 
                             </div>
 
@@ -191,7 +218,20 @@
                         </div>                       
 
                     </div>
+
                 </c:forEach>
+                <c:if test="${c.getRequest() eq 'Updating'}">
+                    <div>
+                        <form action="${path}/tutor/manager/course" method="post">
+                            <input type="hidden" name="LessonNum" value="${listlesson.size()+1}" />
+                            <input type="hidden" name="CourseID" value="${c.getCourseID()}" />
+                            <input type="hidden" name="Update" value="AddLesson"/>
+                            <button style="margin: 10px;padding: 10px 30px;text-align: center" class="btn btn-danger" type="submit">
+                                <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add a Lesson
+                            </button>
+                        </form>
+                    </div>
+                </c:if>
             </div>
 
 
