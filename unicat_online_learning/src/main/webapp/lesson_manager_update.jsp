@@ -31,7 +31,7 @@
                 </div>
                 <a href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
                     <div  style="font-size:17px;background-color: #00b5e9;padding: 15px;width: 180px;color: black;border-radius: 15px;margin: 10px">
-                        <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Cancel Update
+                        <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Back
                     </div>
                 </a>
             </div>
@@ -64,7 +64,8 @@
                                     <textarea type="text" name="txtVideo" class="form-control" > ${lesson.getVideo()}</textarea>                                  
                                 </div>
                                 <input type="hidden" name="Update" value="UpdateLesson"/>
-                                <input type="hidden" name="LessonID" value="${lesson.getLessonID()}"/>
+                                <input type="hidden" name="CourseID" value="${lesson.getCourseID()}"/>
+                                <input type="hidden" name="LessonNum" value="${lesson.getLessonNum()}"/>
                                 <div ><input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" type="submit" value="Update Lesson"/></div>
                             </div>
                         </form>
