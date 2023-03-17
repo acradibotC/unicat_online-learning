@@ -1,5 +1,6 @@
 package com.unicat.onlinelearning.controller.course;
 
+import static com.unicat.onlinelearning.controller.course.Course_Manager_Pagination.CoursesDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
@@ -90,11 +91,15 @@ public class Course_Manager_Searching extends HttpServlet {
         } else {
             list = CoursesDAO.getListBySearching(allCourse, start, end);
         }
+        int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
+
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);
+        
         //End Paging
-
+        req.setAttribute("p", "coursemanager");
+        req.setAttribute("NumRequest", NumRequest);
         req.setAttribute("allCourse", allCourse);
         req.setAttribute("NameSearch", req.getParameter("txtNameSearch"));
         req.setAttribute("CategoryID", CategoryID);
