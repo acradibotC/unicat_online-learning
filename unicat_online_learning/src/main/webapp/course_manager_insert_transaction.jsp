@@ -45,7 +45,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <div class="form-group">
+                                <div>
                                     <label>Category</label>
                                     <select name="txtCategoryID" class="form-select" aria-label="Default select example">
                                         <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
