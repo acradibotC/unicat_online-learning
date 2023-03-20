@@ -37,8 +37,8 @@ public class Course_Manager extends HttpServlet {
                 user = (User) req.getSession().getAttribute("tutor");
                 allCourse = CoursesDAO.getAllCourseByUserID(user.getUserID());
             } else {
-                allCourse = CoursesDAO.getAllPublishedCourse();
-            }
+                allCourse = CoursesDAO.getAllPublishedCourse(); 
+            }   
 
             //Paging
             int page, numPerPage = 6;

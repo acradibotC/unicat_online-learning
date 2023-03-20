@@ -341,7 +341,7 @@ public class UserDAO extends DBContext {
     public ArrayList<User> getAllUserSearching(String Search) {
         ArrayList<User> List = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM [User] WHERE [FullName] LIKE ?";
+            String sql = "SELECT * FROM [User] WHERE [FullName] LIKE ? AND RoleID > 1";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + Search + "%");
             ResultSet rs = ps.executeQuery();

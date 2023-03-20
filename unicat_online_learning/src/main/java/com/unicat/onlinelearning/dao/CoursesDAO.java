@@ -29,6 +29,7 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+
     public ArrayList<Course> getAllPublishedCourse() {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -142,6 +143,7 @@ public class CoursesDAO extends DBContext {
         }
         return course;
     }
+
     public Course getLastCourseCreatedByUserID(int UserID) {
         Course course = null;
         try {
@@ -154,7 +156,7 @@ public class CoursesDAO extends DBContext {
                         rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request"));
             }
         } catch (SQLException e) {
-            
+
         }
         return course;
     }
@@ -276,8 +278,9 @@ public class CoursesDAO extends DBContext {
         } catch (Exception e) {
         }
     }
+
     public int AddnewCourse(Course course) {
-        int k=0;
+        int k = 0;
         try {
             String sql = "insert into Course ( CategoryID, Name, Image, UserID, CourseInfo, Description, PublishStatus,Request) values (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -289,7 +292,7 @@ public class CoursesDAO extends DBContext {
             ps.setString(6, course.getDescription());
             ps.setInt(7, course.getPublishStatus());
             ps.setString(8, course.getRequest());
-            k=ps.executeUpdate();
+            k = ps.executeUpdate();
         } catch (Exception e) {
             return -1;
         }
@@ -314,7 +317,7 @@ public class CoursesDAO extends DBContext {
         }
     }
 
-    // Publish Status
+    // -----------------------------------Publish Status--------------------------------------------------------
     public ArrayList<Course> getAllCourseWithStatus(int Status) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -481,6 +484,7 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+
     public ArrayList<Course> getTutorUpdatingCourse(int UserID) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -497,6 +501,7 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+
     public boolean CheckTutorCreatedCourseID(int CourseID, int UserID) {
 
         try {
@@ -512,8 +517,47 @@ public class CoursesDAO extends DBContext {
         }
         return false;
     }
-    // End PublishStatus
+    //---------------------------------------------------------- End PublishStatus ------------------------------------------------
 
+    // -----------------------------------Publish Status And Request------------------------------------------------------------
+    public ArrayList<Course> getAllCourseSearchingWithStatusAndRequest(String Search, int Status, String Request) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] WHERE [Name] LIKE ? AND PublishStatus = ? AND Request LIKE ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ps.setInt(2, Status);
+            ps.setString(3, "%" + Request + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<Course> getAllCourseSearchingByCategoryIDWithStatusAndRequest(int CategoryID, String Search, int Status, String Request) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String temp = null;
+            String sql = "SELECT * FROM [Course] WHERE [Name] LIKE ? AND CategoryID = ? AND PublishStatus = ? AND Request LIKE ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ps.setInt(2, CategoryID);
+            ps.setInt(3, Status);
+            ps.setString(4, "%" + Request + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    // -----------------------------------End Publish Status And Request--------------------------------------------------------
     public String getCourseNameByCourseID(int CourseID) {
         try {
             String sql = "SELECT * FROM [Course] WHERE CourseID = ?";
@@ -527,13 +571,12 @@ public class CoursesDAO extends DBContext {
         }
         return null;
     }
-    
+
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         Course c = dao.getCourseByCourseID(1);
-        
 
-        System.out.println(dao.AddnewCourse(c));
+        System.out.println(dao.getAllCourseSearchingWithStatusAndRequest("java", 1, "None").size());
 
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());

@@ -1,11 +1,12 @@
 <%@include file="template/headerAdmin.jsp" %>            
+<link rel="stylesheet" type="text/css" href="${path}/styles/pagination.css">
 
 <div class="col-lg-12"style="float: left;padding-top: 30px">
     <h2 class="title-1 m-b-25" >User Manager</h2>
     <!-- Search -->
     <div class="col-lg-8" style="padding-bottom: 20px">
         <div class="courses_search_container">
-            <form action="${path}/admin/manager/course/search" method="post" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
+            <form action="${path}/admin/manager/user/search" method="post" id="courses_search_form" class="courses_search_form d-flex flex-row align-items-center justify-content-start">
                 <input type="search" name="txtNameSearch" value="${NameSearch}" class="courses_search_input" placeholder="Search">
                 <button action="submit" class="courses_search_button ml-auto">search</button>
             </form>
@@ -30,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${UserDAO.getAllUserExceptAdmin()}" var="x">
+                <c:forEach items="${list}" var="x">
                     <tr>
                         <th>${x.getFullName()}</th>
                         <th>${x.getEmail()}</th>
