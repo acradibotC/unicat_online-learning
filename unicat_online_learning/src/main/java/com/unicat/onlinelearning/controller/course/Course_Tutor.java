@@ -23,7 +23,7 @@ import java.util.Hashtable;
  * @author Admin
  */
 @WebServlet("/tutor/manager/course")
-public class CourseTutor extends HttpServlet {
+public class Course_Tutor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

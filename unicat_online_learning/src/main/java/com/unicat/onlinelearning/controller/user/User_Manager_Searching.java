@@ -4,7 +4,9 @@
  */
 package com.unicat.onlinelearning.controller.user;
 
+import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
+import com.unicat.onlinelearning.dao.UserRoleDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 public class User_Manager_Searching extends HttpServlet {
 
     public static UserDAO UserDAO = new UserDAO();
+    public static UserRoleDAO UserRoleDAO = new UserRoleDAO();
+    public static CoursesDAO CoursesDAO = new CoursesDAO();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,9 +62,14 @@ public class User_Manager_Searching extends HttpServlet {
         req.setAttribute("number", number);
         //End Paging
 
+        req.setAttribute("p", "usermanager");
+        int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
+        req.setAttribute("NumRequest", NumRequest);
+        req.setAttribute("p", "usermanager");
+
         req.setAttribute("allUser", allUser);
         req.setAttribute("NameSearch", req.getParameter("txtNameSearch"));
-        
+        req.setAttribute("UserRoleDAO", UserRoleDAO);
 
         req.getRequestDispatcher("/User_Manager.jsp").forward(req, resp);
     }

@@ -51,21 +51,11 @@ public class Course_Manager_Pagination extends HttpServlet {
             User user = null;
             ArrayList<com.unicat.onlinelearning.dto.Course> allCourse = null;
 
-            // Role: Tutor
-            if (req.getSession().getAttribute("tutor") != null) {
-                user = (User) req.getSession().getAttribute("tutor");
-                if (CategoryID == 0) {
-                    allCourse = CoursesDAO.getAllCourseByUserID(user.getUserID());
-                } else {
-                    allCourse = CoursesDAO.getAllCourseSearchingByCategoryIDAndUserID(user.getUserID(), CategoryID, req.getParameter("Name"));
-                }
+            // Role: Admin
+            if (CategoryID == 0) {
+                allCourse = CoursesDAO.getAllCourseSearchingWithStatusAndRequest(req.getParameter("Name"), 1, "None");
             } else {
-                // Role: Admin
-                if (CategoryID == 0) {
-                    allCourse = CoursesDAO.getAllCourseSearching(req.getParameter("Name"));
-                } else {
-                    allCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("Name"));
-                }
+                allCourse = CoursesDAO.getAllCourseSearchingByCategoryIDWithStatusAndRequest(CategoryID, req.getParameter("Name"), 1, "None");
             }
 
             int page, numPerPage = 6;
