@@ -638,9 +638,9 @@ public class CoursesDAO extends DBContext {
         Course c = dao.getCourseByCourseID(1);
 
 
-        System.out.println(dao.getAllCourseSearchingWithStatusAndRequest("java", 1, "None").size());
+        System.out.println(dao.getLastCourseCreatedByUserID(7));
 
-        System.out.println(dao.getNumberUserEnroll(1));
+      
 
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
