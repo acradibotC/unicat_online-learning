@@ -101,14 +101,24 @@ public class Course_Manager extends HttpServlet {
         if (req.getParameter("txtStatusPublish").equalsIgnoreCase("UnPublish")) {
             com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
             course.setPublishStatus(0);
-            course.setRequest("Updating");
+            if(CoursesDAO.getNumberUserEnroll(course.getCourseID())>0){
+                course.setRequest("Updating");
+            }else{
+                course.setRequest("None");
+            }
+            
             CoursesDAO.updateCourse(course);
             resp.sendRedirect(req.getContextPath() + "/admin/manager/request?view=RequestUnPublish");
         }
         if (req.getParameter("txtStatusPublish").equalsIgnoreCase("CancelPublish")) {
             com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
             course.setPublishStatus(0);
-            course.setRequest("Updating");
+            if(CoursesDAO.getNumberUserEnroll(course.getCourseID())>0){
+                course.setRequest("Updating");
+            }else{
+                course.setRequest("None");
+            }
+            
             CoursesDAO.updateCourse(course);
             String Role = req.getParameter("Role");
             if (Role.equals("Admin")) {

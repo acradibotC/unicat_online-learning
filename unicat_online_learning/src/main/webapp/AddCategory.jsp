@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div  style="font-size:17px;background-color: #cd2737;width: 220px;padding: 15px;border-radius: 15px;margin: 10px">
-                    <a style="color: white;display: block" href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
-                        <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Cancel Add Course
+                    <a style="color: white;display: block" href="${path}/tutor/manager/course?page=CoursePublished">
+                        <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Cancel Add Category
                     </a>
                 </div>
             </div>
@@ -45,44 +45,20 @@
             <div class="modal-dialog">
                 <div class="modal-content">    
                     <form action="${path}/tutor/manager/course/add" method="post"> 
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Course</h4>                               
-                        </div>
+                        
                         <div class="modal-body">
                             <div class="form-group">
                                 <div>
-                                    <label>Category</label>
-                                    <select name="txtCategoryID" class="form-select" aria-label="Default select example">
-                                        <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
-                                            <c:if test="${CategoryID == x.getCategoryID()}">
-                                                <option value="${x.getCategoryID()}" selected="">${x.getName()}</option>
-                                            </c:if>
-                                            <c:if test="${CategoryID != x.getCategoryID()}">                      
-                                                <option value="${x.getCategoryID()}">${x.getName()}</option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select>                                   
-                                </div>
+                                    <label>Category</label>                                                                  
+                                </div>                            
                                 <div class="form-group">
-                                    <label>Course Name</label>
-                                    <input name="txtCourseName" type="text" class="form-control" required>
+                                    <label>Enter New Category Name </label>
+                                    <textarea name="txtCateName" class="form-control" required></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label>Course Image</label>
-                                    <textarea name="txtCourseImage" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Course Info </label>
-                                    <textarea name="txtCourseInf" class="form-control" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Course Description </label>
-                                    <textarea name="txtCourseDescription" class="form-control" required></textarea>
-                                </div>
-                                <input name="Add" value="Course" type="hidden"/>
+                                <input name="Add" value="Category" type="hidden"/>
                                 <div >
                                     <input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" 
-                                           type="submit" value="Add Course"/>
+                                           type="submit" value="Add New Category"/>
                                 </div>
                             </div>
                         </div>                       
