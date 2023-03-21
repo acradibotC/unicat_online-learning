@@ -148,14 +148,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                         </ul>
-                                        <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-
-                                        <!-- Hamburger -->
-
-                                        <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                                        <div class="hamburger menu_mm">
-                                            <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-                                        </div>
+                                        
                                     </nav>
 
                                 </div>

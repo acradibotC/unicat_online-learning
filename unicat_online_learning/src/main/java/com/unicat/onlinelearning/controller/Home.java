@@ -5,6 +5,8 @@
 package com.unicat.onlinelearning.controller;
 
 import com.unicat.onlinelearning.dao.BlogDAO;
+import com.unicat.onlinelearning.dao.CoursesDAO;
+import com.unicat.onlinelearning.dao.ReviewDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dto.User;
 import jakarta.servlet.ServletException;
@@ -19,17 +21,16 @@ public class Home extends HttpServlet {
 
     public static BlogDAO BlogDAO = new BlogDAO();
     public static UserDAO UserDAO = new UserDAO();
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
+    public static CoursesDAO CoursesDAO = new CoursesDAO();
+    public static ReviewDAO ReviewDAO = new ReviewDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("StatusHome", 1);
         req.setAttribute("BlogDAO", BlogDAO);
         req.setAttribute("UserDAO", UserDAO);
+        req.setAttribute("CoursesDAO", CoursesDAO);
+        req.setAttribute("ReviewDAO", ReviewDAO);
 
         //Latest News
         req.setAttribute("LatestBlog", BlogDAO.getLastBlog());

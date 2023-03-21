@@ -3,6 +3,7 @@ package com.unicat.onlinelearning.controller.course;
 import com.unicat.onlinelearning.dao.BlogDAO;
 import com.unicat.onlinelearning.dao.CategoryDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
+import com.unicat.onlinelearning.dao.ReviewDAO;
 import com.unicat.onlinelearning.dao.UserDAO;
 import com.unicat.onlinelearning.dto.User;
 import jakarta.servlet.ServletException;
@@ -20,15 +21,17 @@ public class Courses extends HttpServlet {
     public static CoursesDAO CoursesDAO = new CoursesDAO();
     public static UserDAO UserDAO = new UserDAO();
     public static BlogDAO BlogDAO = new BlogDAO();
+    public static ReviewDAO ReviewDAO = new ReviewDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        
         req.setAttribute("StatusHome", 3);
         req.setAttribute("CategoryDAO", CategoryDAO);
         req.setAttribute("CoursesDAO", CoursesDAO);
         req.setAttribute("UserDAO", UserDAO);
         req.setAttribute("BlogDAO", BlogDAO);
+        req.setAttribute("ReviewDAO", ReviewDAO);
 
         String CategoryIDString = req.getParameter("CategoryID");
         int CategoryID;

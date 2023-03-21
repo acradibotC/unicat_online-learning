@@ -110,12 +110,14 @@
 
                     <div class="modal-body">
                         <div class="form-group" style="font-size: 16px">
-                            <c:if test="${c.getRequest() eq 'Updating'}">
-                                <a href="${path}/tutor/manager/course?page=UpdateCourse&CourseID=${c.getCourseID()}">
-                                    <div  style="font-size:17px;background-color: #cd2737;padding: 15px;width: 280px;color: white;border-radius: 15px;margin-bottom: 20px">
-                                        Update Course Information<i style="font-size: 20px;margin-left: 10px" class="fa fa-arrow-circle-right"></i>
-                                    </div>
-                                </a>
+                            <c:if test="${c.getPublishStatus() eq 0}">
+                                <c:if test="${c.getRequest() eq 'None' or c.getRequest() eq 'Updating'}">
+                                    <a href="${path}/tutor/manager/course?page=UpdateCourse&CourseID=${c.getCourseID()}">
+                                        <div  style="font-size:17px;background-color: #cd2737;padding: 15px;width: 280px;color: white;border-radius: 15px;margin-bottom: 20px">
+                                            Update Course Information<i style="font-size: 20px;margin-left: 10px" class="fa fa-arrow-circle-right"></i>
+                                        </div>
+                                    </a>
+                                </c:if>                               
                             </c:if>
 
                             <div class="form-group">
@@ -159,20 +161,22 @@
                 </div>
                 <c:forEach items="${listlesson}" var="x">
 
-                    <c:if test="${c.getRequest() eq 'Updating'}">
-                        <div>
-                            <form action="${path}/tutor/manager/course" method="post">
-                                <input type="hidden" name="LessonNum" value="${x.getLessonNum()}" />
-                                <input type="hidden" name="CourseID" value="${x.getCourseID()}" />
-                                <input type="hidden" name="Update" value="AddLesson"/>
-                                <button style="margin: 10px;padding: 10px 20px;text-align: center;width: 580px" class="btn btn-danger" type="submit">
-                                    <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add a Lesson
-                                </button>
-                            </form>
+                    <c:if test="${c.getPublishStatus() eq 0}">
+                        <c:if test="${c.getRequest() eq 'None' or c.getRequest() eq 'Updating'}">
+                            <div>
+                                <form action="${path}/tutor/manager/course" method="post">
+                                    <input type="hidden" name="LessonNum" value="${x.getLessonNum()}" />
+                                    <input type="hidden" name="CourseID" value="${x.getCourseID()}" />
+                                    <input type="hidden" name="Update" value="AddLesson"/>
+                                    <button style="margin: 10px;padding: 10px 20px;text-align: center;width: 580px" class="btn btn-danger" type="submit">
+                                        <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add a Lesson
+                                    </button>
+                                </form>
 
-                        </div>
-
+                            </div>
+                        </c:if>                               
                     </c:if>
+
                     <div class="form-group" style="font-size: 16px">
                         <div class="modal-content">  
                             <div style="">
@@ -230,18 +234,21 @@
                     </div>
 
                 </c:forEach>
-                <c:if test="${c.getRequest() eq 'Updating'}">
-                    <div>
-                        <form action="${path}/tutor/manager/course" method="post">
-                            <input type="hidden" name="LessonNum" value="${listlesson.size()+1}" />
-                            <input type="hidden" name="CourseID" value="${c.getCourseID()}" />
-                            <input type="hidden" name="Update" value="AddLesson"/>
-                            <button style="margin: 10px;padding: 10px 30px;text-align: center" class="btn btn-danger" type="submit">
-                                <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add a Lesson
-                            </button>
-                        </form>
-                    </div>
+                <c:if test="${c.getPublishStatus() eq 0}">
+                    <c:if test="${c.getRequest() eq 'None' or c.getRequest() eq 'Updating'}">
+                        <div>
+                            <form action="${path}/tutor/manager/course" method="post">
+                                <input type="hidden" name="LessonNum" value="${listlesson.size()+1}" />
+                                <input type="hidden" name="CourseID" value="${c.getCourseID()}" />
+                                <input type="hidden" name="Update" value="AddLesson"/>
+                                <button style="margin: 10px;padding: 10px 30px;text-align: center" class="btn btn-danger" type="submit">
+                                    <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add a Lesson
+                                </button>
+                            </form>
+                        </div>
+                    </c:if>                               
                 </c:if>
+                
             </div>
 
 
