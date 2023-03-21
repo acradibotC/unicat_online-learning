@@ -53,6 +53,9 @@ public class LessonDetail extends HttpServlet {
             currentLesson = lessonDAO.getLesson(nextLessonNum, courseId);
             CourseEnroll = CoursesDAO.GetCourseEnrolledByUserID(courseId, user.getUserID());
         }
+         if (nextLessonNum >= Lessons.size()) {
+                CoursesDAO.doneCourse(user.getUserID(), courseId);
+            }
 
         req.setAttribute("rand", rand);
         req.setAttribute("User", user);

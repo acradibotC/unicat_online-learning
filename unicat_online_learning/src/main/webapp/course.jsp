@@ -546,40 +546,7 @@
                             </c:if>
 
 
-                            <!-- Features -->
-                            <div class="feature_list">
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-clock-o" aria-hidden="true"></i><span>Duration:</span></div>
-                                    <div class="feature_text ml-auto">2 weeks</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">10</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">6</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">Yes</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-users" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">35</div>
-                                </div>
-
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -604,11 +571,7 @@
                                     <div class="teacher_meta_title">Review:</div>
                                     <div class="teacher_meta_text ml-auto"><span>${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}</span><i class="fa fa-comment" aria-hidden="true"></i></div>
                                 </div>
-                                <!-- Teacher Quizzes -->
-                                <div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-                                    <div class="teacher_meta_title">Quizzes:</div>
-                                    <div class="teacher_meta_text ml-auto"><span>600</span><i class="fa fa-user" aria-hidden="true"></i></div>
-                                </div>
+                                
                             </div>
                             <div class="teacher_info">
                                 <p></p>

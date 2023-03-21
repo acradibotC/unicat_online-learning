@@ -38,16 +38,20 @@ public class UserLogin extends HttpServlet {
             if (user != null) {
                 if (user.getStatus() == 0) {
                     //User has been banned , move into Contact page for help
-                    
+
                 } else {
                     switch (user.getRoleID()) {
-                        case 1 ->
+                        case 1:
                             req.getSession().setAttribute("admin", user);
-                        case 2 ->
+                            break;
+                        case 2:
                             req.getSession().setAttribute("tutor", user);
-                        case 3 ->
+                            break;
+                        case 3:
                             req.getSession().setAttribute("student", user);
-                        default -> {
+                            break;
+                        default:
+                            {
                         }
                     }
                     resp.sendRedirect(req.getContextPath() + "/home");

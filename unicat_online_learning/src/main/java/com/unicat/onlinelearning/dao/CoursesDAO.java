@@ -195,6 +195,19 @@ public class CoursesDAO extends DBContext {
         }
         return kt;
     }
+    
+     public int doneCourse(int UserID, int CourseID) {
+        int kt = 0;
+        try {
+            String sql = "UPDATE CourseEnroll SET CourseStatus = 1 WHERE UserID = ? AND CourseID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ps.setInt(2, CourseID);
+            kt = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return kt;
+    }
 
     public CourseEnroll GetCourseEnrolledByUserID(int CourseID, int UserID) {
         CourseEnroll c = null;

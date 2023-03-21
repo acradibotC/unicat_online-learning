@@ -38,6 +38,8 @@ public class QuizServlet extends HttpServlet {
         int lessonId = Integer.parseInt(req.getParameter("Id"));
         ArrayList<Question> questions = questionDAO.getAllQuestionByLessonId(lessonId);
 
+        req.getSession().setAttribute("lessonId", lessonId);
+        
         req.setAttribute("rand", rand);
         req.setAttribute("currentLessonNum", req.getSession().getAttribute("currentLessonNum"));
         req.setAttribute("lessonId", lessonId);

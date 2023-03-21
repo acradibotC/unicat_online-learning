@@ -5,6 +5,7 @@ import com.unicat.onlinelearning.utils.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CourseEnrollDAO extends DBContext {
 
@@ -24,6 +25,8 @@ public class CourseEnrollDAO extends DBContext {
         }
         return null;
     }
+    
+   
     
     
     public static void main(String[] args) {
