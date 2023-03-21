@@ -12,32 +12,32 @@ import java.util.logging.Logger;
  
 //public class DBContext {
 //
-////    public static Connection makeConnection() {
-////        Connection conn = null;
-////        try {
-////           String dbURL = "jdbc:sqlserver://acradiboc-server.database.windows.net;database=unicat-db;encrypt=true;trustServerCertificate=true;";
-////            String user = "unicat-admin@acradiboc-server";
-////            String pass = "nta020601@";
-////            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-////            conn = DriverManager.getConnection(dbURL, user, pass);
-////            System.out.println("Connect to DB successfully");
-////        } catch (Exception ex) {
-////            ex.printStackTrace();
-////        }
-////        return conn;
-////    }
-////
-////    public static void closeConnection(Connection conn) {
-////
-////        if (conn != null) {
-////            try {
-////                conn.close();
-////            } catch (SQLException ex) {
-////                Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        }
-////    }
-    ////////////////////////////////////////////////////////////////////////////
+//    public static Connection makeConnection() {
+//        Connection conn = null;
+//        try {
+//           String dbURL = "jdbc:sqlserver://acradiboc-server.database.windows.net;database=unicat-db;encrypt=true;trustServerCertificate=true;";
+//            String user = "unicat-admin@acradiboc-server";
+//            String pass = "nta020601@";
+//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//            conn = DriverManager.getConnection(dbURL, user, pass);
+//            System.out.println("Connect to DB successfully");
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return conn;
+//    }
+//
+//    public static void closeConnection(Connection conn) {
+//
+//        if (conn != null) {
+//            try {
+//                conn.close();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//    }
+//    //////////////////////////////////////////////////////////////////////////
 //    public static void main(String[] args) throws SQLException {
 //
 //        System.out.println("This is to test if we can connect to SQLServer");
