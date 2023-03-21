@@ -66,7 +66,10 @@
                                     </div>
                                 </div>
 
-                                <p class="login-card-footer-text">Don't have an account? <a href="${path}/user/register" class="text-reset">Register here</a></p>
+                                <p class="login-card-footer-text">Don't have an account? <a href="${path}/user/register" class="text-reset">Register here</a></br>
+                                
+                                </p>
+                                
                                 <nav class="login-card-footer-nav">
                             </div>
                         </div>

@@ -29,7 +29,7 @@
             <div class="col">
                 <div class="section_title_container text-center">
                     <h2 class="section_title">Welcome To Unicat E-Learning</h2>
-                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu Vestibulum</p></div>
+                    <div class="section_subtitle"><p>A place to share knowledge</p></div>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <div class="about_item_image"><img src="images/about_1.jpg" alt=""></div>
                     <div class="about_item_title"><a href="#">Our Stories</a></div>
                     <div class="about_item_text">
-                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                        <p>After the school experience of majoring in information technology, we felt that a website teaching that major was very necessary, so after the acquired knowledge we wanted to create a learning environment. practice for students to acquire more knowledge.</p>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     <div class="about_item_image"><img src="images/about_2.jpg" alt=""></div>
                     <div class="about_item_title"><a href="#">Our Mission</a></div>
                     <div class="about_item_text">
-                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                        <p>Educate people about information technology by watching videos and answering questions.</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     <div class="about_item_image"><img src="images/about_3.jpg" alt=""></div>
                     <div class="about_item_title"><a href="#">Our Vision</a></div>
                     <div class="about_item_text">
-                        <p>Lorem ipsum dolor sit , consectet adipisi elit, sed do eiusmod tempor for enim en consectet adipisi elit, sed do consectet adipisi elit, sed doadesg.</p>
+                        <p>We were also students, so we understand very well what students or learners need when looking for more knowledge online from which we come up with and create a really useful website.</p>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="col">
                 <div class="section_title_container text-center">
                     <h2 class="section_title">Why Choose Us</h2>
-                    <div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+                    <div class="section_subtitle"><p>Enthusiasm, enthusiasm, fresh updates, dynamic environment</p></div>
                 </div>
             </div>
         </div>
@@ -96,30 +96,25 @@
                         <div class="elements_accordions">
 
                             <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center"><div>Award for Best School 2017</div></div>
+                                <div class="accordion d-flex flex-row align-items-center"><div>Young and dynamic environment</div></div>
                                 <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>We are young people who always learn and collect the latest knowledge according to the times, from which we will share with everyone to develop together.</p>
+                                </div>
+                            </div>
+
+                          
+
+                            <div class="accordion_container">
+                                <div class="accordion d-flex flex-row align-items-center"><div>Like-minded people</div></div>
+                                <div class="accordion_panel">
+                                    <p>Here we have experience and went through the same difficulties as everyone else. Therefore, we understand what you need in an online learning platform from which to help you get the necessary and important knowledge.</p>
                                 </div>
                             </div>
 
                             <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center active"><div>You?re learning from the best.</div></div>
+                                <div class="accordion d-flex flex-row align-items-center"><div>our capacity</div></div>
                                 <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-
-                            <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center"><div>Our degrees are recognized worldwide.</div></div>
-                                <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                </div>
-                            </div>
-
-                            <div class="accordion_container">
-                                <div class="accordion d-flex flex-row align-items-center"><div>We encourage our students to go global.</div></div>
-                                <div class="accordion_panel">
-                                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>We have gone through many projects large and small and one of the successes is the website you are using.</p>
                                 </div>
                             </div>
 
