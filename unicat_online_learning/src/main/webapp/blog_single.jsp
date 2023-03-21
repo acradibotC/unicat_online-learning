@@ -250,7 +250,7 @@
                     <div class="sidebar_section">
                         <div class="sidebar_section_title">Latest Courses</div>
                         <div class="sidebar_latest">
-                            <c:forEach items="${CoursesDAO.getFewLatestCourse(5)}" var="x">
+                            <c:forEach items="${CoursesDAO.getFewLatestCourseWithStatus(5, 1)}" var="x">
                                 <!-- Latest Course -->
                                 <div class="latest d-flex flex-row align-items-start justify-content-start">
                                     <div class="latest_image"><div><img src="${x.getImage()}" alt=""></div></div>

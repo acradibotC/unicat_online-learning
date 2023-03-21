@@ -55,8 +55,33 @@ public class AdminDAO extends DBContext {
         }
         return ck;
     }
+
+    public int UnBanUser(int UserID) {
+        int ck = 0;
+        try {
+            String sql="Update [User] set [Status]=1 where UserID=?";
+            PreparedStatement ps=connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ck=ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return ck;
+    }
+
+    public int BanUser(int UserID) {
+        int ck = 0;
+        try {
+            String sql="Update [User] set [Status]=0 where UserID=?";
+            PreparedStatement ps=connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ck=ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return ck;
+    }
+
     public static void main(String[] args) {
-        AdminDAO ad=new AdminDAO();
-        System.out.println(ad.UnPublishCourse(12));
+        AdminDAO ad = new AdminDAO();
+        System.out.println(ad.UnBanUser(6));
     }
 }

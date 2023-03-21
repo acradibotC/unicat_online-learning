@@ -8,27 +8,22 @@
 
 
 
-<div class="card text-white mb-3 bg-light" style="margin-top: 120px">
-    <div class="container">
+<div class="card text-white mb-3 bg-light pt-3" style="margin-top: 120px">
+    <div class="container pt-3">
         <div class="row ">
             <div class="col-md" >
+                <c:if test="${questions.size() < 1}">
+                    <div class="alert alert-dismissible alert-warning" style="height: 400px">
+                        <h2 class="alert-heading pt-5" style="text-align: center;">Does not have challenge for this Lesson!</h2>
+                        <p class="mb-4 pt-3" style="text-align: center; font-size: large">You can pass the lesson without passing the challenge.</p>
+                    </div>
 
-                <div class="">
-
-                    <c:if test="${questions.size() < 1}">
-                        <div class="alert alert-dismissible alert-warning">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            <h3 class="alert-heading">Does not have challenge for this Lesson!</h3>
-                            <p class="mb-4">You can pass the lesson without passing the challenge.</p>
+                    <div class="row justify-content-lg-between pt-3">
+                        <div class="col-md-2">
+                            <a class="btn btn-group-lg btn-warning" href="LessonDetail?Id=${currentLessonNum}&status=${-1}">Back to Lesson</a>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-2">
-                                <a class="btn btn-group-lg btn-dark" href="LessonDetail?Id=${currentLessonNum}&status=${-1}">Back to Lesson</a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-group-lg btn-success" href="LessonDetail?Id=${currentLessonNum+1}&status=${rand.nextInt(10000)}">Go to next Lesson</a>
-                            </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-group-lg btn-success" href="LessonDetail?Id=${currentLessonNum+1}&status=${rand.nextInt(10000)}">Go to next Lesson</a>
                         </div>
                     </c:if>
 

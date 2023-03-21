@@ -36,7 +36,7 @@
 
         <!-- Role: Admin -->
         <c:if test="${admin != null}">
-            <table class="table table-borderless table-striped table-earning">
+            <table class="table table-striped table-earning table-bordered">
                 <thead style="background-color: #0092ef">
                     <tr>
                         <th style="width: 70px">Course ID</th>
@@ -44,7 +44,8 @@
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
-                        <th>Status</th>
+                        <th>Action</th>
+                        <th>Reference</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +56,24 @@
                             <th>${x.getName()}</th>
                             <th><img class="image" src="${x.getImage()}" /></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
-                            <th>Status</th>
+                            <th>
+                                <c:if test="${x.getPublishStatus() == 0}">
+                                    <form action="${path}/admin/manager/course" method="post">
+                                        <input name="txtStatusPublish" value="Publish" type="hidden"/>
+                                        <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
+                                        <button class="btn btn-primary" type="submit">Publish</button>
+                                    </form>
+                                </c:if>         
+                                <c:if test="${x.getPublishStatus() == 1}">
+                                    <form action="${path}/admin/manager/course" method="post">
+                                        <input name="txtStatusPublish" value="UnPublish" type="hidden"/>
+                                        <input type="hidden" name="txtCourseID" value="${x.getCourseID()}" />
+                                        <button class="btn btn-danger" type="submit">Un-publish</button>
+                                    </form>
+                                </c:if>
+                            </th>
+                            <th><a class="btn btn-info" href="${path}/course?CourseID=${x.getCourseID()}">
+                                    Go to Course</a> </th>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -108,6 +126,7 @@
                         <th>Course Name</th>
                         <th>Course Image</th>
                         <th>Course Creator</th>
+                        <th>Status</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -122,6 +141,12 @@
                             <th><img class="image" src="${x.getImage()}"/></th>
                             <th>${UserDAO.getUserByUserID(x.getUserID()).getFullName()}</th>
                             <th>
+                                <c:choose>
+                                    <c:when test="${x.getPublishStatus() == 0}"><div style="color: red; text-align: center;">Pending</div></c:when>
+                                    <c:when test="${x.getPublishStatus() == 1}"><div style="color: blue; text-align: center;">Published</div></c:when>
+                                </c:choose>
+                            </th>
+                            <th>
                                 <form action="${path}/admin/manager/course" method="post">
                                     <input type="hidden" name="txtStatus" value="3" />
                                     <input type="hidden" name="txtCourseID" value="${x.getCourseID()}"/>
@@ -133,7 +158,7 @@
                                     <input type="hidden" name="txtCourseID" value="${x.getCourseID()}"/>
                                     <button class="btn btn-secondary btn-sm" style="width: 70px" type="submit">Update</button>
                                 </form>
-                            </th>
+                            </th>                           
                         </tr>
                     </c:forEach>
                 </tbody>
