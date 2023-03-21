@@ -45,21 +45,11 @@ public class Course_Manager_Searching extends HttpServlet {
         User user = null;
         ArrayList<com.unicat.onlinelearning.dto.Course> allCourse = null;
 
-        // Role: Tutor
-        if (req.getSession().getAttribute("tutor") != null) {
-            user = (User) req.getSession().getAttribute("tutor");
-            if (CategoryID == 0) {
-                allCourse = CoursesDAO.getAllCourseByUserID(user.getUserID());
-            } else {
-                allCourse = CoursesDAO.getAllCourseSearchingByCategoryIDAndUserID(user.getUserID(), CategoryID, req.getParameter("txtNameSearch"));
-            }
+        // Role: Admin
+        if (CategoryID == 0) {
+            allCourse = CoursesDAO.getAllCourseSearchingWithStatusAndRequest(req.getParameter("txtNameSearch"), 1, "None");
         } else {
-            // Role: Admin
-            if (CategoryID == 0) {
-                allCourse = CoursesDAO.getAllCourseSearching(req.getParameter("txtNameSearch"));
-            } else {
-                allCourse = CoursesDAO.getAllCourseSearchingByCategoryID(CategoryID, req.getParameter("txtNameSearch"));
-            }
+            allCourse = CoursesDAO.getAllCourseSearchingByCategoryIDWithStatusAndRequest(CategoryID, req.getParameter("txtNameSearch"), 1, "None");
         }
 
         int page, size, numPerPage = 6;
@@ -90,11 +80,15 @@ public class Course_Manager_Searching extends HttpServlet {
         } else {
             list = CoursesDAO.getListBySearching(allCourse, start, end);
         }
+        int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
+
         req.setAttribute("list", list);
         req.setAttribute("page", page);
         req.setAttribute("number", number);
-        //End Paging
 
+        //End Paging
+        req.setAttribute("p", "coursemanager");
+        req.setAttribute("NumRequest", NumRequest);
         req.setAttribute("allCourse", allCourse);
         req.setAttribute("NameSearch", req.getParameter("txtNameSearch"));
         req.setAttribute("CategoryID", CategoryID);

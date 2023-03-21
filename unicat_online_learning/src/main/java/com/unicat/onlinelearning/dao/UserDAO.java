@@ -63,6 +63,33 @@ public class UserDAO extends DBContext {
         return list;
     }
 
+    public ArrayList<User> getAllUserExceptAdmin() {
+        ArrayList<User> list = new ArrayList<>();
+        try {
+            String sql = "Select * from [User] WHERE RoleID > 1";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String UserName = rs.getString("UserName");
+                String PassWord = rs.getString("PassWord");
+                String FullName = rs.getString("FullName");
+                String Image = rs.getString("Image");
+                String Email = rs.getString("Email");
+                Date DOB = rs.getDate("DOB");
+                String Phone = rs.getString("Phone");
+                String Address = rs.getString("Address");
+                String FaceBookID = rs.getString("FacebookID");
+                String GmailID = rs.getString("GmailID");
+                int RoleID = rs.getInt("RoleID");
+                int Status = rs.getInt("Status");
+                list.add(new User(rs.getInt("UserID"), UserName, PassWord, FullName, Image, Email, DOB, Phone, Address, FaceBookID, GmailID, RoleID, Status));
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return list;
+    }
+
     public User getUser(String uname, String pass) {
         User user = null;
         try {
@@ -309,6 +336,31 @@ public class UserDAO extends DBContext {
         } catch (SQLException e) {
         }
         return kt;
+    }
+
+    public ArrayList<User> getAllUserSearching(String Search) {
+        ArrayList<User> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [User] WHERE [FullName] LIKE ? AND RoleID > 1";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + Search + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new User(rs.getInt("UserID"), rs.getString("UserName"), rs.getString("PassWord"), rs.getString("FullName"),
+                        rs.getString("Image"), rs.getString("Email"), rs.getDate("DOB"), rs.getString("Phone"),
+                        rs.getString("Address"), rs.getString("FacebookID"), rs.getString("GmailID"), rs.getInt("RoleID"), rs.getInt("Status")));
+            }
+        } catch (Exception e) {
+        }
+        return List;
+    }
+    
+    public ArrayList<User> getListBySearching(ArrayList<User> list, int start, int end) {
+        ArrayList<User> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
     }
 
     public static void main(String[] args) {

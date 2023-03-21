@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/styles/course_responsive.css">
 <link rel="stylesheet" type="text/css" href="${path}/styles/blog_single.css">
 <!-- Home -->
+<fmt:formatNumber var="AvgRateInteger" type="number" maxFractionDigits="0" value="${ReviewDAO.getAvgVoteCourseByCourseID(Course.getCourseID())}" />
 
 <div class="home">
     <div class="breadcrumbs_container">
@@ -46,7 +47,7 @@
                         <!-- Course Info Item -->
                         <div class="course_info_item">
                             <div class="course_info_title">Reviews:</div>
-                            <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
+                            <div class="rating_r rating_r_${AvgRateInteger}"><i></i><i></i><i></i><i></i><i></i></div>
                         </div>
 
                         <!-- Course Info Item -->
@@ -234,22 +235,44 @@
                             <div class="tab_panel tab_panel_3">
                                 <div class="tab_panel_title">Course Review</div>
 
+                                <c:if test="${CourseEnrollDAO.getCourseEnrollByUserIDAndCourseID(User.getUserID(), Course.getCourseID()).getCourseStatus() eq 1}">
+                                    <div>
+                                        <a href="${path}/course/rating?CourseID=${Course.getCourseID()}">
+                                            <button class="btn btn-primary" style="color: white; align-content: center; border-radius: 5px; ">Give a Rating</button>
+                                        </a>
+                                    </div>
+                                            <div style="margin-top: 10px;">
+                                        <c:if test="${ReviewDAO.checkUserVote(User.getUserID(), Course.getCourseID()).getVote() ne 0}">
+                                            You have voted <fmt:formatNumber type="number" maxFractionDigits="0" value="${ReviewDAO.checkUserVote(User.getUserID(), Course.getCourseID()).getVote()}" /> star
+                                        </c:if>
+                                    </div>
+                                </c:if>
                                 <!-- Rating -->
                                 <div class="review_rating_container">
                                     <div class="review_rating">
-                                        <div class="review_rating_num">4.5</div>
+                                        <div class="review_rating_num"><fmt:formatNumber type="number" maxFractionDigits="1" value="${ReviewDAO.getAvgVoteCourseByCourseID(Course.getCourseID())}" /></div>
                                         <div class="review_rating_stars">
-                                            <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i></div>
+
+                                            <div class="rating_r rating_r_${AvgRateInteger}"><i></i><i></i><i></i><i></i><i></i></div>
                                         </div>
-                                        <div class="review_rating_text">(28 Ratings)</div>
+                                        <div class="review_rating_text">(${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())} Ratings)</div>
                                     </div>
                                     <div class="review_rating_bars">
                                         <ul>
-                                            <li><span>5 Star</span><div class="review_rating_bar"><div style="width:90%;"></div></div></li>
-                                            <li><span>4 Star</span><div class="review_rating_bar"><div style="width:75%;"></div></div></li>
-                                            <li><span>3 Star</span><div class="review_rating_bar"><div style="width:32%;"></div></div></li>
-                                            <li><span>2 Star</span><div class="review_rating_bar"><div style="width:10%;"></div></div></li>
-                                            <li><span>1 Star</span><div class="review_rating_bar"><div style="width:3%;"></div></div></li>
+                                            <c:if test="${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID()) ne 0}">
+                                                <li><span>5 Star</span><div class="review_rating_bar"><div style="width:${ReviewDAO.getTotalVoteCourseByCourseIDAndVote(Course.getCourseID(), 5) * 100 / ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}%;"></div></div></li>
+                                                <li><span>4 Star</span><div class="review_rating_bar"><div style="width:${ReviewDAO.getTotalVoteCourseByCourseIDAndVote(Course.getCourseID(), 4) * 100 / ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}%;"></div></div></li>
+                                                <li><span>3 Star</span><div class="review_rating_bar"><div style="width:${ReviewDAO.getTotalVoteCourseByCourseIDAndVote(Course.getCourseID(), 3) * 100 / ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}%;"></div></div></li>
+                                                <li><span>2 Star</span><div class="review_rating_bar"><div style="width:${ReviewDAO.getTotalVoteCourseByCourseIDAndVote(Course.getCourseID(), 2) * 100 / ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}%;"></div></div></li>
+                                                <li><span>1 Star</span><div class="review_rating_bar"><div style="width:${ReviewDAO.getTotalVoteCourseByCourseIDAndVote(Course.getCourseID(), 1) * 100 / ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}%;"></div></div></li>
+                                                    </c:if>
+                                                    <c:if test="${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID()) eq 0}">
+                                                <li><span>5 Star</span><div class="review_rating_bar"><div style="width:0%;"></div></div></li>
+                                                <li><span>4 Star</span><div class="review_rating_bar"><div style="width:0%;"></div></div></li>
+                                                <li><span>3 Star</span><div class="review_rating_bar"><div style="width:0%;"></div></div></li>
+                                                <li><span>2 Star</span><div class="review_rating_bar"><div style="width:0%;"></div></div></li>
+                                                <li><span>1 Star</span><div class="review_rating_bar"><div style="width:0%;"></div></div></li>
+                                                    </c:if>
                                         </ul>
                                     </div>
                                 </div>
@@ -265,7 +288,8 @@
                                                         <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                             <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()).getFullName()}</a></div>
                                                             <div class="comment_rating">
-                                                                <div class="rating_r rating_r_${ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getVote()}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                <fmt:parseNumber var = "parseNumVote" integerOnly="true" type="number" value="${ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getVote()}" />
+                                                                <div class="rating_r rating_r_${parseNumVote}"><i></i><i></i><i></i><i></i><i></i></div>
                                                             </div>
                                                             <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${x.getReviewFeedbackDate()}"/></div>
                                                         </div>
@@ -344,9 +368,10 @@
                                                             <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
                                                                 <div class="comment_image"><div><img src="${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(y.getReviewFeedbackID()).getUserID()).getImage()}" alt=""></div></div>
                                                                 <div class="comment_content">
+                                                                    <fmt:parseNumber var = "parseNumVoteComment" integerOnly="true" type="number" value="${ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getVote()}" />
                                                                     <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                                         <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getUserID()).getFullName()}</a></div>
-                                                                        <div class="comment_rating"><div class="rating_r rating_r_${ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getVote()}"><i></i><i></i><i></i><i></i><i></i></div></div>
+                                                                        <div class="comment_rating"><div class="rating_r rating_r_${parseNumVoteComment}"><i></i><i></i><i></i><i></i><i></i></div></div>
                                                                         <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${y.getReviewCommentDate()}"/></div>
                                                                     </div>
                                                                     <div class="comment_text">
@@ -474,7 +499,7 @@
                         <div class="sidebar_section_title">Course Feature</div>
                         <div class="sidebar_feature">
                             <!--Check course publish-->
-                            <c:if test="${student ne null or admin ne null}">
+                            <c:if test="${student ne null}">
                                 <c:if test="${Course.getPublishStatus() eq 1}">
                                     <c:url value="/course" var="enroll">
                                         <c:param name="cid" value="${Course.getCourseID()}"/>
@@ -499,43 +524,29 @@
                                 <c:if test="${Course.getPublishStatus() eq 0}"><h2 style="color: red">Updating</h2></c:if>
 
                             </c:if>
+                            <c:if test="${admin ne null}">
+                                <c:url value="/course" var="enroll">
+                                    <c:param name="cid" value="${Course.getCourseID()}"/>
+                                </c:url>
+                                <c:if test="${ce eq null}">
+                                    <form action="${enroll}" method="post">
+                                        <button class="btn btn-primary btn-lg" type="submit">Enroll Now</button>
+                                    </form>
+                                </c:if>
+
+                                <c:if test="${ce ne null}">
+                                    <form action="LessonDetail" method="post">
+                                        <input value="${6789}" name="status" hidden></input>
+                                        <button class="btn btn-primary btn-lg" type="submit" value="${Course.getCourseID()}" name="courseId">
+                                            Go to Course
+                                        </button> 
+
+                                    </form>
+                                </c:if>
+                            </c:if>
 
 
-
-                            <!-- Features -->
-                            <div class="feature_list">
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-clock-o" aria-hidden="true"></i><span>Duration:</span></div>
-                                    <div class="feature_text ml-auto">2 weeks</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-file-text-o" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">10</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-question-circle-o" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">6</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-list-alt" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">Yes</div>
-                                </div>
-
-                                <!-- Feature -->
-                                <div class="feature d-flex flex-row align-items-center justify-content-start">
-                                    <div class="feature_title"><i class="fa fa-users" aria-hidden="true"></i><span>Lectures:</span></div>
-                                    <div class="feature_text ml-auto">35</div>
-                                </div>
-
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -553,18 +564,14 @@
                                 <!-- Teacher Rating -->
                                 <div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
                                     <div class="teacher_meta_title">Average Rating:</div>
-                                    <div class="teacher_meta_text ml-auto"><span>4.7</span><i class="fa fa-star" aria-hidden="true"></i></div>
+                                    <div class="teacher_meta_text ml-auto"><span><fmt:formatNumber type="number" maxFractionDigits="1" value="${ReviewDAO.getAvgVoteCourseByCourseID(Course.getCourseID())}" /></span><i class="fa fa-star" aria-hidden="true"></i></div>
                                 </div>
                                 <!-- Teacher Review -->
                                 <div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
                                     <div class="teacher_meta_title">Review:</div>
-                                    <div class="teacher_meta_text ml-auto"><span>12k</span><i class="fa fa-comment" aria-hidden="true"></i></div>
+                                    <div class="teacher_meta_text ml-auto"><span>${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}</span><i class="fa fa-comment" aria-hidden="true"></i></div>
                                 </div>
-                                <!-- Teacher Quizzes -->
-                                <div class="teacher_meta d-flex flex-row align-items-center justify-content-start">
-                                    <div class="teacher_meta_title">Quizzes:</div>
-                                    <div class="teacher_meta_text ml-auto"><span>600</span><i class="fa fa-user" aria-hidden="true"></i></div>
-                                </div>
+                                
                             </div>
                             <div class="teacher_info">
                                 <p></p>

@@ -71,7 +71,7 @@
                                                 <c:when test="${tutor != null}">                                                
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="${path}/admin/manager/course">Tutor Manager</a>
+                                                            <a href="${path}/tutor/manager/course?page=CoursePublished">Tutor Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>

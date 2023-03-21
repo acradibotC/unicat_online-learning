@@ -34,7 +34,7 @@ public class SubmitQuiz extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int lessonId = 1;
+        int lessonId = (int) req.getSession().getAttribute("lessonId");
         ArrayList<Question> questions = questionDAO.getAllQuestionByLessonId(lessonId);
         int score = 0;
         int index = 0;

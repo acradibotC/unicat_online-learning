@@ -1,6 +1,7 @@
 package com.unicat.onlinelearning.controller.course;
 
 import com.unicat.onlinelearning.dao.CategoryDAO;
+import com.unicat.onlinelearning.dao.CourseEnrollDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.ReviewCommentsDAO;
 import com.unicat.onlinelearning.dao.ReviewDAO;
@@ -24,6 +25,7 @@ public class Course extends HttpServlet {
     public static ReviewFeedbackDAO ReviewFeedbackDAO = new ReviewFeedbackDAO();
     public static ReviewDAO ReviewDAO = new ReviewDAO();
     public static ReviewCommentsDAO ReviewCommentsDAO = new ReviewCommentsDAO();
+    public static CourseEnrollDAO CourseEnrollDAO = new CourseEnrollDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +35,13 @@ public class Course extends HttpServlet {
         req.setAttribute("UserDAO", UserDAO);
         req.setAttribute("ReviewFeedbackDAO", ReviewFeedbackDAO);
         req.setAttribute("ReviewCommentsDAO", ReviewCommentsDAO);
+        req.setAttribute("CourseEnrollDAO", CourseEnrollDAO);
         req.setAttribute("ReviewDAO", ReviewDAO);
+        
+        // Using for Course Rating
+        User user = (User) req.getSession().getAttribute("User");
+        req.setAttribute("User", user);
+        
         int CourseID = -1;
         try {
             CourseID = Integer.parseInt(req.getParameter("CourseID"));
