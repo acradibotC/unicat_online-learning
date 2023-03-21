@@ -54,10 +54,11 @@
                                                     <c:choose>
                                                         <c:when test="${tutor != null}">
                                                             <li style="background-color: #f44336;border-radius: 10px;margin: 10px;padding: 10px;">
-                                                                    <a style="text-align: center;color: white" class="js-arrow" href="${path}/tutor/manager/course/add">
+                                                                    <a style="text-align: center;color: white" class="js-arrow" href="${path}/tutor/manager/course/add?page=AddCourse">
                                                                         <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add new Course
                                                                     </a>                           
                                                             </li>
+                                                            
                                                             <li style="<c:if test="${p eq 'CoursePublished'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
                                                                     <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=CoursePublished">Your Published Courses</a>                           
@@ -67,7 +68,10 @@
                                                                 border-radius: 10px;margin: 5px">
                                                                     <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=UpdatingCourse">Updating Courses</a>                           
                                                             </li>
-
+                                                            <li style="<c:if test="${p eq 'DeletedCourse'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=DeletedCourse">Deleted Courses</a>                           
+                                                            </li>
 
                                                             <li style="border-radius: 10px;margin: 5px;background-color:
                                                                 <c:if test="${p eq 'RequestPublish' or p eq 'RequestUnPublish'}">

@@ -45,7 +45,7 @@
                         </div>
                     </a> 
 
-                    <c:if test="${c.getRequest() eq 'None'}">
+                    <c:if test="${c.getRequest() eq 'None' and c.getPublishStatus() eq 1}">
 
                         <div style="color: red;font-size: 20px; margin-top: 15px">This Course is Published . If you want to Update please sent request to ADMIN</div>
                         <form action="${path}/tutor/manager/course" method="post">
@@ -57,6 +57,15 @@
 
                     </c:if>
                     <c:if test="${c.getRequest() eq 'Updating'}">
+                        <div style="color: red;font-size: 20px; margin-top: 15px">This Course is not Published . If you want to Publish please sent request to ADMIN</div>
+                        <form action="${path}/tutor/manager/course" method="post">
+                            <input type="hidden" name="Request" value="RequestPublish" />
+                            <input type="hidden" name="txtCourseID" value="${c.getCourseID()}"/>
+                            <input name="NowPage" value="View" type="hidden"/>
+                            <button style="background-color: #cd2737;border-radius: 10px;margin: 8px;padding: 10px 16px;color: white" type="submit">Request Publish</button>
+                        </form>
+                    </c:if>
+                    <c:if test="${c.getRequest() eq 'None' and c.getPublishStatus() eq 0}">
                         <div style="color: red;font-size: 20px; margin-top: 15px">This Course is not Published . If you want to Publish please sent request to ADMIN</div>
                         <form action="${path}/tutor/manager/course" method="post">
                             <input type="hidden" name="Request" value="RequestPublish" />

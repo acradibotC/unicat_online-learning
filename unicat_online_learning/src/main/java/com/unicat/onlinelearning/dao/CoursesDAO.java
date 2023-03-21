@@ -606,14 +606,58 @@ public class CoursesDAO extends DBContext {
         return null;
     }
 
+    public int getNumberUserEnroll(int CourseID) {
+        int num = 0;
+        try {
+            String sql = "select count(ce.CourseEnrollID) as 'Number' from CourseEnroll ce join [User] u on u.UserID=ce.UserID"
+                    + "  where u.RoleID>1 and ce.CourseID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, CourseID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                num = rs.getInt("Number");
+            }
+        } catch (SQLException e) {
+        }
+        return num;
+    }
+
+    public ArrayList<Course> getNewCreatedCourse(int UserID) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where Request='None' and PublishStatus=0 and UserID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
+            }
+        } catch (SQLException e) {
+        }
+        return List;
+    }
+    public ArrayList<Course> getDeletedCourse(int UserID) {
+        ArrayList<Course> List = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM [Course] where Request='Deleted' and PublishStatus=0 and UserID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, UserID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                List.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"),
+                        rs.getString("Request")));
+            }
+        } catch (SQLException e) {
+        }
+        return List;
+    }
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         Course c = dao.getCourseByCourseID(1);
 
-        // System.out.println(dao.getAllCourseSearchingWithStatusAndRequest("java", 1, "None").size());
-        for (Course x : dao.getTop3PopularCourse()) {
-            System.out.println(x.getCourseID());
-        }
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
     }
