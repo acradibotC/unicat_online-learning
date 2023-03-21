@@ -39,6 +39,14 @@ public class CourseTutor extends HttpServlet {
             if (Request.equals("RequestPublish")) {
                 c.setRequest("RequestPublish");
             }
+            if (Request.equals("Delete")) {
+                c.setRequest("Deleted");
+                c.setPublishStatus(0);
+            }
+            if (Request.equals("Recover")) {
+                c.setRequest("None");
+                c.setPublishStatus(0);
+            }
             cd.updateCourse(c);
             String NowPage = "";
             if (req.getParameter("NowPage") != null) {
@@ -47,7 +55,16 @@ public class CourseTutor extends HttpServlet {
             if (NowPage.equals("View")) {
                 resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + c.getCourseID());
             } else {
-                resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
+                if (NowPage.equals("UpdatePage")) {
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=UpdatingCourse");
+                } else {
+                    if (NowPage.equals("DeletedPage")) {
+
+                        resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=DeletedCourse");
+                    } else {
+                        resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
+                    }
+                }
             }
         } else {
 
@@ -57,7 +74,7 @@ public class CourseTutor extends HttpServlet {
                     int CourseID = Integer.parseInt(req.getParameter("CourseID"));
                     com.unicat.onlinelearning.dto.Course c = cd.getCourseByCourseID(CourseID);
                     int CategoryID = Integer.parseInt(req.getParameter("txtCategoryID"));
-                    
+
                     c.setCategoryID(CategoryID);
                     c.setName(req.getParameter("txtName"));
                     c.setImage(req.getParameter("txtCourseImage"));
@@ -90,7 +107,7 @@ public class CourseTutor extends HttpServlet {
                     int CourseID = Integer.parseInt(req.getParameter("CourseID"));
 
                     ld.deleteLessonNum(LessonNum, CourseID);
-                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + CourseID );
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + CourseID);
                 }
             }
         }
@@ -160,7 +177,7 @@ public class CourseTutor extends HttpServlet {
                     }
 
                 } else {
-                    
+
                     resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
                 }
                 //End Update   
@@ -191,10 +208,18 @@ public class CourseTutor extends HttpServlet {
                 } else {
                     if (p.equals("UpdatingCourse")) {
                         ArrayList<com.unicat.onlinelearning.dto.Course> list = cd.getTutorUpdatingCourse(user.getUserID());
+                        ArrayList<com.unicat.onlinelearning.dto.Course> listcnew = cd.getNewCreatedCourse(user.getUserID());
+                        req.setAttribute("listcnew", listcnew);
                         req.setAttribute("list", list);
                         req.getRequestDispatcher("/TutorUpdatingCourse.jsp").forward(req, resp);
                     } else {
-                        resp.sendRedirect(req.getContextPath() + "/home");
+                        if (p.equals("DeletedCourse")) {
+                            ArrayList<com.unicat.onlinelearning.dto.Course> list = cd.getDeletedCourse(user.getUserID());
+                            req.setAttribute("list", list);
+                            req.getRequestDispatcher("/TutorDeletedCourse.jsp").forward(req, resp);
+                        } else {
+                            resp.sendRedirect(req.getContextPath() + "/home");
+                        }
                     }
                 }
 
