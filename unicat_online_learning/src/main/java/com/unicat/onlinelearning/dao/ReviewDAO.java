@@ -17,7 +17,21 @@ public class ReviewDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, review.getUserID());
             ps.setInt(2, review.getCourseID());
-            ps.setInt(3, review.getVote());
+            ps.setFloat(3, review.getVote());
+            ps.execute();
+        } catch (Exception e) {
+        }
+    }
+    
+    //Update
+    public void updateReview(Review review) {
+        try {
+            String sql = "UPDATE [Review] \n"
+                    + "SET [Vote] = ?\n"
+                    + "WHERE ReviewID = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setFloat(1, review.getVote());
+            ps.setInt(2, review.getReviewID());
             ps.execute();
         } catch (Exception e) {
         }
@@ -95,10 +109,52 @@ public class ReviewDAO extends DBContext {
         }
         return null;
     }
+    
+    public float getAvgVoteCourseByCourseID(int courseID) {
+        try {
+            String sql = "SELECT AVG(Vote) AS [Average] FROM [Review] WHERE CourseID = ? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+                return rs.getFloat("Average");
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    
+    public int getTotalVoteCourseByCourseID(int courseID) {
+        try {
+            String sql = "SELECT COUNT(*) AS [SUM] FROM [Review] WHERE CourseID = ? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+                return rs.getInt("SUM");
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+    
+    public int getTotalVoteCourseByCourseIDAndVote(int courseID, int vote) {
+        try {
+            String sql = "SELECT COUNT(*) AS [Total] FROM [Review] WHERE CourseID = ? AND Vote = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ps.setInt(2, vote);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+                return rs.getInt("Total");
+        } catch (Exception e) {
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         ReviewDAO dao = new ReviewDAO();
         //System.out.println(dao.checkUserVote(1, 3).getUserID());
-        System.out.println(dao.getReviewByReviewCommentID(2).getUserID());
+        //System.out.println(dao.getReviewByReviewCommentID(2).getUserID());
+        System.out.println(dao.getTotalVoteCourseByCourseID(1));
+        System.out.println(dao.getTotalVoteCourseByCourseIDAndVote(14, 5));
     }
 }

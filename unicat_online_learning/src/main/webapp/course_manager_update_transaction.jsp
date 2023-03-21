@@ -28,29 +28,32 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3>Update a Course</h3>
+                            <h3>Update Course Information</h3>
                         </div>
                         <div class="col-sm-6">
                         </div>
                     </div>
+
+                </div>
+                <div  style="font-size:17px;background-color: #cd2737;width: 220px;padding: 15px;border-radius: 15px;margin: 10px">
+                    <a style="color: white" href="${path}/tutor/manager/course?page=view&CourseID=${course.getCourseID()}">
+                        <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Cancel Update
+                    </a>
                 </div>
             </div>
 
             <div id="editEmployeeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">    
-                        <form action="${path}/admin/manager/course" method="post"> 
-                            <div class="modal-header">						
-                                <h4 class="modal-title">Update Course</h4>                             
-                            </div>
-                            <div class="modal-body">
+                        <form action="${path}/tutor/manager/course" method="post"> 
+
+                            <div class="modal-body" style="font-size: 16px">
+
                                 <div class="form-group">
-                                    <label>Course ID</label>
-                                    <input value="${course.getCourseID()}" name="txtCourseID" type="text" class="form-control" disabled=""/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Category ID </label>
+
                                     <div>
+                                        <label>Category</label>
+
                                         <select name="txtCategoryID">
                                             <c:forEach items="${CategoryDAO.getAllCategory()}" var="x">
                                                 <c:if test="${course.getCategoryID() == x.getCategoryID()}">
@@ -79,10 +82,12 @@
                                     <label>Course Description </label>
                                     <textarea type="text" name="txtCourseDescription" class="form-control">${course.getDescription()} </textarea>                                   
                                 </div>
-                                <input type="hidden" name="txtStatus" value="2"/>
-                                <input value="${course.getCourseID()}" name="txtCourseID" type="text" class="form-control" hidden=""/>
-                                <p><input type="submit" value="UpdateCourse"/>
-                                <div><button onclick='window.location.href = "http://localhost:6789/Unicat_online_learning/admin/manager/course"'>Cancel</button></div>
+                                <input type="hidden" name="Update" value="UpdateCourseInfor"/>
+                                <input type="hidden" name="CourseID" value="${course.getCourseID()}"/>
+                                <div >
+                                    <input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" 
+                                           type="submit" value="Update Course"/>
+                                </div>
                             </div>
                         </form>
                     </div>

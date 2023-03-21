@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="template/header.jsp" %>
 <!-- Courses -->
 <link rel="stylesheet" type="text/css" href="${path}/styles/courses.css">
@@ -56,6 +57,7 @@
                                 <!-- Course --> 
                                 <c:choose>
                                     <c:when test="${x.getPublishStatus() == 1}">
+                                        <fmt:formatNumber var="AvgRateInteger" type="number" maxFractionDigits="2" value="${ReviewDAO.getAvgVoteCourseByCourseID(x.getCourseID())}" />
                                         <div class="col-lg-6 course_col">
                                             <div class="course">
                                                 <div class="course_image"><img src="${x.getImage()}" alt=""></div>
@@ -72,11 +74,11 @@
                                                     <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
                                                         <div class="course_info">
                                                             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                                            <span>20 Student</span>
+                                                            <span>${ReviewDAO.getTotalVoteCourseByCourseID(x.getCourseID())} Students</span>
                                                         </div>
                                                         <div class="course_info">
                                                             <i class="fa fa-star" aria-hidden="true"></i>
-                                                            <span>5 Ratings</span>
+                                                            <span>${AvgRateInteger} Ratings</span>
                                                         </div>
                                                         <div class="course_price ml-auto">Free</div>
                                                     </div>

@@ -53,22 +53,58 @@
                                                 <ul class="list-unstyled navbar__list1">
                                                     <c:choose>
                                                         <c:when test="${tutor != null}">
-                                                            <li class="active has-sub1">
-                                                                <a class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
+                                                            <li style="background-color: #f44336;border-radius: 10px;margin: 10px;padding: 10px;">
+                                                                    <a style="text-align: center;color: white" class="js-arrow" href="${path}/tutor/manager/course/add?page=AddCourse">
+                                                                        <i style="margin-right: 10px;font-size: 20px" class="fa fa-plus-square"></i>Add new Course
+                                                                    </a>                           
                                                             </li>
-                                                            <li>
-                                                                <a href="LessonManager.jsp">Lesson Manager</a>
+                                                            
+                                                            <li style="<c:if test="${p eq 'CoursePublished'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=CoursePublished">Your Published Courses</a>                           
                                                             </li>
+
+                                                            <li style="<c:if test="${p eq 'UpdatingCourse'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=UpdatingCourse">Updating Courses</a>                           
+                                                            </li>
+                                                            <li style="<c:if test="${p eq 'DeletedCourse'}">background-color: #14bdee;</c:if>
+                                                                border-radius: 10px;margin: 5px">
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/tutor/manager/course?page=DeletedCourse">Deleted Courses</a>                           
+                                                            </li>
+
+                                                            <li style="border-radius: 10px;margin: 5px;background-color:
+                                                                <c:if test="${p eq 'RequestPublish' or p eq 'RequestUnPublish'}">
+                                                                    #14bdee;color: black
+                                                                </c:if>
+                                                                <c:if test="${p ne 'RequestUnPublish' and p ne 'RequestPublish' and NumRequest ne 0}">
+                                                                    #cd2737;color: white
+                                                                </c:if>">
+                                                                <a style="text-align: center" href="${path}/tutor/manager/request?view=RequestPublish">
+                                                                    All Request <c:if test="${NumRequest ne 0}">(${NumRequest})</c:if>
+                                                                    </a>
+                                                                </li>
                                                         </c:when>
                                                         <c:when test="${admin != null}">
                                                             <li style="<c:if test="${p eq 'coursemanager'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
-                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/admin/manager/course">Course Manager</a>                           
+                                                                    <a style="text-align: center;color: black" class="js-arrow" href="${path}/admin/manager/course">Courses</a>                           
                                                             </li>
                                                             <li style="<c:if test="${p eq 'usermanager'}">background-color: #14bdee;</c:if>
                                                                 border-radius: 10px;margin: 5px">
                                                                     <a style="text-align: center;color: black" href="${path}/admin/manager/user">User Manager</a>
-                                                            </li>   
+                                                            </li> 
+                                                            <li style="border-radius: 10px;margin: 5px;background-color:
+                                                                <c:if test="${p eq 'RequestPublish' or p eq 'RequestUnPublish'}">
+                                                                    #14bdee;color: black
+                                                                </c:if>
+                                                                <c:if test="${p ne 'RequestUnPublish' and p ne 'RequestPublish' and NumRequest ne 0}">
+                                                                    #cd2737;color: white important
+                                                                </c:if>">
+                                                                <a style="text-align: center" href="${path}/admin/manager/request?view=RequestPublish">
+                                                                    All Request <c:if test="${NumRequest ne 0}">(${NumRequest})</c:if>
+                                                                    </a>
+                                                                </li>
                                                         </c:when>
                                                     </c:choose>
 

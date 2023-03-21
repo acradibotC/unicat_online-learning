@@ -1,6 +1,7 @@
 package com.unicat.onlinelearning.controller.course;
 
 import com.unicat.onlinelearning.dao.CategoryDAO;
+import com.unicat.onlinelearning.dao.CourseEnrollDAO;
 import com.unicat.onlinelearning.dao.CoursesDAO;
 import com.unicat.onlinelearning.dao.ReviewCommentsDAO;
 import com.unicat.onlinelearning.dao.ReviewDAO;
@@ -26,10 +27,10 @@ public class Course_Review_Transaction extends HttpServlet {
     public static ReviewFeedbackDAO ReviewFeedbackDAO = new ReviewFeedbackDAO();
     public static ReviewDAO ReviewDAO = new ReviewDAO();
     public static ReviewCommentsDAO ReviewCommentsDAO = new ReviewCommentsDAO();
+    public static CourseEnrollDAO CourseEnrollDAO = new CourseEnrollDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 
@@ -42,6 +43,7 @@ public class Course_Review_Transaction extends HttpServlet {
         req.setAttribute("ReviewFeedbackDAO", ReviewFeedbackDAO);
         req.setAttribute("ReviewCommentsDAO", ReviewCommentsDAO);
         req.setAttribute("ReviewDAO", ReviewDAO);
+        req.setAttribute("CourseEnrollDAO", CourseEnrollDAO);
         
         //Status: 1 Insert - 2 Update -  3 Delete
         req.setAttribute("txtStatus", req.getParameter("txtStatus"));

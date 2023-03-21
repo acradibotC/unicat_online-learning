@@ -71,7 +71,7 @@
                                                 <c:when test="${tutor != null}">                                                
                                                     <div style="display: flex; gap: 10px;  " >
                                                         <div class="login_button" style="border-radius: 5px">
-                                                            <a href="${path}/admin/manager/course">Tutor Manager</a>
+                                                            <a href="${path}/tutor/manager/course?page=CoursePublished">Tutor Manager</a>
                                                         </div>
                                                         <div class="login_button" style="border-radius: 5px"><a href="${path}/user/login">Log Out</a></div>
                                                     </div>
@@ -148,14 +148,7 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                         </ul>
-                                        <div class="search_button"><i class="fa fa-search" aria-hidden="true"></i></div>
-
-                                        <!-- Hamburger -->
-
-                                        <div class="shopping_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                                        <div class="hamburger menu_mm">
-                                            <i class="fa fa-bars menu_mm" aria-hidden="true"></i>
-                                        </div>
+                                        
                                     </nav>
 
                                 </div>

@@ -48,6 +48,7 @@ CREATE TABLE [Course] (
 	[CourseInfo] [nvarchar](max) NOT NULL,
 	[Description] [nvarchar](max) NOT NULL,
 	[PublishStatus] [int] NOT NULL,
+	[Request] [nvarchar](max) NOT NULL,
 	CONSTRAINT PK_Course_CourseID PRIMARY KEY (CourseID),
 	CONSTRAINT FK_Course_CategoryID FOREIGN KEY (CategoryID) REFERENCES [Category](CategoryID),
 	CONSTRAINT FK_Course_UserID FOREIGN KEY (UserID) REFERENCES [User](UserID)
@@ -153,7 +154,7 @@ CREATE TABLE [Review] (
 	[ReviewID] [int] IDENTITY(1,1) NOT NULL,
 	[UserID] [int] NOT NULL,
 	[CourseID] [int] NOT NULL,
-	[Vote] [int] NOT NULL,
+	[Vote] [float] NOT NULL,
 	CONSTRAINT PK_Review_ReviewID PRIMARY KEY (ReviewID),
 	CONSTRAINT FK_Review_UserID FOREIGN KEY (UserID) REFERENCES [User](UserID),
 	CONSTRAINT FK_Review_CourseID FOREIGN KEY (CourseID) REFERENCES [Course](CourseID),
@@ -364,58 +365,58 @@ INSERT INTO [Category] ([Name])VALUES('IT & Software')
 INSERT INTO [Category] ([Name])VALUES('Graphic Design')
 
 -- TABLE: [Course]
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'JavaScript Notebook', 'https://tenten.vn/tin-tuc/wp-content/uploads/2022/06/Java-Script-4.jpg', 7, N'Khóa học JavaScript hiện đại dành cho mọi người! Làm chủ JavaScript với các dự án, thử thách và lý thuyết. Nhiều khóa học trong một!',
 		N'Trong thời gian gần đây, JavaScript luôn là ngôn ngữ rất nhiều lập trình viên và sinh viên IT đang quan tâm và bàn tán vì tính linh hoạt, đa năng và cơ hội nghề nghiệp hấp dẫn mà ngôn ngữ này mang lại. Với sự phát triển nhanh các tính năng mới của JavaScript khiến nhiều người đang nghiên cứu cũng khó nhớ hết những tính năng và hiểu bản chất cụ thể của nó. Thông qua khóa học SỔ TAY JAVASCRIPT, đây chỉ là những ghi chép mà Kteam tổng hợp như để có thể nghiên cứu lại khi cần thiết và giúp các bạn học hiểu được những tính năng JavaScript hiện nay. Khóa học này không hướng dẫn bạn từ cơ bản như các tutorial khác của Howkteam.com, vì vậy để theo dõi khóa này một cách tốt nhất hãy đảm bảo bạn đã có kiến thức về JavaScript cơ bản.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'Data Structures and Algorithms', 'https://camo.githubusercontent.com/209cff110067a8a1d41863dfd9e6469c02571dc51197ee8bccfe11abfc79aaf1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f636f75727365736974792d626c6f672f323032302f30372f646174612d7374727563747572652d616c676f726974686d2d636f75727365732e706e67', 7, N'Cấu trúc dữ liệu và thuật toán từ Zero đến Hero',
 		N'Bạn đã từng đau đầu với các cấu trúc stack, queue,.. hoặc cảm thấy cực kỳ khó khăn với các thuật toán sắp xếp, tìm kiếm được sử dụng trong lập trình. Đừng lo lắng! Trong khoá học này, chúng ta sẽ cùng nhau tìm hiểu một cách đơn giản nhất về cấu trúc dữ liệu và giải thuật, cũng như giúp bạn nắm rõ hơn về các kiến thức này.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'Cracking Technique', 'https://media.cybernews.com/images/featured/2020/08/password-cracking-techniques-1.jpg', 8, N'',
 		N'', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'Basic Front End Programming with Website Landing Page', 'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/299940393/original/434c252828262c1472630677abdeed4c13a9a774/do-the-front-end-for-a-landing-page.jpg', 8, N'',
 		N'Nếu bạn yêu thích lập trình web nhưng còn lơ ngơ không biết bắt đầu từ đâu hay đã biết cơ bản mà chưa làm được một sản phẩm nhất định nào, thì đây chính là khóa học dành cho bạn – LẬP TRÌNH FRONT END CƠ BẢN VỚI WEBSITE LANDING PAGE. Trong phần này, Chúng tôi sẽ giới thiệu cho các bạn về nội dung chúng ta sẽ được hướng dẫn cho khóa học này, cũng như là project mà chúng ta sẽ cùng nhau thực hiện.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'Basic Winform Programming', 'https://d3n0h9tb65y8q.cloudfront.net/public_assets/assets/000/002/068/original/WPF.png?1639058248', 7, N'',
 		N'Serial dành cho những bạn chưa có bất kỳ kiến thức gì về lập trình Winform, hoặc những bạn mất căn bản muốn lấy lại kiến thức nền tảng C# Winform. Nội dung Serial này được phân tách chi tiết nhất có thể, nhằm giúp các bạn dễ hiểu và thực hành được ngay.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'Basic to Object Oriented Java Programming', 'https://venturebeat.com/wp-content/uploads/2015/12/oracle-java-e1450723340931.jpg?fit=800%2C450&strip=all', 7, N'Lập trình Java cơ bản đến hướng đối tượng',
 		N'Thông qua khóa học LẬP TRÌNH JAVA CƠ BẢN ĐẾN HƯỚNG ĐỐI TƯỢNG, Chúng tôi sẽ hướng dẫn các bạn kiến thức cơ bản của Java. Để từ đó, có được nền tảng cho phép bạn tiếp tục tìm hiểu những kiến thức tuyệt vời khác của Java hoặc là một ngôn ngữ khác. Cụ thể trong khóa học này, Chúng tôi sẽ giới thiệu với các bạn Java ở phiên bản Java 8', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(1, 'Basic to Advanced Selenium Course', 'https://nareshit.com/wp-content/uploads/2018/08/Selenium-online-training-nareshit.jpg', 8, N'Khóa học Selenium cơ bản đến nâng cao',
 		N'Trong khóa học này chúng tôi sẽ giới thiệu đến các bạn một công cụ mạnh mẽ giúp bạn tạo ra các Script tự động thao tác với Web browers – Đó chính là Selenium. Thông qua khóa học LẬP TRÌNH SELENIUM, chúng tôi sẽ hướng dẫn các bạn những thao tác cơ bản với Selenium. Bạn hoàn toàn có thể kết hợp Selenium và các code C#, Java, Python hay ngôn ngữ lập trình khác mà Selenium có thư viện hỗ trợ, để tạo ra một tổ hợp thao tác kinh khủng khiếp cho tool của bạn.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(2, 'Computer tips', 'https://ramarcsolutions.com/wp-content/uploads/2018/05/computertips.png', 8, N'Thủ thuật máy tính',
 		N'Trong khóa học này chúng tôi sẽ giới thiệu đến các bạn các thủ thuật tối ưu máy tính.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(2, 'Certified Ethical Hacker v10 Vietnamese', 'https://i.ytimg.com/vi/MrJj9kRFPO0/maxresdefault.jpg', 8, N'CEH là từ viết tắt của Certified Ethical Hacker, là một trong những chứng chỉ bảo mật thông tin mạng/ứng dụng hàng đầu trong năm 2018 (Theo businessnewsdaily.com ). Là bước đầu tiên giúp bạn trở thành một hacker mũ trắng, với phương châm “ Hiểu hacker để chống lại hacker”.',
 		N'Nội dung của cuốn sách CEH v10 Tiếng Việt sẽ trang bị cho bạn các kiến thức từ cơ bản đến chuyên sâu về bảo mật, biết sử dụng thành thạo các công cụ và phương thức tấn công của các hacker qua 21 Modules( Module 21 là phần bổ sung chỉ có tại bản Tiếng Việt gồm các bài thi thử từ EC-Council kèm theo đáp án), từ đó giúp bạn làm chủ các phương pháp tấn công mà hacker thường sử dụng và có khả năng ngăn chặn,phòng chống lại các hành vi xâm phạm trái phép và phá hoại hệ thống mạng trong các công ty, tổ chức hay doanh nghiệp.', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(2, 'Installation Instructions', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1I_auLCilG6qWtd9T6XEymoYwMnHy_8_8iSB8naX_39uzcpho6lY7mWNjI2bcBw4MUbo&usqp=CAU', 8, N'Hướng dẫn cài đặt phần mềm, hệ điều hành',
 		N'', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(3, 'Adobe LightRoom Part I', 'https://www.classcentral.com/report/wp-content/uploads/2022/08/Adobe-Lightroom-BCG-Banner.png', 8, N'Tinh Nhuệ Với LightRoom',
 		N'', 
-		1)
-INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus])
+		1, 'none')
+INSERT INTO [Course] ([CategoryID], [Name], [Image], [UserID], [CourseInfo], [Description], [PublishStatus], [request])
 		VALUES(3, 'Adobe LightRoom Part II', 'https://www.classcentral.com/report/wp-content/uploads/2022/08/Adobe-Lightroom-BCG-Banner.png', 8, N'Phần Xử Lý Hậu Kỳ',
 		N'', 
-		1)
+		1, 'none')
 
 -- TABLE: [Review]
-INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 1, 2)
-INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (2, 1, 0)
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 1, 2.5)
+INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (2, 1, 3.7)
 INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (3, 1, 0)
 INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 2, 2)
 INSERT INTO [Review] ([UserID], [CourseID], [Vote]) VALUES (1, 1, 2)

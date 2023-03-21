@@ -33,6 +33,7 @@
                             <c:forEach var="question" items="${questions}">
                                 <h4 class="card-header bg-light " style="color: black">${question.getQuestionNum()}. ${question.getContent()}</h4>
                                 <div class="card-body"> 
+                                    
                                     <div class="gallery_item">
                                         <c:forEach var="option" items="${answerDAO.getAllAnswerByQuestionId(question.getQuestionID())}" varStatus="status">
                                             <div class="list-group-item list-group-item-action">
@@ -42,6 +43,7 @@
                                             </div>
                                         </c:forEach>
                                     </div>
+                                    
                                 </div>
                                 <hr>
                                 <c:set var="questionIndex" value="${questionIndex + 1}" />

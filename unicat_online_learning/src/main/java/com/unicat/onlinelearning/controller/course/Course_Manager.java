@@ -37,8 +37,8 @@ public class Course_Manager extends HttpServlet {
                 user = (User) req.getSession().getAttribute("tutor");
                 allCourse = CoursesDAO.getAllCourseByUserID(user.getUserID());
             } else {
-                allCourse = CoursesDAO.getAllCourse();
-            }
+                allCourse = CoursesDAO.getAllPublishedCourse(); 
+            }   
 
             //Paging
             int page, numPerPage = 6;
@@ -74,7 +74,8 @@ public class Course_Manager extends HttpServlet {
             req.setAttribute("number", number);
             //End Paging
             req.setAttribute("p", "coursemanager");
-
+            int NumRequest = CoursesDAO.getAllRequestPublishCourse().size() + CoursesDAO.getAllRequestUnPublishCourse().size();
+            req.setAttribute("NumRequest", NumRequest);
             req.getRequestDispatcher("/course_manager.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/home");
@@ -84,56 +85,79 @@ public class Course_Manager extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = null;
-        if (req.getSession().getAttribute("admin") != null) {
-            //user = (User) req.getSession().getAttribute("admin");
 
-            // Set Status Course
-            // Set Status = 1
-            if (req.getParameter("txtStatusPublish").equalsIgnoreCase("Publish")) {
-                com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
-                course.setPublishStatus(1);
-                CoursesDAO.updateCourse(course);
-                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
-            }
-            
-            
-            // Set Status = 0
-            if (req.getParameter("txtStatusPublish").equalsIgnoreCase("UnPublish")) {
-                com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
-                course.setPublishStatus(0);
-                CoursesDAO.updateCourse(course);
-                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
-            }
-            
+        //user = (User) req.getSession().getAttribute("admin");
+        // Set Status Course
+        // Set Status = 1
+        if (req.getParameter("txtStatusPublish").equalsIgnoreCase("Publish")) {
+            com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+            course.setPublishStatus(1);
+            course.setRequest("None");
+            CoursesDAO.updateCourse(course);
+            resp.sendRedirect(req.getContextPath() + "/admin/manager/request?view=RequestPublish");
         }
-        if (req.getSession().getAttribute("tutor") != null) {
-            user = (User) req.getSession().getAttribute("tutor");
 
-            // Insert 
-            if (req.getParameter("txtStatus").equalsIgnoreCase("1")) {
-                CoursesDAO.insertCourse(new com.unicat.onlinelearning.dto.Course(0, Integer.parseInt(req.getParameter("txtCategoryID")), req.getParameter("txtCourseName"),
-                        req.getParameter("txtCourseImage"), user.getUserID(), req.getParameter("txtCourseInf"), req.getParameter("txtCourseDescription"), 0));
-                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
+        // Set Status = 0
+        if (req.getParameter("txtStatusPublish").equalsIgnoreCase("UnPublish")) {
+            com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+            course.setPublishStatus(0);
+            if(CoursesDAO.getNumberUserEnroll(course.getCourseID())>0){
+                course.setRequest("Updating");
+            }else{
+                course.setRequest("None");
+            }
+            
+            CoursesDAO.updateCourse(course);
+            resp.sendRedirect(req.getContextPath() + "/admin/manager/request?view=RequestUnPublish");
+        }
+        if (req.getParameter("txtStatusPublish").equalsIgnoreCase("CancelPublish")) {
+            com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+            course.setPublishStatus(0);
+            if(CoursesDAO.getNumberUserEnroll(course.getCourseID())>0){
+                course.setRequest("Updating");
+            }else{
+                course.setRequest("None");
+            }
+            
+            CoursesDAO.updateCourse(course);
+            String Role = req.getParameter("Role");
+            if (Role.equals("Admin")) {
+                resp.sendRedirect(req.getContextPath() + "/admin/manager/request?view=RequestPublish");
+            } else {
+                String NowPage = "";
+                if (req.getParameter("NowPage") != null) {
+                    NowPage = req.getParameter("NowPage");
+                }
+                if (NowPage.equals("View")) {
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + course.getCourseID());
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/request?view=RequestPublish");
+                }
+
             }
 
-            // Update 
-            if (req.getParameter("txtStatus").equalsIgnoreCase("2")) {
-                com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
-                course.setCategoryID(Integer.parseInt(req.getParameter("txtCategoryID")));
-                course.setName(req.getParameter("txtName"));
-                course.setImage(req.getParameter("txtCourseImage"));
-                course.setCourseInfo(req.getParameter("txtCourseInf"));
-                course.setDescription(req.getParameter("txtCourseDescription"));
-                CoursesDAO.updateCourse(course);
-                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
-            }
-
-            // Delete 
-            if (req.getParameter("txtStatus").equalsIgnoreCase("3")) {
-                CoursesDAO.deleteCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
-                resp.sendRedirect(req.getContextPath() + "/admin/manager/course");
+        }
+        if (req.getParameter("txtStatusPublish").equalsIgnoreCase("CancelUnPublish")) {
+            com.unicat.onlinelearning.dto.Course course = CoursesDAO.getCourseByCourseID(Integer.parseInt(req.getParameter("txtCourseID")));
+            course.setPublishStatus(1);
+            course.setRequest("None");
+            CoursesDAO.updateCourse(course);
+            String Role = req.getParameter("Role");
+            if (Role.equals("Admin")) {
+                resp.sendRedirect(req.getContextPath() + "/admin/manager/request?view=RequestUnPublish");
+            } else {
+                String NowPage = "";
+                if (req.getParameter("NowPage") != null) {
+                    NowPage = req.getParameter("NowPage");
+                }
+                if (NowPage.equals("View")) {
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + course.getCourseID());
+                } else {
+                    resp.sendRedirect(req.getContextPath() + "/tutor/manager/request?view=RequestUnPublish");
+                }
             }
         }
+
     }
 
 }
