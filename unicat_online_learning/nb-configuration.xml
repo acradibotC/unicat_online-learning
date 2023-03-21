@@ -25,7 +25,7 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-modules-javascript2-requirejs.enabled>true</org-netbeans-modules-javascript2-requirejs.enabled>
         <netbeans.compile.on.save>none</netbeans.compile.on.save>
         <netbeans.compile.on.save>all</netbeans.compile.on.save>
-        <netbeans.hint.jdkPlatform>JDK_18</netbeans.hint.jdkPlatform>
+        <netbeans.hint.jdkPlatform>JDK_17</netbeans.hint.jdkPlatform>
     </properties>
     <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
 </project-shared-configuration>
