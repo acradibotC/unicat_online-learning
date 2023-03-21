@@ -30,7 +30,7 @@ public class Course_Manager_Insert_Transaction extends HttpServlet {
             c.setCourseInfo(req.getParameter("txtCourseInf"));
             c.setDescription(req.getParameter("txtCourseDescription"));
             c.setPublishStatus(0);
-            c.setRequest("Updating");
+            c.setRequest("None");
             cd.AddnewCourse(c);
             com.unicat.onlinelearning.dto.Course course = cd.getLastCourseCreatedByUserID(user.getUserID());
             resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID=" + course.getCourseID());
