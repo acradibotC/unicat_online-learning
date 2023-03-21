@@ -23,7 +23,7 @@ import java.util.Hashtable;
  * @author Admin
  */
 @WebServlet("/tutor/manager/course")
-public class CourseTutor extends HttpServlet {
+public class Course_Tutor extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -160,7 +160,7 @@ public class CourseTutor extends HttpServlet {
                     }
 
                 } else {
-                    req.getSession().setAttribute("Notify", "You not dont have permission to access");
+                    
                     resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
                 }
                 //End Update   
@@ -185,7 +185,6 @@ public class CourseTutor extends HttpServlet {
                         req.setAttribute("listlesson", listlesson);
                         req.getRequestDispatcher("/TutorViewCourse.jsp").forward(req, resp);
                     } else {
-                        req.getSession().setAttribute("Notify", "You not dont have permission to view this course as an tutor");
                         resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=CoursePublished");
                     }
 
