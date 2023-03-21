@@ -46,7 +46,7 @@
                                     <label>Lesson Number</label>                                     
                                     <textarea type="text" name="txtLessonNum" class="form-control" disabled="">${lesson.getLessonNum()}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Lesson Name </label>                                     
                                     <textarea type="text" name="txtName" class="form-control" >${lesson.getName()}</textarea>
@@ -66,7 +66,11 @@
                                 <input type="hidden" name="Update" value="UpdateLesson"/>
                                 <input type="hidden" name="CourseID" value="${lesson.getCourseID()}"/>
                                 <input type="hidden" name="LessonNum" value="${lesson.getLessonNum()}"/>
-                                <div ><input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" type="submit" value="Update Lesson"/></div>
+                                <c:if test="${course.getPublishStatus() eq 0}">
+                                    <c:if test="${course.getRequest() eq 'None' or course.getRequest() eq 'Updating'}">
+                                        <div ><input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" type="submit" value="Update Lesson"/></div>
+                                        </c:if>
+                                    </c:if>
                             </div>
                         </form>
                     </div>

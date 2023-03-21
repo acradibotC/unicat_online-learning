@@ -84,10 +84,14 @@
                                 </div>
                                 <input type="hidden" name="Update" value="UpdateCourseInfor"/>
                                 <input type="hidden" name="CourseID" value="${course.getCourseID()}"/>
-                                <div >
-                                    <input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" 
-                                           type="submit" value="Update Course"/>
-                                </div>
+                                <c:if test="${course.getPublishStatus() eq 0}">
+                                    <c:if test="${course.getRequest() eq 'None' or course.getRequest() eq 'Updating'}">
+                                        <div >
+                                            <input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" 
+                                                   type="submit" value="Update Course"/>
+                                        </div>
+                                    </c:if>
+                                </c:if>
                             </div>
                         </form>
                     </div>

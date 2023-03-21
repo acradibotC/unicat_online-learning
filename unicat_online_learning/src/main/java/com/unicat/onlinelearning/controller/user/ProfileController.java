@@ -34,7 +34,7 @@ public class ProfileController extends HttpServlet {
 
             if (req.getParameter("txtPass").equals("") || req.getParameter("txtPass").contains(" ") || req.getParameter("txtPass").length() < 6) {
                 Password = u.getPassWord();
-
+                
             } else {
                 Password = req.getParameter("txtPass");
             }
@@ -54,7 +54,7 @@ public class ProfileController extends HttpServlet {
             String regexPhone = "[0-9]+";
             if (req.getParameter("txtPhone").matches(regexPhone) == false || req.getParameter("txtPhone").length() < 9) {
                 Phone = u.getPhone();
-
+                
             } else {
                 Phone = req.getParameter("txtPhone");
 
@@ -73,11 +73,12 @@ public class ProfileController extends HttpServlet {
             }
             if (req.getParameter("txtPass").equals("") == false || req.getParameter("txtRepass").equals("") == false) {
                 if (req.getParameter("txtPass").equals("") || req.getParameter("txtRepass").equals("")) {
-                    req.getSession().setAttribute("msgNotMatch", "Password must match with RePassword to change password");
+                    req.getSession().setAttribute("msgPass", "Password or Re-Password not valid. Try Again");
                 } else {
                     if (Password.equals(Repass) == false) {
-                        req.getSession().setAttribute("PoR", "Password must match with RePassword to change password");
+                        req.getSession().setAttribute("msgPass", "Password or Re-Password not valid. Try Again");
                     } else {
+                        req.getSession().setAttribute("msgOk", "Update Password Success");
                         u.setPassWord(Password);
                     }
                 }

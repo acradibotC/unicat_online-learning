@@ -38,6 +38,7 @@ public class Course_Tutor_Request extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
         CategoryDAO CategoryDAO = new CategoryDAO();
         CoursesDAO cd = new CoursesDAO();
         req.setAttribute("CoursesDAO", CoursesDAO);

@@ -519,7 +519,13 @@
                                     </form>
                                 </c:if>
                             </c:if>
-
+                            <c:if test="${admin eq null and student eq null}">
+                                <div  style="font-size:17px;background-color: #14bdee;width: 150px;padding: 15px;border-radius: 15px;margin: 10px">
+                                    <a style="color: white" href="${path}/user/login">
+                                         Sign In to Enroll
+                                    </a>
+                                </div>
+                            </c:if>
 
                             <!-- Features -->
                             <div class="feature_list">

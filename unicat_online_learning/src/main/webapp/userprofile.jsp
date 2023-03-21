@@ -66,7 +66,7 @@
                                         </div>
                                     </c:if>
                                     <c:if test="${CoursesDAO.getCourseByCourseID(lc.getCourseID()).getPublishStatus() eq 0}">
-                                    <button disabled class="btn btn-danger"style="margin: 10px">Updating</button></c:if>
+                                        <button disabled class="btn btn-danger"style="margin: 10px">Updating</button></c:if>
 
 
                                     </div>
@@ -101,7 +101,10 @@
                                     <input type="date" name="txtDob" class="form-control" value="${User.getDob()}">
                                 </div>
                             </div>
+                            <div style="color: red;margin-left: 5%;margin-bottom: 4%">${msgPhone}</div>
+                            <c:remove var="msgPhone" scope="session" />
                             <div class="row mb-3">
+
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Mobile Phone</h6>
                                     <span style="color:red;"></span>
@@ -121,8 +124,11 @@
                                     <input type="text" name="txtAddress" class="form-control" placeholder="${User.getAddress()}">
                                 </div>
 
-                            </div>    
+                            </div>  
+                            <div style="color: red;margin-left: 5%;margin-bottom: 4%">${msgPass}</div>
+                            <c:remove var="msgPass" scope="session" />
                             <div class="row mb-3">
+
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">New password</h6>
                                 </div>
@@ -141,14 +147,15 @@
                                 </div>
 
                             </div>
-                            <div style="color: red;margin-left: 5%;margin-bottom: 4%">${msgNotMatch}</div>
-                            <c:remove var="msgNotMatch" scope="session" />
+                            <div style="color: greenyellow;margin-left: 5%;margin-bottom: 4%">${msgOk}</div>
+                            <c:remove var="msgOk" scope="session" />
                             <div class="row">
                                 <div class="col-sm-3"></div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="submit" class="btn btn-primary px-4" value="Save">
                                 </div>
                             </div>
+
                         </form>
 
                     </div>
