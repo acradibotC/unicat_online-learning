@@ -94,7 +94,7 @@
         </div>
     </c:if>
     <c:if test="${AllBlog.size() == 0}">
-         <div class="paginationBlog">No Items Found!</div>
+        <div class="paginationBlog">No Items Found!</div>
     </c:if>
 </div>
 
@@ -113,16 +113,24 @@
                     <!-- Newsletter Content -->
                     <div class="newsletter_content text-lg-left text-center">
                         <div class="newsletter_title">sign up for news and offers</div>
-                        <div class="newsletter_subtitle">Subcribe to lastest smartphones news & great deals we offer</div>
+                        <div class="newsletter_subtitle">Subcribe to lastest lessons news & great deals we offer</div>
                     </div>
 
                     <!-- Newsletter Form -->
-                    <div class="newsletter_form_container ml-lg-auto">
-                        <form action="#" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
-                            <input type="email" class="newsletter_input" placeholder="Your Email" required="required">
-                            <button type="submit" class="newsletter_button">subscribe</button>
-                        </form>
-                    </div>
+                    <c:if test="${User eq null}">
+                        <div class="newsletter_form_container ml-lg-auto">
+                            <form action="${path}/user/login" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
+                                <button type="submit" class="newsletter_button">subscribe</button>
+                            </form>
+                        </div>
+                    </c:if>
+                    <c:if test="${User ne null}">
+                        <div class="newsletter_form_container ml-lg-auto">
+                            <form action="${path}/courses" id="newsletter_form" class="newsletter_form d-flex flex-row align-items-center justify-content-center">
+                                <button type="submit" class="newsletter_button">subscribe</button>
+                            </form>
+                        </div>
+                    </c:if>
 
                 </div>
             </div>

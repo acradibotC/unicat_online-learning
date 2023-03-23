@@ -136,6 +136,20 @@ public class ReviewDAO extends DBContext {
         return 0;
     }
     
+    public int getTotalVoteCourseByCourseIDAndNotEqualToNumber(int courseID, int num) {
+        try {
+            String sql = "SELECT COUNT(*) AS [SUM] FROM [Review] WHERE CourseID = ?  AND Vote != ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ps.setInt(2, num);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+                return rs.getInt("SUM");
+        } catch (Exception e) {
+        }
+        return 0;
+    }  
+    
     public int getTotalVoteCourseByCourseIDAndVote(int courseID, int vote) {
         try {
             String sql = "SELECT COUNT(*) AS [Total] FROM [Review] WHERE CourseID = ? AND Vote = ?";

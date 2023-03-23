@@ -72,6 +72,7 @@ public class UserLogin extends HttpServlet {
             req.getSession().removeAttribute("student");
             req.getSession().removeAttribute("admin");
             req.getSession().removeAttribute("tutor");
+            req.getSession().removeAttribute("User");
             resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);

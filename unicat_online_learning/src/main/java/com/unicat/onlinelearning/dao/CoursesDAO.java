@@ -197,8 +197,8 @@ public class CoursesDAO extends DBContext {
         }
         return kt;
     }
-    
-     public int doneCourse(int UserID, int CourseID) {
+
+    public int doneCourse(int UserID, int CourseID) {
         int kt = 0;
         try {
             String sql = "UPDATE CourseEnroll SET CourseStatus = 1 WHERE UserID = ? AND CourseID = ?";
@@ -328,6 +328,26 @@ public class CoursesDAO extends DBContext {
             ps.executeUpdate();
         } catch (SQLException e) {
         }
+    }
+
+    public ArrayList<Course> getTop3PopularCourse() {
+        ArrayList<Course> list = new ArrayList<>();
+        try {
+            String sql = "SELECT c.CourseID, c.CategoryID, c.[Name], c.[Image], c.UserID, c.CourseInfo, c.[Description], c.PublishStatus, c.Request \n"
+                    + "FROM [Course] c JOIN (SELECT TOP 3 CourseID, AVG(Vote) AS [Average] \n"
+                    + "						FROM [Review] \n"
+                    + "						GROUP BY CourseID \n"
+                    + "						ORDER BY Average DESC) d\n"
+                    + "						ON c.CourseID = d.CourseID";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Course(rs.getInt("CourseID"), rs.getInt("CategoryID"), rs.getString("Name"), rs.getString("Image"),
+                        rs.getInt("UserID"), rs.getString("CourseInfo"), rs.getString("Description"), rs.getInt("PublishStatus"), rs.getString("Request")));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
     // -----------------------------------Publish Status--------------------------------------------------------
@@ -550,7 +570,7 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
-    
+
     public ArrayList<Course> getAllCourseSearchingByCategoryIDWithStatusAndRequest(int CategoryID, String Search, int Status, String Request) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -570,6 +590,7 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+
     // -----------------------------------End Publish Status And Request--------------------------------------------------------
     public String getCourseNameByCourseID(int CourseID) {
         try {
@@ -617,6 +638,7 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+
     public ArrayList<Course> getDeletedCourse(int UserID) {
         ArrayList<Course> List = new ArrayList<>();
         try {
@@ -633,14 +655,12 @@ public class CoursesDAO extends DBContext {
         }
         return List;
     }
+
     public static void main(String[] args) {
         CoursesDAO dao = new CoursesDAO();
         Course c = dao.getCourseByCourseID(1);
 
-
         System.out.println(dao.getLastCourseCreatedByUserID(7));
-
-      
 
         //System.out.println(dao.getCourseByCourseID(5).getName());
         //System.out.println(dao.getAllCourseByCategoryID(1).size());
