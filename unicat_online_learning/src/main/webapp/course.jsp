@@ -84,10 +84,7 @@
                                         </ul>
                                     </div>
                                     <div class="tab_panel_section">
-                                        <div class="tab_panel_subtitle">What is the target audience?</div>
-                                        <div class="tab_panel_text">
-                                            <p>${Course.getDescription()}</p>
-                                        </div>
+
                                     </div>
                                     <div class="tab_panel_faq">
                                         <div class="tab_panel_title">FAQ</div>
@@ -98,37 +95,42 @@
                                             <div class="elements_accordions">
 
                                                 <div class="accordion_container">
-                                                    <div class="accordion d-flex flex-row align-items-center"><div>Can I just enroll in a single course?</div></div>
+                                                    <div class="accordion d-flex flex-row align-items-center"><div>What are some of the challenges of online learning?</div></div>
                                                     <div class="accordion_panel">
-                                                        <p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+                                                        <p>Lack of structure: Online courses may not have set class times or regular face-to-face interactions with instructors, which can make it challenging for some students to stay motivated and on track.</p>
+                                                        <p>Technical difficulties: Online learning requires a reliable internet connection and access to a computer or device, which can be a barrier for some students, particularly those in low-income areas or with limited access to technology.</p>
+                                                        <p>Limited social interaction: Online courses can be isolating, with little opportunity for students to interact with peers or instructors in person.</p>
+                                                        <p>Time management: Online courses require students to manage their time effectively, which can be challenging for those with busy schedules or competing priorities.</p>
+                                                        <p>Self-motivation</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="accordion_container">
-                                                    <div class="accordion d-flex flex-row align-items-center active"><div>I'm not interested in the entire Specialization?</div></div>
+                                                    <div class="accordion d-flex flex-row align-items-center"><div>What are the benefits of using online learning websites?</div></div>
                                                     <div class="accordion_panel">
-                                                        <p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+                                                        <p>Flexibility: Online learning allows students to learn at their own pace and on their own schedule. This can be particularly beneficial for working professionals, parents, or students with other commitments.</p>
+                                                        <p>Convenience: Online learning eliminates the need to commute to a physical classroom, saving time and money on transportation.</p>
+                                                        <p>Access to a wider range of courses: Online learning allows students to take courses from institutions around the world, expanding their opportunities for learning and professional development.</p>
+                                                        <p>Cost savings: Online courses are often less expensive than traditional classroom courses, and students can save money on textbooks and other course.</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="accordion_container">
-                                                    <div class="accordion d-flex flex-row align-items-center"><div>What is the refund policy?</div></div>
+                                                    <div class="accordion d-flex flex-row align-items-center"><div>How do online learning websites differ from traditional learning?</div></div>
                                                     <div class="accordion_panel">
-                                                        <p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+                                                        <p>Mode of instruction: Traditional classroom learning typically involves face-to-face instruction, while online learning is typically delivered through a virtual classroom or online platform.</p>
+                                                        <p>Flexibility: Online learning offers more flexibility in terms of when and where students can access course materials and participate in class.</p>
+                                                        <p>Interactivity: Traditional classroom learning typically involves more interactive experiences, such as discussions and group work, while online learning may rely more heavily on independent learning and self-study.</p>
+                                                        <p>Pace of learning: Online learning allows students to learn at their own pace, while traditional classroom learning often follows a set schedule.</p>
+                                                        <p>Classroom culture: Traditional classroom learning fosters a sense of classroom community and culture, while online learning can be more individualistic and isolated.</p>
+                                                        <p>Accessibility: Online learning offers greater accessibility to individuals who may not be able to attend traditional classroom courses, such as those with disabilities or those living in remote areas.</p>
                                                     </div>
                                                 </div>
 
                                                 <div class="accordion_container">
-                                                    <div class="accordion d-flex flex-row align-items-center"><div>What background knowledge is necessary?</div></div>
+                                                    <div class="accordion d-flex flex-row align-items-center"><div>Can I get a certificate or degree from an online learning website?</div></div>
                                                     <div class="accordion_panel">
-                                                        <p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="accordion_container">
-                                                    <div class="accordion d-flex flex-row align-items-center"><div>Do i need to take the courses in a specific order?</div></div>
-                                                    <div class="accordion_panel">
-                                                        <p>Lorem ipsun gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a.</p>
+                                                        <p>No, this online learning website doesn't support any certificate or degree.</p>
                                                     </div>
                                                 </div>
 
@@ -142,90 +144,24 @@
                             <!-- Curriculum -->
                             <div class="tab_panel tab_panel_2">
                                 <div class="tab_panel_content">
-                                    <div class="tab_panel_title">Software Training</div>
+                                    <div class="tab_panel_title">${Course.getName()}</div>
                                     <div class="tab_panel_content">
-                                        <div class="tab_panel_text">
-                                            <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
+                                        <div class="tab_panel_text">                   
                                         </div>
 
                                         <!-- Dropdowns -->
                                         <ul class="dropdowns">
-                                            <li class="has_children">
-                                                <div class="dropdown_item">
-                                                    <div class="dropdown_item_title"><span>Lecture 1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                    <div class="dropdown_item_text">
-                                                        <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                    </div>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="dropdown_item">
-                                                            <div class="dropdown_item_title"><span>Lecture 1.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                            <div class="dropdown_item_text">
-                                                                <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                            </div>
+                                            <c:forEach items="${LessonDAO.getAllLessonByCourseID(Course.getCourseID())}" var="x">
+                                                <li>
+                                                    <div class="dropdown_item">
+                                                        <div class="dropdown_item_title"><span>Lecture ${x.getLessonNum()}:</span> ${x.getName()}</div>
+                                                        <div class="dropdown_item_text">
+<!--                                                            <p>${x.getTitle()}</p>-->
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="dropdown_item">
-                                                            <div class="dropdown_item_title"><span>Lecture 1.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                            <div class="dropdown_item_text">
-                                                                <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="has_children">
-                                                <div class="dropdown_item">
-                                                    <div class="dropdown_item_title"><span>Lecture 2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                    <div class="dropdown_item_text">
-                                                        <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                    </div>
-                                                </div>
-                                                <ul>
-                                                    <li>
-                                                        <div class="dropdown_item">
-                                                            <div class="dropdown_item_title"><span>Lecture 2.1:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                            <div class="dropdown_item_text">
-                                                                <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="dropdown_item">
-                                                            <div class="dropdown_item_title"><span>Lecture 2.2:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                            <div class="dropdown_item_text">
-                                                                <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="dropdown_item">
-                                                    <div class="dropdown_item_title"><span>Lecture 3:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                    <div class="dropdown_item_text">
-                                                        <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="dropdown_item">
-                                                    <div class="dropdown_item_title"><span>Lecture 4:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                    <div class="dropdown_item_text">
-                                                        <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="dropdown_item">
-                                                    <div class="dropdown_item_title"><span>Lecture 5:</span> Lorem Ipsn gravida nibh vel velit auctor aliquet.</div>
-                                                    <div class="dropdown_item_text">
-                                                        <p>Lorem Ipsn gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auci elit consequat ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus.</p>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                    </div>                                     
+                                                </li>
+                                            </c:forEach>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -241,7 +177,7 @@
                                             <button class="btn btn-primary" style="color: white; align-content: center; border-radius: 5px; ">Give a Rating</button>
                                         </a>
                                     </div>
-                                            <div style="margin-top: 10px;">
+                                    <div style="margin-top: 10px;">
                                         <c:if test="${ReviewDAO.checkUserVote(User.getUserID(), Course.getCourseID()).getVote() ne 0}">
                                             You have voted <fmt:formatNumber type="number" maxFractionDigits="0" value="${ReviewDAO.checkUserVote(User.getUserID(), Course.getCourseID()).getVote()}" /> star
                                         </c:if>
@@ -255,7 +191,7 @@
 
                                             <div class="rating_r rating_r_${AvgRateInteger}"><i></i><i></i><i></i><i></i><i></i></div>
                                         </div>
-                                        <div class="review_rating_text">(${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())} Ratings)</div>
+                                        <div class="review_rating_text">(${ReviewDAO.getTotalVoteCourseByCourseIDAndNotEqualToNumber(Course.getCourseID(), 0)} Ratings)</div>
                                     </div>
                                     <div class="review_rating_bars">
                                         <ul>
@@ -289,7 +225,9 @@
                                                             <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()).getFullName()}</a></div>
                                                             <div class="comment_rating">
                                                                 <fmt:parseNumber var = "parseNumVote" integerOnly="true" type="number" value="${ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getVote()}" />
-                                                                <div class="rating_r rating_r_${parseNumVote}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                <c:if test="${parseNumVote ne 0}">
+                                                                    <div class="rating_r rating_r_${parseNumVote}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                        </c:if>                                                                
                                                             </div>
                                                             <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${x.getReviewFeedbackDate()}"/></div>
                                                         </div>
@@ -371,7 +309,11 @@
                                                                     <fmt:parseNumber var = "parseNumVoteComment" integerOnly="true" type="number" value="${ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getVote()}" />
                                                                     <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                                         <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getUserID()).getFullName()}</a></div>
-                                                                        <div class="comment_rating"><div class="rating_r rating_r_${parseNumVoteComment}"><i></i><i></i><i></i><i></i><i></i></div></div>
+                                                                        <div class="comment_rating">
+                                                                            <c:if test="${parseNumVoteComment ne 0}">
+                                                                                <div class="rating_r rating_r_${parseNumVoteComment}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                                    </c:if>
+                                                                        </div>
                                                                         <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${y.getReviewCommentDate()}"/></div>
                                                                     </div>
                                                                     <div class="comment_text">
@@ -546,7 +488,7 @@
                             </c:if>
 
 
-                            
+
                         </div>
                     </div>
 
@@ -571,7 +513,7 @@
                                     <div class="teacher_meta_title">Review:</div>
                                     <div class="teacher_meta_text ml-auto"><span>${ReviewDAO.getTotalVoteCourseByCourseID(Course.getCourseID())}</span><i class="fa fa-comment" aria-hidden="true"></i></div>
                                 </div>
-                                
+
                             </div>
                             <div class="teacher_info">
                                 <p></p>
