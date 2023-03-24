@@ -29,9 +29,11 @@
                                 </h3>
 
                                 <p>The page you are looking for not avaible!</p>
-                                <form action="home" method="get"></a>
-                                    <input class="link_404" type="submit" value="Go to home"/>
-                                </form>
+                                <div  style="font-size:17px;background-color: #cd2737;width: 220px;padding: 15px;border-radius: 15px;margin: 10px">
+                                    <a style="color: white" href="${path}/home">
+                                        <i style="font-size: 20px" class="fa fa-arrow-circle-left"></i> Go to Home Page
+                                    </a>
+                                </div>
 
                             </div>
                         </div>

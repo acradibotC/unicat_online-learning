@@ -35,23 +35,27 @@ public class Course_Manager_Insert_Transaction extends HttpServlet {
             com.unicat.onlinelearning.dto.Course course = cd.getLastCourseCreatedByUserID(user.getUserID());
             resp.sendRedirect(req.getContextPath() + "/tutor/manager/course?page=view&CourseID="+course.getCourseID());
         }
-        if(add.equals("Category")){
-            resp.sendRedirect(req.getContextPath() +"/home");
+        if (add.equals("Category")) {
+            resp.sendRedirect(req.getContextPath() + "/home");
         }
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("CategoryDAO", CategoryDAO);
-        String page = req.getParameter("page");
-        if (page.equals("AddCourse")) {
-            req.setAttribute("p", "AddCourse");
-            req.getRequestDispatcher("/course_manager_insert_transaction.jsp").forward(req, resp);
-        } else {
-            if (page.equals("AddCategory")) {
-                req.getRequestDispatcher("/Addcategory.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("tutor") != null) {
+            req.setAttribute("CategoryDAO", CategoryDAO);
+            String page = req.getParameter("page");
+            if (page.equals("AddCourse")) {
+                req.setAttribute("p", "AddCourse");
+                req.getRequestDispatcher("/course_manager_insert_transaction.jsp").forward(req, resp);
+            } else {
+                if (page.equals("AddCategory")) {
+                    req.getRequestDispatcher("/Addcategory.jsp").forward(req, resp);
+                }
             }
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/home");
         }
 
     }

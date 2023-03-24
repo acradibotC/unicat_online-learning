@@ -46,7 +46,8 @@
     <div class="contact_info_container">
         <div class="container">
             <div class="row">
-
+                <div style="color: green;margin-left: 5%;margin-bottom: 4%">${Ban}</div>
+                <c:remove var="Ban" scope="session" />
                 <!-- Contact Form -->
                 <div class="col-lg-6">
                     <div class="contact_form">

@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,6 +81,7 @@
                                     <textarea name="txtCourseDescription" class="form-control" required></textarea>
                                 </div>
                                 <input name="Add" value="Course" type="hidden"/>
+                                
                                 <div >
                                     <input style="background-color: #cd2737;border-radius: 15px;color: white;padding: 10px;font-size: 18px" 
                                            type="submit" value="Add Course"/>

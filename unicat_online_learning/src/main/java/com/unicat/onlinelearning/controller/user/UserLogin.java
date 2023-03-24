@@ -39,7 +39,11 @@ public class UserLogin extends HttpServlet {
                 if (user.getStatus() == 0) {
                     //User has been banned , move into Contact page for help
 
+                    req.getSession().setAttribute("Ban", "You have been Banned cause of some reason. Send mail us for more details");
+                    resp.sendRedirect(req.getContextPath() + "/contact");
+
                 } else {
+                    
                     switch (user.getRoleID()) {
                         case 1:
                             req.getSession().setAttribute("admin", user);
@@ -67,6 +71,7 @@ public class UserLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
         if (req.getSession().getAttribute("student") != null || req.getSession().getAttribute("admin") != null
                 || req.getSession().getAttribute("tutor") != null) {
             req.getSession().removeAttribute("student");
