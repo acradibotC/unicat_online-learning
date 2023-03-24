@@ -25,8 +25,7 @@ Link to access: [Unicat Online Learning](https://unicat.azurewebsites.net)
 - Frontend
      - JSP, Boostrap, CSS
 - Backend
-     - Java, Servlet
-     - Entity Framework - Object–relational mapping
+     - Java, Servle
      - SQL Server 2019 - Database
 - Design Pattern
      - Service-Repository pattern
