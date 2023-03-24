@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -76,3 +77,4 @@
             <script src="${path}/js/manager.js" type="text/javascript"></script>
     </body>
 </html>
+   

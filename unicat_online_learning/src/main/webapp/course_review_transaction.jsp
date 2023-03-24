@@ -113,7 +113,9 @@
                                                             <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getUserID()).getFullName()}</a></div>
                                                             <div class="comment_rating">
                                                                 <fmt:parseNumber var = "parseNumVote" integerOnly="true" type="number" value="${ReviewDAO.getReviewByReviewFeedbackID(x.getReviewFeedbackID()).getVote()}" />
-                                                                <div class="rating_r rating_r_${parseNumVote}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                <c:if test="${parseNumVote ne 0}">
+                                                                    <div class="rating_r rating_r_${parseNumVote}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                        </c:if>
                                                             </div>
                                                             <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${x.getReviewFeedbackDate()}"/></div>
                                                         </div>
@@ -131,7 +133,11 @@
                                                                     <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
                                                                         <fmt:parseNumber var = "parseNumVoteFeedback" integerOnly="true" type="number" value="${ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getVote()}" />
                                                                         <div class="comment_author"><a href="#">${UserDAO.getUserByUserID(ReviewDAO.getReviewByReviewCommentID(y.getReviewCommentID()).getUserID()).getFullName()}</a></div>
-                                                                        <div class="comment_rating"><div class="rating_r rating_r_${parseNumVoteFeedback}"><i></i><i></i><i></i><i></i><i></i></div></div>
+                                                                        <div class="comment_rating">
+                                                                            <c:if test="${parseNumVoteFeedback ne 0}">
+                                                                                <div class="rating_r rating_r_${parseNumVoteFeedback}"><i></i><i></i><i></i><i></i><i></i></div>
+                                                                            </c:if>                                                                   
+                                                                        </div>
                                                                         <div class="comment_time ml-auto"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${y.getReviewCommentDate()}"/></div>
                                                                     </div>
                                                                     <div class="comment_text">

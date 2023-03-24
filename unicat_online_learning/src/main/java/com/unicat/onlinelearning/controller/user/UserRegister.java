@@ -24,21 +24,21 @@ public class UserRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserDAO ud = new UserDAO();
-        String UserName = req.getParameter("txtUserName");
+        String UserName = req.getParameter("txtUserName").trim();
         String PassWord = req.getParameter("txtPassWord");
-        String Phone = req.getParameter("txtPhone");
+        String Phone = req.getParameter("txtPhone").trim();
         String Dob = req.getParameter("txtDob");
         String rePass = req.getParameter("txtRePass");
-        String FullName = req.getParameter("txtFullName");
-        String Gmail = req.getParameter("txtGmail");
-        String Address = req.getParameter("txtAddress");
+        String FullName = req.getParameter("txtFullName").trim();
+        String Gmail = req.getParameter("txtGmail").trim();
+        String Address = req.getParameter("txtAddress").trim();
         if (UserName.equals("")) {
             req.setAttribute("msgUserName", "UserName is required");
 
-
         } else {
             if (ud.checkUser(UserName, Gmail) != null) {
-                req.setAttribute("msgUserName", "UserName has been used");
+                req.setAttribute("msgUserName", "UserName or Gmail has been used");
+                UserName = "";
             }
         }
         if (PassWord.equals("")) {
@@ -53,14 +53,15 @@ public class UserRegister extends HttpServlet {
             req.setAttribute("msgPhone", "Phone is required");
         } else {
             String regex = "[0-9]+";
-            if (Phone.matches(regex) == false || Phone.length() < 9) {
+            if (Phone.matches(regex) == false || Phone.length() < 9 || Phone.length() > 11) {
                 req.setAttribute("msgPhone", "Phone does not exist. Please enter valid phone number!");
-
+                Phone = "";
             }
 
         }
 
         if (Dob.equals("")) {
+
             req.setAttribute("msgDob", "Date of birth is required");
         }
         if (rePass.equals("")) {
@@ -71,6 +72,13 @@ public class UserRegister extends HttpServlet {
         }
         if (Gmail.equals("")) {
             req.setAttribute("msgGmail", "Gmail is required");
+
+        } else {
+            String regexgm = "^[\\w.+\\-]+@gmail\\.com$";
+            if (Gmail.matches(regexgm) == false) {
+                req.setAttribute("msgGmail", "Gmail is required and must follow '@gmail.com' ");
+                Gmail = "";
+            }
         }
         if (Address.equals("")) {
             req.setAttribute("msgAddress", "Address is required");
@@ -86,7 +94,7 @@ public class UserRegister extends HttpServlet {
                     req.setAttribute("msgHave", "User Name or Gmail has been used");
                     req.getRequestDispatcher("/register.jsp").forward(req, resp);
                 } else {
-                    User user = new User(0, UserName, PassWord, FullName, "", Gmail,Date.valueOf(Dob), Phone, Address, null, null, 0, 0);
+                    User user = new User(0, UserName, PassWord, FullName, "", Gmail, Date.valueOf(Dob), Phone, Address, null, null, 0, 0);
                     ud.insertUser(user);
                     resp.sendRedirect(req.getContextPath() + "/user/login");
                 }
@@ -96,7 +104,14 @@ public class UserRegister extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/register.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("student") != null || req.getSession().getAttribute("admin") != null
+                || req.getSession().getAttribute("tutor") != null) {
+
+            resp.sendRedirect(req.getContextPath() + "/home");
+        } else {
+            req.getRequestDispatcher("/register.jsp").forward(req, resp);
+        }
+
     }
 
 }
